@@ -48,6 +48,125 @@
 		</nav>
 	</header>
 
+	<section class="hero-contacts">
+		<div class="hero-contacts__header">
+			<h1>Контакты</h1>
+			<p>Свяжитесь с нами удобным способом или посетите гимназию лично</p>
+		</div>
+
+		<!-- Тот самый блок из 3 карточек, как на первом скрине -->
+		<div class="hero-contacts__cards">
+			<div class="hero-card">
+				<div class="hero-card__icon">
+					<img src="assets/icons/phone-orange.svg" alt="Телефон">
+				</div>
+				<h3>+7 (49232) X-XX-XX</h3>
+				<p>Приемная директора<br>Пн–Пт: 8:30 – 17:00</p>
+			</div>
+
+			<div class="hero-card">
+				<div class="hero-card__icon">
+					<img src="assets/icons/location-orange.svg" alt="Адрес">
+				</div>
+				<h3>ул. Сосновая, д. 15</h3>
+				<p>г. Ковров, Владимирская обл.<br>Индекс: 601900</p>
+			</div>
+
+			<div class="hero-card">
+				<div class="hero-card__icon">
+					<img src="assets/icons/bus-orange.svg" alt="Транспорт">
+				</div>
+				<h3>Остановка «Улица Подлесная»</h3>
+				<p>Автобусы № 2, 12, 17<br>От остановки 3 минуты пешком</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Секция: Карта + Основная информация -->
+	<section class="contacts-main">
+		<!-- Левая колонка: Карта -->
+		<div class="contacts-main__map">
+			<iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aexample&amp;source=constructor" width="100%"
+				height="100%" frameborder="0" title="Карта проезда к гимназии">
+			</iframe>
+		</div>
+
+		<!-- Правая колонка: Адрес и часы работы -->
+		<div class="contacts-main__info">
+			<h2 class="contacts-main__title">Главный корпус</h2>
+
+			<div class="contacts-info-item">
+				<img class="contacts-info-item__icon" src="assets/icons/location.svg" alt="Адрес">
+				<div>
+					<strong>Адрес:</strong>
+					<p>601900, Владимирская обл., г. Ковров, ул. Сосновая, д. 15</p>
+				</div>
+			</div>
+
+			<div class="contacts-info-item">
+				<img class="contacts-info-item__icon" src="assets/icons/clock-contact.svg" alt="Время работы">
+				<div>
+					<strong>Режим работы:</strong>
+					<p>Пн–Пт: 07:30 – 19:00 (Сб, Вс — выходной)</p>
+					<p class="contacts-info-item__note">Приемная директора: Чт 15:00 – 17:00</p>
+				</div>
+			</div>
+
+			<div class="contacts-info-item">
+				<img class="contacts-info-item__icon" src="assets/icons/mail.svg" alt="Email">
+				<div>
+					<strong>Электронная почта:</strong>
+					<p><a href="mailto:info@gymnasiya-kovrov.ru">info@gymnasiya-kovrov.ru</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Секция: Телефоны отделов -->
+	<section class="contacts-departments">
+		<h2 class="contacts-departments__title">Телефоны служб и отделов</h2>
+		<div class="contacts-departments__grid">
+
+			<div class="department-card">
+				<span class="department-card__name">Приемная / Секретарь</span>
+				<a href="tel:+74923200000" class="department-card__phone">+7 (49232) X-XX-XX</a>
+				<span class="department-card__hours">Пн–Пт: 08:30 – 17:00</span>
+			</div>
+
+			<div class="department-card">
+				<span class="department-card__name">Пост охраны (Вахта)</span>
+				<a href="tel:+74923200001" class="department-card__phone">+7 (49232) X-XX-XX</a>
+				<span class="department-card__hours">Круглосуточно</span>
+			</div>
+
+			<div class="department-card">
+				<span class="department-card__name">Бухгалтерия</span>
+				<a href="tel:+74923200002" class="department-card__phone">+7 (49232) X-XX-XX</a>
+				<span class="department-card__hours">Пн–Пт: 09:00 – 16:00</span>
+			</div>
+
+			<div class="department-card">
+				<span class="department-card__name">Завуч по УВР</span>
+				<a href="tel:+74923200003" class="department-card__phone">+7 (49232) X-XX-XX</a>
+				<span class="department-card__hours">Пн–Пт: 09:00 – 17:00</span>
+			</div>
+
+		</div>
+	</section>
+
+	<!-- Секция: Реквизиты (Аккордеон или выпадающий блок) -->
+	<section class="contacts-requisites">
+		<details class="requisites-accordion">
+			<summary class="requisites-accordion__title">Юридическая информация и реквизиты организации</summary>
+			<div class="requisites-accordion__content">
+				<p><strong>Полное наименование:</strong> ЧОУ «Православная гимназия г. Коврова»</p>
+				<p><strong>ОГРН:</strong> 1023300000000 | <strong>ИНН:</strong> 3305000000 | <strong>КПП:</strong>
+					330501001</p>
+				<p><strong>Расчетный счет:</strong> 40703810000000000000 в ПАО Сбербанк</p>
+				<p><strong>БИК:</strong> 041708602 | <strong>Корр. счет:</strong> 30101810000000000602</p>
+			</div>
+		</details>
+	</section>
 	<section class="faq-feedback">
 		<div class="feedback">
 			<h2>Остались вопросы? Напишите нам</h2>
@@ -88,73 +207,37 @@
 			<div class="faq__list">
 				<details class="faq__item" open>
 					<summary class="faq__question">Как добраться до гимназии на общественном транспорте?</summary>
-					<p class="faq__answer">Ближайшая остановка — «Улица Мира» (автобусы № 5, 12, 17 и троллейбус № 3).
-						От остановки нужно пройти 300 метров прямо по пешеходной аллее вдоль Спасского корпуса. Вход на
-						территорию через центральную калитку.
+					<p class="faq__answer">До остановки «Улица Подлесная» ходят автобусы № 2, 12 и 17. От остановки до
+						центральных ворот — около 3 минут пешком.
 					</p>
 				</details>
 
 				<details class="faq__item">
-					<summary class="faq__question">На каком транспорте удобнее приехать и где припарковаться?</summary>
-					<p class="faq__answer">Гостевая парковка расположена со стороны главного въезда (вдоль улицы
-						Гагарина). Обратите внимание: въезд личного автотранспорта на внутреннюю территорию гимназии
-						строго запрещен в целях безопасности.
+					<summary class="faq__question">Есть ли возле гимназии парковка для родителей?</summary>
+					<p class="faq__answer">Да, напротив главных ворот со стороны ул. Сосновая расположена бесплатная
+						парковка на 15 машиномест.
 					</p>
 				</details>
 
 				<details class="faq__item">
-					<summary class="faq__question">В какое время открыта территория гимназии и приемная директора?
-					</summary>
-					<p class="faq__answer">Территория гимназии открыта с 7:30 до 19:00 по будням. Приемная директора
-						работает с понедельника по пятницу с 8:30 до 17:00. Прием граждан по личным вопросам проходит по
-						четвергам с 15:00 до 17:00 по предварительной записи.
+					<summary class="faq__question">Как записаться на личный приём к директору?</summary>
+					<p class="faq__answer">Приём директора проходит по четвергам с 15:00 до 17:00. Предварительная
+						запись осуществляется через секретарский отдел по телефону или через форму обратной связи на
+						сайте.
 					</p>
 				</details>
 
 				<details class="faq__item">
-					<summary class="faq__question">Какой порядок прохода на территорию для родителей и гостей?
-					</summary>
-					<p class="faq__answer">В гимназии действует пропускной режим. Для входа в здание родителям и
-						посетителям необходимо предъявить документ, удостоверяющий личность (паспорт), дежурному
-						сотруднику охраны и зарегистрироваться в журнале посещений.
+					<summary class="faq__question">В какое время работает приемная комиссия и секретариат?</summary>
+					<p class="faq__answer">Приемная и секретарский отдел работают с понедельника по пятницу с 08:30 до
+						17:00 (суббота и воскресенье — выходные).
 					</p>
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">По какому номеру звонить, если нужно срочно связаться с классным
-						руководителем?
-					</summary>
-					<p class="faq__answer">Связь с педагогами во время уроков осуществляется через секретаря по общему
-						номеру +7 (XXX) XXX-XX-XX. Секретарь передаст информацию учителю на перемене или соединит с вами
-						по окончании занятий.
 				</details>
 			</div>
 		</div>
 	</section>
 
 	<footer>
-		<div class="footer-contacts">
-			<div class="contacts__info">
-				<h2>Контакты</h2>
-				<ul class="contacts__info-list">
-					<li class="list-adress"><img src="assets/icons/adres.svg" alt="Адрес">г. Ковров, ул. Подлесная,
-						д. 10</li>
-					<li class="list-phone"><img src="assets/icons/phone.svg" alt="Телефон">+7 (49232) 4-01-95,
-						4-22-72</li>
-					<li class="list-email"><img src="assets/icons/email.svg" alt="Почта">sretenskajgimn@yandex.ru
-					</li>
-					<li class="list-time_work"><img src="assets/icons/clock2.svg" alt="Часы">Пн–Пт: 8:00 – 19:00
-					</li>
-				</ul>
-				<div class="contacts__buttons">
-					<a href="#"><img src="assets/icons/TG_vector.svg" alt="ТГ вектор">Написать в Telegram</a>
-					<a href="#"><img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">Написать в WhatsApp</a>
-				</div>
-			</div>
-			<div class="contacts__map">
-				<img src="assets/images/map.png" alt="Карта адреса">
-			</div>
-		</div>
 		<div class="footer-bottom">
 			<div class="brand__footer">
 				<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">

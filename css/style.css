@@ -2285,3 +2285,288 @@ details[open] summary {
 	font-weight: 600;
 	margin-right: 4px;
 }
+
+
+
+
+
+
+
+/* ----------------------------------- */
+
+/* --- СЕКЦИЯ С КАРТОЙ И АДРЕСОМ --- */
+.contacts-main {
+	display: flex;
+	gap: 32px;
+	width: 100%;
+	margin: 40px 0;
+}
+
+.contacts-main__map {
+	flex: 1.2;
+	min-height: 360px;
+	border-radius: 16px;
+	overflow: hidden;
+	background-color: #E2E8F0;
+}
+
+.contacts-main__info {
+	flex: 1;
+	position: relative;
+	background: url(../assets/images/campus_contact.png) center/cover no-repeat;
+	border-radius: 16px;
+	padding: 32px;
+
+	/* Жесткая обрезка любых вылазящих артефактов и блюра */
+	clip-path: inset(0 round 16px);
+	overflow: hidden;
+}
+
+/* Размытие и подложка */
+.contacts-main__info::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	/* Строго по границам блока */
+	background: rgba(255, 255, 255, 0.85);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	z-index: 1;
+}
+
+/* Контент над плашкой */
+.contacts-main__info>* {
+	position: relative;
+	z-index: 2;
+}
+
+.contacts-main__title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #0F172A;
+	margin: 0 0 20px 0;
+}
+
+.contacts-info-item {
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
+	margin-bottom: 20px;
+}
+
+.contacts-info-item:last-child {
+	margin-bottom: 0;
+}
+
+.contacts-info-item__icon {
+	width: 36px;
+	height: 36px;
+	padding: 8px;
+	background-color: #FFFFFF;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+	flex-shrink: 0;
+}
+
+.contacts-info-item strong {
+	font-size: 14px;
+	font-weight: 700;
+	color: #1E293B;
+	display: block;
+	margin-bottom: 2px;
+}
+
+.contacts-info-item p {
+	font-size: 15px;
+	font-weight: 600;
+	color: #0F172A;
+	margin: 0;
+}
+
+.contacts-info-item a {
+	color: #2563EB;
+	text-decoration: none;
+}
+
+.contacts-info-item a:hover {
+	text-decoration: underline;
+}
+
+.contacts-info-item__note {
+	font-size: 13px !important;
+	color: #334155 !important;
+	font-weight: 500 !important;
+	margin-top: 4px !important;
+}
+
+/* --- ТЕЛЕФОНЫ ОТДЕЛОВ --- */
+.contacts-departments {
+	margin: 40px 0;
+}
+
+.contacts-departments__title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #0F172A;
+	margin-bottom: 20px;
+}
+
+.contacts-departments__grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+}
+
+.department-card {
+	background-color: #F8FAFC;
+	border: 1px solid #E2E8F0;
+	border-radius: 12px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.department-card__name {
+	font-size: 14px;
+	font-weight: 600;
+	color: #475569;
+}
+
+.department-card__phone {
+	font-size: 16px;
+	font-weight: 700;
+	color: #2563EB;
+	text-decoration: none;
+}
+
+.department-card__phone:hover {
+	text-decoration: underline;
+}
+
+.department-card__hours {
+	font-size: 12px;
+	color: #94A3B8;
+}
+
+/* --- РЕКВИЗИТЫ (DETAILS/SUMMARY) --- */
+.contacts-requisites {
+	margin: 30px 0 40px 0;
+}
+
+.requisites-accordion {
+	background-color: #F8FAFC;
+	border: 1px solid #E2E8F0;
+	border-radius: 12px;
+	padding: 16px 20px;
+}
+
+.requisites-accordion summary,
+.requisites-accordion__title {
+	font-size: 15px;
+	font-weight: 600;
+	color: #334155;
+	cursor: pointer;
+	user-select: none;
+	list-style: none;
+}
+
+.requisites-accordion summary::-webkit-details-marker,
+.requisites-accordion__title::-webkit-details-marker {
+	display: none;
+}
+
+.requisites-accordion__content {
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px solid #CBD5E1;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.requisites-accordion__content p {
+	font-size: 13px;
+	color: #475569;
+	margin: 0;
+}
+
+/* --- HERO SECTION --- */
+.hero-contacts {
+	background-image: url(../assets/images/bg_contact.svg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding: 48px 32px;
+	border-radius: 0 0 24px 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.hero-contacts__header h1 {
+	font-size: 42px;
+	font-weight: 700;
+	color: #0F172A;
+	margin: 0 0 8px 0;
+}
+
+.hero-contacts__header p {
+	font-size: 24px;
+	color: #1E293B;
+	margin: 0;
+}
+
+.hero-contacts__cards {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+}
+
+.hero-card {
+	background-color: #FFFFFF;
+	border-radius: 16px;
+	padding: 24px 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.hero-card__icon {
+	width: 48px;
+	height: 48px;
+	background-color: #FEF3C7;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 12px;
+}
+
+.hero-card__icon img {
+	width: 34px;
+	height: 34px;
+}
+
+.hero-card h3 {
+	font-size: 16px;
+	font-weight: 700;
+	color: #0F172A;
+	margin: 0 0 6px 0;
+}
+
+.hero-card p {
+	font-size: 13px;
+	color: #64748B;
+	line-height: 1.4;
+	margin: 0;
+}
+
+.requisites-accordion__title {
+	list-style: none;
+	background-repeat: no-repeat;
+	background-position: right 16px center;
+	background-image: url('../assets/icons/arrow_down.svg');
+}
