@@ -3122,3 +3122,399 @@ details[open] summary {
 	transition: order 0.3s ease;
 	/* Плавная смена порядка браузерами, поддерживающими CSS Order Animation */
 }
+
+
+
+
+
+/* ----------------------------------- */
+
+
+
+
+/* --- СБРОС И ОСНОВНЫЕ ПЕРЕМЕННЫЕ (В стиле текущего сайта) --- */
+:root {
+	--color-bg-page: #F8FAFC;
+	/* Легкий светлый фон страницы */
+	--color-surface: #FFFFFF;
+	/* Белые поверхности карточек */
+	--color-text-main: #0F172A;
+	/* Тёмно-синий/чёрный заголовочный */
+	--color-text-muted: #64748B;
+	/* Серый текст субтитров */
+	--color-brand-blue: #2563EB;
+	/* Основной синий сайта */
+	--color-brand-blue-hover: #1D4ED8;
+	--color-brand-orange: #EA580C;
+	/* Янтарный акцентный */
+	--color-border: #E2E8F0;
+	/* Границы */
+	--radius-card: 20px;
+	--radius-pill: 100px;
+	--font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: var(--font-family);
+	background-color: var(--color-bg-page);
+	color: var(--color-text-main);
+	line-height: 1.45;
+	-webkit-font-smoothing: antialiased;
+}
+
+.site-container {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 0 24px;
+}
+
+/* --- HERO SECTION (Идентично блоку "Питание") --- */
+.page-hero {
+	background: linear-gradient(180deg, #E0F2FE 0%, var(--color-bg-page) 100%);
+	padding: 48px 0 32px 0;
+}
+
+.hero-badge {
+	display: inline-block;
+	background-color: rgba(37, 99, 235, 0.1);
+	color: var(--color-brand-blue);
+	font-size: 13px;
+	font-weight: 600;
+	padding: 4px 12px;
+	border-radius: var(--radius-pill);
+	margin-bottom: 12px;
+}
+
+.hero-title {
+	font-size: 36px;
+	font-weight: 800;
+	color: var(--color-text-main);
+	letter-spacing: -0.02em;
+	margin-bottom: 8px;
+}
+
+.hero-subtitle {
+	font-size: 16px;
+	color: var(--color-text-muted);
+	max-width: 680px;
+}
+
+/* --- ТУЛБАР ФИЛЬТРОВ И ПОИСКА --- */
+.toolbar-sticky {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	background-color: rgba(248, 250, 252, 0.85);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid var(--color-border);
+	padding: 16px 0;
+	margin-bottom: 32px;
+}
+
+.toolbar-inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+}
+
+.filter-pills {
+	display: flex;
+	gap: 8px;
+	overflow-x: auto;
+	padding-bottom: 4px;
+	/* Для скролла на мобилках */
+}
+
+.pill-btn {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-border);
+	color: #475569;
+	padding: 8px 16px;
+	border-radius: var(--radius-pill);
+	font-size: 14px;
+	font-weight: 500;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.pill-btn:hover {
+	border-color: var(--color-brand-blue);
+	color: var(--color-brand-blue);
+}
+
+.pill-btn--active {
+	background-color: var(--color-brand-blue);
+	border-color: var(--color-brand-blue);
+	color: #FFFFFF;
+}
+
+.pill-btn--active:hover {
+	background-color: var(--color-brand-blue-hover);
+	color: #FFFFFF;
+}
+
+/* Поиск в стиле поиска по сайту */
+.search-box__input {
+	width: 260px;
+	height: 40px;
+	padding: 8px 16px;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-pill);
+	background-color: var(--color-surface);
+	font-size: 14px;
+	outline: none;
+	transition: border-color 0.2s;
+}
+
+.search-box__input:focus {
+	border-color: var(--color-brand-blue);
+}
+
+/* --- СЕКЦИИ И ГРУППЫ --- */
+.teachers-group {
+	margin-bottom: 48px;
+}
+
+.group-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	padding-bottom: 12px;
+	border-bottom: 2px solid #EEF2F6;
+}
+
+.group-header__title {
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--color-text-main);
+}
+
+.group-header__count {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--color-text-muted);
+	background-color: #E2E8F0;
+	padding: 3px 10px;
+	border-radius: var(--radius-pill);
+}
+
+/* --- СЕТКА И КАРТОЧКИ УЧИТЕЛЕЙ --- */
+.teachers-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+	align-items: stretch;
+	/* Растягивает все карточки в ряду на одну высоту */
+}
+
+@media (max-width: 1024px) {
+	.teachers-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 640px) {
+	.teachers-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.teacher-card {
+	background-color: var(--color-surface);
+	border-radius: var(--radius-card);
+	border: 1px solid var(--color-border);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	/* Гарантирует равную высоту всех карточек в строке */
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teacher-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0px 12px 24px rgba(15, 23, 42, 0.06);
+}
+
+/* Контейнер фото (Строгие пропорции 3:4) */
+.teacher-card__photo-container {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 3 / 4;
+	/* Жестко фиксирует пропорции фотографии */
+	overflow: hidden;
+	background-color: #F1F5F9;
+}
+
+.teacher-card__photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	/* Обрезает изображение под блок 3:4 без деформации */
+	object-position: top center;
+}
+
+/* Аккуратная плашка поверх низа фотографии */
+.teacher-card__role-tag {
+	position: absolute;
+	bottom: 12px;
+	left: 12px;
+	right: 12px;
+	background-color: rgba(15, 23, 42, 0.75);
+	backdrop-filter: blur(6px);
+	color: #FFFFFF;
+	font-size: 13px;
+	font-weight: 600;
+	padding: 6px 12px;
+	border-radius: 8px;
+	width: fit-content;
+}
+
+.teacher-card__role-tag--orange {
+	background-color: rgba(234, 88, 12, 0.9);
+}
+
+/* Контентная зона */
+.teacher-card__body {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	/* Позволяет блоку занимать всё свободное место снизу */
+}
+
+.teacher-card__name {
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--color-text-main);
+	margin-bottom: 4px;
+	line-height: 1.3;
+}
+
+.teacher-card__position {
+	font-size: 14px;
+	color: var(--color-text-muted);
+	margin-bottom: 20px;
+	flex-grow: 1;
+	/* Выталкивает футер с бейджами в самый низ карточки */
+}
+
+/* Теги опыта и категории */
+.teacher-card__footer {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+	padding-top: 12px;
+	border-top: 1px solid #F1F5F9;
+	margin-top: auto;
+	/* Жесткая привязка к низу */
+}
+
+.info-badge {
+	font-size: 12px;
+	font-weight: 600;
+	padding: 4px 10px;
+	border-radius: 6px;
+}
+
+.info-badge--blue {
+	background-color: #EFF6FF;
+	color: var(--color-brand-blue);
+}
+
+.info-badge--blue-light {
+	background-color: #F0F9FF;
+	color: #0284C7;
+}
+
+.info-badge--gray {
+	background-color: #F1F5F9;
+	color: #475569;
+}
+
+/* Духовенство и основы веры */
+.teacher-card__role-tag--purple {
+	background-color: rgba(126, 34, 206, 0.85);
+}
+
+/* Филология и языки */
+.teacher-card__role-tag--teal {
+	background-color: rgba(13, 148, 136, 0.85);
+}
+
+/* Точные и естественные науки */
+.teacher-card__role-tag--blue {
+	background-color: rgba(37, 99, 235, 0.85);
+}
+
+/* Общественные науки и история */
+.teacher-card__role-tag--amber {
+	background-color: rgba(180, 83, 9, 0.85);
+}
+
+/* Труд, спорт, искусство */
+.teacher-card__role-tag--red {
+	background-color: rgba(225, 29, 72, 0.85);
+}
+
+/* Внеурочная деятельность */
+.teacher-card__role-tag--green {
+	background-color: rgba(16, 185, 129, 0.85);
+}
+
+.teachers-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.teachers-group {
+	order: 0;
+	transition: order 0.3s ease;
+	/* Мягкое переключение */
+}
+
+.filter-pills {
+	display: flex;
+	gap: 8px;
+	overflow-x: auto;
+	scroll-behavior: smooth;
+	/* Обеспечивает физику плавности на уровне браузера */
+
+	/* Скрытие дефолтного скроллбара */
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.filter-pills::-webkit-scrollbar {
+	display: none;
+}
+
+.teacher-card {
+	transition: opacity 0.3s ease, transform 0.3s ease;
+	opacity: 1;
+	transform: scale(1);
+}
+
+/* Класс для плавного исчезновения перед скрытием */
+.teacher-card--hidden {
+	opacity: 0;
+	transform: scale(0.95);
+	pointer-events: none;
+}
+
+
+.page-hero {
+	background-image: url(../assets/images/teachers_bg.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}

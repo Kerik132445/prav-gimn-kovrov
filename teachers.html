@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Наши преподаватели</title>
+
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+	<header>
+		<div class="top-bar">
+			<div class="containers">
+				<div class="top-bar__content">
+
+					<div class="brand">
+						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
+						<div class="brand__info">
+							<span class="brand__title">Православная гимназия г. Коврова</span>
+							<span class="brand__subtitle">Частное общеобразовательное учреждение</span>
+						</div>
+					</div>
+
+					<form class="search-form">
+						<img src="./assets/icons/search.svg" alt="Поиск" class="search-form__icons">
+						<input type="text" class="search-form__input" placeholder="Поиск по сайту...">
+					</form>
+
+				</div>
+			</div>
+		</div>
+		<nav class="main-nav">
+			<div class="container">
+				<div class="main-nav__content">
+					<ul class="nav-list">
+						<li><a href="#" class="nav-link">Главная</a></li>
+						<li><a href="#" class="nav-link">Сведения об организации</a></li>
+						<li><a href="#" class="nav-link">Учеба ▾</a></li>
+						<li><a href="#" class="nav-link">Жизнь гимназии</a></li>
+						<li><a href="#" class="nav-link">Родителям ▾</a></li>
+						<li><a href="#" class="nav-link">Поступающим</a></li>
+						<li><a href="#" class="nav-link">Контакты</a></li>
+					</ul>
+					<a href="#" class="btn-donate">Я хочу помочь</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<header class="page-hero">
+		<div class="site-container">
+			<span class="hero-badge">Педагогический состав</span>
+			<h1 class="hero-title">Учителя и наставники</h1>
+			<p class="hero-subtitle">
+				Педагоги, которые помогают раскрывать потенциал каждого ученика гимназии, сочетая высокие академические
+				стандарты и внимание к личности.
+			</p>
+		</div>
+	</header>
+
+	<div class="toolbar-sticky">
+		<div class="site-container">
+			<div class="toolbar-inner">
+				<div class="filter-pills">
+					<button class="pill-btn pill-btn--active">Все учителя</button>
+					<button class="pill-btn" data-category="admins">Администрация</button>
+					<button class="pill-btn" data-category="start_teachers">Начальные классы</button>
+					<button class="pill-btn" data-category="church">Духовенство</button>
+					<button class="pill-btn" data-category="lang">Филология и языки</button>
+					<button class="pill-btn" data-category="accuracy">Точные науки</button>
+					<button class="pill-btn" data-category="naturally">Общественные науки</button>
+					<button class="pill-btn" data-category="work">Труд, спорт, искусство</button>
+					<button class="pill-btn" data-category="other">Внеурочная деятельность</button>
+				</div>
+				<div class="search-box">
+					<input type="search" class="search-box__input" placeholder="Поиск по ФИО или предмету...">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<main class="main-content">
+		<div class="site-container">
+
+			<div class="teachers-container">
+
+				<section class="teachers-group" data-category="admins">
+					<div class="group-header">
+						<h2 class="group-header__title">Администрация</h2>
+						<span class="group-header__count">7 человек</span>
+					</div>
+
+					<div class="teachers-grid">
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/mihail.jpg" alt="Протоиерей Михаил Бунтилов"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag">Директор</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Протоиерей Михаил Владимирович Бунтилов</h3>
+								<p class="teacher-card__position">Директор и учитель ОПВ</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 46 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/Kozlov-Ioann-ierej.jpg"
+									alt="Иерей Иоанн Игоревич Козлов" class="teacher-card__photo">
+								<div class="teacher-card__role-tag">Заместитель директора</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Иерей Иоанн Игоревич Козлов</h3>
+								<p class="teacher-card__position">Духовник Православной гимназии.</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 14 лет</span>
+									<span class="info-badge info-badge--gray">Высшее образование</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/maxim-vladimirovich.jpg"
+									alt="Андреев Максим Владимирович" class="teacher-card__photo">
+								<div class="teacher-card__role-tag">Заместитель директора</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Андреев Максим Владимирович</h3>
+								<p class="teacher-card__position">Заместитель директора по хозяйственной части.
+
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 46 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/zyicova-tatiana.jpg" alt="Зуйкова Татьяна Николаевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag">Заместитель директора</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Зуйкова Татьяна Николаевна
+								</h3>
+								<p class="teacher-card__position">Заместитель директора по учебной работе (начальная
+									школа),
+									учитель начальных классов.
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 42 года</span>
+									<span class="info-badge info-badge--gray">Высшее образование</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/kyznecova-svetlana.jpg"
+									alt="Кузнецова Светлана Ивановна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag">Заместитель директора</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Кузнецова Светлана Ивановна</h3>
+								<p class="teacher-card__position">Заместитель директора по учебной работе (основная и
+									средняя школа).
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 25 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/andreeva-marina.jpg" alt="Андреева Марина Владимировна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag">Заместитель директора</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Андреева Марина Владимировна
+								</h3>
+								<p class="teacher-card__position">Заместитель директора по воспитательной работе.
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 24 года</span>
+									<span class="info-badge info-badge--gray">Высшее образование</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/fedotova-kristina.jpg"
+									alt="Федотова Кристина Андреевна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag">Методист</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Федотова Кристина Андреевна</h3>
+								<p class="teacher-card__position">Методист, кл. руководитель, учитель русского языка и
+									литературы,
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 3 года</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+				<section class="teachers-group" data-category="start_teachers">
+					<div class="group-header">
+						<h2 class="group-header__title">Учителя начальных классов</h2>
+						<span class="group-header__count">5 человек</span>
+					</div>
+
+					<div class="teachers-grid">
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/marina-nikolaevna.jpg" alt="Панина Мария Николаевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--orange">Классный руководитель
+									2А
+									класса
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Панина Мария Николаевна</h3>
+								<p class="teacher-card__position">Учитель начальных классов</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 46 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/elena-yrievna.jpg" alt="Спиридонова Елена Юрьевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--orange">Классный руководитель
+									4
+									класса
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Спиридонова Елена Юрьевна</h3>
+								<p class="teacher-card__position">Учитель начальных классов</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 37 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/borisenko-oksana.jpg"
+									alt="Борисенко Оксана Александровна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--orange">Классный руководитель
+									3Б
+									класса
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Борисенко Оксана Александровна</h3>
+								<p class="teacher-card__position">Учитель начальных классов</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 14 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/zyicova-tatiana.jpg" alt="Зуйкова Татьяна Николаевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--orange">Классный руководитель
+									1
+									класса
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Зуйкова Татьяна Николаевна</h3>
+								<p class="teacher-card__position">Учитель начальных классов</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 42 года</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/blinova-olga.jpg" alt="Блинова Ольга Владимировна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--orange">Классный руководитель
+									3А
+									класса
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Блинова Ольга Владимировна</h3>
+								<p class="teacher-card__position">Учитель начальных классов</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 41 год</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+
+					</div>
+				</section>
+
+
+				<section class="teachers-group" data-category="church">
+					<div class="group-header">
+						<h2 class="group-header__title">Духовенство и основы веры</h2>
+						<span class="group-header__count">4 человека</span>
+					</div>
+
+					<div class="teachers-grid">
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/mihail.jpg"
+									alt="Протоиерей Михаил Владимирович Бунтилов" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--purple">Учитель ОПВ
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Протоиерей Михаил Владимирович Бунтилов</h3>
+								<p class="teacher-card__position">Учитель основ православной веры.</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 46 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/vladislav-vladimirovich.jpg"
+									alt="Иерей Владислав Владимирович Печенкин" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--purple">Учитель ИЗО,
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Иерей Владислав Владимирович Печенкин</h3>
+								<p class="teacher-card__position">Учитель основ православной веры, изобразительное
+									искусство.</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 18 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/semen-kravchenko.png"
+									alt="Иерей Семён Иванович Кравченко" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--purple">Учитель ОПВ
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Иерей Семён Иванович Кравченко
+								</h3>
+								<p class="teacher-card__position">Учитель основ правосавной веры</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 26 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/andreeva-marina.jpg" alt="Андреева Марина Владимировна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--purple">Учитель ЦСЯ
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Андреева Марина Владимировна</h3>
+								<p class="teacher-card__position">Учитель церковнославянского языка</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 24 года.</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+
+				<section class="teachers-group" data-category="lang">
+					<div class="group-header">
+						<h2 class="group-header__title">Филология и языки</h2>
+						<span class="group-header__count">7 человек</span>
+					</div>
+
+					<div class="teachers-grid">
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/natalia-varnina.jpg"
+									alt="Варнина Наталья Александровна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--teal">Учитель русского языка
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Варнина Наталья Александровна</h3>
+								<p class="teacher-card__position">Учитель русского языка и литературы, классный
+									руководитель
+									8 класса</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 32 года</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/fedotova-kristina.jpg"
+									alt="Федотова Кристина Андреевна Печенкин" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--teal">Учитель русского языка
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Федотова Кристина Андреевна</h3>
+								<p class="teacher-card__position">Учитель русского языка и литературы, классный
+									руководитель
+									10
+									класса</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 3 года</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/kyznecova-svetlana.jpg"
+									alt="Кузнецова Светлана Ивановна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--teal">Учитель русского языка
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Кузнецова Светлана Ивановна
+								</h3>
+								<p class="teacher-card__position">Учитель русского языка и литературы</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 25 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/shiragina-anna.jpg" alt="Ширягина Анна Васильевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--teal">Филолог
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Ширягина Анна Васильевна</h3>
+								<p class="teacher-card__position">Учитель русского языка и литературы, основ
+									православной
+									веры, церковно-славянского языка</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 1 год</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/dmitrieva-diana.jpg" alt="Дмитриева Диана Валерьевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--teal">Учитель английского
+									языка
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Дмитриева Диана Валерьевна
+								</h3>
+								<p class="teacher-card__position">Учитель английского языка</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 17 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/ilyshina-elena.jpg" alt="Илюшина Елена Викторовна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--teal">Учитель английского
+									языка
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Илюшина Елена Викторовна</h3>
+								<p class="teacher-card__position">Учитель английского языка</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 22 года</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/samarina-natalia.jpg" alt="Самарина Наталья Алексеевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--teal">Учитель английского
+									языка
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Самарина Наталья Алексеевна
+								</h3>
+								<p class="teacher-card__position">Учитель английского языка</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 16 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+
+				<section class="teachers-group" data-category="accuracy">
+					<div class="group-header">
+						<h2 class="group-header__title">Точные и естественные науки</h2>
+						<span class="group-header__count">7 человек</span>
+					</div>
+
+					<div class="teachers-grid">
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/baranova-irina.jpg" alt="Баранова Ирина Александровна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--blue">Учитель математики
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Баранова Ирина Александровна</h3>
+								<p class="teacher-card__position">Учитель алгебры, геометрии, вероятности и статистики
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 41 год</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/fedotova-kristina.jpg"
+									alt="Коровина Елена Вячеславовна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--blue">Учитель математики
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Коровина Елена Вячеславовна</h3>
+								<p class="teacher-card__position">Учитель алгебры, геометрии, вероятности и статистики
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 19 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/chenvernikova-natalia.jpg"
+									alt="Четверикова Наталья Вячеславовна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--blue">Учитель математики
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Четверикова Наталья Вячеславовна
+								</h3>
+								<p class="teacher-card__position">Учитель алгебры, геометрии, вероятности и статистики
+								</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 35 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/lobceva-olga.jpg" alt="Лабцова Ольга Владимировна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--blue">Учитель физики
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Лабцова Ольга Владимировна</h3>
+								<p class="teacher-card__position">Учитель физики</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 30 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/chevarin-aleksei.jpg" alt="Чевардин Алексей Дмитриевич"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--blue">Учитель информатики
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Чевардин Алексей Дмитриевич
+								</h3>
+								<p class="teacher-card__position">Учитель информатики</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 1 год</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/federova-natalia.jpg" alt="Федорова Наталья Борисовна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--blue">Учитель биологии
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Федорова Наталья Борисовна</h3>
+								<p class="teacher-card__position">Учитель биологии и химии</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 38 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/karpova-tatiana.jpg" alt="Карпова Татьяна Николаевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--blue">Учитель географии
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Карпова Татьяна Николаевна
+								</h3>
+								<p class="teacher-card__position">Учитель географии</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 46 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+
+				<section class="teachers-group" data-category="naturally">
+					<div class="group-header">
+						<h2 class="group-header__title">Общественные науки и история</h2>
+						<span class="group-header__count">2 человека</span>
+					</div>
+
+					<div class="teachers-grid">
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/shachnev-andrei.jpg" alt="Шачнев Андрей Владимирович"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--amber">Учитель истории
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Шачнев Андрей Владимирович</h3>
+								<p class="teacher-card__position">Учитель истории и общестознания</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 38 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/romanova-nina.jpg" alt="Романова Нина Николаевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--amber">Учитель истории
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Романова Нина Николаевна</h3>
+								<p class="teacher-card__position">Учитель истории и общестознания</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 49 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+
+				<section class="teachers-group" data-category="work">
+					<div class="group-header">
+						<h2 class="group-header__title">Труд, спорт, искусство</h2>
+						<span class="group-header__count">5 человек</span>
+					</div>
+
+					<div class="teachers-grid">
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/shiragina-inessa.jpg" alt="Ширягина Инесса Викторовна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--red">Инженер-электромеханик
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Ширягина Инесса Викторовна</h3>
+								<p class="teacher-card__position">Учитель технологии</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 20 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/mashtakov-dmitri.jpg"
+									alt="Маштаков Дмитрий Владимирович" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--red">Учитель ОБЗР
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Маштаков Дмитрий Владимирович</h3>
+								<p class="teacher-card__position">Учитель физкультуры и ОБЗР</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 35 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/novikova-svetlana.jpg"
+									alt="Новикова Светлана Евгеньевна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--red">Учитель физкультуры
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Новикова Светлана Евгеньевна
+								</h3>
+								<p class="teacher-card__position">Учитель физкультуры</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 6 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/varivashena-elena.jpg"
+									alt="Варивашеня Елена Владимировна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--red">Учитель музыки
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Варивашеня Елена Владимировна</h3>
+								<p class="teacher-card__position">Учитель музыки, классный руководитель 7 класса</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 25 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/medvedeva-olga.jpg" alt="Медведева Ольга Дмитриевна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--red">Учитель ИЗО
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Медведева Ольга Дмитриевна</h3>
+								<p class="teacher-card__position">Учитель ИЗО</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 3 года</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+
+				<section class="teachers-group" data-category="other">
+					<div class="group-header">
+						<h2 class="group-header__title">Внеурочная деятельность и сопровождение</h2>
+						<span class="group-header__count">3 человека</span>
+					</div>
+
+					<div class="teachers-grid">
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/grigoreva-olga.jpg" alt="Григорьева Ольга Михайловна"
+									class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--green">Секретарь
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Григорьева Ольга Михайловна</h3>
+								<p class="teacher-card__position">Секретарь, классный руководитель 9 класса, учитель
+									разговоров о важном</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 29 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/nyrgalieva-marina.jpg"
+									alt="Нургалиева Марина Сергеевна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--green">Библиотекарь
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Нургалиева Марина Сергеевна</h3>
+								<p class="teacher-card__position">Библиотекарь, учитель разговоров о важном, классный
+									руководитель 6 класса</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 29 лет</span>
+									<span class="info-badge info-badge--gray">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+
+						<article class="teacher-card">
+							<div class="teacher-card__photo-container">
+								<img src="assets/images/teachers/sviridenka-lydmila.jpg"
+									alt="Свириденко Людмила Николаевна" class="teacher-card__photo">
+								<div class="teacher-card__role-tag teacher-card__role-tag--green">Педагог-организатор
+								</div>
+							</div>
+							<div class="teacher-card__body">
+								<h3 class="teacher-card__name">Свириденко Людмила Николаевна</h3>
+								<p class="teacher-card__position">Учитель профореинтации, Педагог-организатор</p>
+
+								<div class="teacher-card__footer">
+									<span class="info-badge info-badge--blue">Стаж 15 лет</span>
+									<span class="info-badge info-badge--blue-light">Высшая категория</span>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+			</div>
+		</div>
+	</main>
+	<section class="faq-feedback">
+		<div class="feedback">
+			<h2>Не нашли нужного педагога? Напишите нам</h2>
+			<p>Если вам нужно связаться с конкретным учителем, записаться на консультацию или уточнить график приема,
+				отправьте запрос в канцелярию гимназии.</p>
+			<form class="feedback__form">
+				<div class="form-group">
+					<label for="user-name">Ваше имя</label>
+					<input type="text" placeholder="Иван Иванов" id="user-name">
+				</div>
+				<div class="form-group">
+					<label for="user-contact">Номер телефона или Email</label>
+					<input type="text" placeholder="+7 (999) 000-00-00 / example@main.ru" id="user-contact">
+				</div>
+				<div class="form-group">
+					<label for="user-theme">Тема обращения</label>
+					<select id="user-theme" class="form-select">
+						<option value="" disabled selected hidden>Выберите тему</option>
+						<option value="admission">Поступление и приём документов</option>
+						<option value="process">Вопросы по учебному процессу</option>
+						<option value="meals">Организация питания и ГПД</option>
+						<option value="activities">Внеурочные занятия и кружки</option>
+						<option value="other">Другой вопрос</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="user-msg">Сообщение</label>
+					<textarea placeholder="Опишите ваш вопрос..." id="user-msg"></textarea>
+				</div>
+				<div class="form-footer">
+					<span class="policy-text">Согласен на обработку персональных данных</span>
+					<button type="submit" class="btn-orange">Отправить заявку</button>
+				</div>
+			</form>
+		</div>
+		<div class="faq">
+			<h2>Частые вопросы</h2>
+			<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
+			<div class="faq__list">
+				<details class="faq__item" open>
+					<summary class="faq__question">Как найти классного руководителя или учителя по предмету?</summary>
+					<p class="faq__answer">Воспользуйтесь кнопками фильтров вверху страницы (например, «Начальные
+						классы», «Филология и языки», «Духовенство») или введите фамилию педагога / предмет в строку
+						поиска.
+				</details>
+
+				<details class="faq__item">
+					<summary class="faq__question">Как записаться на личную встречу с учителем или администрацией?
+					</summary>
+					<p class="faq__answer">Запись на приём к руководству гимназии и педагогам-предметникам
+						осуществляется через канцелярию или классного руководителя. Также вы можете оставить заявку
+						через форму слева, указав тему «Запись на приём».
+					</p>
+				</details>
+
+				<details class="faq__item">
+					<summary class="faq__question">Где посмотреть расписание консультаций и родительских дней?</summary>
+					<p class="faq__answer">График индивидуальных консультаций педагогов обновляется в начале каждого
+						учебного триместра. Актуальное расписание доступно в электронном дневнике или по запросу у
+						классного руководителя.
+					</p>
+				</details>
+
+				<details class="faq__item">
+					<summary class="faq__question">Как узнать квалификацию и стаж работы преподавателя?
+					</summary>
+					<p class="faq__answer">Вся основная информация (педагогический стаж, квалификационная категория и
+						образование) указана прямо на карточке каждого преподавателя.
+					</p>
+				</details>
+
+				<details class="faq__item">
+					<summary class="faq__question">Что делать, если нужно передать важную информацию учителю в течение
+						дня?</summary>
+					<p class="faq__answer">По срочным вопросам связывайтесь с секретарём гимназии по телефону,
+						указанному в контактах, либо отправьте сообщение классному руководителю через электронный
+						дневник.
+					</p>
+				</details>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+		<div class="footer-bottom">
+			<div class="brand__footer">
+				<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
+				<div class="brand__info__footer">
+					<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+					<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+				</div>
+			</div>
+			<div class="footer__nav">
+				<ul class="nav__list">
+					<li class="nav__list-about"><a href="#">О гимназии</a></li>
+					<li class="nav__list-teach"><a href="#">Обучение</a></li>
+					<li class="nav__list-kids"><a href="#">Росточек</a></li>
+					<li class="nav__list-faq"><a href="#">FAQ</a></li>
+					<li class="nav__list-contact"><a href="#">Контакты</a></li>
+				</ul>
+			</div>
+
+			<div class="btn_media">
+				<ul class="btn_media__list">
+
+					<li class="media__list-vk"><a href="#">
+							<img src="assets/icons/vk_icon.svg" alt="ВК"></a>
+					</li>
+
+					<li class="media__list-tg"><a href="#"><img src="assets/icons/vk_tg.svg" alt="TG"></a></li>
+
+					<li class="media__list-whp"><a href="#"><img src="assets/icons/whatsap_icon.svg" alt="Whatsap"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<span>© 2026 Православная гимназия. Все права защищены.</span>
+			<a href="#">Политика конфиденциальности</a>
+		</div>
+	</footer>
+
+	<script src="js/teachers.js"></script>
+</body>
+
+</html>
