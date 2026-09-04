@@ -3518,3 +3518,26 @@ body {
 	background-size: cover;
 	background-position: center;
 }
+
+body {
+	padding-top: var(--header-height);
+	transition: padding-top 0.35s ease;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+
+	transition: transform 0.35s ease;
+}
+
+header.header-hidden {
+	transform: translateY(-100%);
+}
+
+body.header-is-hidden {
+	padding-top: 0;
+}
