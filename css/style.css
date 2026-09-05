@@ -6194,3 +6194,263 @@ footer {
 	margin: 0;
 	pointer-events: none;
 }
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero-contacts__header,
+.hero-card,
+.contacts-main__map,
+.contacts-main__info,
+.contacts-departments__title,
+.department-card,
+.contacts-requisites {
+	opacity: 0;
+	transform: translateY(35px);
+	transition:
+		opacity 0.7s ease,
+		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* После появления */
+
+.hero-contacts__header.show,
+.hero-card.show,
+.contacts-main__map.show,
+.contacts-main__info.show,
+.contacts-departments__title.show,
+.department-card.show,
+.contacts-requisites.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+
+/* Заголовок появляется первым */
+
+.hero-contacts__header {
+	transition-delay: 0.1s;
+}
+
+
+/* =========================
+   ТРИ КАРТОЧКИ
+   ========================= */
+
+.hero-card:nth-child(1) {
+	transition-delay: 0.15s;
+}
+
+.hero-card:nth-child(2) {
+	transition-delay: 0.3s;
+}
+
+.hero-card:nth-child(3) {
+	transition-delay: 0.45s;
+}
+
+
+/* Наведение */
+
+.hero-card {
+	transition:
+		opacity 0.7s ease,
+		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.3s ease;
+}
+
+.hero-card:hover {
+	transform: translateY(-7px);
+}
+
+
+/* Иконка карточки */
+
+.hero-card__icon {
+	transition:
+		transform 0.35s ease;
+}
+
+.hero-card:hover .hero-card__icon {
+	transform: scale(1.08);
+}
+
+
+/* =========================
+   КАРТА
+   ========================= */
+
+.contacts-main__map {
+	transform: translateX(-45px);
+}
+
+.contacts-main__map.show {
+	transform: translateX(0);
+}
+
+
+/* =========================
+   ИНФОРМАЦИЯ СПРАВА
+   ========================= */
+
+.contacts-main__info {
+	transform: translateX(45px);
+}
+
+.contacts-main__info.show {
+	transform: translateX(0);
+}
+
+
+/* =========================
+   ЭЛЕМЕНТЫ ИНФОРМАЦИИ
+   ========================= */
+
+.contacts-info-item {
+	transition:
+		transform 0.3s ease;
+}
+
+.contacts-info-item:hover {
+	transform: translateX(6px);
+}
+
+.contacts-info-item__icon {
+	transition:
+		transform 0.3s ease;
+}
+
+.contacts-info-item:hover .contacts-info-item__icon {
+	transform: scale(1.1);
+}
+
+
+/* =========================
+   ЗАГОЛОВОК ОТДЕЛОВ
+   ========================= */
+
+.contacts-departments__title {
+	transition-delay: 0.05s;
+}
+
+
+/* =========================
+   КАРТОЧКИ ОТДЕЛОВ
+   ========================= */
+
+.department-card:nth-child(1) {
+	transition-delay: 0.1s;
+}
+
+.department-card:nth-child(2) {
+	transition-delay: 0.2s;
+}
+
+.department-card:nth-child(3) {
+	transition-delay: 0.3s;
+}
+
+.department-card:nth-child(4) {
+	transition-delay: 0.4s;
+}
+
+
+/* Hover карточек */
+
+.department-card {
+	transition:
+		opacity 0.6s ease,
+		transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.3s ease;
+}
+
+.department-card:hover {
+	transform: translateY(-6px);
+}
+
+
+/* Телефон */
+
+.department-card__phone {
+	transition:
+		transform 0.25s ease,
+		color 0.25s ease;
+}
+
+.department-card__phone:hover {
+	transform: translateX(4px);
+}
+
+
+/* =========================
+   РЕКВИЗИТЫ
+   ========================= */
+
+.contacts-requisites {
+	transition-delay: 0.1s;
+}
+
+.requisites-accordion__title {
+	cursor: pointer;
+
+	transition:
+		color 0.25s ease,
+		background-color 0.25s ease;
+}
+
+.requisites-accordion__title:hover {
+	color: #e87922;
+}
+
+
+/* =========================
+   МОБИЛКИ
+   ========================= */
+
+@media (max-width: 768px) {
+
+	.hero-contacts__header,
+	.hero-card,
+	.contacts-main__map,
+	.contacts-main__info,
+	.contacts-departments__title,
+	.department-card,
+	.contacts-requisites {
+		transform: translateY(25px);
+	}
+
+	.contacts-main__map,
+	.contacts-main__info {
+		transform: translateY(25px);
+	}
+
+	.contacts-main__map.show,
+	.contacts-main__info.show {
+		transform: translateY(0);
+	}
+
+}
+
+
+/* =========================
+   ЕСЛИ У ПОЛЬЗОВАТЕЛЯ
+   ОТКЛЮЧЕНЫ АНИМАЦИИ
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+	.hero-contacts__header,
+	.hero-card,
+	.contacts-main__map,
+	.contacts-main__info,
+	.contacts-departments__title,
+	.department-card,
+	.contacts-requisites {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+
+}
