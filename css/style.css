@@ -3541,3 +3541,2290 @@ header.header-hidden {
 body.header-is-hidden {
 	padding-top: 0;
 }
+
+/* =========================
+   ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
+========================= */
+
+.js-reveal {
+	opacity: 0;
+	transform: translateY(50px);
+
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.js-reveal-image {
+	opacity: 0;
+	transform: translateX(-60px) scale(0.97);
+
+	transition:
+		opacity 0.9s ease,
+		transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal-image.is-visible {
+	opacity: 1;
+	transform: translateX(0) scale(1);
+}
+
+/* =========================
+   QUICK CARDS
+========================= */
+
+.quick-card {
+	position: relative;
+	overflow: hidden;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease,
+		background-color 0.3s ease;
+}
+
+.quick-card::before {
+	content: "";
+
+	position: absolute;
+	inset: 0;
+
+	background: linear-gradient(120deg,
+			transparent 30%,
+			rgba(255, 255, 255, 0.35),
+			transparent 70%);
+
+	transform: translateX(-120%);
+	transition: transform 0.6s ease;
+}
+
+.quick-card:hover {
+	transform: translateY(-8px);
+
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.quick-card:hover::before {
+	transform: translateX(120%);
+}
+
+.quick-card img {
+	transition:
+		transform 0.35s ease;
+}
+
+.quick-card:hover img {
+	transform: scale(1.12) rotate(-3deg);
+}
+
+/* =========================
+   КНОПКИ
+========================= */
+
+.btn,
+.btn-donate,
+.btn-teachers,
+.btn-orange {
+	position: relative;
+	overflow: hidden;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease,
+		filter 0.25s ease;
+}
+
+.btn:hover,
+.btn-donate:hover,
+.btn-teachers:hover,
+.btn-orange:hover {
+	transform: translateY(-3px);
+
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+	filter: brightness(1.03);
+}
+
+.btn:active,
+.btn-donate:active,
+.btn-teachers:active,
+.btn-orange:active {
+	transform: translateY(0);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero__content h1 {
+	animation: heroTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__content p {
+	animation: heroText 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__buttons {
+	animation: heroButtons 0.9s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes heroTitle {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes heroText {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes heroButtons {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about__image {
+	overflow: hidden;
+	border-radius: inherit;
+}
+
+.about__image img {
+	width: 100%;
+	transition:
+		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about__image:hover img {
+	transform: scale(1.04);
+}
+
+.about__features li {
+	transition:
+		transform 0.25s ease,
+		background-color 0.25s ease;
+}
+
+.about__features li:hover {
+	transform: translateX(8px);
+}
+
+.feature-icon {
+	transition:
+		transform 0.3s ease;
+}
+
+.about__features li:hover .feature-icon {
+	transform: scale(1.1) rotate(-5deg);
+}
+
+.about__link span {
+	display: inline-block;
+
+	transition:
+		transform 0.3s ease;
+}
+
+.about__link:hover span {
+	transform: translateX(7px);
+}
+
+/* =========================
+   STATS
+========================= */
+
+.stat-card {
+	position: relative;
+
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+	transform: translateY(-8px);
+
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card__number {
+	display: inline-block;
+
+	transition:
+		transform 0.4s ease;
+}
+
+.stat-card:hover .stat-card__number {
+	transform: scale(1.08);
+}
+
+/* =========================
+   NEWS
+========================= */
+
+.news {
+	overflow: hidden;
+
+	transition:
+		transform 0.35s ease,
+		box-shadow 0.35s ease;
+}
+
+.news:hover {
+	transform: translateY(-8px);
+
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+.news>img {
+	transition:
+		transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.news:hover>img {
+	transform: scale(1.05);
+}
+
+.news__link {
+	transition:
+		transform 0.25s ease;
+}
+
+.news__link:hover {
+	transform: translateX(5px);
+}
+
+.slider-btn {
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.slider-btn:hover {
+	transform: scale(1.08);
+}
+
+.slider-btn:active {
+	transform: scale(0.94);
+}
+
+/* =========================
+   TEACHERS
+========================= */
+
+.teachers__media {
+	overflow: hidden;
+}
+
+.teachers__media img {
+	transition:
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.teachers__media:hover img {
+	transform: scale(1.04);
+}
+
+.btn-teachers {
+	display: inline-block;
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq__item {
+	transition:
+		box-shadow 0.3s ease,
+		transform 0.3s ease;
+}
+
+.faq__item:hover {
+	transform: translateX(4px);
+}
+
+.faq__question {
+	cursor: pointer;
+
+	transition:
+		color 0.25s ease;
+}
+
+.faq__question:hover {
+	color: #b58b3a;
+}
+
+.faq__item::details-content {
+	block-size: 0;
+	overflow: hidden;
+	transition:
+		block-size 0.35s ease,
+		content-visibility 0.35s allow-discrete;
+}
+
+.faq__item[open]::details-content {
+	block-size: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------- */
+
+
+
+
+
+
+
+
+
+/* ========================================
+   ПЕРВЫЙ ЭКРАН
+======================================== */
+
+.apply-company {
+	position: relative;
+	overflow: hidden;
+}
+
+/* Заголовок */
+
+.apply-company h1 {
+	animation:
+		applyTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Описание */
+
+.apply-company>p {
+	animation:
+		applyText 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Кнопки */
+
+.apply-btn {
+	animation:
+		applyButtons 0.9s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+@keyframes applyTitle {
+
+	from {
+		opacity: 0;
+		transform: translateY(35px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+
+@keyframes applyText {
+
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+
+@keyframes applyButtons {
+
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+/* ========================================
+   КНОПКИ ПРИЁМНОЙ КАМПАНИИ
+======================================== */
+
+.btn__interview,
+.btn__question {
+	position: relative;
+	overflow: hidden;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease,
+		filter 0.25s ease;
+}
+
+.btn__interview:hover,
+.btn__question:hover {
+	transform: translateY(-4px);
+
+	box-shadow:
+		0 12px 30px rgba(0, 0, 0, 0.15);
+
+	filter: brightness(1.03);
+}
+
+.btn__interview:active,
+.btn__question:active {
+	transform: translateY(-1px);
+}
+
+/* ========================================
+   ПОЯВЛЕНИЕ СЕКЦИЙ
+======================================== */
+
+.js-reveal {
+	opacity: 0;
+
+	transform: translateY(55px);
+
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* ========================================
+   ШАГИ ПОСТУПЛЕНИЯ
+======================================== */
+
+.step-card {
+	position: relative;
+	overflow: hidden;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.35s ease;
+}
+
+.step-card::before {
+	content: "";
+
+	position: absolute;
+
+	left: 0;
+	top: 0;
+
+	width: 100%;
+	height: 3px;
+
+	transform: scaleX(0);
+	transform-origin: left;
+
+	transition:
+		transform 0.4s ease;
+}
+
+.step-card:hover {
+	transform: translateY(-9px);
+
+	box-shadow:
+		0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.step-card:hover::before {
+	transform: scaleX(1);
+}
+
+.step-card .num {
+	display: inline-flex;
+
+	transition:
+		transform 0.35s ease;
+}
+
+.step-card:hover .num {
+	transform:
+		scale(1.12) rotate(-3deg);
+}
+
+/* ========================================
+   ИНФОРМАЦИОННЫЕ КАРТОЧКИ
+======================================== */
+
+.info-card {
+	position: relative;
+
+	transition:
+		transform 0.35s ease,
+		box-shadow 0.35s ease;
+}
+
+.info-card:hover {
+	transform: translateY(-7px);
+
+	box-shadow:
+		0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.info-list__item {
+	transition:
+		transform 0.25s ease;
+}
+
+.info-list__item:hover {
+	transform: translateX(7px);
+}
+
+.check-icon {
+	transition:
+		transform 0.3s ease;
+}
+
+.info-list__item:hover .check-icon {
+	transform:
+		scale(1.12) rotate(-5deg);
+}
+
+/* ========================================
+   РОСТОЧЕК
+======================================== */
+
+.course-enroll {
+	position: relative;
+	overflow: hidden;
+}
+
+.course-info {
+	transition:
+		transform 0.4s ease;
+}
+
+.course-info:hover {
+	transform: translateX(5px);
+}
+
+.course-badge {
+	display: inline-block;
+
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.course-badge:hover {
+	transform: translateY(-3px);
+
+	box-shadow:
+		0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-features__item {
+	transition:
+		transform 0.3s ease;
+}
+
+.course-features__item:hover {
+	transform: translateX(8px);
+}
+
+.course-features__item .feature-icon {
+	transition:
+		transform 0.35s ease;
+}
+
+.course-features__item:hover .feature-icon {
+	transform:
+		scale(1.12) rotate(-4deg);
+}
+
+/* ========================================
+   ФОРМА
+======================================== */
+
+.feedback__form {
+	transition:
+		transform 0.4s ease,
+		box-shadow 0.4s ease;
+}
+
+.feedback__form:focus-within {
+	transform: translateY(-4px);
+
+	box-shadow:
+		0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+.form-group input,
+.form-group select {
+	transition:
+		border-color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+	transform: translateY(-1px);
+
+	outline: none;
+
+	box-shadow:
+		0 0 0 3px rgba(180, 140, 70, 0.12);
+}
+
+.feedback__form .btn-orange {
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.feedback__form .btn-orange:hover {
+	transform: translateY(-3px);
+
+	box-shadow:
+		0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feedback__form .btn-orange:active {
+	transform: translateY(0);
+}
+
+/* ========================================
+   ПОЯВЛЕНИЕ КАРТОЧЕК
+======================================== */
+
+.js-card {
+	opacity: 0;
+
+	transform: translateY(35px);
+
+	transition:
+		opacity 0.65s ease,
+		transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-card.is-visible {
+	opacity: 1;
+
+	transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------- */
+
+
+/* ========================================
+   ПЛАВАЮЩАЯ ГЛАВНАЯ ШАПКА
+======================================== */
+
+body>header {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	z-index: 1000;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+	will-change: transform;
+}
+
+body>header.header-hidden {
+	transform: translateY(-100%);
+}
+
+/* ========================================
+   CANTEEN HERO
+======================================== */
+
+.canteen-hero {
+	overflow: hidden;
+}
+
+.canteen-title {
+	animation:
+		canteenTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.canteen-subtitle {
+	animation:
+		canteenText 0.8s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.grid-canteen {
+	animation:
+		canteenCards 0.9s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+@keyframes canteenTitle {
+
+	from {
+		opacity: 0;
+		transform: translateY(35px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+
+@keyframes canteenText {
+
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+
+@keyframes canteenCards {
+
+	from {
+		opacity: 0;
+		transform: translateY(40px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+/* ========================================
+   КАРТОЧКИ HERO
+======================================== */
+
+.card-canteen {
+	position: relative;
+	overflow: hidden;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.35s ease;
+}
+
+.card-canteen::before {
+	content: "";
+
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	width: 100%;
+	height: 3px;
+
+	transform: scaleX(0);
+	transform-origin: left;
+
+	transition:
+		transform 0.4s ease;
+}
+
+.card-canteen:hover {
+	transform: translateY(-8px);
+
+	box-shadow:
+		0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-canteen:hover::before {
+	transform: scaleX(1);
+}
+
+.card-canteen img {
+	transition:
+		transform 0.35s ease;
+}
+
+.card-canteen:hover img {
+	transform:
+		scale(1.12) rotate(-4deg);
+}
+
+/* ========================================
+   REVEAL
+======================================== */
+
+.js-reveal {
+	opacity: 0;
+
+	transform: translateY(55px);
+
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* ========================================
+   КОРПУСА
+======================================== */
+
+.building-card {
+	position: relative;
+	overflow: hidden;
+
+	cursor: pointer;
+
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease,
+		border-color 0.3s ease;
+}
+
+.building-card:hover {
+	transform: translateX(6px);
+
+	box-shadow:
+		0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.building-card::before {
+	content: "";
+
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	width: 3px;
+	height: 100%;
+
+	transform: scaleY(0);
+	transform-origin: bottom;
+
+	transition:
+		transform 0.3s ease;
+}
+
+.building-card:hover::before,
+.building-card--active::before {
+	transform: scaleY(1);
+}
+
+.building-card__badge {
+	transition:
+		transform 0.3s ease;
+}
+
+.building-card:hover .building-card__badge {
+	transform: translateX(4px);
+}
+
+/* ========================================
+   PDF
+======================================== */
+
+.pdf-download {
+	position: relative;
+
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.pdf-download:hover {
+	transform: translateY(-4px);
+
+	box-shadow:
+		0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.pdf-download img {
+	transition:
+		transform 0.3s ease;
+}
+
+.pdf-download:hover img {
+	transform:
+		translateY(-2px) scale(1.08);
+}
+
+/* ========================================
+   TAB BUTTONS
+======================================== */
+
+.tab-btn {
+	position: relative;
+
+	overflow: hidden;
+
+	transition:
+		transform 0.2s ease,
+		background-color 0.25s ease,
+		color 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.tab-btn:hover {
+	transform: translateY(-2px);
+}
+
+.tab-btn:active {
+	transform: translateY(0) scale(0.97);
+}
+
+.tab-btn::after {
+	content: "";
+
+	position: absolute;
+
+	left: 50%;
+	bottom: 0;
+
+	width: 0;
+	height: 2px;
+
+	transform: translateX(-50%);
+
+	transition:
+		width 0.3s ease;
+}
+
+.tab-btn:hover::after,
+.tab-btn--active::after {
+	width: 70%;
+}
+
+/* ========================================
+   MEAL CARDS
+======================================== */
+
+.meal-card {
+	position: relative;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.35s ease,
+		box-shadow 0.35s ease;
+}
+
+.meal-card:hover {
+	transform: translateY(-7px);
+
+	box-shadow:
+		0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.meal-card__price {
+	transition:
+		transform 0.3s ease;
+}
+
+.meal-card:hover .meal-card__price {
+	transform: scale(1.06);
+}
+
+.meal-card__item {
+	transition:
+		transform 0.25s ease,
+		padding-left 0.25s ease;
+}
+
+.meal-card__item:hover {
+	transform: translateX(5px);
+}
+
+.meal-card.is-menu-visible .meal-card__item {
+	animation:
+		mealItem 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.meal-card.is-menu-visible .meal-card__item:nth-child(1) {
+	animation-delay: 0.05s;
+}
+
+.meal-card.is-menu-visible .meal-card__item:nth-child(2) {
+	animation-delay: 0.1s;
+}
+
+.meal-card.is-menu-visible .meal-card__item:nth-child(3) {
+	animation-delay: 0.15s;
+}
+
+.meal-card.is-menu-visible .meal-card__item:nth-child(4) {
+	animation-delay: 0.2s;
+}
+
+.meal-card.is-menu-visible .meal-card__item:nth-child(5) {
+	animation-delay: 0.25s;
+}
+
+
+@keyframes mealItem {
+
+	from {
+		opacity: 0;
+		transform: translateX(-15px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+}
+
+/* ========================================
+   BENEFITS
+======================================== */
+
+.benefits-card {
+	position: relative;
+
+	overflow: hidden;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.35s ease,
+		box-shadow 0.35s ease;
+}
+
+.benefits-card:hover {
+	transform: translateY(-7px);
+
+	box-shadow:
+		0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.benefits-card__icon {
+	transition:
+		transform 0.35s ease;
+}
+
+.benefits-card:hover .benefits-card__icon {
+	transform:
+		scale(1.1) rotate(-4deg);
+}
+
+.benefits-card__badge {
+	transition:
+		transform 0.3s ease;
+}
+
+.benefits-card:hover .benefits-card__badge {
+	transform: translateY(-2px);
+}
+
+.benefits-card__text {
+	transition:
+		transform 0.25s ease;
+}
+
+.benefits-card__text:hover {
+	transform: translateX(5px);
+}
+
+/* ========================================
+   STATEMENT
+======================================== */
+
+.statement {
+	position: relative;
+	overflow: hidden;
+
+	transition:
+		box-shadow 0.4s ease;
+}
+
+.statement::before {
+	content: "";
+
+	position: absolute;
+
+	width: 180px;
+	height: 180px;
+
+	border-radius: 50%;
+
+	top: -90px;
+	right: -90px;
+
+	opacity: 0.08;
+
+	transform: scale(0.8);
+
+	transition:
+		transform 0.6s ease;
+}
+
+.statement:hover::before {
+	transform: scale(1.2);
+}
+
+.statement-btn__privilege,
+.statement-btn__family {
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.statement-btn__privilege:hover,
+.statement-btn__family:hover {
+	transform: translateY(-5px);
+
+	box-shadow:
+		0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   ПОЯВЛЕНИЕ КАРТОЧЕК
+======================================== */
+
+.js-card {
+	opacity: 0;
+
+	transform: translateY(35px);
+
+	transition:
+		opacity 0.65s ease,
+		transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-card.is-visible {
+	opacity: 1;
+
+	transform: translateY(0);
+}
+
+/* ========================================
+   ПЛАВАЮЩАЯ ШАПКА
+======================================== */
+
+body>header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+
+	transform: translateY(0);
+
+	transition:
+		transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+	will-change: transform;
+}
+
+body>header.header-hidden {
+	transform: translateY(-100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------- */
+
+
+
+
+
+
+
+
+
+/* ========================================
+   HERO ДНЕВНИКА
+======================================== */
+
+.dairy {
+	position: relative;
+	overflow: hidden;
+}
+
+.dairy .journal-hero__title {
+	animation:
+		dairyTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dairy .journal-hero__subtitle {
+	animation:
+		dairySubtitle 0.8s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.dairy .journal-hero__action {
+	animation:
+		dairyAction 0.8s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+@keyframes dairyTitle {
+
+	from {
+		opacity: 0;
+		transform: translateY(35px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+
+@keyframes dairySubtitle {
+
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+
+@keyframes dairyAction {
+
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+/* ========================================
+   КНОПКА ДНЕВНИКА
+======================================== */
+
+.btn-blue {
+	position: relative;
+	overflow: hidden;
+
+	transition:
+		transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.3s ease,
+		filter 0.3s ease;
+}
+
+.btn-blue:hover {
+	transform: translateY(-4px);
+
+	box-shadow:
+		0 12px 28px rgba(0, 0, 0, 0.14);
+
+	filter: brightness(1.04);
+}
+
+.btn-blue:active {
+	transform: translateY(-1px) scale(0.99);
+}
+
+.note-icon {
+	transition:
+		transform 0.35s ease;
+}
+
+.journal-hero__note:hover .note-icon {
+	transform:
+		scale(1.1) rotate(-5deg);
+}
+
+/* ========================================
+   REVEAL СЕКЦИЙ
+======================================== */
+
+.js-reveal {
+	opacity: 0;
+
+	transform: translateY(55px);
+
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* ========================================
+   ЗАГОЛОВОК ИНСТРУКЦИИ
+======================================== */
+
+.journal__title {
+	transition:
+		transform 0.35s ease;
+}
+
+.journal__title:hover {
+	transform: translateX(5px);
+}
+
+.journal__title img {
+	transition:
+		transform 0.35s ease;
+}
+
+.journal__title:hover img {
+	transform:
+		scale(1.1) rotate(-4deg);
+}
+
+/* ========================================
+   КАРТОЧКИ ИНСТРУКЦИИ
+======================================== */
+
+.instruction-card {
+	position: relative;
+	overflow: hidden;
+
+	transition:
+		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.35s ease;
+}
+
+.instruction-card:hover {
+	transform: translateY(-7px);
+
+	box-shadow:
+		0 18px 40px rgba(0, 0, 0, 0.1);
+}
+
+.instruction-card::before {
+	content: "";
+
+	position: absolute;
+
+	left: 0;
+	top: 0;
+
+	width: 100%;
+	height: 3px;
+
+	transform: scaleX(0);
+	transform-origin: left;
+
+	transition:
+		transform 0.4s ease;
+}
+
+.instruction-card:hover::before {
+	transform: scaleX(1);
+}
+
+.instruction-card h3 img {
+	transition:
+		transform 0.35s ease;
+}
+
+.instruction-card:hover h3 img {
+	transform:
+		scale(1.12) rotate(-5deg);
+}
+
+/* ========================================
+   БЕЙДЖИ ШАГОВ
+======================================== */
+
+.instruction-list__item {
+	transition:
+		transform 0.3s ease;
+}
+
+.instruction-list__item:hover {
+	transform: translateX(7px);
+}
+
+.instruction-badge {
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.instruction-list__item:hover .instruction-badge {
+	transform:
+		scale(1.1) rotate(-3deg);
+
+	box-shadow:
+		0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   ПОЯВЛЕНИЕ ПУНКТОВ
+======================================== */
+
+.instruction-card.is-visible .instruction-list__item {
+	animation:
+		instructionItem 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.instruction-card.is-visible .instruction-list__item:nth-child(1) {
+	animation-delay: 0.05s;
+}
+
+.instruction-card.is-visible .instruction-list__item:nth-child(2) {
+	animation-delay: 0.12s;
+}
+
+.instruction-card.is-visible .instruction-list__item:nth-child(3) {
+	animation-delay: 0.19s;
+}
+
+
+@keyframes instructionItem {
+
+	from {
+		opacity: 0;
+		transform: translateX(-18px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+}
+
+/* ========================================
+   INPUTS
+======================================== */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+	transition:
+		border-color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+	outline: none;
+
+	transform: translateY(-1px);
+
+	box-shadow:
+		0 0 0 3px rgba(180, 140, 70, 0.12);
+}
+
+.form-group label {
+	transition:
+		transform 0.25s ease;
+}
+
+.form-group:focus-within label {
+	transform: translateX(3px);
+}
+
+/* ========================================
+   SUBMIT
+======================================== */
+
+.btn-orange {
+	transition:
+		transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.3s ease;
+}
+
+.btn-orange:hover {
+	transform: translateY(-4px);
+
+	box-shadow:
+		0 12px 28px rgba(0, 0, 0, 0.13);
+}
+
+.btn-orange:active {
+	transform: translateY(0);
+}
+
+/* ========================================
+   CARD REVEAL
+======================================== */
+
+.js-card {
+	opacity: 0;
+
+	transform: translateY(40px);
+
+	transition:
+		opacity 0.7s ease,
+		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-card.is-visible {
+	opacity: 1;
+
+	transform: translateY(0);
+}
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+	position: relative;
+	overflow: hidden;
+}
+
+.footer-contacts,
+.footer-bottom,
+.footer-copyright {
+	transition:
+		transform 0.3s ease;
+}
+
+.contacts__map {
+	overflow: hidden;
+}
+
+.contacts__map img {
+	transition:
+		transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contacts__map:hover img {
+	transform: scale(1.04);
+}
+
+.contacts__buttons a {
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.contacts__buttons a:hover {
+	transform: translateY(-3px);
+
+	box-shadow:
+		0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.btn_media__list li {
+	transition:
+		transform 0.3s ease;
+}
+
+.btn_media__list li:hover {
+	transform:
+		translateY(-4px) scale(1.08);
+}
+
+
+
+
+
+
+
+
+
+/* ----------------------------------- */
+
+
+
+
+
+
+
+
+
+/* ========================================
+   HERO
+======================================== */
+
+.schedule-hero__title {
+	animation:
+		scheduleTitle 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.schedule-hero__subtitle {
+	animation:
+		scheduleSubtitle 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+
+@keyframes scheduleTitle {
+	from {
+		opacity: 0;
+		transform: translateY(35px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+@keyframes scheduleSubtitle {
+	from {
+		opacity: 0;
+		transform: translateY(25px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+
+/* ========================================
+   REVEAL ПРИ СКРОЛЛЕ
+======================================== */
+
+.js-reveal {
+	opacity: 0;
+	transform: translateY(50px);
+
+	transition:
+		opacity 0.8s ease,
+		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js-reveal.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+
+
+/* ========================================
+   КОРПУСА
+======================================== */
+
+.campus-card {
+	position: relative;
+	overflow: hidden;
+
+	cursor: pointer;
+
+	transition:
+		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.35s ease,
+		border-color 0.3s ease;
+}
+
+.campus-card:hover {
+	transform: translateY(-7px);
+
+	box-shadow:
+		0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.campus-card::before {
+	content: "";
+
+	position: absolute;
+
+	left: 0;
+	top: 0;
+
+	width: 100%;
+	height: 3px;
+
+	transform: scaleX(0);
+	transform-origin: left;
+
+	transition:
+		transform 0.4s ease;
+}
+
+.campus-card:hover::before,
+.campus-card--active::before {
+	transform: scaleX(1);
+}
+
+.campus-card__badge {
+	transition:
+		transform 0.3s ease;
+}
+
+.campus-card:hover .campus-card__badge {
+	transform: translateY(-2px);
+}
+
+.campus-card__title {
+	transition:
+		transform 0.3s ease;
+}
+
+.campus-card:hover .campus-card__title {
+	transform: translateX(4px);
+}
+
+
+
+/* ========================================
+   ФИЛЬТРЫ
+======================================== */
+
+.class-btn,
+.day-btn {
+	position: relative;
+	overflow: hidden;
+
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.25s ease,
+		background-color 0.25s ease,
+		color 0.25s ease;
+}
+
+.class-btn:hover,
+.day-btn:hover {
+	transform: translateY(-2px);
+}
+
+.class-btn:active,
+.day-btn:active {
+	transform: scale(0.97);
+}
+
+.class-btn::after,
+.day-btn::after {
+	content: "";
+
+	position: absolute;
+
+	left: 50%;
+	bottom: 0;
+
+	width: 0;
+	height: 2px;
+
+	transform: translateX(-50%);
+
+	transition:
+		width 0.3s ease;
+}
+
+.class-btn:hover::after,
+.day-btn:hover::after,
+.class-btn--active::after,
+.day-btn--active::after {
+	width: 70%;
+}
+
+
+
+/* ========================================
+   ТАБЛИЦЫ РАСПИСАНИЯ
+======================================== */
+
+.schedule-card {
+	position: relative;
+	overflow: hidden;
+
+	transition:
+		transform 0.35s ease,
+		box-shadow 0.35s ease;
+}
+
+.schedule-card:hover {
+	transform: translateY(-5px);
+
+	box-shadow:
+		0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+
+.schedule-card__title img {
+	transition:
+		transform 0.35s ease;
+}
+
+.schedule-card:hover .schedule-card__title img {
+	transform:
+		scale(1.1) rotate(-4deg);
+}
+
+
+
+/* ========================================
+   ЭЛЕМЕНТЫ РАСПИСАНИЯ
+======================================== */
+
+.schedule-item {
+	transition:
+		transform 0.25s ease,
+		background-color 0.25s ease;
+}
+
+.schedule-item:hover {
+	transform: translateX(6px);
+}
+
+.schedule-item__text img {
+	transition:
+		transform 0.3s ease;
+}
+
+.schedule-item:hover .schedule-item__text img {
+	transform:
+		scale(1.1) rotate(-5deg);
+}
+
+
+.schedule-item__subject {
+	transition:
+		transform 0.25s ease;
+}
+
+.schedule-item:hover .schedule-item__subject {
+	transform: translateX(4px);
+}
+
+
+.schedule-item__time {
+	transition:
+		transform 0.25s ease;
+}
+
+.schedule-item:hover .schedule-item__time {
+	transform: translateX(-3px);
+}
+
+
+
+/* ========================================
+   ПОЯВЛЕНИЕ СТРОК
+======================================== */
+
+.schedule-card.is-visible .schedule-item {
+	animation:
+		scheduleRow 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(1) {
+	animation-delay: 0.05s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(2) {
+	animation-delay: 0.10s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(3) {
+	animation-delay: 0.15s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(4) {
+	animation-delay: 0.20s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(5) {
+	animation-delay: 0.25s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(6) {
+	animation-delay: 0.30s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(7) {
+	animation-delay: 0.35s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(8) {
+	animation-delay: 0.40s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(9) {
+	animation-delay: 0.45s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(10) {
+	animation-delay: 0.50s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(11) {
+	animation-delay: 0.55s;
+}
+
+.schedule-card.is-visible .schedule-item:nth-child(12) {
+	animation-delay: 0.60s;
+}
+
+
+@keyframes scheduleRow {
+
+	from {
+		opacity: 0;
+		transform: translateX(-15px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+}
+
+
+
+/* ========================================
+   FAQ
+======================================== */
+
+.faq__item {
+	overflow: hidden;
+
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+}
+
+.faq__item:hover {
+	transform: translateX(5px);
+}
+
+.faq__question {
+	cursor: pointer;
+
+	transition:
+		color 0.25s ease,
+		padding-left 0.25s ease;
+}
+
+.faq__question:hover {
+	color: #b58b3a;
+}
+
+.faq__item[open] {
+	box-shadow:
+		0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+.faq__item[open] .faq__question {
+	padding-left: 5px;
+}
+
+.faq__answer {
+	animation:
+		faqAnswer 0.35s ease both;
+}
+
+
+@keyframes faqAnswer {
+
+	from {
+		opacity: 0;
+		transform: translateY(-8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+}
+
+
+
+/* ========================================
+   ФОРМА
+======================================== */
+
+.feedback {
+	transition:
+		transform 0.35s ease;
+}
+
+.feedback:hover {
+	transform: translateY(-3px);
+}
+
+.feedback__form {
+	transition:
+		transform 0.35s ease,
+		box-shadow 0.35s ease;
+}
+
+.feedback__form:focus-within {
+	transform: translateY(-4px);
+
+	box-shadow:
+		0 15px 35px rgba(0, 0, 0, 0.09);
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+	transition:
+		border-color 0.25s ease,
+		box-shadow 0.25s ease,
+		transform 0.25s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+	outline: none;
+
+	transform: translateY(-1px);
+
+	box-shadow:
+		0 0 0 3px rgba(180, 140, 70, 0.12);
+}
+
+
+.form-group label {
+	transition:
+		transform 0.25s ease;
+}
+
+.form-group:focus-within label {
+	transform: translateX(3px);
+}
+
+
+.btn-orange {
+	transition:
+		transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+		box-shadow 0.3s ease;
+}
+
+.btn-orange:hover {
+	transform: translateY(-4px);
+
+	box-shadow:
+		0 12px 28px rgba(0, 0, 0, 0.13);
+}
+
+.btn-orange:active {
+	transform: translateY(0);
+}
+
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer {
+	overflow: hidden;
+}
+
+.contacts__buttons a,
+.btn_media__list li,
+.footer__nav a {
+	transition:
+		transform 0.25s ease;
+}
+
+.contacts__buttons a:hover {
+	transform: translateY(-3px);
+}
+
+.btn_media__list li:hover {
+	transform:
+		translateY(-4px) scale(1.08);
+}
+
+.footer__nav a:hover {
+	transform: translateX(4px);
+}
+
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 900px) {
+
+	.campus-selector {
+		grid-template-columns: 1fr;
+	}
+
+	.schedule-content {
+		grid-template-columns: 1fr;
+	}
+
+	.faq-feedback {
+		grid-template-columns: 1fr;
+	}
+
+}
+
+
+@media (max-width: 650px) {
+
+	.schedule-hero__title {
+		font-size: clamp(30px, 8vw, 44px);
+	}
+
+	.class-tabs,
+	.day-tabs {
+		overflow-x: auto;
+
+		flex-wrap: nowrap;
+
+		scrollbar-width: none;
+	}
+
+	.class-tabs::-webkit-scrollbar,
+	.day-tabs::-webkit-scrollbar {
+		display: none;
+	}
+
+	.class-btn,
+	.day-btn {
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.schedule-item {
+		gap: 10px;
+	}
+
+	.form-footer {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.btn-orange {
+		width: 100%;
+	}
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+	*,
+	*::before,
+	*::after {
+
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+
+		transition-duration: 0.01ms !important;
+
+		scroll-behavior: auto !important;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ----------------------------------- */
