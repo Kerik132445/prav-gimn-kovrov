@@ -129,3 +129,28 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 });
+
+
+
+const animatedElements = document.querySelectorAll(
+	'.teachers-group, .feedback, .faq, footer'
+);
+
+const observer = new IntersectionObserver(
+	(entries, observer) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				entry.target.classList.add('is-visible');
+				observer.unobserve(entry.target);
+			}
+		});
+	},
+	{
+		threshold: 0.1
+	}
+);
+
+animatedElements.forEach(element => {
+	element.classList.add('animate-on-scroll');
+	observer.observe(element);
+});
