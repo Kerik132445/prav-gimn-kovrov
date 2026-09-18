@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Новость | Православная гимназия г. Коврова</title>
+
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+	<header>
+
+		<div class="top-bar">
+
+			<div class="containers">
+
+				<div class="top-bar__content">
+
+					<div class="brand">
+
+						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
+
+						<div class="brand__info">
+
+							<span class="brand__title">
+								Православная гимназия г. Коврова
+							</span>
+
+							<span class="brand__subtitle">
+								Частное общеобразовательное учреждение
+							</span>
+
+						</div>
+
+					</div>
+
+
+					<form class="search-form">
+
+						<img src="./assets/icons/search.svg" alt="Поиск" class="search-form__icons">
+
+						<input type="text" class="search-form__input" placeholder="Поиск по сайту...">
+
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<nav class="main-nav">
+
+			<div class="container">
+
+				<div class="main-nav__content">
+
+					<ul class="nav-list">
+
+						<li>
+							<a href="#" class="nav-link">
+								Главная
+							</a>
+						</li>
+
+						<li>
+							<a href="#" class="nav-link">
+								Сведения об организации
+							</a>
+						</li>
+
+						<li>
+							<a href="#" class="nav-link">
+								Учеба ▾
+							</a>
+						</li>
+
+						<li>
+							<a href="life.html" class="nav-link">
+								Жизнь гимназии
+							</a>
+						</li>
+
+						<li>
+							<a href="#" class="nav-link">
+								Родителям ▾
+							</a>
+						</li>
+
+						<li>
+							<a href="#" class="nav-link">
+								Поступающим
+							</a>
+						</li>
+
+						<li>
+							<a href="#" class="nav-link">
+								Контакты
+							</a>
+						</li>
+
+					</ul>
+
+
+					<a href="#" class="btn-donate">
+						Я хочу помочь
+					</a>
+
+				</div>
+
+			</div>
+
+		</nav>
+
+	</header>
+
+
+	<main class="news-page">
+
+		<div class="container container--wide">
+
+			<a href="life.html" class="news-page__back">
+				← Все новости
+			</a>
+
+
+			<article class="news-article">
+
+				<div class="news-article__meta">
+
+					<span class="news-article__category" id="news-category">
+					</span>
+
+					<time class="news-article__date" id="news-date">
+					</time>
+
+				</div>
+
+
+				<h1 class="news-article__title" id="news-title">
+				</h1>
+
+
+				<div class="news-gallery">
+
+					<div class="news-gallery__main">
+
+						<button class="news-gallery__arrow news-gallery__arrow--prev" type="button"
+							aria-label="Предыдущая фотография">
+							←
+						</button>
+
+						<img id="news-image" class="news-gallery__image" src="" alt="">
+
+						<button class="news-gallery__arrow news-gallery__arrow--next" type="button"
+							aria-label="Следующая фотография">
+							→
+						</button>
+
+					</div>
+
+					<div id="news-thumbnails" class="news-gallery__thumbnails">
+					</div>
+
+				</div>
+
+				<div class="news-lightbox" id="news-lightbox">
+
+					<button class="news-lightbox__close" id="news-lightbox-close" type="button" aria-label="Закрыть">
+						×
+					</button>
+
+					<button class="news-lightbox__arrow news-lightbox__arrow--prev" id="news-lightbox-prev"
+						type="button" aria-label="Предыдущая фотография">
+						←
+					</button>
+
+					<div class="news-lightbox__content">
+
+						<img id="news-lightbox-image" class="news-lightbox__image" src="" alt="">
+
+						<div class="news-lightbox__counter" id="news-lightbox-counter">
+							1 / 1
+						</div>
+
+					</div>
+
+					<button class="news-lightbox__arrow news-lightbox__arrow--next" id="news-lightbox-next"
+						type="button" aria-label="Следующая фотография">
+						→
+					</button>
+
+				</div>
+
+
+				<div class="news-article__content" id="news-content">
+				</div>
+
+			</article>
+
+		</div>
+
+	</main>
+
+
+
+	<footer>
+		<div class="footer-contacts">
+			<div class="contacts__info">
+				<h2>Контакты</h2>
+				<ul class="contacts__info-list">
+					<li class="list-adress"><img src="assets/icons/adres.svg" alt="Адрес">г. Ковров, ул. Подлесная,
+						д. 10</li>
+					<li class="list-phone"><img src="assets/icons/phone.svg" alt="Телефон">+7 (49232) 4-01-95,
+						4-22-72</li>
+					<li class="list-email"><img src="assets/icons/email.svg" alt="Почта">sretenskajgimn@yandex.ru
+					</li>
+					<li class="list-time_work"><img src="assets/icons/clock2.svg" alt="Часы">Пн–Пт: 8:00 – 19:00
+					</li>
+				</ul>
+				<div class="contacts__buttons">
+					<a href="#"><img src="assets/icons/TG_vector.svg" alt="ТГ вектор">Написать в Telegram</a>
+					<a href="#"><img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">Написать в WhatsApp</a>
+				</div>
+			</div>
+			<div class="contacts__map">
+				<img src="assets/images/map.png" alt="Карта адреса">
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="brand__footer">
+				<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
+				<div class="brand__info__footer">
+					<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+					<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+				</div>
+			</div>
+			<div class="footer__nav">
+				<ul class="nav__list">
+					<li class="nav__list-about"><a href="#">О гимназии</a></li>
+					<li class="nav__list-teach"><a href="#">Обучение</a></li>
+					<li class="nav__list-kids"><a href="#">Росточек</a></li>
+					<li class="nav__list-faq"><a href="#">FAQ</a></li>
+					<li class="nav__list-contact"><a href="#">Контакты</a></li>
+				</ul>
+			</div>
+
+			<div class="btn_media">
+				<ul class="btn_media__list">
+
+					<li class="media__list-vk"><a href="#">
+							<img src="assets/icons/vk_icon.svg" alt="ВК"></a>
+					</li>
+
+					<li class="media__list-tg"><a href="#"><img src="assets/icons/vk_tg.svg" alt="TG"></a></li>
+
+					<li class="media__list-whp"><a href="#"><img src="assets/icons/whatsap_icon.svg" alt="Whatsap"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<span>© 2026 Православная гимназия. Все права защищены.</span>
+			<a href="#">Политика конфиденциальности</a>
+		</div>
+	</footer>
+
+
+	<script src="./js/news-data.js"></script>
+	<script src="./js/news.js"></script>
+	<script src="js/window.scrollY.js"></script>
+
+</body>
+
+</html>
