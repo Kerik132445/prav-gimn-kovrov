@@ -1,4 +1,6 @@
+import hashlib
 import secrets
+from datetime import datetime, timedelta, timezone
 
 from fastapi import (
     APIRouter,
@@ -12,7 +14,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from database import SessionLocal
-from models import Admin
+from models import Admin, AdminSession
 from auth import verify_password
 
 
@@ -22,11 +24,10 @@ router = APIRouter(
 )
 
 
-sessions = {}
+SESSION_DURATION_DAYS = 7
 
 
 def get_db():
-
     db = SessionLocal()
 
     try:
@@ -42,6 +43,77 @@ class LoginData(BaseModel):
     password: str
 
 
+def hash_session_token(token: str) -> str:
+
+    return hashlib.sha256(
+        token.encode("utf-8")
+    ).hexdigest()
+
+
+def get_current_session(
+    request: Request,
+    db: Session
+):
+
+    token = request.cookies.get(
+        "admin_session"
+    )
+
+    if not token:
+        raise HTTPException(
+            status_code=401,
+            detail="Требуется авторизация"
+        )
+
+    token_hash = hash_session_token(
+        token
+    )
+
+    session = (
+        db.query(AdminSession)
+        .filter(
+            AdminSession.token_hash ==
+            token_hash
+        )
+        .first()
+    )
+
+    if not session:
+
+        raise HTTPException(
+            status_code=401,
+            detail="Недействительная сессия"
+        )
+
+    now = datetime.now(timezone.utc)
+
+    # SQLite возвращает DateTime без timezone,
+    # поэтому приводим его к UTC.
+    expires_at = session.expires_at
+
+    if expires_at.tzinfo is None:
+
+        expires_at = expires_at.replace(
+            tzinfo=timezone.utc
+        )
+
+    if expires_at <= now:
+
+        db.delete(session)
+        db.commit()
+
+        raise HTTPException(
+            status_code=401,
+            detail="Сессия истекла"
+        )
+
+    return session
+
+
+# ========================================
+# Вход
+# ========================================
+
 @router.post("/login")
 def login(
     data: LoginData,
@@ -49,9 +121,14 @@ def login(
     db: Session = Depends(get_db)
 ):
 
-    admin = db.query(Admin).filter(
-        Admin.username == data.username
-    ).first()
+    admin = (
+        db.query(Admin)
+        .filter(
+            Admin.username ==
+            data.username
+        )
+        .first()
+    )
 
     if not admin:
 
@@ -70,16 +147,46 @@ def login(
             detail="Неверный логин или пароль"
         )
 
+    # Создаём новый случайный токен
     session_token = secrets.token_urlsafe(32)
 
-    sessions[session_token] = admin.id
+    # В БД сохраняем только его SHA-256
+    token_hash = hash_session_token(
+        session_token
+    )
+
+    expires_at = (
+        datetime.now(timezone.utc)
+        + timedelta(
+            days=SESSION_DURATION_DAYS
+        )
+    )
+
+    session = AdminSession(
+
+        token_hash=token_hash,
+
+        admin_id=admin.id,
+
+        expires_at=expires_at
+    )
+
+    db.add(session)
+    db.commit()
 
     response.set_cookie(
+
         key="admin_session",
+
         value=session_token,
+
         httponly=True,
+
         samesite="lax",
-        secure=False
+
+        secure=False,
+
+        max_age=SESSION_DURATION_DAYS * 24 * 60 * 60
     )
 
     return {
@@ -87,10 +194,15 @@ def login(
     }
 
 
+# ========================================
+# Выход
+# ========================================
+
 @router.post("/logout")
 def logout(
     request: Request,
-    response: Response
+    response: Response,
+    db: Session = Depends(get_db)
 ):
 
     token = request.cookies.get(
@@ -99,10 +211,23 @@ def logout(
 
     if token:
 
-        sessions.pop(
-            token,
-            None
+        token_hash = hash_session_token(
+            token
         )
+
+        session = (
+            db.query(AdminSession)
+            .filter(
+                AdminSession.token_hash ==
+                token_hash
+            )
+            .first()
+        )
+
+        if session:
+
+            db.delete(session)
+            db.commit()
 
     response.delete_cookie(
         "admin_session"
@@ -113,35 +238,47 @@ def logout(
     }
 
 
+# ========================================
+# Проверка авторизации
+# ========================================
+
 def require_admin(
-    request: Request
-):
-
-    token = request.cookies.get(
-        "admin_session"
-    )
-
-    if not token or token not in sessions:
-
-        raise HTTPException(
-            status_code=401,
-            detail="Требуется авторизация"
-        )
-
-    return sessions[token]
-
-
-@router.get("/me")
-def get_current_admin(
     request: Request,
     db: Session = Depends(get_db)
 ):
 
-    admin_id = require_admin(request)
+    session = get_current_session(
+        request,
+        db
+    )
 
-    admin = db.query(Admin).filter(
-        Admin.id == admin_id
-    ).first()
+    return session.admin_id
+
+
+# ========================================
+# Текущий администратор
+# ========================================
+
+@router.get("/me")
+def get_current_admin(
+
+    request: Request,
+
+    db: Session = Depends(get_db)
+):
+
+    admin_id = require_admin(
+        request,
+        db
+    )
+
+    admin = (
+        db.query(Admin)
+        .filter(
+            Admin.id == admin_id
+        )
+        .first()
+    )
 
     if not admin:
 
@@ -151,6 +288,8 @@ def get_current_admin(
         )
 
     return {
+
         "id": admin.id,
+
         "username": admin.username
     }

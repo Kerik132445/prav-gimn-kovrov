@@ -3,6 +3,8 @@ from sqlalchemy.orm import relationship
 
 from database import Base
 
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
+
 
 class Admin(Base):
 
@@ -22,6 +24,35 @@ class Admin(Base):
 
     password_hash = Column(
         String(255),
+        nullable=False
+    )
+
+
+class AdminSession(Base):
+
+    __tablename__ = "admin_sessions"
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
+
+    token_hash = Column(
+        String(64),
+        unique=True,
+        nullable=False,
+        index=True
+    )
+
+    admin_id = Column(
+        Integer,
+        ForeignKey("admins.id", ondelete="CASCADE"),
+        nullable=False
+    )
+
+    expires_at = Column(
+        DateTime,
         nullable=False
     )
 

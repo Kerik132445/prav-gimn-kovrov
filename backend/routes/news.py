@@ -17,6 +17,8 @@ from database import SessionLocal
 from models import News, NewsImage
 from schemas import NewsCreate
 
+from sanitizer import sanitize_html
+
 
 router = APIRouter(
     prefix="/api/news",
@@ -57,7 +59,7 @@ def create_news(
     news = News(
         title=news_data.title,
         description=news_data.description,
-        content=news_data.content,
+        content=sanitize_html(news_data.content),
         category=news_data.category,
         date=news_data.date,
         image=news_data.image
@@ -198,30 +200,23 @@ def update_news(
         )
 
     news.title = news_data.title
-
     news.description = news_data.description
-
-    news.content = news_data.content
-
+    news.content = sanitize_html(news_data.content)
     news.category = news_data.category
-
     news.date = news_data.date
 
-    # Не затираем существующую картинку null-ом
     if news_data.image is not None:
-
         news.image = news_data.image
 
     db.commit()
-
     db.refresh(news)
 
     return news
 
-
 # =========================================================
 # ЗАГРУЗИТЬ ФОТОГРАФИЮ
 # =========================================================
+
 
 @router.post("/{news_id}/images")
 async def upload_news_image(
