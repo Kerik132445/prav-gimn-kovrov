@@ -1,5 +1,8 @@
 const API_URL =
-	"http://127.0.0.1:8000/api/news/";
+	"http://localhost:8000/api/news/";
+
+const AUTH_API_URL =
+	"http://localhost:8000/api/auth";
 
 
 const newsList =
@@ -56,8 +59,97 @@ const closeButton =
 const cancelButton =
 	document.querySelector("#cancel-button");
 
+const logoutButton =
+	document.getElementById("logout-button");
+
 
 let news = [];
+
+
+// ========================================
+// Проверка авторизации
+// ========================================
+
+async function checkAuth() {
+
+	try {
+
+		const response = await fetch(
+			`${AUTH_API_URL}/me`,
+			{
+				method: "GET",
+				credentials: "include"
+			}
+		);
+
+
+		if (!response.ok) {
+
+			window.location.href =
+				"/admin/login.html";
+
+			return false;
+		}
+
+
+		const admin =
+			await response.json();
+
+
+		console.log(
+			`Авторизован: ${admin.username}`
+		);
+
+
+		return true;
+
+	} catch (error) {
+
+		console.error(
+			"Ошибка проверки авторизации:",
+			error
+		);
+
+
+		window.location.href =
+			"/admin/login.html";
+
+
+		return false;
+	}
+}
+
+
+// ========================================
+// Выход
+// ========================================
+
+if (logoutButton) {
+
+	logoutButton.addEventListener(
+		"click",
+		async () => {
+
+			try {
+
+				await fetch(
+					`${AUTH_API_URL}/logout`,
+					{
+						method: "POST",
+						credentials: "include"
+					}
+				);
+
+			} finally {
+
+				window.location.href =
+					"/admin/login.html";
+			}
+
+		}
+	);
+
+}
 
 
 // ========================================
@@ -77,7 +169,6 @@ async function loadNews() {
 			throw new Error(
 				`Ошибка сервера: ${response.status}`
 			);
-
 		}
 
 
@@ -86,7 +177,6 @@ async function loadNews() {
 
 
 		renderNews();
-
 
 	} catch (error) {
 
@@ -98,9 +188,7 @@ async function loadNews() {
                 Не удалось загрузить новости.
             </div>
         `;
-
 	}
-
 }
 
 
@@ -152,6 +240,7 @@ function renderNews() {
                             Редактировать
                         </button>
 
+
                         <button
                             class="admin-button news-card__delete"
                             data-delete="${item.id}"
@@ -180,8 +269,8 @@ function renderNews() {
 							button.dataset.edit
 						);
 
-					openEditModal(id);
 
+					openEditModal(id);
 				}
 			);
 
@@ -201,8 +290,8 @@ function renderNews() {
 							button.dataset.delete
 						);
 
-					deleteNews(id);
 
+					deleteNews(id);
 				}
 			);
 
@@ -219,19 +308,22 @@ function getCategoryName(category) {
 
 	const categories = {
 
-		education: "Учебная жизнь",
+		education:
+			"Учебная жизнь",
 
-		holidays: "Праздники",
+		holidays:
+			"Праздники",
 
-		pilgrimage: "Паломничество",
+		pilgrimage:
+			"Паломничество",
 
-		sport: "Спорт и ВПК"
+		sport:
+			"Спорт и ВПК"
 
 	};
 
 
 	return categories[category] || category;
-
 }
 
 
@@ -247,7 +339,6 @@ function escapeHtml(text) {
 		.replaceAll(">", "&gt;")
 		.replaceAll('"', "&quot;")
 		.replaceAll("'", "&#039;");
-
 }
 
 
@@ -286,7 +377,6 @@ function openCreateModal() {
 
 	document.body.style.overflow =
 		"hidden";
-
 }
 
 
@@ -309,7 +399,6 @@ async function openEditModal(id) {
 			throw new Error(
 				"Не удалось загрузить новость"
 			);
-
 		}
 
 
@@ -374,17 +463,15 @@ async function openEditModal(id) {
 		document.body.style.overflow =
 			"hidden";
 
-
 	} catch (error) {
 
 		console.error(error);
 
+
 		alert(
 			"Не удалось загрузить новость."
 		);
-
 	}
-
 }
 
 
@@ -395,6 +482,7 @@ async function openEditModal(id) {
 function renderCurrentImages(images) {
 
 	currentImages.innerHTML = "";
+
 
 	if (!images || images.length === 0) {
 
@@ -407,24 +495,37 @@ function renderCurrentImages(images) {
 		return;
 	}
 
-	const currentMainImage = getImageUrl(
-		news.find(item => item.id === Number(newsIdInput.value))?.image
-	);
+
+	const currentMainImage =
+		getImageUrl(
+			news.find(
+				item =>
+					item.id ===
+					Number(newsIdInput.value)
+			)?.image
+		);
+
 
 	images.forEach(image => {
 
-		const imageUrl = getImageUrl(image.image);
+		const imageUrl =
+			getImageUrl(image.image);
+
 
 		const isMain =
 			imageUrl === currentMainImage;
 
-		const card = document.createElement("div");
+
+		const card =
+			document.createElement("div");
+
 
 		card.className =
 			`current-image-card ${isMain
 				? "current-image-card--main"
 				: ""
 			}`;
+
 
 		card.innerHTML = `
 
@@ -465,6 +566,7 @@ function renderCurrentImages(images) {
                         `
 			}
 
+
                 <button
                     type="button"
                     class="delete-image"
@@ -476,11 +578,11 @@ function renderCurrentImages(images) {
             </div>
         `;
 
+
 		currentImages.appendChild(card);
+
 	});
 
-
-	// Сделать главной
 
 	currentImages
 		.querySelectorAll(".set-main-image")
@@ -500,8 +602,6 @@ function renderCurrentImages(images) {
 
 		});
 
-
-	// Удалить
 
 	currentImages
 		.querySelectorAll(".delete-image")
@@ -532,26 +632,22 @@ function getImageUrl(image) {
 	if (!image) {
 
 		return "";
-
 	}
 
 
 	if (image.startsWith("http")) {
 
 		return image;
-
 	}
 
 
 	if (image.startsWith("/uploads")) {
 
-		return `http://127.0.0.1:8000${image}`;
-
+		return `http://localhost:8000${image}`;
 	}
 
 
 	return image;
-
 }
 
 
@@ -618,7 +714,6 @@ function closeModal() {
 
 	document.body.style.overflow =
 		"";
-
 }
 
 
@@ -676,7 +771,6 @@ newsForm.addEventListener(
 
 			image:
 				null
-
 		};
 
 
@@ -710,6 +804,9 @@ newsForm.addEventListener(
 									"application/json"
 							},
 
+							credentials:
+								"include",
+
 							body:
 								JSON.stringify(
 									newsData
@@ -718,6 +815,7 @@ newsForm.addEventListener(
 					);
 
 			}
+
 
 			// ========================================
 			// Создание
@@ -736,22 +834,29 @@ newsForm.addEventListener(
 									"application/json"
 							},
 
+							credentials:
+								"include",
+
 							body:
 								JSON.stringify(
 									newsData
 								)
 						}
 					);
-
 			}
 
 
 			if (!response.ok) {
 
+				const errorData =
+					await response.json()
+						.catch(() => null);
+
+
 				throw new Error(
+					errorData?.detail ||
 					`Ошибка: ${response.status}`
 				);
-
 			}
 
 
@@ -779,7 +884,6 @@ newsForm.addEventListener(
 					savedNews.id,
 					mainImage
 				);
-
 			}
 
 
@@ -789,7 +893,6 @@ newsForm.addEventListener(
 					savedNews.id,
 					file
 				);
-
 			}
 
 
@@ -798,16 +901,14 @@ newsForm.addEventListener(
 
 			await loadNews();
 
-
 		} catch (error) {
 
 			console.error(error);
 
 
 			alert(
-				"Не удалось сохранить новость."
+				`Не удалось сохранить новость.\n\n${error.message}`
 			);
-
 
 		} finally {
 
@@ -819,7 +920,6 @@ newsForm.addEventListener(
 				id
 					? "Сохранить изменения"
 					: "Создать новость";
-
 		}
 
 	}
@@ -850,19 +950,28 @@ async function uploadImage(
 			`${API_URL}${newsId}/images`,
 			{
 				method: "POST",
-				body: formData
+
+				credentials:
+					"include",
+
+				body:
+					formData
 			}
 		);
 
 
 	if (!response.ok) {
 
+		const errorData =
+			await response.json()
+				.catch(() => null);
+
+
 		throw new Error(
+			errorData?.detail ||
 			"Не удалось загрузить фотографию"
 		);
-
 	}
-
 }
 
 
@@ -881,7 +990,6 @@ async function deleteNews(id) {
 	if (!confirmed) {
 
 		return;
-
 	}
 
 
@@ -891,22 +999,29 @@ async function deleteNews(id) {
 			await fetch(
 				`${API_URL}${id}`,
 				{
-					method: "DELETE"
+					method: "DELETE",
+
+					credentials:
+						"include"
 				}
 			);
 
 
 		if (!response.ok) {
 
+			const errorData =
+				await response.json()
+					.catch(() => null);
+
+
 			throw new Error(
+				errorData?.detail ||
 				"Не удалось удалить новость"
 			);
-
 		}
 
 
 		await loadNews();
-
 
 	} catch (error) {
 
@@ -914,12 +1029,15 @@ async function deleteNews(id) {
 
 
 		alert(
-			"Не удалось удалить новость."
+			`Не удалось удалить новость.\n\n${error.message}`
 		);
-
 	}
-
 }
+
+
+// ========================================
+// Сделать главной
+// ========================================
 
 async function setMainImage(
 	newsId,
@@ -928,97 +1046,114 @@ async function setMainImage(
 
 	try {
 
-		const response = await fetch(
-			`${API_URL}${newsId}/images/${imageId}/main`,
-			{
-				method: "PUT"
-			}
-		);
+		const response =
+			await fetch(
+				`${API_URL}${newsId}/images/${imageId}/main`,
+				{
+					method: "PUT",
+
+					credentials:
+						"include"
+				}
+			);
+
 
 		if (!response.ok) {
 
+			const errorData =
+				await response.json()
+					.catch(() => null);
+
+
 			throw new Error(
+				errorData?.detail ||
 				"Не удалось изменить главную фотографию"
 			);
 		}
 
-		// Перезагружаем данные новости
-		const newsResponse = await fetch(
-			`${API_URL}${newsId}`
-		);
 
-		const item = await newsResponse.json();
-
-		renderCurrentImages(
-			item.images || []
-		);
-
-		// Обновляем список новостей
 		await loadNews();
 
-		// Повторно открываем редактирование,
-		// чтобы состояние было актуальным
-		await openEditModal(newsId);
+
+		await openEditModal(
+			newsId
+		);
 
 	} catch (error) {
 
 		console.error(error);
 
+
 		alert(
-			"Не удалось изменить главную фотографию"
+			`Не удалось изменить главную фотографию.\n\n${error.message}`
 		);
 	}
 }
+
+
+// ========================================
+// Удаление фотографии
+// ========================================
 
 async function deleteImage(
 	newsId,
 	imageId
 ) {
 
-	const confirmed = confirm(
-		"Удалить эту фотографию?"
-	);
+	const confirmed =
+		confirm(
+			"Удалить эту фотографию?"
+		);
+
 
 	if (!confirmed) {
+
 		return;
 	}
 
+
 	try {
 
-		const response = await fetch(
-			`${API_URL}${newsId}/images/${imageId}`,
-			{
-				method: "DELETE"
-			}
-		);
+		const response =
+			await fetch(
+				`${API_URL}${newsId}/images/${imageId}`,
+				{
+					method: "DELETE",
+
+					credentials:
+						"include"
+				}
+			);
+
 
 		if (!response.ok) {
 
+			const errorData =
+				await response.json()
+					.catch(() => null);
+
+
 			throw new Error(
+				errorData?.detail ||
 				"Не удалось удалить фотографию"
 			);
 		}
 
-		const newsResponse = await fetch(
-			`${API_URL}${newsId}`
-		);
-
-		const item = await newsResponse.json();
-
-		renderCurrentImages(
-			item.images || []
-		);
 
 		await loadNews();
 
-		await openEditModal(newsId);
+
+		await openEditModal(
+			newsId
+		);
 
 	} catch (error) {
 
 		console.error(error);
 
+
 		alert(
-			"Не удалось удалить фотографию"
+			`Не удалось удалить фотографию.\n\n${error.message}`
 		);
 	}
 }
@@ -1038,4 +1173,20 @@ createButton.addEventListener(
 // Запуск
 // ========================================
 
-loadNews();
+async function initAdmin() {
+
+	const authorized =
+		await checkAuth();
+
+
+	if (!authorized) {
+
+		return;
+	}
+
+
+	await loadNews();
+}
+
+
+initAdmin();

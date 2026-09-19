@@ -1,6 +1,8 @@
 import os
 import uuid
 
+from routes.auth import require_admin
+
 from fastapi import (
     APIRouter,
     Depends,
@@ -48,7 +50,8 @@ os.makedirs(
 @router.post("/")
 def create_news(
     news_data: NewsCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin)
 ):
 
     news = News(
@@ -179,7 +182,8 @@ def get_one_news(
 def update_news(
     news_id: int,
     news_data: NewsCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin)
 ):
 
     news = db.query(News).filter(
@@ -223,7 +227,8 @@ def update_news(
 async def upload_news_image(
     news_id: int,
     file: UploadFile = File(...),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin)
 ):
 
     news = db.query(News).filter(
@@ -352,7 +357,8 @@ def get_news_images(
 def set_main_image(
     news_id: int,
     image_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin)
 ):
 
     news = db.query(News).filter(
@@ -397,7 +403,8 @@ def set_main_image(
 def delete_news_image(
     news_id: int,
     image_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin)
 ):
 
     image = db.query(NewsImage).filter(
@@ -460,7 +467,8 @@ def delete_news_image(
 @router.delete("/{news_id}")
 def delete_news(
     news_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin)
 ):
 
     news = db.query(News).filter(

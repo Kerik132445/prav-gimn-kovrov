@@ -5,7 +5,7 @@
 }
 
 body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	background-color: #f8fafc;
 }
 
@@ -24,9 +24,7 @@ body {
 .top-bar__content {
 	display: flex;
 	justify-content: space-between;
-	/* Расталкивает элементы по самым краям (лево и право) */
 	align-items: center;
-	/* Выравнивает их строго по вертикальному центру */
 	padding: 0 80px;
 }
 
@@ -61,7 +59,6 @@ body {
 	font-weight: 500;
 }
 
-
 .search-form {
 	display: flex;
 	align-items: center;
@@ -84,14 +81,12 @@ body {
 	background: transparent;
 	width: 100%;
 	font-size: 14px;
-	color: #0f172a
+	color: #0f172a;
 }
 
 .search-form__input::placeholder {
 	color: #000000;
 }
-
-/* ----------------------------------- */
 
 .main-nav {
 	background-color: #1E3A8A;
@@ -110,7 +105,6 @@ body {
 	display: flex;
 	gap: 32px;
 	list-style: none;
-	/* Убираем уродливые черные точки списка */
 	margin: 0;
 	padding: 0;
 }
@@ -121,7 +115,6 @@ body {
 	font-size: 15px;
 	font-weight: 500;
 	transition: opacity 0.2s ease;
-	/* Плавная анимация при наведении */
 	white-space: nowrap;
 }
 
@@ -147,8 +140,6 @@ body {
 	background-color: #d66f17;
 }
 
-/* ----------------------------------- */
-
 .hero {
 	background-image: url("../assets/icons/hero-bg.png");
 	background-size: cover;
@@ -162,8 +153,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	text-align:
-		left;
+	text-align: left;
 }
 
 h1 {
@@ -203,8 +193,6 @@ p {
 	background-color: #F1F5F9;
 	color: #0B132B;
 }
-
-/* ----------------------------------- */
 
 .quick-actions {
 	padding: 60px 0;
@@ -249,7 +237,6 @@ h2 {
 
 .quick-card:hover {
 	border-color: #1c3d82;
-	;
 	transform: translateY(-4px);
 	box-shadow: 0 10px 15px -3px rgba(28, 61, 130, 0.1);
 }
@@ -257,8 +244,6 @@ h2 {
 .quick-card span {
 	white-space: nowrap;
 }
-
-/* ----------------------------------- */
 
 .about {
 	padding: 80px 0;
@@ -274,7 +259,6 @@ h2 {
 .about__image,
 .about__content {
 	flex: 1;
-	/* Делит ширину ровно 50/50 */
 	min-width: 0;
 }
 
@@ -356,8 +340,6 @@ h2 {
 	text-decoration: underline;
 }
 
-/* ----------------------------------- */
-
 .quote {
 	background-color: #F1F5F9;
 	border-radius: 24px;
@@ -382,11 +364,10 @@ h2 {
 	width: 200px;
 	height: 200px;
 	object-fit: cover;
-	border-radius: 50%
+	border-radius: 50%;
 }
 
 .quote__text p {
-	color: 1E293B;
 	font-size: 24px;
 	line-height: 1.5;
 	color: #1E293B;
@@ -406,8 +387,6 @@ h2 {
 	font-size: 14px;
 	color: #64748B;
 }
-
-/* ----------------------------------- */
 
 .stats {
 	background-color: #F8FAFC;
@@ -467,8 +446,6 @@ h2 {
 	padding: 4px 12px;
 }
 
-/* ----------------------------------- */
-
 .news-slider {
 	display: flex;
 	justify-content: space-between;
@@ -494,7 +471,6 @@ h2 {
 	flex-direction: column;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
-
 
 .news img {
 	width: 100%;
@@ -564,9 +540,6 @@ h2 {
 	justify-content: center;
 	flex-shrink: 0;
 }
-
-
-/* ----------------------------------- */
 
 .footer-contacts {
 	display: flex;
@@ -666,7 +639,6 @@ h2 {
 	box-shadow: 0 10px 15px -3px rgba(28, 61, 130, 0.1);
 }
 
-
 .contacts__buttons img {
 	width: 20px;
 	height: 20px;
@@ -676,7 +648,6 @@ h2 {
 	display: flex;
 	gap: 10px;
 }
-
 
 .footer-bottom {
 	background-color: #1E293B;
@@ -747,9 +718,6 @@ h2 {
 .footer-copyright {
 	background-color: #1E293B;
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-copyright {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -762,8 +730,6 @@ h2 {
 	text-decoration: none;
 	color: #94A3B8;
 }
-
-/* ----------------------------------- */
 
 .teachers {
 	display: flex;
@@ -788,7 +754,6 @@ h2 {
 	display: inline-block;
 	background-color: #DBEAFE;
 	border-radius: 12px;
-	padding: 0 0px;
 	color: #2563EB;
 	font-size: 12px;
 	padding: 4px 12px;
@@ -801,7 +766,6 @@ h2 {
 	font-size: 32px;
 	font-weight: 600;
 	margin: 0;
-
 }
 
 .info-sub-title {
@@ -847,8 +811,6 @@ h2 {
 	margin-bottom: 24px;
 }
 
-/* ----------------------------------- */
-
 .faq-feedback {
 	display: flex;
 	gap: 32px;
@@ -885,8 +847,6 @@ h2 {
 	font-weight: 550;
 }
 
-
-
 .feedback__form {
 	display: flex;
 	flex-direction: column;
@@ -900,7 +860,7 @@ h2 {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
-	font-weight: 500
+	font-weight: 500;
 }
 
 .form-group label {
@@ -933,10 +893,9 @@ h2 {
 	border-radius: 8px;
 	padding: 12px 16px;
 	appearance: none;
-	background-image: url('../assets/icons/arrow_down.svg');
+	background-image: url("../assets/icons/arrow_down.svg");
 	background-position: right 16px center;
 	background-repeat: no-repeat;
-	width: 100%;
 	-webkit-appearance: none;
 	width: 100%;
 	padding-right: 40px;
@@ -1020,36 +979,18 @@ h2 {
 	font-size: 16px;
 	margin-bottom: 16px;
 	text-align: left;
-
 }
 
 .faq__item summary {
 	list-style: none;
 	background-repeat: no-repeat;
 	background-position: right 16px center;
-	background-image: url('../assets/icons/arrow_down.svg');
+	background-image: url("../assets/icons/arrow_down.svg");
 }
 
 details[open] summary {
-
-	background-image: url('../assets/icons/arrow_up.svg');
+	background-image: url("../assets/icons/arrow_up.svg");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
 
 .apply-company {
 	display: flex;
@@ -1105,8 +1046,6 @@ details[open] summary {
 	border-radius: 8px;
 	border: 2px solid #ffffff;
 }
-
-/* ----------------------------------- */
 
 .apply-gide {
 	background-color: #ffffff;
@@ -1165,8 +1104,6 @@ details[open] summary {
 	text-align: left;
 	margin-bottom: 24px;
 }
-
-/* ----------------------------------- */
 
 .admission-info {
 	background-color: #ffffff;
@@ -1238,8 +1175,6 @@ details[open] summary {
 	flex-direction: column;
 	align-items: flex-start;
 }
-
-/* ----------------------------------- */
 
 .course-enroll {
 	background-color: #f8fafc;
@@ -1320,21 +1255,6 @@ details[open] summary {
 	margin-bottom: 16px;
 }
 
-
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
-
-
-
-
-
 .dairy {
 	background-color: #EFF6FF;
 	display: flex;
@@ -1385,8 +1305,6 @@ details[open] summary {
 	font-weight: 600;
 }
 
-/* ----------------------------------- */
-
 .journal-hero {
 	padding: 48px 24px;
 	background-color: #ffffff;
@@ -1412,7 +1330,6 @@ details[open] summary {
 	border: 1px solid #E2E8F0;
 	padding: 32px 32px;
 	flex: 1;
-
 }
 
 .instruction-list__item {
@@ -1471,10 +1388,7 @@ details[open] summary {
 	font-weight: 500;
 }
 
-.grid-parents__list {
-	gap: 12px;
-}
-
+.grid-parents__list,
 .grid-kids__list {
 	gap: 12px;
 }
@@ -1507,8 +1421,6 @@ details[open] summary {
 	font-weight: 700;
 }
 
-
-
 .container-journal {
 	max-width: 1400px;
 	margin: 0 auto;
@@ -1520,20 +1432,6 @@ details[open] summary {
 	flex-direction: column;
 	padding: 24px 92px;
 }
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
-
-
 
 .canteen-hero {
 	background-image: url(../assets/images/bg-food.png);
@@ -1600,82 +1498,61 @@ details[open] summary {
 	font-weight: 600;
 }
 
-/* ----------------------------------- */
-
-/* Контейнер сайдбара */
 .canteen-sidebar {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/* Чтобы ссылка на PDF ушла вниз, если доска справа высокая */
 }
 
 .canteen-sidebar__buildings {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
-	/* Отступ между карточками */
 }
 
-/* Базовая карточка */
 .building-card {
 	position: relative;
 	box-sizing: border-box;
-	height: 180px;
-	/* Увеличь немного высоту */
 	padding: 20px;
 	border-radius: 16px;
-
-	/* Делаем правильный фоновый градиент и позиционирование */
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
-
 	color: #ffffff;
 	cursor: pointer;
-
 	height: 160px;
 }
-
 
 .canteen-sidebar__buildings .building-card:nth-child(1) {
 	background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%),
 		url(../assets/images/first.png);
 }
 
-
 .canteen-sidebar__buildings .building-card:nth-child(2) {
 	background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.15) 0%, rgba(15, 23, 42, 0.45) 100%),
 		url(../assets/images/second.png);
 }
 
-
-/* АКТИВНАЯ КАРТОЧКА: вместо border используем outline c offset или box-shadow */
 .building-card--active {
 	outline: 3px solid #2563eb;
 	outline-offset: -3px;
-	/* Загоняет рамку ИНСАЙД карточки, сохраняя скругления */
 }
 
-/* Бейдж */
 .building-card__badge {
 	background-color: #2563eb;
 	color: #ffffff;
 	padding: 4px 12px;
 	border-radius: 100px;
-	/* Форма овальной таблетки */
 	font-size: 12px;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 }
 
-/* Заголовок и адрес */
 .building-card__title {
 	font-size: 22px;
 	font-weight: 700;
@@ -1688,7 +1565,6 @@ details[open] summary {
 	margin: 0;
 }
 
-/* Кнопка скачивания PDF */
 .pdf-download {
 	display: inline-flex;
 	align-items: center;
@@ -1696,7 +1572,6 @@ details[open] summary {
 	margin-top: 24px;
 	padding: 12px 16px;
 	background-color: #f1f5f9;
-	/* Серый фон как на макете */
 	border-radius: 12px;
 	text-decoration: none;
 	transition: background-color 0.2s ease;
@@ -1726,7 +1601,6 @@ details[open] summary {
 	border-radius: 24px;
 	padding: 32px;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-	/* Легкая тень как на макете */
 }
 
 .canteen-board__header {
@@ -1799,7 +1673,6 @@ details[open] summary {
 .meal-card__item {
 	display: flex;
 	justify-content: space-between;
-
 }
 
 .meal-card__dish-name {
@@ -1848,10 +1721,6 @@ details[open] summary {
 	font-size: 12px;
 }
 
-
-/* ----------------------------------- */
-
-/* Основной контейнер и сетка 2x2 */
 .benefits {
 	width: 100%;
 	margin-bottom: 40px;
@@ -1875,12 +1744,9 @@ details[open] summary {
 .benefits__grid {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	/* 2 колонки одинаковой ширины */
 	gap: 20px;
-	/* Отступ между карточками */
 }
 
-/* Карточка */
 .benefits-card {
 	background-color: #ffffff;
 	border: 1px solid #e5e7eb;
@@ -1889,11 +1755,9 @@ details[open] summary {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/* Распределяет header и content по краям */
 	gap: 12px;
 }
 
-/* Верхняя часть карточки */
 .benefits-card__header {
 	display: flex;
 	flex-direction: row;
@@ -1913,7 +1777,6 @@ details[open] summary {
 	width: 34px;
 	height: 34px;
 	flex-shrink: 0;
-	/* Не дает иконке сжиматься, если заголовок длинный */
 }
 
 .benefits-card__title {
@@ -1924,18 +1787,15 @@ details[open] summary {
 	margin: 0;
 }
 
-/* Бейджи */
 .benefits-card__badge {
 	font-size: 14px;
 	font-weight: 600;
 	padding: 6px 12px;
 	border-radius: 20px;
 	white-space: nowrap;
-	/* Бейдж не будет переноситься на 2 строки */
 	flex-shrink: 0;
 }
 
-/* Модификаторы цвета бейджей */
 .benefits-card__badge--green {
 	background-color: #DCFCE7;
 	color: #15803D;
@@ -1946,7 +1806,6 @@ details[open] summary {
 	color: #1E40AF;
 }
 
-/* Контентная часть (Текст) */
 .benefits-card__content {
 	display: flex;
 	flex-direction: column;
@@ -1961,40 +1820,30 @@ details[open] summary {
 
 .benefits-card__label {
 	color: #6b7280;
-	/* Серый цвет для "Что положено:" / "Документы:" */
 	margin-right: 4px;
 }
 
 .benefits-card__value {
 	color: #111827;
 	font-weight: 600;
-	/* Выделяем жирным значение */
 }
-
-/* ----------------------------------- */
 
 .statement {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	/* Центрируем текст и кнопки по вертикали */
 	background-color: #F8FAFC;
-	/* Светло-серый фон карточки */
 	border-radius: 16px;
-	/* Закругление углов внешней карточки */
 	padding: 32px 40px;
-	/* Внутренние отступы */
 	width: 100%;
 }
 
-/* Левая часть с текстом */
 .statement-text h3 {
 	color: #0F172A;
 	font-size: 22px;
 	font-weight: 700;
 	margin: 0 0 8px 0;
-	/* Вместо padding-bottom используем margin */
 }
 
 .statement-text p {
@@ -2003,16 +1852,13 @@ details[open] summary {
 	margin: 0;
 }
 
-/* Правая часть с кнопками */
 .statement-btn {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
 	flex-shrink: 0;
-	/* Запрещаем кнопкам сжиматься */
 }
 
-/* Общие стили для обеих кнопок */
 .statement-btn__privilege,
 .statement-btn__family {
 	display: flex;
@@ -2034,12 +1880,10 @@ details[open] summary {
 .statement-btn__privilege img,
 .statement-btn__family img {
 	width: 20px;
-	/* Уменьшил размер иконки, чтобы выглядело аккуратно как на макете */
 	height: 20px;
 	flex-shrink: 0;
 }
 
-/* Синяя кнопка */
 .statement-btn__privilege {
 	background-color: #2563EB;
 	color: #ffffff;
@@ -2050,21 +1894,15 @@ details[open] summary {
 	background-color: #1D4ED8;
 }
 
-/* Белая кнопка */
 .statement-btn__family {
 	background-color: #ffffff;
 	color: #1E293B;
 	border: 1px solid #CBD5E1;
-	/* ИСПРАВЛЕНО: было background-color */
 }
 
 .statement-btn__family:hover {
 	background-color: #F1F5F9;
 }
-
-
-/* ----------------------------------- */
-
 
 .info-section {
 	display: grid;
@@ -2159,7 +1997,6 @@ details[open] summary {
 	flex-direction: column;
 	gap: 10px;
 	border-top: 1px dashed #BFDBFE;
-	/* Пунктирный разделитель сверху */
 	padding-top: 16px;
 }
 
@@ -2184,8 +2021,6 @@ details[open] summary {
 	text-decoration: underline;
 }
 
-/* ----------------------------------- */
-
 .medical {
 	display: flex;
 	flex-direction: row;
@@ -2195,14 +2030,11 @@ details[open] summary {
 	padding: 48px 24px;
 }
 
-/* --- ЛЕВАЯ КАРТОЧКА --- */
 .medical-card {
 	background-color: #EFF6FF;
-	/* Светло-голубой фон */
 	border-radius: 16px;
 	padding: 24px;
 	flex: 1;
-	/* Занимает пропорциональное место */
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -2246,7 +2078,6 @@ details[open] summary {
 	margin-top: 2px;
 }
 
-/* Голубой бейдж */
 .medical-card__badge {
 	background-color: #DBEAFE;
 	color: #1D4ED8;
@@ -2264,10 +2095,8 @@ details[open] summary {
 	margin: 0;
 }
 
-/* --- ПРАВЫЙ ТЕКСТОВЫЙ БЛОК --- */
 .medical-info {
 	flex: 1.2;
-	/* Делаем чуть шире левой карточки */
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -2286,15 +2115,6 @@ details[open] summary {
 	margin-right: 4px;
 }
 
-
-
-
-
-
-
-/* ----------------------------------- */
-
-/* --- СЕКЦИЯ С КАРТОЙ И АДРЕСОМ --- */
 .contacts-main {
 	display: flex;
 	gap: 32px;
@@ -2316,25 +2136,20 @@ details[open] summary {
 	background: url(../assets/images/campus_contact.png) center/cover no-repeat;
 	border-radius: 16px;
 	padding: 32px;
-
-	/* Жесткая обрезка любых вылазящих артефактов и блюра */
 	clip-path: inset(0 round 16px);
 	overflow: hidden;
 }
 
-/* Размытие и подложка */
 .contacts-main__info::before {
-	content: '';
+	content: "";
 	position: absolute;
 	inset: 0;
-	/* Строго по границам блока */
 	background: rgba(255, 255, 255, 0.85);
 	backdrop-filter: blur(4px);
 	-webkit-backdrop-filter: blur(4px);
 	z-index: 1;
 }
 
-/* Контент над плашкой */
 .contacts-main__info>* {
 	position: relative;
 	z-index: 2;
@@ -2399,7 +2214,6 @@ details[open] summary {
 	margin-top: 4px !important;
 }
 
-/* --- ТЕЛЕФОНЫ ОТДЕЛОВ --- */
 .contacts-departments {
 	margin: 40px 0;
 }
@@ -2449,7 +2263,6 @@ details[open] summary {
 	color: #94A3B8;
 }
 
-/* --- РЕКВИЗИТЫ (DETAILS/SUMMARY) --- */
 .contacts-requisites {
 	margin: 30px 0 40px 0;
 }
@@ -2491,7 +2304,6 @@ details[open] summary {
 	margin: 0;
 }
 
-/* --- HERO SECTION --- */
 .hero-contacts {
 	background-image: url(../assets/images/bg_contact.svg);
 	background-size: cover;
@@ -2568,17 +2380,14 @@ details[open] summary {
 	list-style: none;
 	background-repeat: no-repeat;
 	background-position: right 16px center;
-	background-image: url('../assets/icons/arrow_down.svg');
+	background-image: url("../assets/icons/arrow_down.svg");
 }
 
-/* ----------------------------------- */
-
-/* --- Секция и шапка --- */
 .schedule {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px 15px;
-	font-family: 'Inter', system-ui, sans-serif;
+	font-family: "Inter", system-ui, sans-serif;
 }
 
 .schedule-hero {
@@ -2597,7 +2406,6 @@ details[open] summary {
 	color: #64748b;
 }
 
-/* --- Корпуса (Карточки) --- */
 .campus-selector {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -2616,14 +2424,13 @@ details[open] summary {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/* Распределяет бейдж наверх, текст вниз */
 	align-items: flex-start;
 	color: #ffffff;
 	box-sizing: border-box;
 }
 
 .campus-card::before {
-	content: '';
+	content: "";
 	position: absolute;
 	inset: 0;
 	background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.75) 100%);
@@ -2636,11 +2443,11 @@ details[open] summary {
 }
 
 .campus-card[data-building="spassky"] {
-	background-image: url('../assets/images/first.png');
+	background-image: url("../assets/images/first.png");
 }
 
 .campus-card[data-building="pokrovsky"] {
-	background-image: url('../assets/images/second.png');
+	background-image: url("../assets/images/second.png");
 }
 
 .campus-card__badge {
@@ -2673,7 +2480,6 @@ details[open] summary {
 	margin: 0;
 }
 
-/* --- Фильтры и Табы --- */
 .schedule-filters {
 	display: flex;
 	justify-content: space-between;
@@ -2707,7 +2513,6 @@ details[open] summary {
 	color: #ffffff;
 }
 
-/* --- Главная сетка с расписанием --- */
 .schedule-content {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -2744,10 +2549,8 @@ details[open] summary {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	/* Фиксированный зазор между строками */
 }
 
-/* --- Строки элементов --- */
 .schedule-item {
 	display: flex;
 	align-items: center;
@@ -2796,7 +2599,6 @@ details[open] summary {
 	white-space: nowrap;
 }
 
-/* --- Цветные плашки (Церковь / Завтрак / Прогулка) --- */
 .schedule-item--church {
 	background-color: #eef2ff;
 	border-color: #c7d2fe;
@@ -2826,11 +2628,6 @@ details[open] summary {
 	color: #0f766e;
 }
 
-
-
-/* ----------------------------------- */
-
-/* --- ЭЛЕМЕНТ АККОРДЕОНА --- */
 .accordion-document {
 	background: #ffffff;
 	border: 1px solid #e2e8f0;
@@ -2845,7 +2642,6 @@ details[open] summary {
 	border-color: #cbd5e1;
 }
 
-/* --- ШАПКА --- */
 .document-title {
 	display: flex;
 	justify-content: space-between;
@@ -2883,36 +2679,28 @@ details[open] summary {
 	transition: transform 0.3s ease;
 }
 
-/* Вращение стрелки при открытии */
 .accordion-document--active .accordion-icon {
 	transform: rotate(180deg);
 }
 
-/* --- ВЫПАДАЮЩИЙ КОНТЕНТ (GRID ANIMATION) --- */
 .accordion-content {
 	display: grid;
 	grid-template-rows: 0fr;
-	/* Схлопнуто по умолчанию */
 	transition: grid-template-rows 0.3s ease-in-out;
 	background-color: #f8fafc;
 	border-top: 1px solid transparent;
 }
 
-/* Обязательная обертка для корректной работы Grid-анимации */
 .accordion-content__inner {
 	overflow: hidden;
 	padding: 0 24px;
-	/* Все паддинги ТУТ, а не в .accordion-content */
 }
 
-/* Раскрытое состояние */
 .accordion-document--active .accordion-content {
 	grid-template-rows: 1fr;
-	/* Раскрываем на реальную высоту контента */
 	border-top-color: #e2e8f0;
 }
 
-/* --- СПИСОК ФАЙЛОВ --- */
 .documents-list {
 	display: flex;
 	flex-direction: column;
@@ -2975,8 +2763,6 @@ details[open] summary {
 	height: 16px;
 }
 
-/* ----------------------------------- */
-
 .documents-hero {
 	margin-bottom: 24px;
 }
@@ -3018,7 +2804,6 @@ details[open] summary {
 	align-items: center;
 	gap: 16px;
 	flex-wrap: wrap;
-	/* Чтобы на мобилках красиво перенослись */
 	margin-bottom: 24px;
 }
 
@@ -3066,28 +2851,18 @@ details[open] summary {
 .search-input {
 	width: 100%;
 	height: 44px;
-	/* Удобная высота по макету */
 	padding: 10px 16px 10px 42px;
-	/* Левый отступ 42px, чтобы текст не налезал на лупу */
-
-	/* Стили рамки и фона */
 	background-color: #ffffff;
 	border: 1px solid #e2e8f0;
 	border-radius: 12px;
-	/* Скругления как на 2 скрине */
-
-	/* Шрифты */
 	font-size: 14px;
 	color: #1e293b;
 	outline: none;
 	box-sizing: border-box;
-
-	/* Иконка лупы */
 	background-image: url(../assets/icons/Лупа.svg);
 	background-position: 14px center;
 	background-repeat: no-repeat;
 	background-size: 18px 18px;
-
 	transition: all 0.2s ease;
 }
 
@@ -3100,58 +2875,34 @@ details[open] summary {
 	box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
-.documents-hero {
-	padding: 24px 48px;
-}
-
+.documents-hero,
 .panel-documents {
 	padding: 24px 48px;
 }
 
-/* Обертка для всех аккордеонов */
 .accordions-container {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	/* Отступы между плашками */
 }
 
-/* Все плашки по умолчанию имеют нулевой порядок */
 .accordion-document {
 	order: 0;
 	transition: order 0.3s ease;
-	/* Плавная смена порядка браузерами, поддерживающими CSS Order Animation */
 }
 
-
-
-
-
-/* ----------------------------------- */
-
-
-
-
-/* --- СБРОС И ОСНОВНЫЕ ПЕРЕМЕННЫЕ (В стиле текущего сайта) --- */
 :root {
 	--color-bg-page: #F8FAFC;
-	/* Легкий светлый фон страницы */
 	--color-surface: #FFFFFF;
-	/* Белые поверхности карточек */
 	--color-text-main: #0F172A;
-	/* Тёмно-синий/чёрный заголовочный */
 	--color-text-muted: #64748B;
-	/* Серый текст субтитров */
 	--color-brand-blue: #2563EB;
-	/* Основной синий сайта */
 	--color-brand-blue-hover: #1D4ED8;
 	--color-brand-orange: #EA580C;
-	/* Янтарный акцентный */
 	--color-border: #E2E8F0;
-	/* Границы */
 	--radius-card: 20px;
 	--radius-pill: 100px;
-	--font-family: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-family: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -3174,7 +2925,6 @@ body {
 	padding: 0 24px;
 }
 
-/* --- HERO SECTION (Идентично блоку "Питание") --- */
 .page-hero {
 	background: linear-gradient(180deg, #E0F2FE 0%, var(--color-bg-page) 100%);
 	padding: 48px 0 32px 0;
@@ -3205,7 +2955,6 @@ body {
 	max-width: 680px;
 }
 
-/* --- ТУЛБАР ФИЛЬТРОВ И ПОИСКА --- */
 .toolbar-sticky {
 	top: 0;
 	z-index: 20;
@@ -3229,7 +2978,6 @@ body {
 	gap: 8px;
 	overflow-x: auto;
 	padding-bottom: 4px;
-	/* Для скролла на мобилках */
 }
 
 .pill-btn {
@@ -3261,7 +3009,6 @@ body {
 	color: #FFFFFF;
 }
 
-/* Поиск в стиле поиска по сайту */
 .search-box__input {
 	width: 260px;
 	height: 40px;
@@ -3278,7 +3025,6 @@ body {
 	border-color: var(--color-brand-blue);
 }
 
-/* --- СЕКЦИИ И ГРУППЫ --- */
 .teachers-group {
 	margin-bottom: 48px;
 }
@@ -3307,13 +3053,11 @@ body {
 	border-radius: var(--radius-pill);
 }
 
-/* --- СЕТКА И КАРТОЧКИ УЧИТЕЛЕЙ --- */
 .teachers-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 24px;
 	align-items: stretch;
-	/* Растягивает все карточки в ряду на одну высоту */
 }
 
 @media (max-width: 1024px) {
@@ -3336,7 +3080,6 @@ body {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	/* Гарантирует равную высоту всех карточек в строке */
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -3345,12 +3088,10 @@ body {
 	box-shadow: 0px 12px 24px rgba(15, 23, 42, 0.06);
 }
 
-/* Контейнер фото (Строгие пропорции 3:4) */
 .teacher-card__photo-container {
 	position: relative;
 	width: 100%;
 	aspect-ratio: 3 / 4;
-	/* Жестко фиксирует пропорции фотографии */
 	overflow: hidden;
 	background-color: #F1F5F9;
 }
@@ -3359,11 +3100,9 @@ body {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	/* Обрезает изображение под блок 3:4 без деформации */
 	object-position: top center;
 }
 
-/* Аккуратная плашка поверх низа фотографии */
 .teacher-card__role-tag {
 	position: absolute;
 	bottom: 12px;
@@ -3383,13 +3122,11 @@ body {
 	background-color: rgba(234, 88, 12, 0.9);
 }
 
-/* Контентная зона */
 .teacher-card__body {
 	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
-	/* Позволяет блоку занимать всё свободное место снизу */
 }
 
 .teacher-card__name {
@@ -3405,10 +3142,8 @@ body {
 	color: var(--color-text-muted);
 	margin-bottom: 20px;
 	flex-grow: 1;
-	/* Выталкивает футер с бейджами в самый низ карточки */
 }
 
-/* Теги опыта и категории */
 .teacher-card__footer {
 	display: flex;
 	gap: 8px;
@@ -3416,7 +3151,6 @@ body {
 	padding-top: 12px;
 	border-top: 1px solid #F1F5F9;
 	margin-top: auto;
-	/* Жесткая привязка к низу */
 }
 
 .info-badge {
@@ -3441,32 +3175,26 @@ body {
 	color: #475569;
 }
 
-/* Духовенство и основы веры */
 .teacher-card__role-tag--purple {
 	background-color: rgba(126, 34, 206, 0.85);
 }
 
-/* Филология и языки */
 .teacher-card__role-tag--teal {
 	background-color: rgba(13, 148, 136, 0.85);
 }
 
-/* Точные и естественные науки */
 .teacher-card__role-tag--blue {
 	background-color: rgba(37, 99, 235, 0.85);
 }
 
-/* Общественные науки и история */
 .teacher-card__role-tag--amber {
 	background-color: rgba(180, 83, 9, 0.85);
 }
 
-/* Труд, спорт, искусство */
 .teacher-card__role-tag--red {
 	background-color: rgba(225, 29, 72, 0.85);
 }
 
-/* Внеурочная деятельность */
 .teacher-card__role-tag--green {
 	background-color: rgba(16, 185, 129, 0.85);
 }
@@ -3479,7 +3207,6 @@ body {
 .teachers-group {
 	order: 0;
 	transition: order 0.3s ease;
-	/* Мягкое переключение */
 }
 
 .filter-pills {
@@ -3487,9 +3214,6 @@ body {
 	gap: 8px;
 	overflow-x: auto;
 	scroll-behavior: smooth;
-	/* Обеспечивает физику плавности на уровне браузера */
-
-	/* Скрытие дефолтного скроллбара */
 	scrollbar-width: none;
 	-ms-overflow-style: none;
 }
@@ -3504,13 +3228,11 @@ body {
 	transform: scale(1);
 }
 
-/* Класс для плавного исчезновения перед скрытием */
 .teacher-card--hidden {
 	opacity: 0;
 	transform: scale(0.95);
 	pointer-events: none;
 }
-
 
 .page-hero {
 	background-image: url(../assets/images/teachers_bg.png);
@@ -3530,7 +3252,6 @@ header {
 	left: 0;
 	width: 100%;
 	z-index: 1000;
-
 	transition: transform 0.35s ease;
 }
 
@@ -3542,16 +3263,10 @@ body.header-is-hidden {
 	padding-top: 0;
 }
 
-/* =========================
-   ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
-========================= */
-
 .js-reveal {
 	opacity: 0;
 	transform: translateY(50px);
-
-	transition:
-		opacity 0.8s ease,
+	transition: opacity 0.8s ease,
 		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -3563,9 +3278,7 @@ body.header-is-hidden {
 .js-reveal-image {
 	opacity: 0;
 	transform: translateX(-60px) scale(0.97);
-
-	transition:
-		opacity 0.9s ease,
+	transition: opacity 0.9s ease,
 		transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -3574,40 +3287,29 @@ body.header-is-hidden {
 	transform: translateX(0) scale(1);
 }
 
-/* =========================
-   QUICK CARDS
-========================= */
-
 .quick-card {
 	position: relative;
 	overflow: hidden;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease,
 		background-color 0.3s ease;
 }
 
 .quick-card::before {
 	content: "";
-
 	position: absolute;
 	inset: 0;
-
 	background: linear-gradient(120deg,
 			transparent 30%,
 			rgba(255, 255, 255, 0.35),
 			transparent 70%);
-
 	transform: translateX(-120%);
 	transition: transform 0.6s ease;
 }
 
 .quick-card:hover {
 	transform: translateY(-8px);
-
 	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
@@ -3616,17 +3318,12 @@ body.header-is-hidden {
 }
 
 .quick-card img {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .quick-card:hover img {
 	transform: scale(1.12) rotate(-3deg);
 }
-
-/* =========================
-   КНОПКИ
-========================= */
 
 .btn,
 .btn-donate,
@@ -3634,11 +3331,8 @@ body.header-is-hidden {
 .btn-orange {
 	position: relative;
 	overflow: hidden;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		box-shadow 0.25s ease,
 		filter 0.25s ease;
 }
@@ -3648,9 +3342,7 @@ body.header-is-hidden {
 .btn-teachers:hover,
 .btn-orange:hover {
 	transform: translateY(-3px);
-
 	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-
 	filter: brightness(1.03);
 }
 
@@ -3660,10 +3352,6 @@ body.header-is-hidden {
 .btn-orange:active {
 	transform: translateY(0);
 }
-
-/* =========================
-   HERO
-========================= */
 
 .hero__content h1 {
 	animation: heroTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -3713,10 +3401,6 @@ body.header-is-hidden {
 	}
 }
 
-/* =========================
-   ABOUT
-========================= */
-
 .about__image {
 	overflow: hidden;
 	border-radius: inherit;
@@ -3724,8 +3408,7 @@ body.header-is-hidden {
 
 .about__image img {
 	width: 100%;
-	transition:
-		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+	transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .about__image:hover img {
@@ -3733,8 +3416,7 @@ body.header-is-hidden {
 }
 
 .about__features li {
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		background-color 0.25s ease;
 }
 
@@ -3743,8 +3425,7 @@ body.header-is-hidden {
 }
 
 .feature-icon {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .about__features li:hover .feature-icon {
@@ -3753,65 +3434,46 @@ body.header-is-hidden {
 
 .about__link span {
 	display: inline-block;
-
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .about__link:hover span {
 	transform: translateX(7px);
 }
 
-/* =========================
-   STATS
-========================= */
-
 .stat-card {
 	position: relative;
-
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
 .stat-card:hover {
 	transform: translateY(-8px);
-
 	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .stat-card__number {
 	display: inline-block;
-
-	transition:
-		transform 0.4s ease;
+	transition: transform 0.4s ease;
 }
 
 .stat-card:hover .stat-card__number {
 	transform: scale(1.08);
 }
 
-/* =========================
-   NEWS
-========================= */
-
 .news {
 	overflow: hidden;
-
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
 .news:hover {
 	transform: translateY(-8px);
-
 	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 .news>img {
-	transition:
-		transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .news:hover>img {
@@ -3819,8 +3481,7 @@ body.header-is-hidden {
 }
 
 .news__link {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .news__link:hover {
@@ -3828,8 +3489,7 @@ body.header-is-hidden {
 }
 
 .slider-btn {
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		box-shadow 0.25s ease;
 }
 
@@ -3841,17 +3501,12 @@ body.header-is-hidden {
 	transform: scale(0.94);
 }
 
-/* =========================
-   TEACHERS
-========================= */
-
 .teachers__media {
 	overflow: hidden;
 }
 
 .teachers__media img {
-	transition:
-		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+	transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .teachers__media:hover img {
@@ -3862,13 +3517,8 @@ body.header-is-hidden {
 	display: inline-block;
 }
 
-/* =========================
-   FAQ
-========================= */
-
 .faq__item {
-	transition:
-		box-shadow 0.3s ease,
+	transition: box-shadow 0.3s ease,
 		transform 0.3s ease;
 }
 
@@ -3878,9 +3528,7 @@ body.header-is-hidden {
 
 .faq__question {
 	cursor: pointer;
-
-	transition:
-		color 0.25s ease;
+	transition: color 0.25s ease;
 }
 
 .faq__question:hover {
@@ -3890,8 +3538,7 @@ body.header-is-hidden {
 .faq__item::details-content {
 	block-size: 0;
 	overflow: hidden;
-	transition:
-		block-size 0.35s ease,
+	transition: block-size 0.35s ease,
 		content-visibility 0.35s allow-discrete;
 }
 
@@ -3899,63 +3546,24 @@ body.header-is-hidden {
 	block-size: auto;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
-
-
-
-
-
-
-
-
-
-/* ========================================
-   ПЕРВЫЙ ЭКРАН
-======================================== */
-
 .apply-company {
 	position: relative;
 	overflow: hidden;
 }
 
-/* Заголовок */
-
 .apply-company h1 {
-	animation:
-		applyTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: applyTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-
-/* Описание */
 
 .apply-company>p {
-	animation:
-		applyText 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: applyText 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-
-/* Кнопки */
 
 .apply-btn {
-	animation:
-		applyButtons 0.9s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: applyButtons 0.9s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-
 @keyframes applyTitle {
-
 	from {
 		opacity: 0;
 		transform: translateY(35px);
@@ -3965,12 +3573,9 @@ body.header-is-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
 
-
 @keyframes applyText {
-
 	from {
 		opacity: 0;
 		transform: translateY(25px);
@@ -3980,12 +3585,9 @@ body.header-is-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
 
-
 @keyframes applyButtons {
-
 	from {
 		opacity: 0;
 		transform: translateY(20px);
@@ -3995,22 +3597,14 @@ body.header-is-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
-
-/* ========================================
-   КНОПКИ ПРИЁМНОЙ КАМПАНИИ
-======================================== */
 
 .btn__interview,
 .btn__question {
 	position: relative;
 	overflow: hidden;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		box-shadow 0.25s ease,
 		filter 0.25s ease;
 }
@@ -4018,10 +3612,7 @@ body.header-is-hidden {
 .btn__interview:hover,
 .btn__question:hover {
 	transform: translateY(-4px);
-
-	box-shadow:
-		0 12px 30px rgba(0, 0, 0, 0.15);
-
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 	filter: brightness(1.03);
 }
 
@@ -4030,17 +3621,10 @@ body.header-is-hidden {
 	transform: translateY(-1px);
 }
 
-/* ========================================
-   ПОЯВЛЕНИЕ СЕКЦИЙ
-======================================== */
-
 .js-reveal {
 	opacity: 0;
-
 	transform: translateY(55px);
-
-	transition:
-		opacity 0.8s ease,
+	transition: opacity 0.8s ease,
 		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -4049,44 +3633,29 @@ body.header-is-hidden {
 	transform: translateY(0);
 }
 
-/* ========================================
-   ШАГИ ПОСТУПЛЕНИЯ
-======================================== */
-
 .step-card {
 	position: relative;
 	overflow: hidden;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.35s ease;
 }
 
 .step-card::before {
 	content: "";
-
 	position: absolute;
-
 	left: 0;
 	top: 0;
-
 	width: 100%;
 	height: 3px;
-
 	transform: scaleX(0);
 	transform-origin: left;
-
-	transition:
-		transform 0.4s ease;
+	transition: transform 0.4s ease;
 }
 
 .step-card:hover {
 	transform: translateY(-9px);
-
-	box-shadow:
-		0 18px 40px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
 }
 
 .step-card:hover::before {
@@ -4095,38 +3664,26 @@ body.header-is-hidden {
 
 .step-card .num {
 	display: inline-flex;
-
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .step-card:hover .num {
-	transform:
-		scale(1.12) rotate(-3deg);
+	transform: scale(1.12) rotate(-3deg);
 }
-
-/* ========================================
-   ИНФОРМАЦИОННЫЕ КАРТОЧКИ
-======================================== */
 
 .info-card {
 	position: relative;
-
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
 .info-card:hover {
 	transform: translateY(-7px);
-
-	box-shadow:
-		0 18px 40px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
 }
 
 .info-list__item {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .info-list__item:hover {
@@ -4134,18 +3691,12 @@ body.header-is-hidden {
 }
 
 .check-icon {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .info-list__item:hover .check-icon {
-	transform:
-		scale(1.12) rotate(-5deg);
+	transform: scale(1.12) rotate(-5deg);
 }
-
-/* ========================================
-   РОСТОЧЕК
-======================================== */
 
 .course-enroll {
 	position: relative;
@@ -4153,8 +3704,7 @@ body.header-is-hidden {
 }
 
 .course-info {
-	transition:
-		transform 0.4s ease;
+	transition: transform 0.4s ease;
 }
 
 .course-info:hover {
@@ -4163,22 +3713,17 @@ body.header-is-hidden {
 
 .course-badge {
 	display: inline-block;
-
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
 .course-badge:hover {
 	transform: translateY(-3px);
-
-	box-shadow:
-		0 8px 20px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .course-features__item {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .course-features__item:hover {
@@ -4186,36 +3731,26 @@ body.header-is-hidden {
 }
 
 .course-features__item .feature-icon {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .course-features__item:hover .feature-icon {
-	transform:
-		scale(1.12) rotate(-4deg);
+	transform: scale(1.12) rotate(-4deg);
 }
 
-/* ========================================
-   ФОРМА
-======================================== */
-
 .feedback__form {
-	transition:
-		transform 0.4s ease,
+	transition: transform 0.4s ease,
 		box-shadow 0.4s ease;
 }
 
 .feedback__form:focus-within {
 	transform: translateY(-4px);
-
-	box-shadow:
-		0 20px 45px rgba(0, 0, 0, 0.12);
+	box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
 }
 
 .form-group input,
 .form-group select {
-	transition:
-		border-color 0.25s ease,
+	transition: border-color 0.25s ease,
 		box-shadow 0.25s ease,
 		transform 0.25s ease;
 }
@@ -4223,80 +3758,44 @@ body.header-is-hidden {
 .form-group input:focus,
 .form-group select:focus {
 	transform: translateY(-1px);
-
 	outline: none;
-
-	box-shadow:
-		0 0 0 3px rgba(180, 140, 70, 0.12);
+	box-shadow: 0 0 0 3px rgba(180, 140, 70, 0.12);
 }
 
 .feedback__form .btn-orange {
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		box-shadow 0.25s ease;
 }
 
 .feedback__form .btn-orange:hover {
 	transform: translateY(-3px);
-
-	box-shadow:
-		0 10px 25px rgba(0, 0, 0, 0.15);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .feedback__form .btn-orange:active {
 	transform: translateY(0);
 }
 
-/* ========================================
-   ПОЯВЛЕНИЕ КАРТОЧЕК
-======================================== */
-
 .js-card {
 	opacity: 0;
-
 	transform: translateY(35px);
-
-	transition:
-		opacity 0.65s ease,
+	transition: opacity 0.65s ease,
 		transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .js-card.is-visible {
 	opacity: 1;
-
 	transform: translateY(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
-
-
-/* ========================================
-   ПЛАВАЮЩАЯ ГЛАВНАЯ ШАПКА
-======================================== */
 
 body>header {
 	position: fixed;
 	top: 0;
 	left: 0;
-
 	width: 100%;
 	z-index: 1000;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 	will-change: transform;
 }
 
@@ -4304,32 +3803,23 @@ body>header.header-hidden {
 	transform: translateY(-100%);
 }
 
-/* ========================================
-   CANTEEN HERO
-======================================== */
-
 .canteen-hero {
 	overflow: hidden;
 }
 
 .canteen-title {
-	animation:
-		canteenTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: canteenTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .canteen-subtitle {
-	animation:
-		canteenText 0.8s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: canteenText 0.8s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .grid-canteen {
-	animation:
-		canteenCards 0.9s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: canteenCards 0.9s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-
 @keyframes canteenTitle {
-
 	from {
 		opacity: 0;
 		transform: translateY(35px);
@@ -4339,12 +3829,9 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
 
-
 @keyframes canteenText {
-
 	from {
 		opacity: 0;
 		transform: translateY(25px);
@@ -4354,12 +3841,9 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
 
-
 @keyframes canteenCards {
-
 	from {
 		opacity: 0;
 		transform: translateY(40px);
@@ -4369,46 +3853,31 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
-
-/* ========================================
-   КАРТОЧКИ HERO
-======================================== */
 
 .card-canteen {
 	position: relative;
 	overflow: hidden;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.35s ease;
 }
 
 .card-canteen::before {
 	content: "";
-
 	position: absolute;
 	left: 0;
 	top: 0;
-
 	width: 100%;
 	height: 3px;
-
 	transform: scaleX(0);
 	transform-origin: left;
-
-	transition:
-		transform 0.4s ease;
+	transition: transform 0.4s ease;
 }
 
 .card-canteen:hover {
 	transform: translateY(-8px);
-
-	box-shadow:
-		0 18px 40px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
 }
 
 .card-canteen:hover::before {
@@ -4416,26 +3885,17 @@ body>header.header-hidden {
 }
 
 .card-canteen img {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .card-canteen:hover img {
-	transform:
-		scale(1.12) rotate(-4deg);
+	transform: scale(1.12) rotate(-4deg);
 }
-
-/* ========================================
-   REVEAL
-======================================== */
 
 .js-reveal {
 	opacity: 0;
-
 	transform: translateY(55px);
-
-	transition:
-		opacity 0.8s ease,
+	transition: opacity 0.8s ease,
 		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -4444,44 +3904,30 @@ body>header.header-hidden {
 	transform: translateY(0);
 }
 
-/* ========================================
-   КОРПУСА
-======================================== */
-
 .building-card {
 	position: relative;
 	overflow: hidden;
-
 	cursor: pointer;
-
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease,
 		border-color 0.3s ease;
 }
 
 .building-card:hover {
 	transform: translateX(6px);
-
-	box-shadow:
-		0 10px 25px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .building-card::before {
 	content: "";
-
 	position: absolute;
 	left: 0;
 	top: 0;
-
 	width: 3px;
 	height: 100%;
-
 	transform: scaleY(0);
 	transform-origin: bottom;
-
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .building-card:hover::before,
@@ -4490,54 +3936,36 @@ body>header.header-hidden {
 }
 
 .building-card__badge {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .building-card:hover .building-card__badge {
 	transform: translateX(4px);
 }
 
-/* ========================================
-   PDF
-======================================== */
-
 .pdf-download {
 	position: relative;
-
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
 .pdf-download:hover {
 	transform: translateY(-4px);
-
-	box-shadow:
-		0 10px 25px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .pdf-download img {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .pdf-download:hover img {
-	transform:
-		translateY(-2px) scale(1.08);
+	transform: translateY(-2px) scale(1.08);
 }
-
-/* ========================================
-   TAB BUTTONS
-======================================== */
 
 .tab-btn {
 	position: relative;
-
 	overflow: hidden;
-
-	transition:
-		transform 0.2s ease,
+	transition: transform 0.2s ease,
 		background-color 0.25s ease,
 		color 0.25s ease,
 		box-shadow 0.25s ease;
@@ -4553,19 +3981,13 @@ body>header.header-hidden {
 
 .tab-btn::after {
 	content: "";
-
 	position: absolute;
-
 	left: 50%;
 	bottom: 0;
-
 	width: 0;
 	height: 2px;
-
 	transform: translateX(-50%);
-
-	transition:
-		width 0.3s ease;
+	transition: width 0.3s ease;
 }
 
 .tab-btn:hover::after,
@@ -4573,30 +3995,20 @@ body>header.header-hidden {
 	width: 70%;
 }
 
-/* ========================================
-   MEAL CARDS
-======================================== */
-
 .meal-card {
 	position: relative;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
 .meal-card:hover {
 	transform: translateY(-7px);
-
-	box-shadow:
-		0 15px 35px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .meal-card__price {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .meal-card:hover .meal-card__price {
@@ -4604,8 +4016,7 @@ body>header.header-hidden {
 }
 
 .meal-card__item {
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		padding-left 0.25s ease;
 }
 
@@ -4614,8 +4025,7 @@ body>header.header-hidden {
 }
 
 .meal-card.is-menu-visible .meal-card__item {
-	animation:
-		mealItem 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: mealItem 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .meal-card.is-menu-visible .meal-card__item:nth-child(1) {
@@ -4638,9 +4048,7 @@ body>header.header-hidden {
 	animation-delay: 0.25s;
 }
 
-
 @keyframes mealItem {
-
 	from {
 		opacity: 0;
 		transform: translateX(-15px);
@@ -4650,45 +4058,31 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateX(0);
 	}
-
 }
-
-/* ========================================
-   BENEFITS
-======================================== */
 
 .benefits-card {
 	position: relative;
-
 	overflow: hidden;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
 .benefits-card:hover {
 	transform: translateY(-7px);
-
-	box-shadow:
-		0 18px 40px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
 }
 
 .benefits-card__icon {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .benefits-card:hover .benefits-card__icon {
-	transform:
-		scale(1.1) rotate(-4deg);
+	transform: scale(1.1) rotate(-4deg);
 }
 
 .benefits-card__badge {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .benefits-card:hover .benefits-card__badge {
@@ -4696,45 +4090,30 @@ body>header.header-hidden {
 }
 
 .benefits-card__text {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .benefits-card__text:hover {
 	transform: translateX(5px);
 }
 
-/* ========================================
-   STATEMENT
-======================================== */
-
 .statement {
 	position: relative;
 	overflow: hidden;
-
-	transition:
-		box-shadow 0.4s ease;
+	transition: box-shadow 0.4s ease;
 }
 
 .statement::before {
 	content: "";
-
 	position: absolute;
-
 	width: 180px;
 	height: 180px;
-
 	border-radius: 50%;
-
 	top: -90px;
 	right: -90px;
-
 	opacity: 0.08;
-
 	transform: scale(0.8);
-
-	transition:
-		transform 0.6s ease;
+	transition: transform 0.6s ease;
 }
 
 .statement:hover::before {
@@ -4743,42 +4122,27 @@ body>header.header-hidden {
 
 .statement-btn__privilege,
 .statement-btn__family {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
 .statement-btn__privilege:hover,
 .statement-btn__family:hover {
 	transform: translateY(-5px);
-
-	box-shadow:
-		0 12px 30px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
-
-/* ========================================
-   ПОЯВЛЕНИЕ КАРТОЧЕК
-======================================== */
 
 .js-card {
 	opacity: 0;
-
 	transform: translateY(35px);
-
-	transition:
-		opacity 0.65s ease,
+	transition: opacity 0.65s ease,
 		transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .js-card.is-visible {
 	opacity: 1;
-
 	transform: translateY(0);
 }
-
-/* ========================================
-   ПЛАВАЮЩАЯ ШАПКА
-======================================== */
 
 body>header {
 	position: fixed;
@@ -4786,12 +4150,8 @@ body>header {
 	left: 0;
 	width: 100%;
 	z-index: 1000;
-
 	transform: translateY(0);
-
-	transition:
-		transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-
+	transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 	will-change: transform;
 }
 
@@ -4799,54 +4159,24 @@ body>header.header-hidden {
 	transform: translateY(-100%);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
-
-
-
-
-
-
-
-
-
-/* ========================================
-   HERO ДНЕВНИКА
-======================================== */
-
 .dairy {
 	position: relative;
 	overflow: hidden;
 }
 
 .dairy .journal-hero__title {
-	animation:
-		dairyTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: dairyTitle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .dairy .journal-hero__subtitle {
-	animation:
-		dairySubtitle 0.8s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: dairySubtitle 0.8s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .dairy .journal-hero__action {
-	animation:
-		dairyAction 0.8s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: dairyAction 0.8s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-
 @keyframes dairyTitle {
-
 	from {
 		opacity: 0;
 		transform: translateY(35px);
@@ -4856,12 +4186,9 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
 
-
 @keyframes dairySubtitle {
-
 	from {
 		opacity: 0;
 		transform: translateY(25px);
@@ -4871,12 +4198,9 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
 
-
 @keyframes dairyAction {
-
 	from {
 		opacity: 0;
 		transform: translateY(20px);
@@ -4886,29 +4210,19 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
-
-/* ========================================
-   КНОПКА ДНЕВНИКА
-======================================== */
 
 .btn-blue {
 	position: relative;
 	overflow: hidden;
-
-	transition:
-		transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+	transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.3s ease,
 		filter 0.3s ease;
 }
 
 .btn-blue:hover {
 	transform: translateY(-4px);
-
-	box-shadow:
-		0 12px 28px rgba(0, 0, 0, 0.14);
-
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
 	filter: brightness(1.04);
 }
 
@@ -4917,26 +4231,17 @@ body>header.header-hidden {
 }
 
 .note-icon {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .journal-hero__note:hover .note-icon {
-	transform:
-		scale(1.1) rotate(-5deg);
+	transform: scale(1.1) rotate(-5deg);
 }
-
-/* ========================================
-   REVEAL СЕКЦИЙ
-======================================== */
 
 .js-reveal {
 	opacity: 0;
-
 	transform: translateY(55px);
-
-	transition:
-		opacity 0.8s ease,
+	transition: opacity 0.8s ease,
 		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -4945,13 +4250,8 @@ body>header.header-hidden {
 	transform: translateY(0);
 }
 
-/* ========================================
-   ЗАГОЛОВОК ИНСТРУКЦИИ
-======================================== */
-
 .journal__title {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .journal__title:hover {
@@ -4959,51 +4259,35 @@ body>header.header-hidden {
 }
 
 .journal__title img {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .journal__title:hover img {
-	transform:
-		scale(1.1) rotate(-4deg);
+	transform: scale(1.1) rotate(-4deg);
 }
-
-/* ========================================
-   КАРТОЧКИ ИНСТРУКЦИИ
-======================================== */
 
 .instruction-card {
 	position: relative;
 	overflow: hidden;
-
-	transition:
-		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.35s ease;
 }
 
 .instruction-card:hover {
 	transform: translateY(-7px);
-
-	box-shadow:
-		0 18px 40px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.1);
 }
 
 .instruction-card::before {
 	content: "";
-
 	position: absolute;
-
 	left: 0;
 	top: 0;
-
 	width: 100%;
 	height: 3px;
-
 	transform: scaleX(0);
 	transform-origin: left;
-
-	transition:
-		transform 0.4s ease;
+	transition: transform 0.4s ease;
 }
 
 .instruction-card:hover::before {
@@ -5011,22 +4295,15 @@ body>header.header-hidden {
 }
 
 .instruction-card h3 img {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .instruction-card:hover h3 img {
-	transform:
-		scale(1.12) rotate(-5deg);
+	transform: scale(1.12) rotate(-5deg);
 }
 
-/* ========================================
-   БЕЙДЖИ ШАГОВ
-======================================== */
-
 .instruction-list__item {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .instruction-list__item:hover {
@@ -5034,26 +4311,17 @@ body>header.header-hidden {
 }
 
 .instruction-badge {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
 .instruction-list__item:hover .instruction-badge {
-	transform:
-		scale(1.1) rotate(-3deg);
-
-	box-shadow:
-		0 6px 15px rgba(0, 0, 0, 0.1);
+	transform: scale(1.1) rotate(-3deg);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* ========================================
-   ПОЯВЛЕНИЕ ПУНКТОВ
-======================================== */
-
 .instruction-card.is-visible .instruction-list__item {
-	animation:
-		instructionItem 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: instructionItem 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .instruction-card.is-visible .instruction-list__item:nth-child(1) {
@@ -5068,9 +4336,7 @@ body>header.header-hidden {
 	animation-delay: 0.19s;
 }
 
-
 @keyframes instructionItem {
-
 	from {
 		opacity: 0;
 		transform: translateX(-18px);
@@ -5080,18 +4346,12 @@ body>header.header-hidden {
 		opacity: 1;
 		transform: translateX(0);
 	}
-
 }
-
-/* ========================================
-   INPUTS
-======================================== */
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-	transition:
-		border-color 0.25s ease,
+	transition: border-color 0.25s ease,
 		box-shadow 0.25s ease,
 		transform 0.25s ease;
 }
@@ -5100,66 +4360,43 @@ body>header.header-hidden {
 .form-group select:focus,
 .form-group textarea:focus {
 	outline: none;
-
 	transform: translateY(-1px);
-
-	box-shadow:
-		0 0 0 3px rgba(180, 140, 70, 0.12);
+	box-shadow: 0 0 0 3px rgba(180, 140, 70, 0.12);
 }
 
 .form-group label {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .form-group:focus-within label {
 	transform: translateX(3px);
 }
 
-/* ========================================
-   SUBMIT
-======================================== */
-
 .btn-orange {
-	transition:
-		transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+	transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.3s ease;
 }
 
 .btn-orange:hover {
 	transform: translateY(-4px);
-
-	box-shadow:
-		0 12px 28px rgba(0, 0, 0, 0.13);
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.13);
 }
 
 .btn-orange:active {
 	transform: translateY(0);
 }
 
-/* ========================================
-   CARD REVEAL
-======================================== */
-
 .js-card {
 	opacity: 0;
-
 	transform: translateY(40px);
-
-	transition:
-		opacity 0.7s ease,
+	transition: opacity 0.7s ease,
 		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .js-card.is-visible {
 	opacity: 1;
-
 	transform: translateY(0);
 }
-
-/* ========================================
-   FOOTER
-======================================== */
 
 footer {
 	position: relative;
@@ -5169,8 +4406,7 @@ footer {
 .footer-contacts,
 .footer-bottom,
 .footer-copyright {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .contacts__map {
@@ -5178,8 +4414,7 @@ footer {
 }
 
 .contacts__map img {
-	transition:
-		transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .contacts__map:hover img {
@@ -5187,60 +4422,30 @@ footer {
 }
 
 .contacts__buttons a {
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		box-shadow 0.25s ease;
 }
 
 .contacts__buttons a:hover {
 	transform: translateY(-3px);
-
-	box-shadow:
-		0 8px 20px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .btn_media__list li {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .btn_media__list li:hover {
-	transform:
-		translateY(-4px) scale(1.08);
+	transform: translateY(-4px) scale(1.08);
 }
 
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
-
-
-
-
-
-
-
-
-
-/* ========================================
-   HERO
-======================================== */
-
 .schedule-hero__title {
-	animation:
-		scheduleTitle 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: scheduleTitle 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .schedule-hero__subtitle {
-	animation:
-		scheduleSubtitle 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: scheduleSubtitle 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-
 
 @keyframes scheduleTitle {
 	from {
@@ -5254,7 +4459,6 @@ footer {
 	}
 }
 
-
 @keyframes scheduleSubtitle {
 	from {
 		opacity: 0;
@@ -5267,18 +4471,10 @@ footer {
 	}
 }
 
-
-
-/* ========================================
-   REVEAL ПРИ СКРОЛЛЕ
-======================================== */
-
 .js-reveal {
 	opacity: 0;
 	transform: translateY(50px);
-
-	transition:
-		opacity 0.8s ease,
+	transition: opacity 0.8s ease,
 		transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -5287,47 +4483,30 @@ footer {
 	transform: translateY(0);
 }
 
-
-
-/* ========================================
-   КОРПУСА
-======================================== */
-
 .campus-card {
 	position: relative;
 	overflow: hidden;
-
 	cursor: pointer;
-
-	transition:
-		transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+	transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.35s ease,
 		border-color 0.3s ease;
 }
 
 .campus-card:hover {
 	transform: translateY(-7px);
-
-	box-shadow:
-		0 15px 35px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .campus-card::before {
 	content: "";
-
 	position: absolute;
-
 	left: 0;
 	top: 0;
-
 	width: 100%;
 	height: 3px;
-
 	transform: scaleX(0);
 	transform-origin: left;
-
-	transition:
-		transform 0.4s ease;
+	transition: transform 0.4s ease;
 }
 
 .campus-card:hover::before,
@@ -5336,8 +4515,7 @@ footer {
 }
 
 .campus-card__badge {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .campus-card:hover .campus-card__badge {
@@ -5345,27 +4523,18 @@ footer {
 }
 
 .campus-card__title {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .campus-card:hover .campus-card__title {
 	transform: translateX(4px);
 }
 
-
-
-/* ========================================
-   ФИЛЬТРЫ
-======================================== */
-
 .class-btn,
 .day-btn {
 	position: relative;
 	overflow: hidden;
-
-	transition:
-		transform 0.2s ease,
+	transition: transform 0.2s ease,
 		box-shadow 0.25s ease,
 		background-color 0.25s ease,
 		color 0.25s ease;
@@ -5384,19 +4553,13 @@ footer {
 .class-btn::after,
 .day-btn::after {
 	content: "";
-
 	position: absolute;
-
 	left: 50%;
 	bottom: 0;
-
 	width: 0;
 	height: 2px;
-
 	transform: translateX(-50%);
-
-	transition:
-		width 0.3s ease;
+	transition: width 0.3s ease;
 }
 
 .class-btn:hover::after,
@@ -5406,48 +4569,28 @@ footer {
 	width: 70%;
 }
 
-
-
-/* ========================================
-   ТАБЛИЦЫ РАСПИСАНИЯ
-======================================== */
-
 .schedule-card {
 	position: relative;
 	overflow: hidden;
-
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
 .schedule-card:hover {
 	transform: translateY(-5px);
-
-	box-shadow:
-		0 15px 35px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
-
 .schedule-card__title img {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .schedule-card:hover .schedule-card__title img {
-	transform:
-		scale(1.1) rotate(-4deg);
+	transform: scale(1.1) rotate(-4deg);
 }
 
-
-
-/* ========================================
-   ЭЛЕМЕНТЫ РАСПИСАНИЯ
-======================================== */
-
 .schedule-item {
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		background-color 0.25s ease;
 }
 
@@ -5456,44 +4599,31 @@ footer {
 }
 
 .schedule-item__text img {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .schedule-item:hover .schedule-item__text img {
-	transform:
-		scale(1.1) rotate(-5deg);
+	transform: scale(1.1) rotate(-5deg);
 }
 
-
 .schedule-item__subject {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .schedule-item:hover .schedule-item__subject {
 	transform: translateX(4px);
 }
 
-
 .schedule-item__time {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .schedule-item:hover .schedule-item__time {
 	transform: translateX(-3px);
 }
 
-
-
-/* ========================================
-   ПОЯВЛЕНИЕ СТРОК
-======================================== */
-
 .schedule-card.is-visible .schedule-item {
-	animation:
-		scheduleRow 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: scheduleRow 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .schedule-card.is-visible .schedule-item:nth-child(1) {
@@ -5544,9 +4674,7 @@ footer {
 	animation-delay: 0.60s;
 }
 
-
 @keyframes scheduleRow {
-
 	from {
 		opacity: 0;
 		transform: translateX(-15px);
@@ -5556,20 +4684,11 @@ footer {
 		opacity: 1;
 		transform: translateX(0);
 	}
-
 }
-
-
-
-/* ========================================
-   FAQ
-======================================== */
 
 .faq__item {
 	overflow: hidden;
-
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
@@ -5579,9 +4698,7 @@ footer {
 
 .faq__question {
 	cursor: pointer;
-
-	transition:
-		color 0.25s ease,
+	transition: color 0.25s ease,
 		padding-left 0.25s ease;
 }
 
@@ -5590,8 +4707,7 @@ footer {
 }
 
 .faq__item[open] {
-	box-shadow:
-		0 10px 30px rgba(0, 0, 0, 0.07);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
 }
 
 .faq__item[open] .faq__question {
@@ -5599,13 +4715,10 @@ footer {
 }
 
 .faq__answer {
-	animation:
-		faqAnswer 0.35s ease both;
+	animation: faqAnswer 0.35s ease both;
 }
 
-
 @keyframes faqAnswer {
-
 	from {
 		opacity: 0;
 		transform: translateY(-8px);
@@ -5615,18 +4728,10 @@ footer {
 		opacity: 1;
 		transform: translateY(0);
 	}
-
 }
 
-
-
-/* ========================================
-   ФОРМА
-======================================== */
-
 .feedback {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .feedback:hover {
@@ -5634,24 +4739,19 @@ footer {
 }
 
 .feedback__form {
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
 .feedback__form:focus-within {
 	transform: translateY(-4px);
-
-	box-shadow:
-		0 15px 35px rgba(0, 0, 0, 0.09);
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.09);
 }
-
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-	transition:
-		border-color 0.25s ease,
+	transition: border-color 0.25s ease,
 		box-shadow 0.25s ease,
 		transform 0.25s ease;
 }
@@ -5660,46 +4760,31 @@ footer {
 .form-group select:focus,
 .form-group textarea:focus {
 	outline: none;
-
 	transform: translateY(-1px);
-
-	box-shadow:
-		0 0 0 3px rgba(180, 140, 70, 0.12);
+	box-shadow: 0 0 0 3px rgba(180, 140, 70, 0.12);
 }
 
-
 .form-group label {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .form-group:focus-within label {
 	transform: translateX(3px);
 }
 
-
 .btn-orange {
-	transition:
-		transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+	transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.3s ease;
 }
 
 .btn-orange:hover {
 	transform: translateY(-4px);
-
-	box-shadow:
-		0 12px 28px rgba(0, 0, 0, 0.13);
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.13);
 }
 
 .btn-orange:active {
 	transform: translateY(0);
 }
-
-
-
-/* ========================================
-   FOOTER
-======================================== */
 
 footer {
 	overflow: hidden;
@@ -5708,8 +4793,7 @@ footer {
 .contacts__buttons a,
 .btn_media__list li,
 .footer__nav a {
-	transition:
-		transform 0.25s ease;
+	transition: transform 0.25s ease;
 }
 
 .contacts__buttons a:hover {
@@ -5717,39 +4801,23 @@ footer {
 }
 
 .btn_media__list li:hover {
-	transform:
-		translateY(-4px) scale(1.08);
+	transform: translateY(-4px) scale(1.08);
 }
 
 .footer__nav a:hover {
 	transform: translateX(4px);
 }
 
-
-
-/* ========================================
-   MOBILE
-======================================== */
-
 @media (max-width: 900px) {
 
-	.campus-selector {
-		grid-template-columns: 1fr;
-	}
-
-	.schedule-content {
-		grid-template-columns: 1fr;
-	}
-
+	.campus-selector,
+	.schedule-content,
 	.faq-feedback {
 		grid-template-columns: 1fr;
 	}
-
 }
 
-
 @media (max-width: 650px) {
-
 	.schedule-hero__title {
 		font-size: clamp(30px, 8vw, 44px);
 	}
@@ -5757,9 +4825,7 @@ footer {
 	.class-tabs,
 	.day-tabs {
 		overflow-x: auto;
-
 		flex-wrap: nowrap;
-
 		scrollbar-width: none;
 	}
 
@@ -5786,66 +4852,23 @@ footer {
 	.btn-orange {
 		width: 100%;
 	}
-
 }
-
 
 @media (prefers-reduced-motion: reduce) {
 
 	*,
 	*::before,
 	*::after {
-
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
-
 		transition-duration: 0.01ms !important;
-
 		scroll-behavior: auto !important;
 	}
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ----------------------------------- */
-
-
-
-
-
-/* =========================
-   АНИМАЦИИ СТРАНИЦЫ
-   ========================= */
-
-/* Плавность */
 html {
 	scroll-behavior: smooth;
 }
-
-
-/* =========================
-   HERO
-   ========================= */
 
 .page-hero {
 	animation: heroFadeIn 0.8s ease both;
@@ -5885,11 +4908,6 @@ html {
 	}
 }
 
-
-/* =========================
-   ФИЛЬТРЫ
-   ========================= */
-
 .toolbar-sticky {
 	animation: toolbarAppear 0.7s ease 0.25s both;
 }
@@ -5907,8 +4925,7 @@ html {
 }
 
 .pill-btn {
-	transition:
-		transform 0.2s ease,
+	transition: transform 0.2s ease,
 		background-color 0.2s ease,
 		color 0.2s ease,
 		box-shadow 0.2s ease;
@@ -5923,8 +4940,7 @@ html {
 }
 
 .search-box__input {
-	transition:
-		border-color 0.25s ease,
+	transition: border-color 0.25s ease,
 		box-shadow 0.25s ease,
 		transform 0.25s ease;
 }
@@ -5933,14 +4949,8 @@ html {
 	transform: translateY(-1px);
 }
 
-
-/* =========================
-   КАРТОЧКИ ПРЕПОДАВАТЕЛЕЙ
-   ========================= */
-
 .teacher-card {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
@@ -5953,8 +4963,7 @@ html {
 }
 
 .teacher-card__photo {
-	transition:
-		transform 0.5s ease,
+	transition: transform 0.5s ease,
 		filter 0.5s ease;
 }
 
@@ -5977,11 +4986,6 @@ html {
 .teacher-card:hover .info-badge {
 	transform: translateY(-2px);
 }
-
-
-/* =========================
-   ПОЯВЛЕНИЕ КАРТОЧЕК
-   ========================= */
 
 .teacher-card {
 	animation: cardAppear 0.6s ease both;
@@ -6027,11 +5031,6 @@ html {
 	}
 }
 
-
-/* =========================
-   ЗАГОЛОВКИ ГРУПП
-   ========================= */
-
 .group-header {
 	animation: fadeUp 0.6s ease both;
 }
@@ -6044,11 +5043,6 @@ html {
 	transform: translateX(5px);
 }
 
-
-/* =========================
-   ФОРМА
-   ========================= */
-
 .feedback,
 .faq {
 	animation: fadeUp 0.8s ease both;
@@ -6057,8 +5051,7 @@ html {
 .form-group input,
 .form-group textarea,
 .form-select {
-	transition:
-		border-color 0.25s ease,
+	transition: border-color 0.25s ease,
 		box-shadow 0.25s ease,
 		transform 0.2s ease;
 }
@@ -6070,8 +5063,7 @@ html {
 }
 
 .btn-orange {
-	transition:
-		transform 0.2s ease,
+	transition: transform 0.2s ease,
 		box-shadow 0.2s ease;
 }
 
@@ -6083,14 +5075,8 @@ html {
 	transform: translateY(0) scale(0.97);
 }
 
-
-/* =========================
-   FAQ
-   ========================= */
-
 .faq__item {
-	transition:
-		background-color 0.25s ease,
+	transition: background-color 0.25s ease,
 		transform 0.25s ease,
 		box-shadow 0.25s ease;
 }
@@ -6127,11 +5113,6 @@ html {
 	}
 }
 
-
-/* =========================
-   FOOTER
-   ========================= */
-
 footer {
 	animation: fadeUp 0.8s ease both;
 }
@@ -6139,8 +5120,7 @@ footer {
 .footer__nav a,
 .btn_media a,
 .footer-copyright a {
-	transition:
-		color 0.2s ease,
+	transition: color 0.2s ease,
 		transform 0.2s ease;
 }
 
@@ -6148,11 +5128,6 @@ footer {
 .footer-copyright a:hover {
 	transform: translateY(-2px);
 }
-
-
-/* =========================
-   УМЕНЬШЕНИЕ АНИМАЦИЙ
-   ========================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -6169,8 +5144,7 @@ footer {
 .animate-on-scroll {
 	opacity: 0;
 	transform: translateY(35px);
-	transition:
-		opacity 0.7s ease,
+	transition: opacity 0.7s ease,
 		transform 0.7s ease;
 }
 
@@ -6180,8 +5154,7 @@ footer {
 }
 
 .teachers-group {
-	transition:
-		opacity 0.35s ease,
+	transition: opacity 0.35s ease,
 		transform 0.35s ease,
 		max-height 0.4s ease;
 }
@@ -6195,10 +5168,6 @@ footer {
 	pointer-events: none;
 }
 
-/* =========================
-   HERO
-   ========================= */
-
 .hero-contacts__header,
 .hero-card,
 .contacts-main__map,
@@ -6208,13 +5177,9 @@ footer {
 .contacts-requisites {
 	opacity: 0;
 	transform: translateY(35px);
-	transition:
-		opacity 0.7s ease,
+	transition: opacity 0.7s ease,
 		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-
-/* После появления */
 
 .hero-contacts__header.show,
 .hero-card.show,
@@ -6227,17 +5192,9 @@ footer {
 	transform: translateY(0);
 }
 
-
-/* Заголовок появляется первым */
-
 .hero-contacts__header {
 	transition-delay: 0.1s;
 }
-
-
-/* =========================
-   ТРИ КАРТОЧКИ
-   ========================= */
 
 .hero-card:nth-child(1) {
 	transition-delay: 0.15s;
@@ -6251,12 +5208,8 @@ footer {
 	transition-delay: 0.45s;
 }
 
-
-/* Наведение */
-
 .hero-card {
-	transition:
-		opacity 0.7s ease,
+	transition: opacity 0.7s ease,
 		transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.3s ease;
 }
@@ -6265,22 +5218,13 @@ footer {
 	transform: translateY(-7px);
 }
 
-
-/* Иконка карточки */
-
 .hero-card__icon {
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
 
 .hero-card:hover .hero-card__icon {
 	transform: scale(1.08);
 }
-
-
-/* =========================
-   КАРТА
-   ========================= */
 
 .contacts-main__map {
 	transform: translateX(-45px);
@@ -6290,11 +5234,6 @@ footer {
 	transform: translateX(0);
 }
 
-
-/* =========================
-   ИНФОРМАЦИЯ СПРАВА
-   ========================= */
-
 .contacts-main__info {
 	transform: translateX(45px);
 }
@@ -6303,14 +5242,8 @@ footer {
 	transform: translateX(0);
 }
 
-
-/* =========================
-   ЭЛЕМЕНТЫ ИНФОРМАЦИИ
-   ========================= */
-
 .contacts-info-item {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .contacts-info-item:hover {
@@ -6318,27 +5251,16 @@ footer {
 }
 
 .contacts-info-item__icon {
-	transition:
-		transform 0.3s ease;
+	transition: transform 0.3s ease;
 }
 
 .contacts-info-item:hover .contacts-info-item__icon {
 	transform: scale(1.1);
 }
 
-
-/* =========================
-   ЗАГОЛОВОК ОТДЕЛОВ
-   ========================= */
-
 .contacts-departments__title {
 	transition-delay: 0.05s;
 }
-
-
-/* =========================
-   КАРТОЧКИ ОТДЕЛОВ
-   ========================= */
 
 .department-card:nth-child(1) {
 	transition-delay: 0.1s;
@@ -6356,12 +5278,8 @@ footer {
 	transition-delay: 0.4s;
 }
 
-
-/* Hover карточек */
-
 .department-card {
-	transition:
-		opacity 0.6s ease,
+	transition: opacity 0.6s ease,
 		transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 0.3s ease;
 }
@@ -6370,12 +5288,8 @@ footer {
 	transform: translateY(-6px);
 }
 
-
-/* Телефон */
-
 .department-card__phone {
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		color 0.25s ease;
 }
 
@@ -6383,31 +5297,19 @@ footer {
 	transform: translateX(4px);
 }
 
-
-/* =========================
-   РЕКВИЗИТЫ
-   ========================= */
-
 .contacts-requisites {
 	transition-delay: 0.1s;
 }
 
 .requisites-accordion__title {
 	cursor: pointer;
-
-	transition:
-		color 0.25s ease,
+	transition: color 0.25s ease,
 		background-color 0.25s ease;
 }
 
 .requisites-accordion__title:hover {
 	color: #e87922;
 }
-
-
-/* =========================
-   МОБИЛКИ
-   ========================= */
 
 @media (max-width: 768px) {
 
@@ -6417,10 +5319,7 @@ footer {
 	.contacts-main__info,
 	.contacts-departments__title,
 	.department-card,
-	.contacts-requisites {
-		transform: translateY(25px);
-	}
-
+	.contacts-requisites,
 	.contacts-main__map,
 	.contacts-main__info {
 		transform: translateY(25px);
@@ -6430,14 +5329,7 @@ footer {
 	.contacts-main__info.show {
 		transform: translateY(0);
 	}
-
 }
-
-
-/* =========================
-   ЕСЛИ У ПОЛЬЗОВАТЕЛЯ
-   ОТКЛЮЧЕНЫ АНИМАЦИИ
-   ========================= */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -6452,18 +5344,13 @@ footer {
 		transform: none;
 		transition: none;
 	}
-
 }
 
-
-
-/* Hero section */
 .hero-history {
 	position: relative;
 	padding: 60px 0;
-	/* Затемнение поверх фоновой картинки здания */
 	background: linear-gradient(180deg, rgba(14, 27, 49, 0.85) 0%, rgba(14, 27, 49, 0.95) 100%),
-		url('../assets/images/sl1.jpg') center/cover no-repeat;
+		url("../assets/images/sl1.jpg") center/cover no-repeat;
 	color: #ffffff;
 }
 
@@ -6485,19 +5372,12 @@ footer {
 	font-weight: 400;
 }
 
-
-
-
-
-
-
 .today-stats {
 	padding: 48px 0;
 	background-color: #ffffff;
 	margin: 0 60px;
 }
 
-/* Принудительно выравниваем заголовок влево */
 .today-stats__header {
 	text-align: left !important;
 	margin-bottom: 24px;
@@ -6514,14 +5394,12 @@ footer {
 	margin: 0;
 }
 
-/* Сетка с несимметричными колонками из 12 частей */
 .today-stats__grid {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	gap: 20px;
 }
 
-/* Жесткие размеры карточек */
 .metric-card {
 	box-sizing: border-box !important;
 	min-height: 160px !important;
@@ -6537,29 +5415,19 @@ footer {
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* Пропорции колонок (асимметрия как в Фигме) */
 .metric-card--area-1 {
 	grid-column: span 5;
 }
 
-/* Узкая слева */
-.metric-card--area-2 {
-	grid-column: span 7;
-}
-
-/* Широкая справа */
+.metric-card--area-2,
 .metric-card--area-3 {
 	grid-column: span 7;
 }
 
-/* Широкая слева */
 .metric-card--area-4 {
 	grid-column: span 5;
 }
 
-/* Узкая справа */
-
-/* Белый цвет текста принудительно */
 .metric-card__value {
 	font-size: 36px;
 	font-weight: 700;
@@ -6574,7 +5442,6 @@ footer {
 	line-height: 1.3;
 }
 
-/* Мобилка */
 @media (max-width: 768px) {
 	.today-stats__grid {
 		grid-template-columns: 1fr;
@@ -6588,17 +5455,9 @@ footer {
 	}
 }
 
-
-
-
-
-
-
-
 .timeline-section {
 	background-color: #ffffff;
 }
-
 
 .timeline-header {
 	margin-bottom: 48px;
@@ -6620,7 +5479,6 @@ footer {
 	margin: 0;
 }
 
-/* Общий контейнер таймлайна */
 .timeline {
 	position: relative;
 	padding-left: 40px;
@@ -6629,7 +5487,6 @@ footer {
 	overflow: visible;
 }
 
-/* Синяя вертикальная линия с продлением и мягким затуханием на концах */
 .timeline::before {
 	content: "";
 	position: absolute;
@@ -6639,70 +5496,52 @@ footer {
 	width: 4px;
 	background-color: #2563eb;
 	border-radius: 2px;
-
 	-webkit-mask-image: linear-gradient(to bottom,
 			#000 0%,
 			#000 70%,
 			transparent 100%);
-
 	mask-image: linear-gradient(to bottom,
 			#000 0%,
 			#000 70%,
 			transparent 100%);
-
 	transform-origin: top;
 	animation: timelineLine 2.5s ease forwards;
 }
 
-/* Каждый отдельный элемент с годом */
 .timeline-item {
 	position: relative;
 	margin-bottom: 56px;
 	overflow: visible;
-
-	transition:
-		transform 0.35s ease;
+	transition: transform 0.35s ease;
 }
-
 
 .timeline-item:last-child {
 	margin-bottom: 0;
 }
 
-/* Точка на линии */
-/* Точка на вертикальной линии */
 .timeline-item::before {
 	content: "";
 	position: absolute;
 	left: -38px;
 	top: 24px;
-
 	width: 16px;
 	height: 16px;
-
 	box-sizing: border-box;
 	background-color: #2563eb;
 	border: 3px solid #ffffff;
 	border-radius: 50%;
-
 	z-index: 5;
 	transform: none;
-
-	transition:
-		box-shadow 0.3s ease,
+	transition: box-shadow 0.3s ease,
 		transform 0.3s ease;
 }
 
-/* Увеличивается только сама точка, без смещения */
 .timeline-item:hover::before {
 	transform: scale(1.15);
 	transform-origin: center;
-
-	box-shadow:
-		0 0 0 6px rgba(37, 99, 235, 0.12);
+	box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.12);
 }
 
-/* Шапка элемента */
 .timeline-item__top {
 	display: flex;
 	justify-content: space-between;
@@ -6744,16 +5583,13 @@ footer {
 	max-width: 800px;
 }
 
-/* Сетка из 2 картинок */
 .timeline-item__gallery {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 20px;
 	width: 100%;
-
 	overflow: visible;
 }
-
 
 .timeline-item__img {
 	width: 100%;
@@ -6761,11 +5597,9 @@ footer {
 	object-fit: cover;
 	border-radius: 16px;
 	background-color: #f3f4f6;
-
 	transition: filter 0.35s ease;
 }
 
-/* Адаптив */
 @media (max-width: 640px) {
 	.timeline {
 		padding-left: 32px;
@@ -6789,19 +5623,8 @@ footer {
 }
 
 .timeline-item:first-child::before {
-	/* Если у .timeline появился padding-top, точка первой карточки остается на месте */
 	top: 24px;
 }
-
-
-
-
-
-
-
-
-
-
 
 .arch-project {
 	padding: 60px 0;
@@ -6833,7 +5656,6 @@ footer {
 	border-radius: 20px;
 }
 
-/* Центральная часть */
 .arch-project__center {
 	display: flex;
 	flex-direction: column;
@@ -6848,7 +5670,6 @@ footer {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	/* Убираем или расширяем max-width, чтобы текст не ютился в узкую полоску */
 	max-width: 100%;
 }
 
@@ -6877,19 +5698,10 @@ footer {
 	color: #8c8c8c;
 	line-height: 1.5;
 	max-width: 580px;
-	/* Сделали чуть шире, чтобы текст смотрелся гармонично */
 }
 
-/* 3 карточки в ряд */
 .arch-project__cards {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 12px;
 	width: 100%;
-}
-
-/* 3 карточки в ряд */
-.arch-project__cards {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 16px;
@@ -6923,7 +5735,6 @@ footer {
 	line-height: 1.3;
 }
 
-/* Правая часть */
 .arch-project__right {
 	display: flex;
 	flex-direction: column;
@@ -6936,7 +5747,6 @@ footer {
 	object-fit: cover;
 }
 
-/* Бейджик "В проекте" поверх фото */
 .arch-project__tag {
 	position: absolute;
 	top: 12px;
@@ -6951,12 +5761,9 @@ footer {
 	z-index: 2;
 }
 
-/* Адаптив */
 @media (max-width: 1024px) {
-	.arch-project__grid {
-		grid-template-columns: 1fr;
-	}
 
+	.arch-project__grid,
 	.arch-project__cards {
 		grid-template-columns: 1fr;
 	}
@@ -6964,11 +5771,7 @@ footer {
 
 .container--wide {
 	max-width: 1600px;
-	/* Расширяем до 1400px */
 }
-
-
-
 
 .thanks-section {
 	padding: 60px 0;
@@ -6976,7 +5779,6 @@ footer {
 }
 
 .thanks-card {
-	/* Насыщенный, но мягкий голубой цвет */
 	background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
 	border-radius: 28px;
 	padding: 56px 32px;
@@ -6988,7 +5790,6 @@ footer {
 	box-shadow: 0 12px 32px rgba(2, 132, 199, 0.15);
 }
 
-/* Текстовый блок */
 .thanks-card__header {
 	max-width: 720px;
 	margin-bottom: 40px;
@@ -7023,7 +5824,6 @@ footer {
 	margin: 0;
 }
 
-/* Ряд логотипов */
 .thanks-card__logos {
 	display: flex;
 	align-items: center;
@@ -7042,7 +5842,6 @@ footer {
 	object-fit: contain;
 }
 
-/* Теги снизу */
 .thanks-card__tags {
 	display: flex;
 	justify-content: center;
@@ -7060,7 +5859,6 @@ footer {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
 	.thanks-card {
 		padding: 40px 20px;
@@ -7079,16 +5877,10 @@ footer {
 	}
 }
 
-
-/* =========================
-   ОБЩИЕ АНИМАЦИИ ПОЯВЛЕНИЯ
-========================= */
-
 .reveal {
 	opacity: 0;
 	transform: translateY(35px);
-	transition:
-		opacity 0.8s ease,
+	transition: opacity 0.8s ease,
 		transform 0.8s ease;
 }
 
@@ -7096,11 +5888,6 @@ footer {
 	opacity: 1;
 	transform: translateY(0);
 }
-
-
-/* =========================
-   HERO
-========================= */
 
 .hero-history__content {
 	animation: heroAppear 1s ease forwards;
@@ -7118,30 +5905,17 @@ footer {
 	}
 }
 
-
-/* =========================
-   КАРТОЧКИ СТАТИСТИКИ
-========================= */
-
 .metric-card {
 	position: relative;
 	overflow: hidden;
-
-	transition:
-		transform 0.25s ease,
+	transition: transform 0.25s ease,
 		box-shadow 0.25s ease;
 }
 
-/* Лёгкий подъём без эффекта кнопки */
 .metric-card:hover {
 	transform: translateY(-3px);
 	box-shadow: 0 6px 16px rgba(15, 23, 42, 0.10);
 }
-
-
-/* =========================
-   ПОЯВЛЕНИЕ КАРТОЧЕК ПО ОЧЕРЕДИ
-========================= */
 
 .today-stats__grid .metric-card:nth-child(1) {
 	transition-delay: 0.1s;
@@ -7158,11 +5932,6 @@ footer {
 .today-stats__grid .metric-card:nth-child(4) {
 	transition-delay: 0.4s;
 }
-
-
-/* =========================
-   TIMELINE
-========================= */
 
 .timeline {
 	overflow: hidden;
@@ -7184,8 +5953,7 @@ footer {
 }
 
 .timeline-item {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		opacity 0.8s ease;
 }
 
@@ -7193,11 +5961,8 @@ footer {
 	transform: translateY(-3px);
 }
 
-
-/* Точки на линии */
 .timeline-item::before {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
@@ -7206,20 +5971,13 @@ footer {
 	box-shadow: 0 0 0 7px rgba(37, 99, 235, 0.12);
 }
 
-
-/* =========================
-   ФОТОГРАФИИ СОБЫТИЙ
-========================= */
-
 .timeline-item__img {
 	width: 100%;
 	height: 320px;
 	object-fit: cover;
 	border-radius: 16px;
 	background-color: #f3f4f6;
-
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
@@ -7228,15 +5986,9 @@ footer {
 	box-shadow: 0 10px 22px rgba(15, 23, 42, 0.16);
 }
 
-
-/* =========================
-   АРХИТЕКТУРНЫЙ ПРОЕКТ
-========================= */
-
 .arch-project__main-img,
 .arch-project__preview img {
-	transition:
-		transform 0.35s ease,
+	transition: transform 0.35s ease,
 		box-shadow 0.35s ease;
 }
 
@@ -7247,8 +5999,7 @@ footer {
 }
 
 .arch-card {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		box-shadow 0.3s ease;
 }
 
@@ -7257,14 +6008,8 @@ footer {
 	box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
 }
 
-
-/* =========================
-   БЛОК БЛАГОДАРНОСТИ
-========================= */
-
 .thanks-card__logo {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		filter 0.3s ease;
 }
 
@@ -7274,8 +6019,7 @@ footer {
 }
 
 .thanks-card__tag {
-	transition:
-		transform 0.3s ease,
+	transition: transform 0.3s ease,
 		background-color 0.3s ease;
 }
 
@@ -7283,13 +6027,6 @@ footer {
 	transform: translateY(-3px);
 	background-color: #e0f2fe;
 }
-
-
-/* =========================
-   УМЕНЬШЕНИЕ АНИМАЦИЙ
-   ДЛЯ ПОЛЬЗОВАТЕЛЕЙ,
-   КОТОРЫМ ДВИЖЕНИЕ МЕШАЕТ
-========================= */
 
 @media (max-width: 640px) {
 	.timeline {
@@ -7323,8 +6060,6 @@ footer {
 	}
 }
 
-
-/* Не обрезаем элементы при hover-анимациях */
 .today-stats,
 .timeline-section,
 .arch-project,
@@ -7335,8 +6070,6 @@ footer {
 	overflow: visible;
 }
 
-
-/* Родителю ОБЯЗАТЕЛЬНО relative */
 .arch-project__img-wrap {
 	position: relative;
 	width: 100%;
@@ -7353,7 +6086,6 @@ footer {
 	transition: transform 0.3s ease;
 }
 
-/* Бейджик: скрыт по умолчанию, привязана позиция к картинке */
 .arch-project__tag {
 	position: absolute;
 	top: 14px;
@@ -7366,15 +6098,12 @@ footer {
 	padding: 6px 12px;
 	border-radius: 12px;
 	z-index: 2;
-
-	/* Анимация появления */
 	opacity: 0;
 	transform: translateY(-6px);
 	transition: opacity 0.25s ease, transform 0.25s ease;
 	pointer-events: none;
 }
 
-/* Появление при наведении на обертку картинки */
 .arch-project__img-wrap:hover .arch-project__tag {
 	opacity: 1;
 	transform: translateY(0);
@@ -7382,10 +6111,8 @@ footer {
 
 .arch-project__img-wrap:hover img {
 	transform: scale(1.03);
-	/* Легкий зум картинки при ховере */
 }
 
-/* Выравнивание правого блока */
 .arch-project__right {
 	display: flex;
 	flex-direction: column;
@@ -7397,30 +6124,14 @@ footer {
 	flex: 1;
 }
 
-
 .arch-project__left {
-	overflow: visible
+	overflow: visible;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Общие стили страницы */
 .gym-life-page {
 	padding: 40px 0 80px;
 	background-color: #ffffff;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .gym-life__header {
@@ -7441,7 +6152,6 @@ footer {
 	margin: 0;
 }
 
-/* Фильтры (Чипсы) */
 .filters-block {
 	margin-bottom: 36px;
 }
@@ -7476,14 +6186,12 @@ footer {
 	color: #ffffff;
 }
 
-/* Сетка новостей */
 .news-grid {
 	display: flex;
 	flex-direction: column;
 	gap: 32px;
 }
 
-/* Мета-данные (Тег + Дата) */
 .meta-group {
 	display: flex;
 	align-items: center;
@@ -7499,22 +6207,9 @@ footer {
 	border-radius: 8px;
 }
 
-/* Цвета тегов под макет */
-.tag-pilgrimage {
-	background-color: #e0f2fe;
-	color: #0284c7;
-}
-
-.tag-holidays {
-	background-color: #e0f2fe;
-	color: #0284c7;
-}
-
-.tag-education {
-	background-color: #e0f2fe;
-	color: #0284c7;
-}
-
+.tag-pilgrimage,
+.tag-holidays,
+.tag-education,
 .tag-sport {
 	background-color: #e0f2fe;
 	color: #0284c7;
@@ -7526,20 +6221,41 @@ footer {
 	color: #1e293b;
 }
 
-/* 1. Главная карточка (Двухколоночная) */
 .featured-news {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 40px;
+	grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+	gap: 48px;
 	align-items: center;
+
+	margin-bottom: 8px;
+	padding: 20px;
+
 	background-color: #ffffff;
+
+	border: 1px solid #2563eb;
+	border-radius: 22px;
+
+	box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+
+	transition:
+		box-shadow 0.25s ease,
+		transform 0.25s ease;
+}
+
+.featured-news:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 30px rgba(37, 99, 235, 0.12);
 }
 
 .featured-news__img-wrap {
+	position: relative;
 	width: 100%;
-	height: 380px;
-	border-radius: 20px;
+	height: 400px;
+
+	border-radius: 16px;
 	overflow: hidden;
+
+	background-color: #f1f5f9;
 }
 
 .featured-news__img {
@@ -7552,6 +6268,8 @@ footer {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+
+	padding: 8px 16px 8px 4px;
 }
 
 .featured-news__title {
@@ -7585,21 +6303,14 @@ footer {
 }
 
 .featured-news__more-link:hover {
-	text-decoration: none
+	text-decoration: none;
 }
-
-/* =========================================
-   КАРТОЧКИ НОВОСТЕЙ
-   ========================================= */
 
 .sub-news-list {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 36px 24px;
 }
-
-
-/* Карточка */
 
 .sub-news-card {
 	display: flex;
@@ -7609,17 +6320,9 @@ footer {
 	transition: transform 0.25s ease;
 }
 
-
-/* Лёгкий подъём карточки */
-
 .sub-news-card:hover {
 	transform: translateY(-4px);
 }
-
-
-/* =========================================
-   ИЗОБРАЖЕНИЕ
-   ========================================= */
 
 .sub-news-card__img-wrap {
 	position: relative;
@@ -7639,17 +6342,9 @@ footer {
 	transition: transform 0.4s ease;
 }
 
-
-/* При наведении немного приближаем фото */
-
 .sub-news-card:hover .sub-news-card__img {
 	transform: scale(1.04);
 }
-
-
-/* =========================================
-   META
-   ========================================= */
 
 .sub-news-card .meta-group {
 	display: flex;
@@ -7668,11 +6363,6 @@ footer {
 	border-radius: 7px;
 }
 
-
-/* =========================================
-   ЗАГОЛОВОК
-   ========================================= */
-
 .sub-news-card__title {
 	margin: 0 0 8px;
 	font-size: 18px;
@@ -7690,42 +6380,27 @@ footer {
 	color: #0284c7;
 }
 
-
-/* =========================================
-   ОПИСАНИЕ
-   ========================================= */
-
 .sub-news-card__excerpt {
 	margin: 0 0 14px;
 	font-size: 14px;
 	line-height: 1.55;
 	color: #64748b;
-
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
 
-
-/* =========================================
-   ЧИТАТЬ ДАЛЕЕ
-   ========================================= */
-
 .sub-news-card__more-link {
 	display: inline-flex;
 	align-items: center;
 	width: fit-content;
-
 	margin-top: auto;
-
 	color: #0284c7;
 	font-size: 14px;
 	font-weight: 600;
 	text-decoration: none;
-
-	transition:
-		color 0.2s ease,
+	transition: color 0.2s ease,
 		transform 0.2s ease;
 }
 
@@ -7734,15 +6409,7 @@ footer {
 	transform: translateX(3px);
 }
 
-
-
-
-
-
-
-
 @media (max-width: 992px) {
-
 	.featured-news {
 		grid-template-columns: 1fr;
 		gap: 24px;
@@ -7762,66 +6429,26 @@ footer {
 	}
 }
 
-
-
 .sub-news-card__img,
 .featured-news__img {
 	background-color: #f1f5f9;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ========================================
-   СТРАНИЦА ОТДЕЛЬНОЙ НОВОСТИ
-======================================== */
-
-
-/* Основной блок страницы */
 
 .news-page {
 	padding: 48px 0 90px;
 	background-color: #ffffff;
 }
 
-
-/* ========================================
-   Ссылка "Все новости"
-======================================== */
-
 .news-page__back {
 	display: inline-flex;
 	align-items: center;
 	gap: 7px;
-
 	margin-bottom: 40px;
-
 	color: #0284c7;
 	font-size: 14px;
 	font-weight: 500;
-
 	text-decoration: none;
-
-	transition:
-		color 0.2s ease,
+	transition: color 0.2s ease,
 		transform 0.2s ease;
 }
 
@@ -7830,128 +6457,70 @@ footer {
 	transform: translateX(-3px);
 }
 
-
-/* ========================================
-   Статья
-======================================== */
-
 .news-article {
 	max-width: 860px;
 	margin: 0 auto;
 }
 
-
-/* ========================================
-   Категория + дата
-======================================== */
-
 .news-article__meta {
 	display: flex;
 	align-items: center;
 	gap: 14px;
-
 	margin-bottom: 18px;
 }
-
-
-/* Категория */
 
 .news-article__category {
 	display: inline-flex;
 	align-items: center;
-
 	padding: 7px 13px;
-
 	border-radius: 8px;
-
 	background-color: #e0f2fe;
 	color: #0284c7;
-
 	font-size: 13px;
 	font-weight: 600;
 	line-height: 1;
 }
 
-
-/* Дата */
-
 .news-article__date {
 	color: #64748b;
-
 	font-size: 14px;
 	font-weight: 400;
 }
 
-
-/* ========================================
-   Заголовок
-======================================== */
-
 .news-article__title {
 	max-width: 800px;
-
 	margin: 0 0 32px;
-
 	color: #0f172a;
-
 	font-size: 42px;
 	line-height: 1.18;
 	font-weight: 700;
-
 	letter-spacing: -0.5px;
 }
 
-
-/* ========================================
-   Главное изображение
-======================================== */
-
 .news-article__image {
 	display: block;
-
 	width: 100%;
 	max-height: 540px;
-
 	margin-bottom: 38px;
-
 	border-radius: 20px;
-
 	object-fit: cover;
 }
 
-
-/* ========================================
-   Текст новости
-======================================== */
-
 .news-article__content {
 	color: #334155;
-
 	font-size: 17px;
 	line-height: 1.75;
 }
-
-
-/* Абзацы */
 
 .news-article__content p {
 	margin: 0 0 22px;
 }
 
-
-/* Последний абзац без лишнего отступа */
-
 .news-article__content p:last-child {
 	margin-bottom: 0;
 }
 
-
-/* ========================================
-   Адаптация под планшет
-======================================== */
-
 @media (max-width: 992px) {
-
 	.news-page {
 		padding: 40px 0 70px;
 	}
@@ -7963,687 +6532,391 @@ footer {
 	.news-article__title {
 		font-size: 36px;
 	}
-
 }
 
-
-/* ========================================
-   Мобильная версия
-======================================== */
-
 @media (max-width: 640px) {
-
 	.news-page {
 		padding: 28px 0 55px;
 	}
 
-
 	.news-page__back {
 		margin-bottom: 30px;
-
 		font-size: 13px;
 	}
-
 
 	.news-article {
 		max-width: 100%;
 	}
-
 
 	.news-article__meta {
 		gap: 10px;
 		margin-bottom: 14px;
 	}
 
-
 	.news-article__category {
 		padding: 6px 11px;
-
 		border-radius: 7px;
-
 		font-size: 12px;
 	}
-
 
 	.news-article__date {
 		font-size: 13px;
 	}
 
-
 	.news-article__title {
 		max-width: 100%;
-
 		margin-bottom: 24px;
-
 		font-size: 28px;
 		line-height: 1.2;
-
 		letter-spacing: 0;
 	}
 
-
 	.news-article__image {
 		max-height: 360px;
-
 		margin-bottom: 28px;
-
 		border-radius: 14px;
 	}
-
 
 	.news-article__content {
 		font-size: 16px;
 		line-height: 1.7;
 	}
 
-
 	.news-article__content p {
 		margin-bottom: 18px;
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ========================================
-   ГАЛЕРЕЯ НОВОСТИ
-======================================== */
 
 .news-gallery {
 	width: 100%;
 	margin-bottom: 38px;
 }
 
-
-/* ========================================
-   Главное изображение
-======================================== */
-
 .news-gallery__main {
 	position: relative;
-
 	width: 100%;
 	max-height: 540px;
-
 	overflow: hidden;
-
 	border-radius: 20px;
-
 	background-color: #f1f5f9;
 }
 
-
 .news-gallery__image {
 	display: block;
-
 	width: 100%;
 	height: 540px;
-
 	object-fit: cover;
-
 	cursor: zoom-in;
-
 	transition: opacity 0.2s ease;
 }
-
-
-/* ========================================
-   Стрелки
-======================================== */
 
 .news-gallery__arrow {
 	position: absolute;
 	top: 50%;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	width: 44px;
 	height: 44px;
-
 	padding: 0;
-
 	border: none;
 	border-radius: 50%;
-
 	background-color: rgba(255, 255, 255, 0.92);
 	color: #0f172a;
-
 	font-size: 22px;
 	line-height: 1;
-
 	cursor: pointer;
-
 	transform: translateY(-50%);
-
 	box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
-
-	transition:
-		background-color 0.2s ease,
+	transition: background-color 0.2s ease,
 		transform 0.2s ease,
 		box-shadow 0.2s ease;
 }
 
-
 .news-gallery__arrow:hover {
 	background-color: #ffffff;
-
-	transform:
-		translateY(-50%) scale(1.05);
-
-	box-shadow:
-		0 6px 18px rgba(15, 23, 42, 0.18);
+	transform: translateY(-50%) scale(1.05);
+	box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
 }
-
 
 .news-gallery__arrow--prev {
 	left: 18px;
 }
 
-
 .news-gallery__arrow--next {
 	right: 18px;
 }
 
-
-/* ========================================
-   Миниатюры
-======================================== */
-
 .news-gallery__thumbnails {
 	display: flex;
 	gap: 10px;
-
 	margin-top: 12px;
-
 	overflow-x: auto;
-
 	padding-bottom: 4px;
-
 	scrollbar-width: thin;
 }
 
-
 .news-gallery__thumbnail {
 	flex: 0 0 88px;
-
 	width: 88px;
 	height: 64px;
-
 	padding: 0;
-
 	border: 2px solid transparent;
 	border-radius: 10px;
-
 	overflow: hidden;
-
 	background: none;
-
 	cursor: pointer;
-
 	opacity: 0.65;
-
-	transition:
-		opacity 0.2s ease,
+	transition: opacity 0.2s ease,
 		border-color 0.2s ease,
 		transform 0.2s ease;
 }
 
-
 .news-gallery__thumbnail:hover {
 	opacity: 0.9;
-
 	transform: translateY(-2px);
 }
 
-
 .news-gallery__thumbnail--active {
 	border-color: #0284c7;
-
 	opacity: 1;
 }
 
-
 .news-gallery__thumbnail img {
 	display: block;
-
 	width: 100%;
 	height: 100%;
-
 	object-fit: cover;
 }
 
-
-/* ========================================
-   Планшет
-======================================== */
-
 @media (max-width: 992px) {
-
 	.news-gallery__main {
 		max-height: 480px;
 	}
 
-
 	.news-gallery__image {
 		height: 480px;
 	}
-
 }
 
-
-/* ========================================
-   Мобильная версия
-======================================== */
-
 @media (max-width: 640px) {
-
 	.news-gallery {
 		margin-bottom: 28px;
 	}
 
-
 	.news-gallery__main {
 		max-height: 360px;
-
 		border-radius: 14px;
 	}
-
 
 	.news-gallery__image {
 		height: 360px;
 	}
 
-
 	.news-gallery__arrow {
 		width: 36px;
 		height: 36px;
-
 		font-size: 18px;
 	}
-
 
 	.news-gallery__arrow--prev {
 		left: 10px;
 	}
 
-
 	.news-gallery__arrow--next {
 		right: 10px;
 	}
-
 
 	.news-gallery__thumbnails {
 		gap: 8px;
 		margin-top: 10px;
 	}
 
-
 	.news-gallery__thumbnail {
 		flex-basis: 72px;
-
 		width: 72px;
 		height: 52px;
-
 		border-radius: 8px;
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ========================================
-   LIGHTBOX НОВОСТИ
-======================================== */
 
 .news-lightbox {
 	position: fixed;
 	inset: 0;
 	z-index: 9999;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	padding: 40px;
-
 	background-color: rgba(15, 23, 42, 0.92);
-
 	opacity: 0;
 	visibility: hidden;
-
-	transition:
-		opacity 0.25s ease,
+	transition: opacity 0.25s ease,
 		visibility 0.25s ease;
 }
-
-
-/* Открытое состояние */
 
 .news-lightbox--active {
 	opacity: 1;
 	visibility: visible;
 }
 
-
-/* ========================================
-   Контент
-======================================== */
-
 .news-lightbox__content {
 	position: relative;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	max-width: 90vw;
 	max-height: 90vh;
 }
 
-
-/* ========================================
-   Большое изображение
-======================================== */
-
 .news-lightbox__image {
 	display: block;
-
 	max-width: 90vw;
 	max-height: 85vh;
-
 	object-fit: contain;
-
 	border-radius: 12px;
-
-	box-shadow:
-		0 20px 60px rgba(0, 0, 0, 0.35);
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
-
-
-/* ========================================
-   Кнопка закрытия
-======================================== */
 
 .news-lightbox__close {
 	position: absolute;
 	top: 20px;
 	right: 24px;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	width: 44px;
 	height: 44px;
-
 	padding: 0;
-
 	border: none;
 	border-radius: 50%;
-
 	background-color: rgba(255, 255, 255, 0.95);
 	color: #0f172a;
-
 	font-size: 30px;
 	font-weight: 300;
 	line-height: 1;
-
 	cursor: pointer;
-
-	transition:
-		background-color 0.2s ease,
+	transition: background-color 0.2s ease,
 		transform 0.2s ease;
 }
 
 .news-lightbox__close:hover {
 	background-color: #ffffff;
-
 	transform: scale(1.05);
 }
-
-
-/* ========================================
-   Стрелки
-======================================== */
 
 .news-lightbox__arrow {
 	position: absolute;
 	top: 50%;
 	z-index: 2;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	width: 48px;
 	height: 48px;
-
 	padding: 0;
-
 	border: none;
 	border-radius: 50%;
-
 	background-color: rgba(255, 255, 255, 0.95);
 	color: #0f172a;
-
 	font-size: 23px;
 	line-height: 1;
-
 	cursor: pointer;
-
 	transform: translateY(-50%);
-
-	box-shadow:
-		0 6px 20px rgba(0, 0, 0, 0.18);
-
-	transition:
-		background-color 0.2s ease,
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+	transition: background-color 0.2s ease,
 		transform 0.2s ease;
 }
 
 .news-lightbox__arrow:hover {
 	background-color: #ffffff;
-
-	transform:
-		translateY(-50%) scale(1.05);
+	transform: translateY(-50%) scale(1.05);
 }
-
 
 .news-lightbox__arrow--prev {
 	left: 24px;
 }
 
-
 .news-lightbox__arrow--next {
 	right: 24px;
 }
-
-
-/* ========================================
-   Счётчик
-======================================== */
 
 .news-lightbox__counter {
 	position: absolute;
 	left: 50%;
 	bottom: -34px;
-
 	transform: translateX(-50%);
-
 	color: #ffffff;
-
 	font-size: 14px;
 	font-weight: 500;
-
 	white-space: nowrap;
 }
 
-
-/* ========================================
-   Мобильная версия
-======================================== */
-
 @media (max-width: 640px) {
-
 	.news-lightbox {
 		padding: 20px;
 	}
 
-
 	.news-lightbox__image {
 		max-width: 92vw;
 		max-height: 78vh;
-
 		border-radius: 8px;
 	}
-
 
 	.news-lightbox__close {
 		top: 12px;
 		right: 12px;
-
 		width: 38px;
 		height: 38px;
-
 		font-size: 26px;
 	}
-
 
 	.news-lightbox__arrow {
 		width: 38px;
 		height: 38px;
-
 		font-size: 18px;
 	}
-
 
 	.news-lightbox__arrow--prev {
 		left: 10px;
 	}
 
-
 	.news-lightbox__arrow--next {
 		right: 10px;
 	}
-
 }
-
-/* ========================================
-   ССЫЛКА "ЧИТАТЬ ДАЛЕЕ"
-======================================== */
 
 .link-with-arrow {
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
-
 	color: #0284c7;
-
 	font-size: 14px;
 	font-weight: 600;
-
 	text-decoration: none;
-
-	transition:
-		color 0.2s ease,
+	transition: color 0.2s ease,
 		gap 0.2s ease;
 }
 
-
-/* Стрелка */
-
 .link-with-arrow::after {
 	content: "→";
-
 	font-size: 18px;
 	line-height: 1;
-
 	transition: transform 0.2s ease;
 }
 
-
-/* Наведение */
-
 .link-with-arrow:hover {
 	color: #0369a1;
-
 	gap: 11px;
 }
-
 
 .link-with-arrow:hover::after {
 	transform: translateX(3px);
 }
 
-
-/* Нажатие */
-
 .link-with-arrow:active {
 	color: #075985;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .current-images {
 	display: grid;
@@ -8697,4 +6970,31 @@ footer {
 	margin: 6px 0 10px;
 	color: #777;
 	font-size: 13px;
+}
+
+.sub-news-card {
+	display: flex;
+	flex-direction: column;
+	background-color: #ffffff;
+
+	border: 1px solid #e5e7eb;
+	border-radius: 18px;
+	padding: 16px;
+
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.sub-news-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.sub-news-card__img-wrap {
+	width: 100%;
+	height: 220px;
+	border-radius: 14px;
+	overflow: hidden;
+	margin-bottom: 16px;
 }

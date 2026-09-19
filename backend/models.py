@@ -4,6 +4,28 @@ from sqlalchemy.orm import relationship
 from database import Base
 
 
+class Admin(Base):
+
+    __tablename__ = "admins"
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
+
+    username = Column(
+        String(100),
+        unique=True,
+        nullable=False
+    )
+
+    password_hash = Column(
+        String(255),
+        nullable=False
+    )
+
+
 class News(Base):
 
     __tablename__ = "news"
@@ -41,7 +63,10 @@ class NewsImage(Base):
         nullable=False
     )
 
-    image = Column(String(255), nullable=False)
+    image = Column(
+        String(255),
+        nullable=False
+    )
 
     news = relationship(
         "News",

@@ -6,6 +6,9 @@ from routes.news import router as news_router
 
 from fastapi.staticfiles import StaticFiles
 
+from routes.news import router as news_router
+from routes.auth import router as auth_router
+
 
 Base.metadata.create_all(bind=engine)
 
@@ -32,6 +35,7 @@ app.mount(
 )
 
 app.include_router(news_router)
+app.include_router(auth_router)
 
 
 @app.get("/")
