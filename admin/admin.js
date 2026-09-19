@@ -1,0 +1,1041 @@
+const API_URL =
+	"http://127.0.0.1:8000/api/news/";
+
+
+const newsList =
+	document.querySelector("#news-list");
+
+const modal =
+	document.querySelector("#news-modal");
+
+const modalTitle =
+	document.querySelector("#modal-title");
+
+const newsForm =
+	document.querySelector("#news-form");
+
+const newsIdInput =
+	document.querySelector("#news-id");
+
+const titleInput =
+	document.querySelector("#news-title");
+
+const descriptionInput =
+	document.querySelector("#news-description");
+
+const categoryInput =
+	document.querySelector("#news-category");
+
+const dateInput =
+	document.querySelector("#news-date");
+
+const contentInput =
+	document.querySelector("#news-content");
+
+const mainImageInput =
+	document.querySelector("#news-main-image");
+
+const imagesInput =
+	document.querySelector("#news-images");
+
+const imagePreview =
+	document.querySelector("#image-preview");
+
+const currentImages =
+	document.querySelector("#current-images");
+
+const saveButton =
+	document.querySelector("#save-button");
+
+const createButton =
+	document.querySelector("#create-news-button");
+
+const closeButton =
+	document.querySelector("#modal-close");
+
+const cancelButton =
+	document.querySelector("#cancel-button");
+
+
+let news = [];
+
+
+// ========================================
+// Загрузка новостей
+// ========================================
+
+async function loadNews() {
+
+	try {
+
+		const response =
+			await fetch(API_URL);
+
+
+		if (!response.ok) {
+
+			throw new Error(
+				`Ошибка сервера: ${response.status}`
+			);
+
+		}
+
+
+		news =
+			await response.json();
+
+
+		renderNews();
+
+
+	} catch (error) {
+
+		console.error(error);
+
+
+		newsList.innerHTML = `
+            <div class="admin-empty">
+                Не удалось загрузить новости.
+            </div>
+        `;
+
+	}
+
+}
+
+
+// ========================================
+// Отображение новостей
+// ========================================
+
+function renderNews() {
+
+	if (!news.length) {
+
+		newsList.innerHTML = `
+            <div class="admin-empty">
+                Новостей пока нет.
+            </div>
+        `;
+
+		return;
+	}
+
+
+	newsList.innerHTML =
+		news.map(item => {
+
+			return `
+                <article class="news-card">
+
+                    <div class="news-card__info">
+
+                        <h3 class="news-card__title">
+                            ${escapeHtml(item.title)}
+                        </h3>
+
+                        <p class="news-card__meta">
+                            ${escapeHtml(item.date)}
+                            ·
+                            ${getCategoryName(item.category)}
+                        </p>
+
+                    </div>
+
+
+                    <div class="news-card__actions">
+
+                        <button
+                            class="admin-button"
+                            data-edit="${item.id}"
+                        >
+                            Редактировать
+                        </button>
+
+                        <button
+                            class="admin-button news-card__delete"
+                            data-delete="${item.id}"
+                        >
+                            Удалить
+                        </button>
+
+                    </div>
+
+                </article>
+            `;
+
+		}).join("");
+
+
+	document
+		.querySelectorAll("[data-edit]")
+		.forEach(button => {
+
+			button.addEventListener(
+				"click",
+				() => {
+
+					const id =
+						Number(
+							button.dataset.edit
+						);
+
+					openEditModal(id);
+
+				}
+			);
+
+		});
+
+
+	document
+		.querySelectorAll("[data-delete]")
+		.forEach(button => {
+
+			button.addEventListener(
+				"click",
+				() => {
+
+					const id =
+						Number(
+							button.dataset.delete
+						);
+
+					deleteNews(id);
+
+				}
+			);
+
+		});
+
+}
+
+
+// ========================================
+// Категории
+// ========================================
+
+function getCategoryName(category) {
+
+	const categories = {
+
+		education: "Учебная жизнь",
+
+		holidays: "Праздники",
+
+		pilgrimage: "Паломничество",
+
+		sport: "Спорт и ВПК"
+
+	};
+
+
+	return categories[category] || category;
+
+}
+
+
+// ========================================
+// Безопасный текст
+// ========================================
+
+function escapeHtml(text) {
+
+	return String(text ?? "")
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;")
+		.replaceAll("'", "&#039;");
+
+}
+
+
+// ========================================
+// Открытие создания
+// ========================================
+
+function openCreateModal() {
+
+	newsForm.reset();
+
+
+	newsIdInput.value = "";
+
+
+	modalTitle.textContent =
+		"Создание новости";
+
+
+	saveButton.textContent =
+		"Создать новость";
+
+
+	currentImages.innerHTML =
+		"";
+
+
+	imagePreview.innerHTML =
+		"";
+
+
+	modal.classList.add(
+		"modal--active"
+	);
+
+
+	document.body.style.overflow =
+		"hidden";
+
+}
+
+
+// ========================================
+// Открытие редактирования
+// ========================================
+
+async function openEditModal(id) {
+
+	try {
+
+		const response =
+			await fetch(
+				`${API_URL}${id}`
+			);
+
+
+		if (!response.ok) {
+
+			throw new Error(
+				"Не удалось загрузить новость"
+			);
+
+		}
+
+
+		const item =
+			await response.json();
+
+
+		newsIdInput.value =
+			item.id;
+
+
+		titleInput.value =
+			item.title;
+
+
+		descriptionInput.value =
+			item.description;
+
+
+		categoryInput.value =
+			item.category;
+
+
+		dateInput.value =
+			item.date;
+
+
+		contentInput.value =
+			item.content;
+
+
+		modalTitle.textContent =
+			"Редактирование новости";
+
+
+		saveButton.textContent =
+			"Сохранить изменения";
+
+
+		mainImageInput.value =
+			"";
+
+
+		imagesInput.value =
+			"";
+
+
+		imagePreview.innerHTML =
+			"";
+
+
+		renderCurrentImages(
+			item.images || []
+		);
+
+
+		modal.classList.add(
+			"modal--active"
+		);
+
+
+		document.body.style.overflow =
+			"hidden";
+
+
+	} catch (error) {
+
+		console.error(error);
+
+		alert(
+			"Не удалось загрузить новость."
+		);
+
+	}
+
+}
+
+
+// ========================================
+// Текущие фотографии
+// ========================================
+
+function renderCurrentImages(images) {
+
+	currentImages.innerHTML = "";
+
+	if (!images || images.length === 0) {
+
+		currentImages.innerHTML = `
+            <p class="form-hint">
+                У этой новости пока нет фотографий.
+            </p>
+        `;
+
+		return;
+	}
+
+	const currentMainImage = getImageUrl(
+		news.find(item => item.id === Number(newsIdInput.value))?.image
+	);
+
+	images.forEach(image => {
+
+		const imageUrl = getImageUrl(image.image);
+
+		const isMain =
+			imageUrl === currentMainImage;
+
+		const card = document.createElement("div");
+
+		card.className =
+			`current-image-card ${isMain
+				? "current-image-card--main"
+				: ""
+			}`;
+
+		card.innerHTML = `
+
+            ${isMain
+				? `
+                        <div class="current-image-card__main-label">
+                            Главная
+                        </div>
+                    `
+				: ""
+			}
+
+            <img
+                src="${imageUrl}"
+                alt="Фотография новости"
+                class="current-image-card__image"
+            >
+
+            <div class="current-image-card__actions">
+
+                ${isMain
+				? `
+                            <button
+                                type="button"
+                                disabled
+                            >
+                                Главная
+                            </button>
+                        `
+				: `
+                            <button
+                                type="button"
+                                class="set-main-image"
+                                data-image-id="${image.id}"
+                            >
+                                Сделать главной
+                            </button>
+                        `
+			}
+
+                <button
+                    type="button"
+                    class="delete-image"
+                    data-image-id="${image.id}"
+                >
+                    Удалить
+                </button>
+
+            </div>
+        `;
+
+		currentImages.appendChild(card);
+	});
+
+
+	// Сделать главной
+
+	currentImages
+		.querySelectorAll(".set-main-image")
+		.forEach(button => {
+
+			button.addEventListener(
+				"click",
+				() => {
+
+					setMainImage(
+						Number(newsIdInput.value),
+						Number(button.dataset.imageId)
+					);
+
+				}
+			);
+
+		});
+
+
+	// Удалить
+
+	currentImages
+		.querySelectorAll(".delete-image")
+		.forEach(button => {
+
+			button.addEventListener(
+				"click",
+				() => {
+
+					deleteImage(
+						Number(newsIdInput.value),
+						Number(button.dataset.imageId)
+					);
+
+				}
+			);
+
+		});
+}
+
+
+// ========================================
+// URL изображения
+// ========================================
+
+function getImageUrl(image) {
+
+	if (!image) {
+
+		return "";
+
+	}
+
+
+	if (image.startsWith("http")) {
+
+		return image;
+
+	}
+
+
+	if (image.startsWith("/uploads")) {
+
+		return `http://127.0.0.1:8000${image}`;
+
+	}
+
+
+	return image;
+
+}
+
+
+// ========================================
+// Предпросмотр новых фотографий
+// ========================================
+
+imagesInput.addEventListener(
+	"change",
+	() => {
+
+		imagePreview.innerHTML =
+			"";
+
+
+		const files =
+			Array.from(
+				imagesInput.files
+			);
+
+
+		files.forEach(file => {
+
+			const url =
+				URL.createObjectURL(file);
+
+
+			const wrapper =
+				document.createElement("div");
+
+
+			wrapper.className =
+				"image-preview__item";
+
+
+			wrapper.innerHTML = `
+                <img
+                    src="${url}"
+                    alt=""
+                >
+            `;
+
+
+			imagePreview.appendChild(
+				wrapper
+			);
+
+		});
+
+	}
+);
+
+
+// ========================================
+// Закрытие модального окна
+// ========================================
+
+function closeModal() {
+
+	modal.classList.remove(
+		"modal--active"
+	);
+
+
+	document.body.style.overflow =
+		"";
+
+}
+
+
+closeButton.addEventListener(
+	"click",
+	closeModal
+);
+
+
+cancelButton.addEventListener(
+	"click",
+	closeModal
+);
+
+
+document
+	.querySelector(".modal__overlay")
+	.addEventListener(
+		"click",
+		closeModal
+	);
+
+
+// ========================================
+// Создание / редактирование
+// ========================================
+
+newsForm.addEventListener(
+	"submit",
+	async event => {
+
+		event.preventDefault();
+
+
+		const id =
+			newsIdInput.value;
+
+
+		const newsData = {
+
+			title:
+				titleInput.value.trim(),
+
+			description:
+				descriptionInput.value.trim(),
+
+			content:
+				contentInput.value,
+
+			category:
+				categoryInput.value,
+
+			date:
+				dateInput.value.trim(),
+
+			image:
+				null
+
+		};
+
+
+		try {
+
+			saveButton.disabled =
+				true;
+
+
+			saveButton.textContent =
+				"Сохранение...";
+
+
+			let response;
+
+
+			// ========================================
+			// Редактирование
+			// ========================================
+
+			if (id) {
+
+				response =
+					await fetch(
+						`${API_URL}${id}`,
+						{
+							method: "PUT",
+
+							headers: {
+								"Content-Type":
+									"application/json"
+							},
+
+							body:
+								JSON.stringify(
+									newsData
+								)
+						}
+					);
+
+			}
+
+			// ========================================
+			// Создание
+			// ========================================
+
+			else {
+
+				response =
+					await fetch(
+						API_URL,
+						{
+							method: "POST",
+
+							headers: {
+								"Content-Type":
+									"application/json"
+							},
+
+							body:
+								JSON.stringify(
+									newsData
+								)
+						}
+					);
+
+			}
+
+
+			if (!response.ok) {
+
+				throw new Error(
+					`Ошибка: ${response.status}`
+				);
+
+			}
+
+
+			const savedNews =
+				await response.json();
+
+
+			// ========================================
+			// Загружаем фотографии
+			// ========================================
+
+			const files =
+				Array.from(
+					imagesInput.files
+				);
+
+
+			const mainImage =
+				mainImageInput.files[0];
+
+
+			if (mainImage) {
+
+				await uploadImage(
+					savedNews.id,
+					mainImage
+				);
+
+			}
+
+
+			for (const file of files) {
+
+				await uploadImage(
+					savedNews.id,
+					file
+				);
+
+			}
+
+
+			closeModal();
+
+
+			await loadNews();
+
+
+		} catch (error) {
+
+			console.error(error);
+
+
+			alert(
+				"Не удалось сохранить новость."
+			);
+
+
+		} finally {
+
+			saveButton.disabled =
+				false;
+
+
+			saveButton.textContent =
+				id
+					? "Сохранить изменения"
+					: "Создать новость";
+
+		}
+
+	}
+);
+
+
+// ========================================
+// Загрузка одного изображения
+// ========================================
+
+async function uploadImage(
+	newsId,
+	file
+) {
+
+	const formData =
+		new FormData();
+
+
+	formData.append(
+		"file",
+		file
+	);
+
+
+	const response =
+		await fetch(
+			`${API_URL}${newsId}/images`,
+			{
+				method: "POST",
+				body: formData
+			}
+		);
+
+
+	if (!response.ok) {
+
+		throw new Error(
+			"Не удалось загрузить фотографию"
+		);
+
+	}
+
+}
+
+
+// ========================================
+// Удаление новости
+// ========================================
+
+async function deleteNews(id) {
+
+	const confirmed =
+		confirm(
+			"Удалить эту новость?"
+		);
+
+
+	if (!confirmed) {
+
+		return;
+
+	}
+
+
+	try {
+
+		const response =
+			await fetch(
+				`${API_URL}${id}`,
+				{
+					method: "DELETE"
+				}
+			);
+
+
+		if (!response.ok) {
+
+			throw new Error(
+				"Не удалось удалить новость"
+			);
+
+		}
+
+
+		await loadNews();
+
+
+	} catch (error) {
+
+		console.error(error);
+
+
+		alert(
+			"Не удалось удалить новость."
+		);
+
+	}
+
+}
+
+async function setMainImage(
+	newsId,
+	imageId
+) {
+
+	try {
+
+		const response = await fetch(
+			`${API_URL}${newsId}/images/${imageId}/main`,
+			{
+				method: "PUT"
+			}
+		);
+
+		if (!response.ok) {
+
+			throw new Error(
+				"Не удалось изменить главную фотографию"
+			);
+		}
+
+		// Перезагружаем данные новости
+		const newsResponse = await fetch(
+			`${API_URL}${newsId}`
+		);
+
+		const item = await newsResponse.json();
+
+		renderCurrentImages(
+			item.images || []
+		);
+
+		// Обновляем список новостей
+		await loadNews();
+
+		// Повторно открываем редактирование,
+		// чтобы состояние было актуальным
+		await openEditModal(newsId);
+
+	} catch (error) {
+
+		console.error(error);
+
+		alert(
+			"Не удалось изменить главную фотографию"
+		);
+	}
+}
+
+async function deleteImage(
+	newsId,
+	imageId
+) {
+
+	const confirmed = confirm(
+		"Удалить эту фотографию?"
+	);
+
+	if (!confirmed) {
+		return;
+	}
+
+	try {
+
+		const response = await fetch(
+			`${API_URL}${newsId}/images/${imageId}`,
+			{
+				method: "DELETE"
+			}
+		);
+
+		if (!response.ok) {
+
+			throw new Error(
+				"Не удалось удалить фотографию"
+			);
+		}
+
+		const newsResponse = await fetch(
+			`${API_URL}${newsId}`
+		);
+
+		const item = await newsResponse.json();
+
+		renderCurrentImages(
+			item.images || []
+		);
+
+		await loadNews();
+
+		await openEditModal(newsId);
+
+	} catch (error) {
+
+		console.error(error);
+
+		alert(
+			"Не удалось удалить фотографию"
+		);
+	}
+}
+
+
+// ========================================
+// Создание новости
+// ========================================
+
+createButton.addEventListener(
+	"click",
+	openCreateModal
+);
+
+
+// ========================================
+// Запуск
+// ========================================
+
+loadNews();

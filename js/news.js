@@ -1,8 +1,33 @@
-const params = new URLSearchParams(window.location.search);
+const API_URL = "http://127.0.0.1:8000/api/news/";
 
+const params = new URLSearchParams(window.location.search);
 const newsId = Number(params.get("id"));
 
-const currentNews = news.find(item => item.id === newsId);
+function getImageUrl(image) {
+
+	if (!image) {
+		return "";
+	}
+
+	// Если API вернул объект изображения
+	if (typeof image === "object") {
+		image = image.image;
+	}
+
+	if (!image) {
+		return "";
+	}
+
+	if (image.startsWith("http")) {
+		return image;
+	}
+
+	if (image.startsWith("/uploads")) {
+		return `http://127.0.0.1:8000${image}`;
+	}
+
+	return image;
+}
 
 
 // ========================================
@@ -49,12 +74,104 @@ const lightboxCounter =
 
 
 // ========================================
-// Если новость не найдена
+// Название категории
 // ========================================
 
-if (!currentNews) {
+function getCategoryName(category) {
 
-	titleElement.textContent = "Новость не найдена";
+	const categories = {
+
+		education: "Учебная жизнь",
+
+		holidays: "Праздники",
+
+		pilgrimage: "Паломничество",
+
+		sport: "Спорт и ВПК"
+
+	};
+
+	return categories[category] || category;
+}
+
+
+// ========================================
+// Загрузка новости
+// ========================================
+
+async function loadNews() {
+
+	try {
+
+		if (!newsId) {
+			throw new Error("Не указан ID новости");
+		}
+
+
+		const response =
+			await fetch(`${API_URL}${newsId}`);
+
+
+		if (!response.ok) {
+
+			if (response.status === 404) {
+				showNewsNotFound();
+				return;
+			}
+
+			throw new Error(
+				`Ошибка сервера: ${response.status}`
+			);
+
+		}
+
+
+		const currentNews =
+			await response.json();
+
+
+		console.log(
+			"Новость загружена:",
+			currentNews
+		);
+
+
+		displayNews(currentNews);
+
+
+	} catch (error) {
+
+		console.error(
+			"Не удалось загрузить новость:",
+			error
+		);
+
+
+		titleElement.textContent =
+			"Не удалось загрузить новость";
+
+		categoryElement.textContent = "";
+		dateElement.textContent = "";
+
+		contentElement.innerHTML = `
+			<p>
+				Произошла ошибка при загрузке новости.
+			</p>
+		`;
+
+	}
+
+}
+
+
+// ========================================
+// Новость не найдена
+// ========================================
+
+function showNewsNotFound() {
+
+	titleElement.textContent =
+		"Новость не найдена";
 
 	categoryElement.textContent = "";
 	dateElement.textContent = "";
@@ -71,12 +188,14 @@ if (!currentNews) {
 		</p>
 	`;
 
+}
 
-	// ========================================
-	// Если новость найдена
-	// ========================================
 
-} else {
+// ========================================
+// Отображение новости
+// ========================================
+
+function displayNews(currentNews) {
 
 	document.title =
 		`${currentNews.title} | Православная гимназия г. Коврова`;
@@ -89,8 +208,10 @@ if (!currentNews) {
 	titleElement.textContent =
 		currentNews.title;
 
+
 	categoryElement.textContent =
-		currentNews.categoryName;
+		getCategoryName(currentNews.category);
+
 
 	dateElement.textContent =
 		currentNews.date;
@@ -108,11 +229,27 @@ if (!currentNews) {
 	// Галерея
 	// ----------------------------------------
 
-	const images = currentNews.images || [
-		currentNews.image
-	];
+	const images =
+		currentNews.images?.length
+			? currentNews.images
+			: currentNews.image
+				? [currentNews.image]
+				: [];
+
 
 	let currentImageIndex = 0;
+
+
+	// Если фотографий нет
+
+	if (!images.length) {
+
+		imageElement.style.display = "none";
+
+		thumbnailsElement.style.display = "none";
+
+		return;
+	}
 
 
 	// ========================================
@@ -125,13 +262,18 @@ if (!currentNews) {
 			return;
 		}
 
+
 		currentImageIndex = index;
 
+
 		imageElement.src =
-			images[currentImageIndex];
+			getImageUrl(
+				images[currentImageIndex]
+			);
+
 
 		imageElement.alt =
-			currentNews.alt;
+			currentNews.title;
 
 
 		// Обновляем активную миниатюру
@@ -141,14 +283,17 @@ if (!currentNews) {
 				".news-gallery__thumbnail"
 			);
 
-		thumbnails.forEach((thumbnail, thumbnailIndex) => {
 
-			thumbnail.classList.toggle(
-				"news-gallery__thumbnail--active",
-				thumbnailIndex === currentImageIndex
-			);
+		thumbnails.forEach(
+			(thumbnail, thumbnailIndex) => {
 
-		});
+				thumbnail.classList.toggle(
+					"news-gallery__thumbnail--active",
+					thumbnailIndex === currentImageIndex
+				);
+
+			}
+		);
 
 	}
 
@@ -160,14 +305,17 @@ if (!currentNews) {
 	function updateLightbox() {
 
 		lightboxImage.src =
-			images[currentImageIndex];
+			getImageUrl(
+				images[currentImageIndex]
+			);
+
 
 		lightboxImage.alt =
-			currentNews.alt;
+			currentNews.title;
+
 
 		lightboxCounter.textContent =
 			`${currentImageIndex + 1} / ${images.length}`;
-
 	}
 
 
@@ -175,11 +323,14 @@ if (!currentNews) {
 
 		updateLightbox();
 
+
 		lightbox.classList.add(
 			"news-lightbox--active"
 		);
 
-		document.body.style.overflow = "hidden";
+
+		document.body.style.overflow =
+			"hidden";
 
 	}
 
@@ -190,7 +341,9 @@ if (!currentNews) {
 			"news-lightbox--active"
 		);
 
-		document.body.style.overflow = "";
+
+		document.body.style.overflow =
+			"";
 
 	}
 
@@ -201,9 +354,14 @@ if (!currentNews) {
 			return;
 		}
 
+
 		currentImageIndex = index;
 
-		showImage(currentImageIndex);
+
+		showImage(
+			currentImageIndex
+		);
+
 
 		updateLightbox();
 
@@ -214,52 +372,59 @@ if (!currentNews) {
 	// Создание миниатюр
 	// ========================================
 
-	images.forEach((image, index) => {
+	images.forEach(
+		(image, index) => {
 
-		const thumbnail =
-			document.createElement("button");
-
-		thumbnail.type = "button";
-
-		thumbnail.className =
-			"news-gallery__thumbnail";
-
-		thumbnail.setAttribute(
-			"aria-label",
-			`Открыть фотографию ${index + 1}`
-		);
+			const thumbnail =
+				document.createElement("button");
 
 
-		const thumbnailImage =
-			document.createElement("img");
-
-		thumbnailImage.src =
-			image;
-
-		thumbnailImage.alt =
-			`${currentNews.alt} ${index + 1}`;
+			thumbnail.type = "button";
 
 
-		thumbnail.appendChild(
-			thumbnailImage
-		);
+			thumbnail.className =
+				"news-gallery__thumbnail";
 
 
-		thumbnail.addEventListener(
-			"click",
-			() => {
-
-				showImage(index);
-
-			}
-		);
+			thumbnail.setAttribute(
+				"aria-label",
+				`Открыть фотографию ${index + 1}`
+			);
 
 
-		thumbnailsElement.appendChild(
-			thumbnail
-		);
+			const thumbnailImage =
+				document.createElement("img");
 
-	});
+
+			thumbnailImage.src =
+				getImageUrl(image);
+
+
+			thumbnailImage.alt =
+				`${currentNews.title} ${index + 1}`;
+
+
+			thumbnail.appendChild(
+				thumbnailImage
+			);
+
+
+			thumbnail.addEventListener(
+				"click",
+				() => {
+
+					showImage(index);
+
+				}
+			);
+
+
+			thumbnailsElement.appendChild(
+				thumbnail
+			);
+
+		}
+	);
 
 
 	// ========================================
@@ -290,7 +455,6 @@ if (!currentNews) {
 
 
 	// Закрытие по клику на фон
-	// ========================================
 
 	lightbox.addEventListener(
 		"click",
@@ -314,14 +478,20 @@ if (!currentNews) {
 
 			event.stopPropagation();
 
+
 			let newIndex =
 				currentImageIndex - 1;
 
+
 			if (newIndex < 0) {
-				newIndex = images.length - 1;
+				newIndex =
+					images.length - 1;
 			}
 
-			showLightboxImage(newIndex);
+
+			showLightboxImage(
+				newIndex
+			);
 
 		}
 	);
@@ -333,14 +503,21 @@ if (!currentNews) {
 
 			event.stopPropagation();
 
+
 			let newIndex =
 				currentImageIndex + 1;
 
-			if (newIndex >= images.length) {
+
+			if (
+				newIndex >= images.length
+			) {
 				newIndex = 0;
 			}
 
-			showLightboxImage(newIndex);
+
+			showLightboxImage(
+				newIndex
+			);
 
 		}
 	);
@@ -393,11 +570,17 @@ if (!currentNews) {
 
 	if (images.length <= 1) {
 
-		prevButton.style.display = "none";
-		nextButton.style.display = "none";
+		prevButton.style.display =
+			"none";
 
-		lightboxPrev.style.display = "none";
-		lightboxNext.style.display = "none";
+		nextButton.style.display =
+			"none";
+
+		lightboxPrev.style.display =
+			"none";
+
+		lightboxNext.style.display =
+			"none";
 
 	} else {
 
@@ -412,9 +595,14 @@ if (!currentNews) {
 				let newIndex =
 					currentImageIndex - 1;
 
+
 				if (newIndex < 0) {
-					newIndex = images.length - 1;
+
+					newIndex =
+						images.length - 1;
+
 				}
+
 
 				showImage(newIndex);
 
@@ -433,9 +621,15 @@ if (!currentNews) {
 				let newIndex =
 					currentImageIndex + 1;
 
-				if (newIndex >= images.length) {
+
+				if (
+					newIndex >= images.length
+				) {
+
 					newIndex = 0;
+
 				}
+
 
 				showImage(newIndex);
 
@@ -445,3 +639,10 @@ if (!currentNews) {
 	}
 
 }
+
+
+// ========================================
+// Запускаем загрузку
+// ========================================
+
+loadNews();

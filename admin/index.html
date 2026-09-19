@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Админ-панель | Православная гимназия</title>
+
+	<link rel="stylesheet" href="admin.css">
+
+</head>
+
+
+<body>
+
+
+	<header class="admin-header">
+
+		<div class="admin-header__inner">
+
+			<div>
+
+				<p class="admin-header__label">
+					Православная гимназия г. Коврова
+				</p>
+
+				<h1 class="admin-header__title">
+					Админ-панель
+				</h1>
+
+			</div>
+
+
+			<a href="../life.html" class="admin-header__site-link">
+				Перейти на сайт →
+			</a>
+
+		</div>
+
+	</header>
+
+
+
+	<main class="admin-main">
+
+
+		<section class="admin-toolbar">
+
+			<div>
+
+				<h2>
+					Новости
+				</h2>
+
+				<p>
+					Управление публикациями гимназии
+				</p>
+
+			</div>
+
+
+			<button class="admin-button admin-button--primary" id="create-news-button">
+				+ Создать новость
+			</button>
+
+		</section>
+
+
+
+		<section class="news-list" id="news-list">
+
+			<div class="admin-loading">
+				Загрузка новостей...
+			</div>
+
+		</section>
+
+
+	</main>
+
+
+
+	<div class="modal" id="news-modal">
+
+		<div class="modal__overlay"></div>
+
+
+		<div class="modal__window">
+
+
+			<div class="modal__header">
+
+				<div>
+
+					<p class="modal__label">
+						Новость
+					</p>
+
+					<h2 id="modal-title">
+						Создание новости
+					</h2>
+
+				</div>
+
+
+				<button class="modal__close" id="modal-close" type="button">
+					×
+				</button>
+
+			</div>
+
+
+
+			<form class="news-form" id="news-form">
+
+				<input type="hidden" id="news-id">
+
+
+				<label class="form-field">
+
+					<span>
+						Заголовок
+					</span>
+
+					<input type="text" id="news-title" required>
+
+				</label>
+
+
+
+				<label class="form-field">
+
+					<span>
+						Краткое описание
+					</span>
+
+					<textarea id="news-description" rows="3" required></textarea>
+
+				</label>
+
+
+
+				<div class="form-row">
+
+					<label class="form-field">
+
+						<span>
+							Категория
+						</span>
+
+						<select id="news-category" required>
+
+							<option value="education">
+								Учебная жизнь
+							</option>
+
+							<option value="holidays">
+								Праздники
+							</option>
+
+							<option value="pilgrimage">
+								Паломничество
+							</option>
+
+							<option value="sport">
+								Спорт и ВПК
+							</option>
+
+						</select>
+
+					</label>
+
+
+
+					<label class="form-field">
+
+						<span>
+							Дата
+						</span>
+
+						<input type="text" id="news-date" placeholder="15 мая 2026" required>
+
+					</label>
+
+				</div>
+
+
+
+				<label class="form-field">
+
+					<span>
+						Текст новости
+					</span>
+
+					<textarea id="news-content" rows="10" required></textarea>
+
+				</label>
+
+
+
+				<div class="form-field">
+
+					<span>
+						Главное изображение
+					</span>
+
+					<input type="file" id="news-main-image" accept=".jpg,.jpeg,.png,.webp">
+
+				</div>
+
+
+
+				<div class="current-images" id="current-images">
+
+				</div>
+
+				<div class="form-group">
+
+					<label>
+						Фотографии новости
+					</label>
+
+					<p class="form-hint">
+						Нажмите «Сделать главной», чтобы выбрать фотографию для карточки новости.
+					</p>
+
+					<div id="current-images"></div>
+
+				</div>
+
+
+
+				<div class="form-field">
+
+					<span>
+						Дополнительные фотографии
+					</span>
+
+					<input type="file" id="news-images" accept=".jpg,.jpeg,.png,.webp" multiple>
+
+				</div>
+
+
+
+				<div class="image-preview" id="image-preview"></div>
+
+
+
+				<div class="modal__actions">
+
+					<button type="button" class="admin-button" id="cancel-button">
+						Отмена
+					</button>
+
+
+					<button type="submit" class="admin-button admin-button--primary" id="save-button">
+						Создать новость
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+
+	<script src="admin.js"></script>
+
+</body>
+
+</html>

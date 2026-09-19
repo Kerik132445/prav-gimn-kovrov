@@ -176,51 +176,28 @@
 
 				<!-- Главная новость -->
 
-				<article class="news-grid__featured featured-news" data-category="pilgrimage">
-
+				<article class="news-grid__featured featured-news">
 					<div class="featured-news__img-wrap">
-
-						<img src="assets/images/news/vladimir-trip.png" alt="Первоклассники у храма"
-							class="featured-news__img">
-
+						<img src="" alt="" class="featured-news__img" id="featured-news-image">
 					</div>
-
 
 					<div class="featured-news__content">
 
 						<div class="featured-news__meta meta-group">
+							<span class="meta-group__tag" id="featured-news-category"></span>
 
-							<span class="meta-group__tag tag-pilgrimage">
-								Паломничество
-							</span>
-
-							<time class="meta-group__date" datetime="2026-05-15">
-								15 мая 2026
-							</time>
-
+							<time class="featured-news__date" id="featured-news-date"></time>
 						</div>
 
+						<h2 class="featured-news__title" id="featured-news-title"></h2>
 
-						<h2 class="featured-news__title">
+						<p class="featured-news__excerpt" id="featured-news-description"></p>
 
-							<a href="#">
-								Поездка первоклассников во Владимир
-							</a>
-
-						</h2>
-
-
-						<p class="featured-news__excerpt">
-							В конце учебного года ученики первого класса посетили город Владимир.
-						</p>
-
-
-						<a href="#" class="featured-news__more-link link-with-arrow">
+						<a href="#" class="featured-news__more-link link-with-arrow" id="featured-news-link">
 							Читать далее
 						</a>
 
 					</div>
-
 				</article>
 
 
@@ -313,7 +290,6 @@
 
 
 	<script src="js/window.scrollY.js"></script>
-	<script src="./js/news-data.js"></script>
 	<script src="./js/life.js"></script>
 
 </body>
