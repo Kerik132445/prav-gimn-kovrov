@@ -6998,3 +6998,57 @@ footer {
 	overflow: hidden;
 	margin-bottom: 16px;
 }
+
+
+
+
+.load-more-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 12px 24px;
+
+	border: 1px solid #d6dbe3;
+	border-radius: 10px;
+
+	background-color: #ffffff;
+	color: #1f2937;
+
+	font: inherit;
+	font-size: 15px;
+	font-weight: 600;
+
+	cursor: pointer;
+
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease,
+		color 0.2s ease,
+		transform 0.2s ease;
+}
+
+.load-more-btn:hover {
+	background-color: #f8fafc;
+	border-color: #94a3b8;
+	color: #111827;
+}
+
+.load-more-btn:active {
+	transform: translateY(1px);
+}
+
+.load-more-btn:focus-visible {
+	outline: none;
+
+	box-shadow:
+		0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+
+.news-grid__load-more {
+	display: flex;
+	justify-content: center;
+
+	margin-top: 40px;
+}

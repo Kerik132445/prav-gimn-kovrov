@@ -426,8 +426,8 @@ async function openEditModal(id) {
 			item.date;
 
 
-		contentInput.value =
-			item.content;
+		contentInput.innerHTML =
+			item.content || "";
 
 
 		modalTitle.textContent =
@@ -655,18 +655,19 @@ function getImageUrl(image) {
 // Предпросмотр новых фотографий
 // ========================================
 
+// ========================================
+// Предпросмотр новых фотографий
+// ========================================
+
 imagesInput.addEventListener(
 	"change",
 	() => {
 
-		imagePreview.innerHTML =
-			"";
+		imagePreview.innerHTML = "";
 
 
 		const files =
-			Array.from(
-				imagesInput.files
-			);
+			Array.from(imagesInput.files);
 
 
 		files.forEach(file => {
@@ -684,15 +685,28 @@ imagesInput.addEventListener(
 
 
 			wrapper.innerHTML = `
-                <img
-                    src="${url}"
-                    alt=""
-                >
-            `;
+				<img
+					src="${url}"
+					alt="Предпросмотр фотографии"
+				>
+			`;
 
 
 			imagePreview.appendChild(
 				wrapper
+			);
+
+
+			const image =
+				wrapper.querySelector("img");
+
+
+			image.addEventListener(
+				"load",
+				() => {
+					URL.revokeObjectURL(url);
+				},
+				{ once: true }
 			);
 
 		});
@@ -761,7 +775,7 @@ newsForm.addEventListener(
 				descriptionInput.value.trim(),
 
 			content:
-				contentInput.value,
+				contentInput.innerHTML,
 
 			category:
 				categoryInput.value,
@@ -1187,6 +1201,76 @@ async function initAdmin() {
 
 	await loadNews();
 }
+// ========================================
+// Редактор текста новости
+// ========================================
+
+const editorButtons =
+	document.querySelectorAll(
+		".editor__button"
+	);
+
+
+editorButtons.forEach(button => {
+
+	button.addEventListener(
+		"mousedown",
+		event => {
+
+			// Не даём кнопке забрать фокус
+			// у редактора
+			event.preventDefault();
+
+		}
+	);
+
+
+	button.addEventListener(
+		"click",
+		() => {
+
+			const command =
+				button.dataset.command;
+
+			const value =
+				button.dataset.value ||
+				null;
+
+
+			if (command === "createLink") {
+
+				const url =
+					prompt(
+						"Введите адрес ссылки:"
+					);
+
+
+				if (!url) {
+					return;
+				}
+
+
+				document.execCommand(
+					"createLink",
+					false,
+					url
+				);
+
+
+				return;
+			}
+
+
+			document.execCommand(
+				command,
+				false,
+				value
+			);
+
+		}
+	);
+
+});
 
 
 initAdmin();
