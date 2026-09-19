@@ -19,6 +19,8 @@ from schemas import NewsCreate
 
 from sanitizer import sanitize_html
 
+from PIL import Image, UnidentifiedImageError
+
 
 router = APIRouter(
     prefix="/api/news",
@@ -43,6 +45,14 @@ os.makedirs(
     UPLOAD_DIR,
     exist_ok=True
 )
+
+MAX_IMAGE_SIZE = 10 * 1024 * 1024  # 10 МБ
+
+ALLOWED_IMAGE_FORMATS = {
+    "JPEG": ".jpg",
+    "PNG": ".png",
+    "WEBP": ".webp"
+}
 
 
 # =========================================================
@@ -237,23 +247,74 @@ async def upload_news_image(
             detail="Новость не найдена"
         )
 
-    allowed_extensions = {
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".webp"
-    }
+    # ========================================
+    # Читаем файл
+    # ========================================
 
-    extension = os.path.splitext(
-        file.filename
-    )[1].lower()
+    file_data = await file.read(
+        MAX_IMAGE_SIZE + 1
+    )
 
-    if extension not in allowed_extensions:
+    # ========================================
+    # Проверяем размер
+    # ========================================
+
+    if len(file_data) > MAX_IMAGE_SIZE:
 
         raise HTTPException(
             status_code=400,
-            detail="Разрешены только JPG, JPEG, PNG и WEBP"
+            detail="Размер изображения не должен превышать 10 МБ"
         )
+
+    if not file_data:
+
+        raise HTTPException(
+            status_code=400,
+            detail="Файл пустой"
+        )
+
+    # ========================================
+    # Проверяем настоящее содержимое
+    # ========================================
+
+    try:
+
+        image = Image.open(
+            __import__("io").BytesIO(file_data)
+        )
+
+        image.verify()
+
+        image_format = image.format
+
+    except (
+        UnidentifiedImageError,
+        OSError
+    ):
+
+        raise HTTPException(
+            status_code=400,
+            detail="Файл не является корректным изображением"
+        )
+
+    # ========================================
+    # Проверяем формат
+    # ========================================
+
+    if image_format not in ALLOWED_IMAGE_FORMATS:
+
+        raise HTTPException(
+            status_code=400,
+            detail="Разрешены только JPG, PNG и WEBP"
+        )
+
+    # ========================================
+    # Генерируем собственное имя
+    # ========================================
+
+    extension = ALLOWED_IMAGE_FORMATS[
+        image_format
+    ]
 
     filename = (
         f"{uuid.uuid4()}"
@@ -265,25 +326,24 @@ async def upload_news_image(
         filename
     )
 
+    # ========================================
+    # Сохраняем файл
+    # ========================================
+
     with open(
         file_path,
         "wb"
     ) as buffer:
 
-        while True:
-
-            chunk = await file.read(
-                1024 * 1024
-            )
-
-            if not chunk:
-                break
-
-            buffer.write(chunk)
+        buffer.write(file_data)
 
     image_url = (
         f"/uploads/news/{filename}"
     )
+
+    # ========================================
+    # Добавляем запись в БД
+    # ========================================
 
     news_image = NewsImage(
         news_id=news_id,
@@ -292,8 +352,8 @@ async def upload_news_image(
 
     db.add(news_image)
 
-    # Первая загруженная фотография
-    # становится главной
+    # Первая фотография становится главной
+
     if not news.image:
 
         news.image = image_url
@@ -311,10 +371,10 @@ async def upload_news_image(
         "image_id": news_image.id
     }
 
-
 # =========================================================
 # ПОЛУЧИТЬ ФОТОГРАФИИ НОВОСТИ
 # =========================================================
+
 
 @router.get("/{news_id}/images")
 def get_news_images(
