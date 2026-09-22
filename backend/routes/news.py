@@ -21,6 +21,7 @@ from sanitizer import sanitize_html
 
 from PIL import Image, UnidentifiedImageError
 
+from routes.auth import require_admin, require_csrf
 
 router = APIRouter(
     prefix="/api/news",
@@ -63,7 +64,8 @@ ALLOWED_IMAGE_FORMATS = {
 def create_news(
     news_data: NewsCreate,
     db: Session = Depends(get_db),
-    admin_id: int = Depends(require_admin)
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf)
 ):
 
     news = News(
@@ -195,7 +197,8 @@ def update_news(
     news_id: int,
     news_data: NewsCreate,
     db: Session = Depends(get_db),
-    admin_id: int = Depends(require_admin)
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf)
 ):
 
     news = db.query(News).filter(
@@ -233,7 +236,8 @@ async def upload_news_image(
     news_id: int,
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
-    admin_id: int = Depends(require_admin)
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf)
 ):
 
     news = db.query(News).filter(
@@ -413,7 +417,8 @@ def set_main_image(
     news_id: int,
     image_id: int,
     db: Session = Depends(get_db),
-    admin_id: int = Depends(require_admin)
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf)
 ):
 
     news = db.query(News).filter(
@@ -459,7 +464,8 @@ def delete_news_image(
     news_id: int,
     image_id: int,
     db: Session = Depends(get_db),
-    admin_id: int = Depends(require_admin)
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf)
 ):
 
     image = db.query(NewsImage).filter(
@@ -523,7 +529,8 @@ def delete_news_image(
 def delete_news(
     news_id: int,
     db: Session = Depends(get_db),
-    admin_id: int = Depends(require_admin)
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf)
 ):
 
     news = db.query(News).filter(

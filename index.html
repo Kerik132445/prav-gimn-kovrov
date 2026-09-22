@@ -10,395 +10,972 @@
 </head>
 
 <body>
+
 	<header>
+
 		<div class="top-bar">
 			<div class="containers">
 				<div class="top-bar__content">
 
-					<div class="brand">
+					<a href="index.html" class="brand">
 						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
-						<div class="brand__info">
-							<span class="brand__title">Православная гимназия г. Коврова</span>
-							<span class="brand__subtitle">Частное общеобразовательное учреждение</span>
-						</div>
-					</div>
 
-					<form class="search-form">
-						<img src="./assets/icons/search.svg" alt="Поиск" class="search-form__icons">
-						<input type="text" class="search-form__input" placeholder="Поиск по сайту...">
+						<div class="brand__info">
+							<span class="brand__title">
+								Православная гимназия г. Коврова
+							</span>
+
+							<span class="brand__subtitle">
+								Частное общеобразовательное учреждение
+							</span>
+						</div>
+					</a>
+
+					<form class="search-form" id="site-search-form">
+						<img src="assets/icons/search.svg" alt="">
+
+						<input type="search" id="site-search-input" placeholder="Поиск по сайту..." autocomplete="off">
 					</form>
 
 				</div>
 			</div>
 		</div>
+
+
+		<!-- НАВИГАЦИЯ -->
+
 		<nav class="main-nav">
-			<div class="container">
-				<div class="main-nav__content">
-					<ul class="nav-list">
-						<li><a href="#" class="nav-link">Главная</a></li>
-						<li><a href="#" class="nav-link">Сведения об организации</a></li>
-						<li><a href="#" class="nav-link">Учеба ▾</a></li>
-						<li><a href="#" class="nav-link">Жизнь гимназии</a></li>
-						<li><a href="#" class="nav-link">Родителям ▾</a></li>
-						<li><a href="#" class="nav-link">Поступающим</a></li>
-						<li><a href="#" class="nav-link">Контакты</a></li>
-					</ul>
-					<a href="#" class="btn-donate">Я хочу помочь</a>
+
+			<ul class="nav-list">
+
+				<li>
+					<a href="index.html" class="nav-link">
+						Главная
+					</a>
+				</li>
+
+
+				<li>
+					<a href="story_school.html" class="nav-link">
+						Сведения об организации
+					</a>
+				</li>
+
+
+				<!-- УЧЕБА -->
+
+				<li class="nav-item nav-item--mega">
+
+					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+						Учеба
+						<span class="nav-arrow" aria-hidden="true"></span>
+					</button>
+
+				</li>
+
+
+				<li>
+					<a href="life.html" class="nav-link">
+						Жизнь гимназии
+					</a>
+				</li>
+
+
+				<!-- РОДИТЕЛЯМ -->
+
+				<li class="nav-item nav-item--mega">
+
+					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+						Родителям
+						<span class="nav-arrow" aria-hidden="true"></span>
+					</button>
+
+				</li>
+
+
+				<li>
+					<a href="apply.html" class="nav-link">
+						Поступающим
+					</a>
+				</li>
+
+
+				<li>
+					<a href="contact.html" class="nav-link">
+						Контакты
+					</a>
+				</li>
+
+			</ul>
+
+		</nav>
+
+
+		<!-- MEGA MENU -->
+
+		<div class="mega-menu" id="mega-menu">
+
+			<div class="mega-menu__inner">
+
+				<div class="mega-menu__header">
+
+					<div>
+
+						<h3 id="mega-menu-title">
+							Учеба
+						</h3>
+
+						<p id="mega-menu-description">
+							Всё необходимое для учебного процесса
+						</p>
+
+					</div>
+
+
+					<button class="mega-menu__close" type="button" aria-label="Закрыть меню">
+						×
+					</button>
 
 				</div>
-			</div>
-		</nav>
-	</header>
-	<main>
-		<section class="hero">
-			<div class="container">
-				<div class="hero__content">
-					<h1>Приемная кампания 2026/2027</h1>
-					<p>Открыт набор в 1–11 классы. Обучение по ФГОС с православным компонентом.</p>
-					<div class="hero__buttons">
-						<a href="http://127.0.0.1:5500/apply.html" class="btn btn--primary">Подать заявление</a>
-						<a href="#" class="btn btn--secondary">История гимназии</a>
-					</div>
+
+
+				<div class="mega-menu__grid" id="mega-menu-content">
 				</div>
+
 			</div>
+
+		</div>
+
+
+		<!-- ЗАТЕМНЕНИЕ ФОНА -->
+
+		<div class="mega-overlay" id="mega-overlay">
+		</div>
+
+	</header>
+
+
+	<main>
+
+		<!-- HERO -->
+
+		<section class="hero">
+
+			<div class="container">
+
+				<div class="hero__content">
+
+					<h1>
+						Приемная кампания 2026/2027
+					</h1>
+
+					<p>
+						Открыт набор в 1–11 классы. Обучение по ФГОС
+						с православным компонентом.
+					</p>
+
+					<div class="hero__buttons">
+
+						<a href="apply.html" class="btn btn--primary">
+							Подать заявление
+						</a>
+
+						<a href="story_school.html" class="btn btn--secondary">
+							История гимназии
+						</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
 		</section>
+
+
+		<!-- БЫСТРЫЕ ДЕЙСТВИЯ -->
 
 		<section class="quick-actions">
+
 			<div class="container">
-				<h2>Быстрые действия</h2>
+
+				<h2>
+					Быстрые действия
+				</h2>
+
 				<div class="quick-actions__grid">
-					<a href="#" class="quick-card">
+
+					<a href="class_schedule.html" class="quick-card">
 						<img src="./assets/icons/clock.svg" alt="Расписание">
-						<span>Расписание занятий</span>
+
+						<span>
+							Расписание занятий
+						</span>
 					</a>
-					<a href="http://127.0.0.1:5500/dairy.html" class="quick-card">
+
+
+					<a href="dairy.html" class="quick-card">
 						<img src="./assets/icons/dairy.svg" alt="Дневник">
-						<span>Электронный дневник</span>
+
+						<span>
+							Электронный дневник
+						</span>
 					</a>
-					<a href="#" class="quick-card">
+
+
+					<a href="food.html" class="quick-card">
 						<img src="./assets/icons/apple.svg" alt="Питание">
-						<span>Школьное питание</span>
+
+						<span>
+							Школьное питание
+						</span>
 					</a>
-					<a href="#" class="quick-card">
+
+
+					<a href="documents.html" class="quick-card">
 						<img src="./assets/icons/file.svg" alt="Документы">
-						<span>Документы</span>
+
+						<span>
+							Документы
+						</span>
 					</a>
+
 				</div>
+
 			</div>
+
 		</section>
+
+
+		<!-- О ГИМНАЗИИ -->
 
 		<section class="about">
-			<div class="container">
-				<div class="about__wrapper">
-					<div class="about__image">
-						<img src="./assets/icons/Ученики.png" alt="Ученики гимназии">
-					</div>
-					<div class="about__content">
-						<span class="section-subtitle">О ГИМНАЗИИ</span>
-						<h2>Духовно-нравственное воспитание <span class="text-primary">и качественное образование</span>
-							c 2007 года</h2>
 
-						<p class="about__text">Православная гимназия г. Коврова сочетает государственные стандарты
-							обучения с традиционными христианскими ценностями. Мы создаем среду, где ребенок получает не
-							только глубокие академические знания, но и развивается духовно, творчески и физически.</p>
+			<div class="container">
+
+				<div class="about__wrapper">
+
+					<div class="about__image">
+
+						<img src="./assets/icons/Ученики.png" alt="Ученики гимназии">
+
+					</div>
+
+
+					<div class="about__content">
+
+						<span class="section-subtitle">
+							О ГИМНАЗИИ
+						</span>
+
+						<h2>
+							Духовно-нравственное воспитание
+							<span class="text-primary">
+								и качественное образование
+							</span>
+							c 2007 года
+						</h2>
+
+
+						<p class="about__text">
+							Православная гимназия г. Коврова сочетает
+							государственные стандарты обучения с
+							традиционными христианскими ценностями.
+							Мы создаем среду, где ребенок получает не
+							только глубокие академические знания, но и
+							развивается духовно, творчески и физически.
+						</p>
+
 
 						<ul class="about__features">
+
 							<li>
+
 								<img src="./assets/icons/theatre.svg" alt="" class="feature-icon">
+
 								<div>
-									<strong>Школьный театр и хор</strong> - Спектакли и выступление коллективов
+									<strong>
+										Школьный театр и хор
+									</strong>
+									- Спектакли и выступление коллективов
 									«Сретение»
 								</div>
+
 							</li>
+
+
 							<li>
+
 								<img src="./assets/icons/medal.svg" alt="" class="feature-icon">
+
 								<div>
-									<strong>Клуб св. Георгия</strong> - Военно-патриотическая и физическая подготовка
+									<strong>
+										Клуб св. Георгия
+									</strong>
+									- Военно-патриотическая и физическая
+									подготовка
 								</div>
+
 							</li>
+
+
 							<li>
+
 								<img src="./assets/icons/bell.svg" alt="" class="feature-icon">
+
 								<div>
-									<strong>Школа звонарей</strong> - Уникальные внеурочные программы
+									<strong>
+										Школа звонарей
+									</strong>
+									- Уникальные внеурочные программы
 								</div>
+
 							</li>
+
 						</ul>
-						<a href="#" class="about__link">Подробнее о гимназии<span>▷</span></a>
+
+
+						<a href="story_school.html" class="about__link">
+							Подробнее о гимназии
+							<span>▷</span>
+						</a>
+
 					</div>
+
 				</div>
+
 			</div>
-		</section>
-		<section class="quote">
-			<div class="container quote__container">
-				<blockquote class="quote-card">
-					<div class="quote__image">
-						<img src="./assets/icons/quote.png" alt="Портрет цитаты">
-					</div>
-					<div class="quote__text">
-						<p>Для меня каждый гимназист — это не просто ученик, а родной человек, о котором хочется
-							заботиться всем сердцем. В начальных классах мы не только закладываем фундамент знаний, но и
-							учим детей доброте, дружбе и вере. Моя главная задача — сделать так, чтобы школа стала для
-							ребенка вторым домом, где его всегда ждут, понимают и любят.</p>
-						<div class="quote__author"><strong>Зуйкова Татьяна</strong>
-							<small>Заместитель директора по учебно-воспитательной работе</small>
-						</div>
-					</div>
-				</blockquote>
-			</div>
-		</section>
-		<section class="stats">
-			<div class="container">
-				<div class="stats__header">
-					<span class="section-tag">НАШИ ПОКАЗАТЕЛИ</span>
-					<h2>О гимназии в цифрах</h2>
-				</div>
-				<div class="stats__grid">
-					<div class="stat-card">
-						<span class="stat-card__number">19+</span>
-						<h3 class="stat-card__text">Лет истории</h3>
-						<p>Успешного обучения и воспитания.</p>
-					</div>
-					<div class="stat-card">
-						<span class="stat-card__number">100%</span>
-						<h3 class="stat-card__text">Госаккредитация</h3>
-						<p>Обучение по ФГОС с православным компонентом.</p>
-					</div>
-					<div class="stat-card">
-						<span class="stat-card__number">1-11</span>
-						<h3 class="stat-card__text">Классы обучения</h3>
-						<p>Малокомплектные классы и индивидуальный подход.</p>
-					</div>
-					<div class="stat-card">
-						<span class="stat-card__number">24/7</span>
-						<h3 class="stat-card__text">Безопасность</h3>
-						<p>Закрытая территория, охрана и видеонаблюдение.</p>
-					</div>
-				</div>
-			</div>
+
 		</section>
 
+
+		<!-- ЦИТАТА -->
+
+		<section class="quote">
+
+			<div class="container quote__container">
+
+				<blockquote class="quote-card">
+
+					<div class="quote__image">
+
+						<img src="./assets/icons/quote.png" alt="Портрет цитаты">
+
+					</div>
+
+
+					<div class="quote__text">
+
+						<p>
+							Для меня каждый гимназист — это не просто
+							ученик, а родной человек, о котором хочется
+							заботиться всем сердцем. В начальных классах
+							мы не только закладываем фундамент знаний,
+							но и учим детей доброте, дружбе и вере.
+							Моя главная задача — сделать так, чтобы школа
+							стала для ребенка вторым домом, где его всегда
+							ждут, понимают и любят.
+						</p>
+
+
+						<div class="quote__author">
+
+							<strong>
+								Зуйкова Татьяна
+							</strong>
+
+							<small>
+								Заместитель директора по
+								учебно-воспитательной работе
+							</small>
+
+						</div>
+
+					</div>
+
+				</blockquote>
+
+			</div>
+
+		</section>
+
+
+		<!-- СТАТИСТИКА -->
+
+		<section class="stats">
+
+			<div class="container">
+
+				<div class="stats__header">
+
+					<span class="section-tag">
+						НАШИ ПОКАЗАТЕЛИ
+					</span>
+
+					<h2>
+						О гимназии в цифрах
+					</h2>
+
+				</div>
+
+
+				<div class="stats__grid">
+
+					<div class="stat-card">
+
+						<span class="stat-card__number">
+							19+
+						</span>
+
+						<h3 class="stat-card__text">
+							Лет истории
+						</h3>
+
+						<p>
+							Успешного обучения и воспитания.
+						</p>
+
+					</div>
+
+
+					<div class="stat-card">
+
+						<span class="stat-card__number">
+							100%
+						</span>
+
+						<h3 class="stat-card__text">
+							Госаккредитация
+						</h3>
+
+						<p>
+							Обучение по ФГОС с православным
+							компонентом.
+						</p>
+
+					</div>
+
+
+					<div class="stat-card">
+
+						<span class="stat-card__number">
+							1-11
+						</span>
+
+						<h3 class="stat-card__text">
+							Классы обучения
+						</h3>
+
+						<p>
+							Малокомплектные классы и
+							индивидуальный подход.
+						</p>
+
+					</div>
+
+
+					<div class="stat-card">
+
+						<span class="stat-card__number">
+							24/7
+						</span>
+
+						<h3 class="stat-card__text">
+							Безопасность
+						</h3>
+
+						<p>
+							Закрытая территория, охрана и
+							видеонаблюдение.
+						</p>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+
+		<!-- НОВОСТИ -->
 
 		<section class="fresh-news">
+
 			<div class="container">
-				<h2>Жизнь гимназии</h2>
+
+				<h2>
+					Жизнь гимназии
+				</h2>
+
+
 				<div class="news-slider">
+
 					<button class="slider-btn slider-btn--prev">
-						<img src="assets/icons/row_left.svg" alt="Стрелка налево">
+						<img src="assets/icons/row_left.svg" alt="Предыдущие новости">
 					</button>
-					<div class="all-news">
-						<article class="news">
-
-							<img src="assets/icons/news1.png" alt="Новость 1">
-							<div class="news__content">
-								<div class="news__meta">
-									<span class="news__meta-category">Праздники</span>
-									<span class="news__meta-data">15 мая 2026</span>
-								</div>
-								<h3 class="news__title">Вручение аттестатов</h3>
-								<p class="news__sub-title">Состоялось вручение аттестатов нашим выпускникам и выпускной.
-								</p>
-								<a href="#" class="news__link">Читать далее →</a>
-
-							</div>
-						</article>
 
 
-
-						<article class="news">
-
-							<img src="assets/images/news_photo2.png" alt="Новость 2">
-							<div class="news__content">
-								<div class="news__meta">
-									<span class="news__meta-category">Учебная жизнь</span>
-									<span class="news__meta-data">8 июня 2026</span>
-								</div>
-								<h3 class="news__title">Летний лагерь в Троицко-Никольском</h3>
-								<p class="news__sub-title">Стартовал летний лагерь «Оркестр» при Свято-Никольском храме
-									в селе Троицко-Никольское.
-								</p>
-								<a href="#" class="news__link">Читать далее →</a>
-
-							</div>
-						</article>
-
-
-
-						<article class="news">
-
-							<img src="assets/images/news_photo3.png" alt="Новость 3">
-							<div class="news__content">
-								<div class="news__meta">
-									<span class="news__meta-category">Учебная жизнь</span>
-									<span class="news__meta-data">8 июня 2026</span>
-								</div>
-								<h3 class="news__title">Стартовал летний лагерь «Оркестр»</h3>
-								<p class="news__sub-title">В младшей возрастной категории Матвей Панькин оказался лучшим
-									чтецом и получил Гран-при фестиваля православной культуры.
-								</p>
-								<a href="#" class="news__link">Читать далее →</a>
-
-							</div>
-						</article>
+					<div class="all-news" id="home-news-list">
+						<!-- Новости загружаются через JS -->
 					</div>
+
+
 					<button class="slider-btn slider-btn--next">
-						<img src="assets/icons/row.svg" alt="Стрелка направо">
+						<img src="assets/icons/row.svg" alt="Следующие новости">
 					</button>
+
 				</div>
+
 			</div>
+
 		</section>
+
+
+		<!-- ПЕДАГОГИ -->
 
 		<section class="teachers">
+
 			<div class="teachers__info">
-				<span class="info-beige">ПЕДАГОГИЧЕСКИЙ СОСТАВ</span>
+
+				<span class="info-beige">
+					ПЕДАГОГИЧЕСКИЙ СОСТАВ
+				</span>
+
+
 				<div class="teachers__header">
-					<h2 class="info-title">Педагоги и наставники гимназии</h2>
-					<p class="info-sub-title">В нашей гимназии работают опытные педагоги, сочетающие высокие стандарты
-						образования с духовно-нравственным воспитанием учащихся. Учителя помогают раскрыть потенциал
-						каждого
-						ребенка и подготовить его к олимпиадам и экзаменам.</p>
+
+					<h2 class="info-title">
+						Педагоги и наставники гимназии
+					</h2>
+
+					<p class="info-sub-title">
+						В нашей гимназии работают опытные педагоги,
+						сочетающие высокие стандарты образования с
+						духовно-нравственным воспитанием учащихся.
+						Учителя помогают раскрыть потенциал каждого
+						ребенка и подготовить его к олимпиадам и экзаменам.
+					</p>
+
 				</div>
 
-				<a href="#" class="btn-teachers">Посмотреть всех учителей →</a>
+
+				<a href="teachers.html" class="btn-teachers">
+					Посмотреть всех учителей →
+				</a>
+
 			</div>
+
+
 			<div class="teachers__media">
+
 				<img src="assets/images/teacher.png" alt="Педагог гимназии">
+
 			</div>
+
 		</section>
 
-		<section class="faq-feedback">
+
+		<!-- FAQ / ОБРАТНАЯ СВЯЗЬ -->
+
+		<section class="faq-feedback" id="faq">
+
 			<div class="feedback">
-				<h2>Остались вопросы? Напишите нам</h2>
-				<p>Мы ответим на указанную почту или перезвоним в течение рабочего дня</p>
+
+				<h2>
+					Остались вопросы? Напишите нам
+				</h2>
+
+				<p>
+					Мы ответим на указанную почту или перезвоним
+					в течение рабочего дня
+				</p>
+
+
 				<form class="feedback__form">
+
 					<div class="form-group">
-						<label for="user-name">Ваше имя</label>
+
+						<label for="user-name">
+							Ваше имя
+						</label>
+
 						<input type="text" placeholder="Иван Иванов" id="user-name">
+
 					</div>
+
+
 					<div class="form-group">
-						<label for="user-contact">Номер телефона или Email</label>
+
+						<label for="user-contact">
+							Номер телефона или Email
+						</label>
+
 						<input type="text" placeholder="+7 (999) 000-00-00 / example@main.ru" id="user-contact">
+
 					</div>
+
+
 					<div class="form-group">
-						<label for="user-theme">Тема обращения</label>
+
+						<label for="user-theme">
+							Тема обращения
+						</label>
+
 						<select id="user-theme" class="form-select">
-							<option value="" disabled selected hidden>Выберите тему</option>
-							<option value="admission">Поступление и приём документов</option>
-							<option value="process">Вопросы по учебному процессу</option>
-							<option value="meals">Организация питания и ГПД</option>
-							<option value="activities">Внеурочные занятия и кружки</option>
-							<option value="other">Другой вопрос</option>
+
+							<option value="" disabled selected hidden>
+								Выберите тему
+							</option>
+
+							<option value="admission">
+								Поступление и приём документов
+							</option>
+
+							<option value="process">
+								Вопросы по учебному процессу
+							</option>
+
+							<option value="meals">
+								Организация питания и ГПД
+							</option>
+
+							<option value="activities">
+								Внеурочные занятия и кружки
+							</option>
+
+							<option value="other">
+								Другой вопрос
+							</option>
+
 						</select>
+
 					</div>
+
+
 					<div class="form-group">
-						<label for="user-msg">Сообщение</label>
+
+						<label for="user-msg">
+							Сообщение
+						</label>
+
 						<textarea placeholder="Опишите ваш вопрос..." id="user-msg"></textarea>
+
 					</div>
+
+
 					<div class="form-footer">
-						<span class="policy-text">Согласен на обработку персональных данных</span>
-						<button type="submit" class="btn-orange">Отправить заявку</button>
+
+						<span class="policy-text">
+							Согласен на обработку персональных данных
+						</span>
+
+						<button type="submit" class="btn-orange">
+							Отправить заявку
+						</button>
+
 					</div>
+
 				</form>
+
 			</div>
+
+
 			<div class="faq">
-				<h2>Частые вопросы</h2>
-				<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
+
+				<h2>
+					Частые вопросы
+				</h2>
+
+				<p class="subtitle-faq">
+					Получить мгновенные ответы на самые частые вопросы
+				</p>
+
+
 				<div class="faq__list">
+
 					<details class="faq__item" open>
-						<summary class="faq__question">Каков порядок зачисления в 1 класс?</summary>
-						<p class="faq__answer">Зачисление происходит по результатам собеседования с ребёнком и
-							родителями при наличии полного пакета документов.
+
+						<summary class="faq__question">
+							Каков порядок зачисления в 1 класс?
+						</summary>
+
+						<p class="faq__answer">
+							Зачисление происходит по результатам
+							собеседования с ребёнком и родителями при
+							наличии полного пакета документов.
 						</p>
+
 					</details>
 
-					<details class="faq__item">
-						<summary class="faq__question">Нужна ли школьная форма?</summary>
-						<p class="faq__answer">Да, в гимназии принят единый деловой стиль одежды. Для мальчиков —
-							тёмно-синий костюм и светлая рубашка, для девочек — тёмно-синее платье или юбка с блузкой.
-						</p>
-					</details>
 
 					<details class="faq__item">
-						<summary class="faq__question">Есть ли группа продлённого дня (ГПД)?</summary>
-						<p class="faq__answer">Да, группа продлённого дня работает для учащихся 1–4 классов до 18:00. В
-							программу входят прогулка, выполнение домашнего задания и посещение кружков.
+
+						<summary class="faq__question">
+							Нужна ли школьная форма?
+						</summary>
+
+						<p class="faq__answer">
+							Да, в гимназии принят единый деловой стиль
+							одежды. Для мальчиков — тёмно-синий костюм
+							и светлая рубашка, для девочек — тёмно-синее
+							платье или юбка с блузкой.
 						</p>
+
 					</details>
 
+
 					<details class="faq__item">
-						<summary class="faq__question">Как организовано питание в гимназии?</summary>
-						<p class="faq__answer">В гимназии работает собственная столовая с горячим двухразовым питанием
-							(завтрак и обед). Меню сопоставлено с нормами СанПиН и учитывает дни постов.
+
+						<summary class="faq__question">
+							Есть ли группа продлённого дня (ГПД)?
+						</summary>
+
+						<p class="faq__answer">
+							Да, группа продлённого дня работает для
+							учащихся 1–4 классов до 18:00. В программу
+							входят прогулка, выполнение домашнего задания
+							и посещение кружков.
 						</p>
+
 					</details>
+
+
+					<details class="faq__item">
+
+						<summary class="faq__question">
+							Как организовано питание в гимназии?
+						</summary>
+
+						<p class="faq__answer">
+							В гимназии работает собственная столовая
+							с горячим двухразовым питанием (завтрак и
+							обед). Меню сопоставлено с нормами СанПиН
+							и учитывает дни постов.
+						</p>
+
+					</details>
+
 				</div>
+
 			</div>
+
 		</section>
+
+
+		<!-- FOOTER -->
 
 		<footer>
+
 			<div class="footer-contacts">
+
 				<div class="contacts__info">
-					<h2>Контакты</h2>
+
+					<h2>
+						Контакты
+					</h2>
+
+
 					<ul class="contacts__info-list">
-						<li class="list-adress"><img src="assets/icons/adres.svg" alt="Адрес">г. Ковров, ул. Подлесная,
-							д. 10</li>
-						<li class="list-phone"><img src="assets/icons/phone.svg" alt="Телефон">+7 (49232) 4-01-95,
-							4-22-72</li>
-						<li class="list-email"><img src="assets/icons/email.svg" alt="Почта">sretenskajgimn@yandex.ru
+
+						<li class="list-adress">
+
+							<img src="assets/icons/adres.svg" alt="Адрес">
+
+							г. Ковров, ул. Подлесная,
+							д. 10
+
 						</li>
-						<li class="list-time_work"><img src="assets/icons/clock2.svg" alt="Часы">Пн–Пт: 8:00 – 19:00
+
+
+						<li class="list-phone">
+
+							<img src="assets/icons/phone.svg" alt="Телефон">
+
+							+7 (49232) 4-01-95,
+							4-22-72
+
 						</li>
+
+
+						<li class="list-email">
+
+							<img src="assets/icons/email.svg" alt="Почта">
+
+							sretenskajgimn@yandex.ru
+
+						</li>
+
+
+						<li class="list-time_work">
+
+							<img src="assets/icons/clock2.svg" alt="Часы">
+
+							Пн–Пт: 8:00 – 19:00
+
+						</li>
+
 					</ul>
+
+
 					<div class="contacts__buttons">
-						<a href="#"><img src="assets/icons/TG_vector.svg" alt="ТГ вектор">Написать в Telegram</a>
-						<a href="#"><img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">Написать в WhatsApp</a>
+
+						<a href="#">
+							<img src="assets/icons/TG_vector.svg" alt="ТГ вектор">
+							Написать в Telegram
+						</a>
+
+						<a href="#">
+							<img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">
+							Написать в WhatsApp
+						</a>
+
 					</div>
+
 				</div>
-				<div class="contacts__map">
-					<img src="assets/images/map.png" alt="Карта адреса">
+
+
+				<div class="contact-map">
+					<div style="position:relative;overflow:hidden;"><a
+							href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
+							style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
+							href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
+							style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
+							Яндекс Карты</a><iframe
+							src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&utm_source=chatgpt.com&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
+							width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
+						</iframe></div>
 				</div>
+
 			</div>
+
+
 			<div class="footer-bottom">
-				<div class="brand__footer">
+
+				<a href="index.html" class="brand__footer">
+
 					<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
+
 					<div class="brand__info__footer">
-						<span class="brand__title__footer">Православная гимназия г. Коврова</span>
-						<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+
+						<span class="brand__title__footer">
+							Православная гимназия г. Коврова
+						</span>
+
+						<span class="brand__subtitle__footer">
+							Частное общеобразовательное учреждение
+						</span>
+
 					</div>
-				</div>
+
+				</a>
+
+
 				<div class="footer__nav">
+
 					<ul class="nav__list">
-						<li class="nav__list-about"><a href="#">О гимназии</a></li>
-						<li class="nav__list-teach"><a href="#">Обучение</a></li>
-						<li class="nav__list-kids"><a href="#">Росточек</a></li>
-						<li class="nav__list-faq"><a href="#">FAQ</a></li>
-						<li class="nav__list-contact"><a href="#">Контакты</a></li>
+
+						<li class="nav__list-about">
+							<a href="story_school.html">
+								О гимназии
+							</a>
+						</li>
+
+
+						<li class="nav__list-teach">
+							<a href="class_schedule.html">
+								Обучение
+							</a>
+						</li>
+
+
+						<li class="nav__list-kids">
+							<a href="life.html">
+								Жизнь гимназии
+							</a>
+						</li>
+
+
+						<li class="nav__list-faq">
+							<a href="#faq">
+								FAQ
+							</a>
+						</li>
+
+
+						<li class="nav__list-contact">
+							<a href="contact.html">
+								Контакты
+							</a>
+						</li>
+
 					</ul>
+
 				</div>
+
 
 				<div class="btn_media">
+
 					<ul class="btn_media__list">
 
-						<li class="media__list-vk"><a href="#">
-								<img src="assets/icons/vk_icon.svg" alt="ВК"></a>
+						<li class="media__list-vk">
+
+							<a href="#">
+								<img src="assets/icons/vk_icon.svg" alt="ВК">
+							</a>
+
 						</li>
 
-						<li class="media__list-tg"><a href="#"><img src="assets/icons/vk_tg.svg" alt="TG"></a></li>
 
-						<li class="media__list-whp"><a href="#"><img src="assets/icons/whatsap_icon.svg"
-									alt="Whatsap"></a>
+						<li class="media__list-tg">
+
+							<a href="#">
+								<img src="assets/icons/vk_tg.svg" alt="TG">
+							</a>
+
 						</li>
+
+
+						<li class="media__list-whp">
+
+							<a href="#">
+
+								<img src="assets/icons/whatsap_icon.svg" alt="Whatsap">
+
+							</a>
+
+						</li>
+
 					</ul>
+
 				</div>
+
 			</div>
+
+
 			<div class="footer-copyright">
-				<span>© 2026 Православная гимназия. Все права защищены.</span>
-				<a href="#">Политика конфиденциальности</a>
+
+				<span>
+					© 2026 Православная гимназия.
+					Все права защищены.
+				</span>
+
+				<a href="#">
+					Политика конфиденциальности
+				</a>
+
 			</div>
+
 		</footer>
+
 	</main>
+
 
 	<script src="js/window.scrollY.js"></script>
 	<script src="js/indexAnimations.js"></script>
+	<script src="js/navigation.js"></script>
+	<script src="js/search.js"></script>
+
 </body>
 
 </html>

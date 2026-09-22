@@ -41,6 +41,226 @@ let visibleCards = 6;
 
 
 // ========================================
+// Настройки анимаций
+// ========================================
+
+const prefersReducedMotion =
+	window.matchMedia(
+		"(prefers-reduced-motion: reduce)"
+	).matches;
+
+
+// ========================================
+// Анимация появления элемента
+// ========================================
+
+function animateNewsCard(element, delay = 0) {
+
+	if (!element) {
+		return;
+	}
+
+
+	if (prefersReducedMotion) {
+		return;
+	}
+
+
+	element.style.opacity = "0";
+
+
+	const animation =
+		element.animate(
+			[
+				{
+					opacity: 0,
+					transform: "translateY(24px)"
+				},
+				{
+					opacity: 1,
+					transform: "translateY(0)"
+				}
+			],
+			{
+				duration: 550,
+				delay: delay,
+				easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+				fill: "forwards"
+			}
+		);
+
+
+	animation.addEventListener(
+		"finish",
+		() => {
+
+			element.style.opacity = "";
+
+		}
+	);
+}
+
+
+// ========================================
+// Анимация главной новости
+// ========================================
+
+function animateFeaturedNews() {
+
+	if (!featuredNews) {
+		return;
+	}
+
+
+	if (prefersReducedMotion) {
+		return;
+	}
+
+
+	featuredNews.style.opacity = "0";
+
+
+	const animation =
+		featuredNews.animate(
+			[
+				{
+					opacity: 0,
+					transform: "translateY(20px)"
+				},
+				{
+					opacity: 1,
+					transform: "translateY(0)"
+				}
+			],
+			{
+				duration: 650,
+				easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+				fill: "forwards"
+			}
+		);
+
+
+	animation.addEventListener(
+		"finish",
+		() => {
+
+			featuredNews.style.opacity = "";
+
+		}
+	);
+}
+
+
+// ========================================
+// Анимация карточек при прокрутке
+// ========================================
+
+function initScrollAnimations() {
+
+	if (!newsList) {
+		return;
+	}
+
+
+	const cards =
+		newsList.querySelectorAll(
+			".sub-news-card"
+		);
+
+
+	if (prefersReducedMotion) {
+		return;
+	}
+
+
+	const observer =
+		new IntersectionObserver(
+			(entries, observer) => {
+
+				entries.forEach(entry => {
+
+					if (!entry.isIntersecting) {
+						return;
+					}
+
+
+					const card =
+						entry.target;
+
+
+					const delay =
+						Number(
+							card.dataset.animationDelay || 0
+						);
+
+
+					animateNewsCard(
+						card,
+						delay
+					);
+
+
+					observer.unobserve(card);
+
+				});
+
+			},
+			{
+				threshold: 0.12
+			}
+		);
+
+
+	cards.forEach(
+		(card, index) => {
+
+			card.dataset.animationDelay =
+				Math.min(index * 80, 400);
+
+
+			observer.observe(card);
+
+		}
+	);
+}
+
+
+// ========================================
+// Анимация новых карточек
+// ========================================
+
+function animateNewCards() {
+
+	if (!newsList) {
+		return;
+	}
+
+
+	const cards =
+		newsList.querySelectorAll(
+			".sub-news-card"
+		);
+
+
+	if (prefersReducedMotion) {
+		return;
+	}
+
+
+	cards.forEach(
+		(card, index) => {
+
+			animateNewsCard(
+				card,
+				Math.min(index * 70, 420)
+			);
+
+		}
+	);
+}
+
+
+// ========================================
 // Получение новостей с backend
 // ========================================
 
@@ -71,6 +291,8 @@ async function loadNews() {
 
 
 		updateNews();
+		animateInitialNews();
+
 
 	} catch (error) {
 
@@ -231,6 +453,9 @@ function updateFeaturedNews(item) {
 
 	featuredLink.href =
 		`news.html?id=${item.id}`;
+
+
+	animateFeaturedNews();
 }
 
 
@@ -263,7 +488,6 @@ function updateNews() {
 
 
 	// Остальные новости
-	// идут в маленькие карточки
 
 	const smallNews =
 		filteredNews.slice(1);
@@ -285,7 +509,6 @@ function updateNews() {
 
 
 	// Управление кнопкой
-	// "Показать ещё"
 
 	if (
 		visibleCards >=
@@ -300,6 +523,80 @@ function updateNews() {
 		loadMoreButton.style.display =
 			"block";
 	}
+}
+
+
+// ========================================
+// Анимация первого рендера
+// ========================================
+
+function animateInitialNews() {
+
+	if (!newsList) {
+		return;
+	}
+
+
+	if (prefersReducedMotion) {
+		return;
+	}
+
+
+	const cards =
+		newsList.querySelectorAll(
+			".sub-news-card"
+		);
+
+
+	const observer =
+		new IntersectionObserver(
+			(entries, observer) => {
+
+				entries.forEach(entry => {
+
+					if (!entry.isIntersecting) {
+						return;
+					}
+
+
+					const card =
+						entry.target;
+
+
+					const delay =
+						Number(
+							card.dataset.animationDelay || 0
+						);
+
+
+					animateNewsCard(
+						card,
+						delay
+					);
+
+
+					observer.unobserve(card);
+
+				});
+
+			},
+			{
+				threshold: 0.12
+			}
+		);
+
+
+	cards.forEach(
+		(card, index) => {
+
+			card.dataset.animationDelay =
+				Math.min(index * 80, 400);
+
+
+			observer.observe(card);
+
+		}
+	);
 }
 
 
@@ -336,6 +633,8 @@ filterButtons.forEach(button => {
 
 
 			updateNews();
+
+			animateFilteredNews();
 
 		}
 	);
@@ -405,12 +704,77 @@ loadMoreButton.addEventListener(
 	"click",
 	() => {
 
+		const previousVisibleCards =
+			visibleCards;
+
+
 		visibleCards += 6;
+
 
 		updateNews();
 
+
+		if (prefersReducedMotion) {
+			return;
+		}
+
+
+		const cards =
+			newsList.querySelectorAll(
+				".sub-news-card"
+			);
+
+
+		const newCards =
+			Array.from(cards).slice(
+				previousVisibleCards
+			);
+
+
+		newCards.forEach(
+			(card, index) => {
+
+				animateNewsCard(
+					card,
+					index * 80
+				);
+
+			}
+		);
+
 	}
 );
+
+
+function animateFilteredNews() {
+
+	if (!newsList) {
+		return;
+	}
+
+
+	if (prefersReducedMotion) {
+		return;
+	}
+
+
+	const cards =
+		newsList.querySelectorAll(
+			".sub-news-card"
+		);
+
+
+	cards.forEach(
+		(card, index) => {
+
+			animateNewsCard(
+				card,
+				Math.min(index * 80, 400)
+			);
+
+		}
+	);
+}
 
 
 // ========================================

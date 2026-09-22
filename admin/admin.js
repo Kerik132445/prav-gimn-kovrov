@@ -1,3 +1,28 @@
+let csrfToken = null;
+
+
+async function loadCsrfToken() {
+
+	const response = await fetch(
+		`${AUTH_API_URL}/csrf`,
+		{
+			credentials: "include"
+		}
+	);
+
+	if (!response.ok) {
+
+		throw new Error(
+			"Не удалось получить CSRF-токен"
+		);
+	}
+
+	const data = await response.json();
+
+	csrfToken = data.csrf_token;
+}
+
+
 const API_URL =
 	"http://localhost:8000/api/news/";
 
@@ -132,11 +157,10 @@ if (logoutButton) {
 
 			try {
 
-				await fetch(
+				await apiFetch(
 					`${AUTH_API_URL}/logout`,
 					{
-						method: "POST",
-						credentials: "include"
+						method: "POST"
 					}
 				);
 
@@ -807,26 +831,20 @@ newsForm.addEventListener(
 
 			if (id) {
 
-				response =
-					await fetch(
-						`${API_URL}${id}`,
-						{
-							method: "PUT",
+				response = await apiFetch(
+					`${API_URL}${id}`,
+					{
+						method: "PUT",
 
-							headers: {
-								"Content-Type":
-									"application/json"
-							},
+						headers: {
+							"Content-Type":
+								"application/json"
+						},
 
-							credentials:
-								"include",
-
-							body:
-								JSON.stringify(
-									newsData
-								)
-						}
-					);
+						body:
+							JSON.stringify(newsData)
+					}
+				);
 
 			}
 
@@ -837,26 +855,20 @@ newsForm.addEventListener(
 
 			else {
 
-				response =
-					await fetch(
-						API_URL,
-						{
-							method: "POST",
+				response = await apiFetch(
+					API_URL,
+					{
+						method: "POST",
 
-							headers: {
-								"Content-Type":
-									"application/json"
-							},
+						headers: {
+							"Content-Type":
+								"application/json"
+						},
 
-							credentials:
-								"include",
-
-							body:
-								JSON.stringify(
-									newsData
-								)
-						}
-					);
+						body:
+							JSON.stringify(newsData)
+					}
+				);
 			}
 
 
@@ -960,13 +972,10 @@ async function uploadImage(
 
 
 	const response =
-		await fetch(
+		await apiFetch(
 			`${API_URL}${newsId}/images`,
 			{
 				method: "POST",
-
-				credentials:
-					"include",
 
 				body:
 					formData
@@ -1010,13 +1019,10 @@ async function deleteNews(id) {
 	try {
 
 		const response =
-			await fetch(
+			await apiFetch(
 				`${API_URL}${id}`,
 				{
-					method: "DELETE",
-
-					credentials:
-						"include"
+					method: "DELETE"
 				}
 			);
 
@@ -1061,13 +1067,10 @@ async function setMainImage(
 	try {
 
 		const response =
-			await fetch(
+			await apiFetch(
 				`${API_URL}${newsId}/images/${imageId}/main`,
 				{
-					method: "PUT",
-
-					credentials:
-						"include"
+					method: "PUT"
 				}
 			);
 
@@ -1129,13 +1132,10 @@ async function deleteImage(
 	try {
 
 		const response =
-			await fetch(
+			await apiFetch(
 				`${API_URL}${newsId}/images/${imageId}`,
 				{
-					method: "DELETE",
-
-					credentials:
-						"include"
+					method: "DELETE"
 				}
 			);
 
@@ -1189,17 +1189,26 @@ createButton.addEventListener(
 
 async function initAdmin() {
 
-	const authorized =
-		await checkAuth();
+	try {
 
+		const authorized =
+			await checkAuth();
 
-	if (!authorized) {
+		if (!authorized) {
+			return;
+		}
 
-		return;
+		await loadCsrfToken();
+
+		await loadNews();
+
+	} catch (error) {
+
+		console.error(error);
+
+		window.location.href =
+			"login.html";
 	}
-
-
-	await loadNews();
 }
 // ========================================
 // Редактор текста новости
@@ -1271,6 +1280,25 @@ editorButtons.forEach(button => {
 	);
 
 });
+
+
+async function apiFetch(
+	url,
+	options = {}
+) {
+
+	options.credentials = "include";
+
+	options.headers = {
+		...(options.headers || {}),
+		"X-CSRF-Token": csrfToken
+	};
+
+	return fetch(
+		url,
+		options
+	);
+}
 
 
 initAdmin();

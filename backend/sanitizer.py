@@ -4,6 +4,7 @@ import bleach
 ALLOWED_TAGS = [
     "p",
     "br",
+    "div",
     "strong",
     "b",
     "em",

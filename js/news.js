@@ -3,6 +3,9 @@ const API_URL = "http://127.0.0.1:8000/api/news/";
 const params = new URLSearchParams(window.location.search);
 const newsId = Number(params.get("id"));
 
+const newsBreadcrumbTitle =
+	document.getElementById("news-breadcrumb-title");
+
 function getImageUrl(image) {
 
 	if (!image) {
@@ -207,6 +210,20 @@ function displayNews(currentNews) {
 
 	titleElement.textContent =
 		currentNews.title;
+
+
+	titleElement.textContent =
+		currentNews.title;
+
+	if (newsBreadcrumbTitle) {
+		newsBreadcrumbTitle.textContent =
+			currentNews.title;
+	}
+
+	if (newsBreadcrumbTitle) {
+		newsBreadcrumbTitle.textContent =
+			currentNews.title;
+	}
 
 
 	categoryElement.textContent =

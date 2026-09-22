@@ -103,3 +103,37 @@ class NewsImage(Base):
         "News",
         back_populates="images"
     )
+
+
+class LoginAttempt(Base):
+
+    __tablename__ = "login_attempts"
+
+    id = Column(
+        Integer,
+        primary_key=True,
+        index=True
+    )
+
+    username = Column(
+        String(100),
+        nullable=False,
+        index=True
+    )
+
+    ip_address = Column(
+        String(45),
+        nullable=False,
+        index=True
+    )
+
+    failed_attempts = Column(
+        Integer,
+        nullable=False,
+        default=0
+    )
+
+    blocked_until = Column(
+        DateTime,
+        nullable=True
+    )
