@@ -337,7 +337,7 @@ h2 {
 }
 
 .about__link:hover {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 .quote {
@@ -3436,10 +3436,12 @@ body.header-is-hidden {
 .about__link span {
 	display: inline-block;
 	transition: transform 0.3s ease;
+	text-decoration: none;
 }
 
 .about__link:hover span {
 	transform: translateX(7px);
+	text-decoration: none;
 }
 
 .stat-card {
@@ -8522,8 +8524,41 @@ header {
 	line-height: 1.4;
 }
 
-
-
 .teachers-hero {
+	display: block !important;
+}
+
+.teachers-hero .breadcrumbs {
+	display: inline-flex;
+	width: fit-content;
+	max-width: 100%;
+	margin-bottom: 24px;
+}
+
+.teachers-hero .hero-badge {
 	display: block;
+	width: fit-content;
+	margin-bottom: 16px;
+}
+
+.hero-content {
+	display: block;
+}
+
+
+.documents-hero {
+	display: block !important;
+}
+
+.documents-hero .breadcrumbs {
+	display: inline-flex;
+	width: fit-content;
+	max-width: 100%;
+	margin-bottom: 24px;
+}
+
+.documents-hero .badge_documents {
+	display: block;
+	width: fit-content;
+	margin-bottom: 12px;
 }
