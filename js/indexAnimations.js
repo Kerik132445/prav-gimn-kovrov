@@ -69,7 +69,7 @@ const statsObserver = new IntersectionObserver((entries, observer) => {
 		const element = entry.target;
 		const text = element.textContent.trim();
 
-		// 19+
+		// 9+
 		if (/^\d+\+$/.test(text)) {
 
 			const number = parseInt(text);
@@ -83,6 +83,22 @@ const statsObserver = new IntersectionObserver((entries, observer) => {
 			const number = parseInt(text);
 
 			animateNumber(element, number, "%");
+		}
+
+		// 1-11
+		else if (/^\d+-\d+$/.test(text)) {
+
+			const [start, end] = text.split("-").map(Number);
+
+			animateRange(element, start, end);
+		}
+
+		// 24/7
+		else if (/^\d+\/\d+$/.test(text)) {
+
+			const [number, total] = text.split("/").map(Number);
+
+			animateNumber(element, number, `/${total}`);
 		}
 
 		observer.unobserve(element);
@@ -113,14 +129,58 @@ function animateNumber(element, target, suffix) {
 		// Плавное ускорение/замедление
 		const eased = 1 - Math.pow(1 - progress, 3);
 
-		const currentNumber = Math.floor(target * eased);
+		const currentNumber =
+			Math.floor(target * eased);
 
-		element.textContent = currentNumber + suffix;
+		element.textContent =
+			currentNumber + suffix;
 
 		if (progress < 1) {
+
 			requestAnimationFrame(update);
+
 		} else {
-			element.textContent = target + suffix;
+
+			element.textContent =
+				target + suffix;
+		}
+	}
+
+	requestAnimationFrame(update);
+}
+
+
+function animateRange(element, start, target) {
+
+	const duration = 1200;
+	const startTime = performance.now();
+
+	function update(currentTime) {
+
+		const progress = Math.min(
+			(currentTime - startTime) / duration,
+			1
+		);
+
+		const eased =
+			1 - Math.pow(1 - progress, 3);
+
+		const currentNumber =
+			Math.floor(
+				start + (target - start) * eased
+			);
+
+		element.textContent =
+			`${currentNumber}-${target}`;
+
+		if (progress < 1) {
+
+			requestAnimationFrame(update);
+
+		} else {
+
+			element.textContent =
+				`${start}-${target}`;
 		}
 	}
 
