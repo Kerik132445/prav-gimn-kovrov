@@ -24,10 +24,10 @@ async function loadCsrfToken() {
 
 
 const API_URL =
-	"http://localhost:8000/api/news/";
+	`${window.API_BASE_URL}/api/news/`;
 
 const AUTH_API_URL =
-	"http://localhost:8000/api/auth";
+	`${window.API_BASE_URL}/api/auth`;
 
 
 const newsList =
@@ -667,7 +667,7 @@ function getImageUrl(image) {
 
 	if (image.startsWith("/uploads")) {
 
-		return `http://localhost:8000${image}`;
+		return `${window.API_BASE_URL}${image}`;
 	}
 
 

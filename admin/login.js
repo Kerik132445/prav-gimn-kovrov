@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/api/auth";
+const API_URL = `${window.API_BASE_URL}/api/auth`;
 
 
 const loginForm = document.getElementById("login-form");
@@ -8,6 +8,12 @@ const loginError = document.getElementById("login-error");
 
 
 console.log("LOGIN JS ЗАПУЩЕН");
+
+window.addEventListener("beforeunload", () => {
+	console.log("СТРАНИЦА ПЕРЕЗАГРУЖАЕТСЯ!");
+});
+
+console.log("ТЕКУЩИЙ АДРЕС API:", API_URL);
 
 
 loginButton.addEventListener("click", async (event) => {

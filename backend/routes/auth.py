@@ -300,8 +300,8 @@ def get_csrf_token(
             key=CSRF_COOKIE_NAME,
             value=token,
             httponly=False,
-            samesite="lax",
-            secure=False,
+            samesite="none",
+            secure=True,
             max_age=7 * 24 * 60 * 60
         )
 
@@ -471,8 +471,8 @@ def login(
         key="admin_session",
         value=session_token,
         httponly=True,
-        samesite="lax",
-        secure=False,
+        samesite="none",
+        secure=True,
         max_age=SESSION_DURATION_DAYS * 24 * 60 * 60
     )
 

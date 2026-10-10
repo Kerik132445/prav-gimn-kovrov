@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/api/news/";
+const API_URL = `${window.API_BASE_URL}/api/news/`;
 
 
 const filterButtons =
@@ -688,7 +688,7 @@ function getImageUrl(image) {
 		image.startsWith("/uploads")
 	) {
 
-		return `http://localhost:8000${image}`;
+		return `${window.API_BASE_URL}${image}`;
 	}
 
 

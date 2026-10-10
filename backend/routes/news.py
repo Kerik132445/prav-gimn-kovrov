@@ -93,7 +93,7 @@ def get_news(
     db: Session = Depends(get_db)
 ):
 
-    news = db.query(News).all()
+    news = db.query(News).order_by(News.id.desc()).all()
 
     result = []
 

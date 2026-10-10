@@ -192,7 +192,7 @@ function animateRange(element, start, target) {
 // НОВОСТИ С BACKEND
 // ========================================
 
-const HOME_API_URL = "http://localhost:8000/api/news/";
+const HOME_API_URL = `${window.API_BASE_URL}/api/news/`;
 
 const homeNewsList = document.getElementById("home-news-list");
 
@@ -253,7 +253,7 @@ function createHomeNewsCard(news) {
 	article.className = "news";
 
 	const image = news.image
-		? `http://localhost:8000${news.image}`
+		? `${window.API_BASE_URL}${news.image}`
 		: "assets/icons/news1.png";
 
 	article.innerHTML = `
