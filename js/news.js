@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/api/news/";
+const API_URL = `${window.API_BASE_URL}/api/news/`;
 
 const params = new URLSearchParams(window.location.search);
 const newsId = Number(params.get("id"));
@@ -26,7 +26,7 @@ function getImageUrl(image) {
 	}
 
 	if (image.startsWith("/uploads")) {
-		return `http://127.0.0.1:8000${image}`;
+		return `${window.API_BASE_URL}${image}`;
 	}
 
 	return image;

@@ -42,7 +42,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5501",
         "http://127.0.0.1:5501",
-        "https://brick-glance-quad-lying.trycloudflare.com",
+        "https://nato-forth-reprint-nested.trycloudflare.com"
     ],
     allow_credentials=True,
     allow_methods=["*"],
