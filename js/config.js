@@ -1,1 +1,1 @@
-window.API_BASE_URL = "https://press-paper-peter-magnitude.trycloudflare.com";
+window.API_BASE_URL = "https://prav-gimn-kovrov.onrender.com";
