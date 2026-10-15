@@ -518,7 +518,9 @@ def logout(
             db.commit()
 
     response.delete_cookie(
-        "admin_session"
+        "admin_session",
+        samesite="none",
+        secure=True
     )
 
     return {

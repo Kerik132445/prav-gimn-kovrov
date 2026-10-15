@@ -1,20 +1,19 @@
+import os
 from fastapi import FastAPI, Request
-
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from database import Base, engine
 from routes.news import router as news_router
-
-from fastapi.staticfiles import StaticFiles
-
-from routes.news import router as news_router
 from routes.auth import router as auth_router
-
 
 Base.metadata.create_all(bind=engine)
 
-
 app = FastAPI()
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+UPLOADS_DIR = os.path.join(BASE_DIR, "uploads")
+os.makedirs(UPLOADS_DIR, exist_ok=True)
 
 
 @app.middleware("http")
@@ -42,8 +41,11 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5501",
         "http://127.0.0.1:5501",
-        "https://nato-forth-reprint-nested.trycloudflare.com"
+        "http://localhost:3000",
+        "http://localhost:8000",
+        "https://krytoisite.vercel.app",
     ],
+    allow_origin_regex=r"^https:\/\/.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -52,7 +54,7 @@ app.add_middleware(
 
 app.mount(
     "/uploads",
-    StaticFiles(directory="uploads"),
+    StaticFiles(directory=UPLOADS_DIR),
     name="uploads"
 )
 
