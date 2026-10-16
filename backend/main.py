@@ -43,7 +43,7 @@ app.add_middleware(
         "http://127.0.0.1:5501",
         "http://localhost:3000",
         "http://localhost:8000",
-        "https://krytoisite.vercel.app",
+        "https://krytoi-site.tuqo.ru",
     ],
     allow_origin_regex=r"^https:\/\/.*\.vercel\.app$",
     allow_credentials=True,

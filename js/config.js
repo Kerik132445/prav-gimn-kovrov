@@ -1,1 +1,1 @@
-window.API_BASE_URL = "https://prav-gimn-kovrov.onrender.com";
+window.API_BASE_URL = "https://interval-surrounding-subscriber-governments.trycloudflare.com";
