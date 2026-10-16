@@ -1,1 +1,1 @@
-window.API_BASE_URL = "https://interval-surrounding-subscriber-governments.trycloudflare.com";
+window.API_BASE_URL = "https://meat-phentermine-ministers-seasons.trycloudflare.com";
