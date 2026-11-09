@@ -1,0 +1,691 @@
+/* ==========================================================================
+   СВЕДЕНИЯ ОБ ОБРАЗОВАТЕЛЬНОЙ ОРГАНИЗАЦИИ (sveden)
+   Стилизация официального раздела в соответствии с Приказом Рособрнадзора № 1493
+   ========================================================================== */
+
+/* Общая обертка страницы */
+.sveden-page-wrap {
+	background-color: #f8fafc;
+	min-height: 80vh;
+	padding-bottom: 60px;
+}
+
+/* Hero-секция sveden (согласована с образцом teachers.html) */
+.sveden-hero {
+	background: var(--color-bg-page, #F8FAFC) !important;
+	padding: 24px 92px;
+	border-bottom: 1px solid #e2e8f0;
+	margin-bottom: 32px;
+}
+
+.sveden-hero .container,
+.sveden-hero .containers,
+.sveden-hero .site-container {
+	max-width: none;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.sveden-hero .breadcrumbs {
+	display: inline-flex;
+	width: fit-content;
+	max-width: 100%;
+	margin-bottom: 24px;
+}
+
+.sveden-hero__badge {
+	display: block;
+	width: fit-content;
+	background-color: #DBEAFE !important;
+	border: 1px solid #BFDBFE !important;
+	color: #1D4ED8 !important;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	padding: 4px 14px;
+	border-radius: 9999px;
+	margin-bottom: 16px;
+	box-shadow: 0 1px 2px rgba(29, 78, 216, 0.05);
+}
+
+.sveden-hero__title {
+	font-size: 36px;
+	font-weight: 700;
+	color: #1E40AF !important;
+	line-height: 1.2;
+	margin: 0 0 10px;
+}
+
+.sveden-hero__subtitle {
+	font-size: 18px;
+	color: #334155;
+	max-width: 950px;
+	line-height: 1.6;
+	margin: 0;
+}
+
+@media (max-width: 820px) {
+	.sveden-hero {
+		padding: 20px 16px;
+	}
+	.sveden-hero__title {
+		font-size: 28px;
+	}
+	.sveden-hero__subtitle {
+		font-size: 16px;
+	}
+}
+
+/* Информационный баннер о нормативной базе */
+.sveden-legal-notice {
+	background: #ffffff;
+	border: 1px solid #bae6fd;
+	border-left: 4px solid #0284c7;
+	border-radius: 10px;
+	padding: 16px 20px;
+	margin-bottom: 28px;
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.sveden-legal-notice__icon {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	color: #0284c7;
+	margin-top: 2px;
+}
+
+.sveden-legal-notice__text {
+	font-size: 13.5px;
+	color: #334155;
+	line-height: 1.55;
+	margin: 0;
+}
+
+.sveden-legal-notice__text strong {
+	color: #0f172a;
+}
+
+/* ==========================================================================
+   СЕТКА РАЗДЕЛОВ (index.html)
+   ========================================================================== */
+.sveden-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 22px;
+}
+
+.sveden-card {
+	display: flex;
+	flex-direction: column;
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+	padding: 24px;
+	text-decoration: none;
+	color: inherit;
+	transition: all 0.25s ease;
+	position: relative;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.sveden-card:hover {
+	border-color: #38bdf8;
+	transform: translateY(-4px);
+	box-shadow: 0 12px 24px -6px rgba(2, 132, 199, 0.15);
+}
+
+.sveden-card__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 14px;
+}
+
+.sveden-card__num {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background: #f0f9ff;
+	color: #0284c7;
+	font-size: 13px;
+	font-weight: 700;
+}
+
+.sveden-card__icon {
+	width: 36px;
+	height: 36px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f8fafc;
+	border-radius: 8px;
+	color: #64748b;
+	transition: color 0.2s ease, background 0.2s ease;
+}
+
+.sveden-card:hover .sveden-card__icon {
+	background: #e0f2fe;
+	color: #0284c7;
+}
+
+.sveden-card__title {
+	font-size: 16px;
+	font-weight: 600;
+	color: #0f172a;
+	line-height: 1.35;
+	margin: 0 0 8px;
+	transition: color 0.2s ease;
+}
+
+.sveden-card:hover .sveden-card__title {
+	color: #0284c7;
+}
+
+.sveden-card__desc {
+	font-size: 13px;
+	color: #64748b;
+	line-height: 1.5;
+	margin: 0 0 16px;
+	flex-grow: 1;
+}
+
+.sveden-card__footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 12px;
+	border-top: 1px solid #f1f5f9;
+	font-size: 12.5px;
+	font-weight: 500;
+	color: #0284c7;
+}
+
+.sveden-card__arrow {
+	transition: transform 0.2s ease;
+}
+
+.sveden-card:hover .sveden-card__arrow {
+	transform: translateX(4px);
+}
+
+/* ==========================================================================
+   МАКЕТ ПОДРАЗДЕЛОВ (2 КОЛОНКИ: САЙДБАР + КОНТЕНТ)
+   ========================================================================== */
+.sveden-layout-container,
+.sveden-page-wrap > .containers {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 32px 60px;
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.sveden-layout {
+	display: grid;
+	grid-template-columns: 290px 1fr;
+	gap: 28px;
+	align-items: start;
+}
+
+/* Сайдбар навигации */
+.sveden-sidebar {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	padding: 16px;
+	position: sticky;
+	top: 20px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.sveden-sidebar__title {
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #64748b;
+	padding: 6px 12px 12px;
+	margin: 0 0 6px;
+	border-bottom: 1px solid #f1f5f9;
+}
+
+.sveden-sidebar__nav {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sveden-sidebar__link {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 9px 12px;
+	border-radius: 8px;
+	font-size: 13.5px;
+	font-weight: 500;
+	color: #334155;
+	text-decoration: none;
+	transition: all 0.15s ease;
+	line-height: 1.35;
+}
+
+.sveden-sidebar__link:hover {
+	background: #f1f5f9;
+	color: #0284c7;
+}
+
+.sveden-sidebar__link.active {
+	background: #0284c7;
+	color: #ffffff;
+	font-weight: 600;
+}
+
+.sveden-sidebar__link.active .sveden-sidebar__badge {
+	background: rgba(255, 255, 255, 0.25);
+	color: #ffffff;
+}
+
+.sveden-sidebar__badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 20px;
+	height: 20px;
+	padding: 0 5px;
+	border-radius: 5px;
+	background: #f1f5f9;
+	color: #64748b;
+	font-size: 11px;
+	font-weight: 600;
+	flex-shrink: 0;
+}
+
+/* Мобильная навигация (выпадающий список/кнопка) */
+.sveden-mobile-nav {
+	display: none;
+	margin-bottom: 20px;
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 10px;
+	padding: 12px 14px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.sveden-mobile-nav__toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	background: none;
+	border: none;
+	padding: 4px 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #0f172a;
+	cursor: pointer;
+	text-align: left;
+}
+
+.sveden-mobile-nav__toggle svg {
+	transition: transform 0.2s ease;
+}
+
+.sveden-mobile-nav.open .sveden-mobile-nav__toggle svg {
+	transform: rotate(180deg);
+}
+
+.sveden-mobile-nav__menu {
+	display: none;
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid #f1f5f9;
+	list-style: none;
+	padding-left: 0;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.sveden-mobile-nav.open .sveden-mobile-nav__menu {
+	display: flex;
+}
+
+/* Контентная область подраздела */
+.sveden-content {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	padding: 32px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.sveden-content__header {
+	margin-bottom: 24px;
+	padding-bottom: 18px;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.sveden-content__title {
+	font-size: 24px;
+	font-weight: 700;
+	color: #0f172a;
+	line-height: 1.3;
+	margin: 0 0 8px;
+}
+
+.sveden-content__lead {
+	font-size: 14px;
+	color: #64748b;
+	line-height: 1.5;
+	margin: 0;
+}
+
+/* ==========================================================================
+   КОМПОНЕНТЫ И МИКРОРАЗМЕТКА
+   ========================================================================== */
+
+/* Блок-заглушка "Информация уточняется" */
+.sveden-placeholder {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	background: #fefce8;
+	border: 1px solid #fef08a;
+	border-left: 4px solid #eab308;
+	border-radius: 8px;
+	padding: 12px 16px;
+	margin: 16px 0;
+	color: #713f12;
+	font-size: 13.5px;
+	line-height: 1.5;
+}
+
+.sveden-placeholder__icon {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	color: #ca8a04;
+}
+
+.sveden-placeholder strong {
+	font-weight: 600;
+	color: #854d0e;
+}
+
+/* Блок "Деятельность не осуществляется" / "Не предусмотрено" */
+.sveden-empty-notice {
+	background: #f8fafc;
+	border: 1px dashed #cbd5e1;
+	border-radius: 8px;
+	padding: 16px 20px;
+	margin: 16px 0;
+	color: #64748b;
+	font-size: 13.5px;
+	line-height: 1.5;
+	text-align: center;
+}
+
+/* Секции внутри контента */
+.sveden-section {
+	margin-bottom: 32px;
+}
+
+.sveden-section:last-child {
+	margin-bottom: 0;
+}
+
+.sveden-section__title {
+	font-size: 18px;
+	font-weight: 600;
+	color: #1e293b;
+	margin: 0 0 14px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.sveden-section__title::before {
+	content: '';
+	display: inline-block;
+	width: 4px;
+	height: 18px;
+	background: #0284c7;
+	border-radius: 2px;
+}
+
+/* Таблицы сведений (microdata) */
+.sveden-table-wrap {
+	width: 100%;
+	overflow-x: auto;
+	margin: 16px 0;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+}
+
+.sveden-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13.5px;
+	text-align: left;
+	color: #334155;
+	min-width: 580px;
+}
+
+.sveden-table th {
+	background: #f8fafc;
+	color: #475569;
+	font-weight: 600;
+	padding: 12px 14px;
+	border-bottom: 1px solid #e2e8f0;
+	border-right: 1px solid #f1f5f9;
+	vertical-align: top;
+}
+
+.sveden-table th:last-child {
+	border-right: none;
+}
+
+.sveden-table td {
+	padding: 12px 14px;
+	border-bottom: 1px solid #f1f5f9;
+	border-right: 1px solid #f1f5f9;
+	vertical-align: top;
+	line-height: 1.45;
+}
+
+.sveden-table td:last-child {
+	border-right: none;
+}
+
+.sveden-table tr:last-child td {
+	border-bottom: none;
+}
+
+.sveden-table tr:hover td {
+	background: #f8fafc;
+}
+
+.sveden-table .row-header {
+	font-weight: 600;
+	color: #1e293b;
+	width: 32%;
+	background: #fafafa;
+}
+
+/* Список документов */
+.sveden-docs-list {
+	list-style: none;
+	padding: 0;
+	margin: 14px 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.sveden-doc-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 16px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	transition: all 0.2s ease;
+	gap: 14px;
+}
+
+.sveden-doc-item:hover {
+	border-color: #93c5fd;
+	background: #f0f9ff;
+}
+
+.sveden-doc-info {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex-grow: 1;
+}
+
+.sveden-doc-icon {
+	flex-shrink: 0;
+	width: 24px;
+	height: 24px;
+	color: #0284c7;
+}
+
+.sveden-doc-title {
+	font-size: 13.5px;
+	font-weight: 500;
+	color: #0f172a;
+	text-decoration: none;
+	line-height: 1.4;
+}
+
+.sveden-doc-meta {
+	font-size: 11.5px;
+	color: #64748b;
+	margin-top: 2px;
+}
+
+.sveden-doc-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.sveden-badge-sign {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 3px 8px;
+	background: #ecfdf5;
+	border: 1px solid #a7f3d0;
+	color: #065f46;
+	font-size: 11px;
+	font-weight: 600;
+	border-radius: 4px;
+}
+
+/* Кнопка возврата к списку разделов */
+.sveden-back-hub {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	color: #0284c7;
+	font-size: 13px;
+	font-weight: 500;
+	text-decoration: none;
+	margin-top: 24px;
+	padding: 8px 14px;
+	background: #f0f9ff;
+	border: 1px solid #bae6fd;
+	border-radius: 6px;
+	transition: all 0.15s ease;
+}
+
+.sveden-back-hub:hover {
+	background: #e0f2fe;
+}
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ
+   ========================================================================== */
+@media (max-width: 1024px) {
+	.sveden-layout-container,
+	.sveden-page-wrap > .containers {
+		padding: 0 24px 48px;
+	}
+
+	.sveden-grid {
+		grid-template-columns: repeat(2, 1fr);
+		gap: 18px;
+	}
+
+	.sveden-layout {
+		grid-template-columns: 240px 1fr;
+		gap: 20px;
+	}
+
+	.sveden-content {
+		padding: 24px;
+	}
+}
+
+@media (max-width: 900px) {
+	.sveden-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.sveden-sidebar {
+		display: none;
+	}
+
+	.sveden-mobile-nav {
+		display: block;
+	}
+}
+
+@media (max-width: 640px) {
+	.sveden-layout-container,
+	.sveden-page-wrap > .containers {
+		padding: 0 16px 36px;
+	}
+
+	.sveden-grid {
+		grid-template-columns: 1fr;
+		gap: 14px;
+	}
+
+	.sveden-hero {
+		padding: 28px 0 20px;
+	}
+
+	.sveden-hero__title {
+		font-size: 24px;
+	}
+
+	.sveden-content {
+		padding: 18px 14px;
+	}
+
+	.sveden-content__title {
+		font-size: 20px;
+	}
+
+	.sveden-table th,
+	.sveden-table td {
+		padding: 10px;
+		font-size: 12.5px;
+	}
+}

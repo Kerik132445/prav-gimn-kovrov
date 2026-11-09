@@ -1,610 +1,461 @@
 <!DOCTYPE html>
+
 <html lang="ru">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Расписание уроков</title>
-
-	<link rel="stylesheet" href="./css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Расписание уроков</title>
+<link href="./css/style.css" rel="stylesheet"/>
 </head>
-
 <body>
-	<header>
-		<div class="top-bar">
-			<div class="containers">
-				<div class="top-bar__content">
-
-					<a href="index.html" class="brand">
-						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
-
-						<div class="brand__info">
-							<span class="brand__title">
+<header>
+<div class="top-bar">
+<div class="containers">
+<div class="top-bar__content">
+<a class="brand" href="index.html">
+<img alt="Логотип гимназии" class="brand__logo" src="./assets/icons/logo_star.png"/>
+<div class="brand__info">
+<span class="brand__title">
 								Православная гимназия г. Коврова
 							</span>
-
-							<span class="brand__subtitle">
+<span class="brand__subtitle">
 								Частное общеобразовательное учреждение
 							</span>
-						</div>
-					</a>
-
-					<form class="search-form" id="site-search-form">
-						<img src="assets/icons/search.svg" alt="">
-
-						<input type="search" id="site-search-input" placeholder="Поиск по сайту..." autocomplete="off">
-					</form>
-
-				</div>
-			</div>
-		</div>
-		<nav class="main-nav">
-
-			<ul class="nav-list">
-
-				<li>
-					<a href="index.html" class="nav-link">
+</div>
+</a>
+<form class="search-form" id="site-search-form">
+<img alt="" src="assets/icons/search.svg"/>
+<input autocomplete="off" id="site-search-input" placeholder="Поиск по сайту..." type="search"/>
+</form>
+</div>
+</div>
+</div>
+<nav class="main-nav">
+<ul class="nav-list">
+<li>
+<a class="nav-link" href="index.html">
 						Главная
 					</a>
-				</li>
-
-
-				<li>
-					<a href="story_school.html" class="nav-link">
-						Сведения об организации
+</li>
+<li>
+<a class="nav-link" href="sveden/index.html">
+						Сведения об образовательной организации
 					</a>
-				</li>
-
-
-				<!-- УЧЕБА -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+</li>
+<!-- УЧЕБА -->
+<li class="nav-item nav-item--mega">
+<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Учеба
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="life.html" class="nav-link">
+						<span aria-hidden="true" class="nav-arrow"></span>
+</button>
+</li>
+<li>
+<a class="nav-link" href="life.html">
 						Жизнь гимназии
 					</a>
-				</li>
-
-
-				<!-- РОДИТЕЛЯМ -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+</li>
+<!-- РОДИТЕЛЯМ -->
+<li class="nav-item nav-item--mega">
+<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Родителям
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="apply.html" class="nav-link">
+						<span aria-hidden="true" class="nav-arrow"></span>
+</button>
+</li>
+<li>
+<a class="nav-link" href="apply.html">
 						Поступающим
 					</a>
-				</li>
-
-
-				<li>
-					<a href="contact.html" class="nav-link">
+</li>
+<li>
+<a class="nav-link" href="contact.html">
 						Контакты
 					</a>
-				</li>
-
-			</ul>
-
-		</nav>
-
-		<div class="mega-menu" id="mega-menu">
-
-			<div class="mega-menu__inner">
-
-				<div class="mega-menu__header">
-
-					<div>
-
-						<h3 id="mega-menu-title">
+</li>
+</ul>
+</nav>
+<div class="mega-menu" id="mega-menu">
+<div class="mega-menu__inner">
+<div class="mega-menu__header">
+<div>
+<h3 id="mega-menu-title">
 							Учеба
 						</h3>
-
-						<p id="mega-menu-description">
+<p id="mega-menu-description">
 							Всё необходимое для учебного процесса
 						</p>
-
-					</div>
-
-
-					<button class="mega-menu__close" type="button" aria-label="Закрыть меню">
+</div>
+<button aria-label="Закрыть меню" class="mega-menu__close" type="button">
 						×
 					</button>
-
-				</div>
-
-
-				<div class="mega-menu__grid" id="mega-menu-content">
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<!-- ЗАТЕМНЕНИЕ ФОНА -->
-
-		<div class="mega-overlay" id="mega-overlay">
-		</div>
-	</header>
-
-
-
-	<section class="schedule">
-		<div class="schedule-hero">
-			<nav class="breadcrumbs" aria-label="Хлебные крошки">
-
-				<a href="index.html" class="breadcrumbs__home">
-					<img src="assets/icons/home.svg" alt="">
+</div>
+<div class="mega-menu__grid" id="mega-menu-content">
+</div>
+</div>
+</div>
+<!-- ЗАТЕМНЕНИЕ ФОНА -->
+<div class="mega-overlay" id="mega-overlay">
+</div>
+</header>
+<section class="schedule">
+<div class="schedule-hero">
+<nav aria-label="Хлебные крошки" class="breadcrumbs">
+<a class="breadcrumbs__home" href="index.html">
+<img alt="" src="assets/icons/home.svg"/>
 					Главная
 				</a>
-
-				<span class="breadcrumbs__separator" aria-hidden="true">
+<span aria-hidden="true" class="breadcrumbs__separator">
 					›
 				</span>
-
-				<span class="breadcrumbs__current">
+<span class="breadcrumbs__current">
 					Расписание занятий
 				</span>
-
-			</nav>
-			<h1 class="schedule-hero__title">Расписание занятий и звонков</h1>
-			<p class="schedule-hero__subtitle">Актуальное расписание на 2026/2027 учебный год</p>
-		</div>
-		<div class="campus-selector">
-
-			<div class="campus-card campus-card--active" data-building="spassky">
-				<span class="campus-card__badge">1-4 КЛАССЫ</span>
-				<h4 class="campus-card__title">Спасский корпус</h4>
-				<p class="campus-card__address">ул. Подлесная, д. 10</p>
-			</div>
-
-			<div class="campus-card" data-building="pokrovsky">
-				<span class="campus-card__badge">5-11 КЛАССЫ</span>
-				<h4 class="campus-card__title">Покровский корпус</h4>
-				<p class="campus-card__address">ул. Подлесная, д. 10/1</p>
-			</div>
-		</div>
-
-		<div class="schedule-filters">
-			<div class="class-tabs">
-				<button class="class-btn class-btn--active" data-class="1">1 класс</button>
-				<button class="class-btn" data-class="2">2 класс</button>
-				<button class="class-btn" data-class="3">3 класс</button>
-				<button class="class-btn" data-class="4">4 класс</button>
-			</div>
-			<div class="day-tabs">
-				<button class="day-btn day-btn--active" data-day="monday">Понедельник</button>
-				<button class="day-btn" data-day="tuesday">Вторник</button>
-				<button class="day-btn" data-day="wednesday">Среда</button>
-				<button class="day-btn" data-day="thursday">Четверг</button>
-				<button class="day-btn" data-day="friday">Пятница</button>
-			</div>
-		</div>
-
-		<div class="schedule-content">
-			<div class="schedule-card">
-				<h3 class="schedule-card__title"><img src="assets/icons/bell-schedule.svg" alt="Колокол">Расписание
+</nav><span class="hero-badge">Учебный процесс</span>
+<h1 class="schedule-hero__title">Расписание занятий и звонков</h1>
+<p class="schedule-hero__subtitle">Актуальное расписание на 2026/2027 учебный год</p>
+</div>
+<div class="campus-selector">
+<div class="campus-card campus-card--active" data-building="spassky">
+<span class="campus-card__badge">1-4 КЛАССЫ</span>
+<h4 class="campus-card__title">Спасский корпус</h4>
+<p class="campus-card__address">ул. Подлесная, д. 10</p>
+</div>
+<div class="campus-card" data-building="pokrovsky">
+<span class="campus-card__badge">5-11 КЛАССЫ</span>
+<h4 class="campus-card__title">Покровский корпус</h4>
+<p class="campus-card__address">ул. Подлесная, д. 10/1</p>
+</div>
+</div>
+<div class="schedule-filters">
+<div class="class-tabs">
+<button class="class-btn class-btn--active" data-class="1">1 класс</button>
+<button class="class-btn" data-class="2">2 класс</button>
+<button class="class-btn" data-class="3">3 класс</button>
+<button class="class-btn" data-class="4">4 класс</button>
+</div>
+<div class="day-tabs">
+<button class="day-btn day-btn--active" data-day="monday">Понедельник</button>
+<button class="day-btn" data-day="tuesday">Вторник</button>
+<button class="day-btn" data-day="wednesday">Среда</button>
+<button class="day-btn" data-day="thursday">Четверг</button>
+<button class="day-btn" data-day="friday">Пятница</button>
+</div>
+</div>
+<div class="schedule-content">
+<div class="schedule-card">
+<h3 class="schedule-card__title"><img alt="Колокол" src="assets/icons/bell-schedule.svg"/>Расписание
 					звонков</h3>
-				<ul class="schedule-list">
-					<li class="schedule-item schedule-item--church">
-						<p class="schedule-item__text"><img src="assets/icons/church.svg" alt="Церковь">Общая молитва
+<ul class="schedule-list">
+<li class="schedule-item schedule-item--church">
+<p class="schedule-item__text"><img alt="Церковь" src="assets/icons/church.svg"/>Общая молитва
 						</p>
-						<p class="schedule-item__time">07:55 – 08:20 (25 мин)</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">1 урок</p>
-						<p class="schedule-item__time">08:20 – 09:00</p>
-					</li>
-					<li class="schedule-item schedule-item--break">
-						<p class="schedule-item__text"><img src="assets/icons/food-toastr.svg" alt="Тост">Завтрак</p>
-						<p class="schedule-item__time">9:00 – 9:10</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">2 урок</p>
-						<p class="schedule-item__time">09:20 – 10:00</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">3 урок</p>
-						<p class="schedule-item__time">10:10 – 10:50</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">4 урок</p>
-						<p class="schedule-item__time">11:00 – 11:40</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">5 урок</p>
-						<p class="schedule-item__time">11:50 – 12:30</p>
-					</li>
-					<li class="schedule-item schedule-item--break">
-						<p class="schedule-item__text"><img src="assets/icons/food-appler.svg" alt="Яблоко">Обед</p>
-						<p class="schedule-item__time">12:20 – 12:40</p>
-					</li>
-					<li class="schedule-item schedule-item--church">
-						<p class="schedule-item__text"><img src="assets/icons/church.svg" alt="Церковь">Молебен</p>
-						<p class="schedule-item__time">12:45 – 13:05</p>
-					</li>
-					<li class="schedule-item schedule-item--special">
-						<p class="schedule-item__text"><img src="assets/icons/tree.svg" alt="Дерево">Прогулка</p>
-						<p class="schedule-item__time">13:00 – 13:30</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">1 занятие (Внеурочка)</p>
-						<p class="schedule-item__time">13:30 – 14:10</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">2 занятие (Внеурочка)</p>
-						<p class="schedule-item__time">14:20 – 15:00</p>
-					</li>
-					<li class="schedule-item schedule-item--special">
-						<p class="schedule-item__text"><img src="assets/icons/book-schedule.svg"
-								alt="Книга">Самоподготовка</p>
-						<p class="schedule-item__time">15:00 – 16:00</p>
-					</li>
-				</ul>
-			</div>
-
-			<div class="schedule-card">
-				<h3 class="schedule-card__title"><img src="assets/icons/clock-schedule.svg" alt="Часы">Расписание уроков
+<p class="schedule-item__time">07:55 – 08:20 (25 мин)</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">1 урок</p>
+<p class="schedule-item__time">08:20 – 09:00</p>
+</li>
+<li class="schedule-item schedule-item--break">
+<p class="schedule-item__text"><img alt="Тост" src="assets/icons/food-toastr.svg"/>Завтрак</p>
+<p class="schedule-item__time">9:00 – 9:10</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">2 урок</p>
+<p class="schedule-item__time">09:20 – 10:00</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">3 урок</p>
+<p class="schedule-item__time">10:10 – 10:50</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">4 урок</p>
+<p class="schedule-item__time">11:00 – 11:40</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">5 урок</p>
+<p class="schedule-item__time">11:50 – 12:30</p>
+</li>
+<li class="schedule-item schedule-item--break">
+<p class="schedule-item__text"><img alt="Яблоко" src="assets/icons/food-appler.svg"/>Обед</p>
+<p class="schedule-item__time">12:20 – 12:40</p>
+</li>
+<li class="schedule-item schedule-item--church">
+<p class="schedule-item__text"><img alt="Церковь" src="assets/icons/church.svg"/>Молебен</p>
+<p class="schedule-item__time">12:45 – 13:05</p>
+</li>
+<li class="schedule-item schedule-item--special">
+<p class="schedule-item__text"><img alt="Дерево" src="assets/icons/tree.svg"/>Прогулка</p>
+<p class="schedule-item__time">13:00 – 13:30</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">1 занятие (Внеурочка)</p>
+<p class="schedule-item__time">13:30 – 14:10</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">2 занятие (Внеурочка)</p>
+<p class="schedule-item__time">14:20 – 15:00</p>
+</li>
+<li class="schedule-item schedule-item--special">
+<p class="schedule-item__text"><img alt="Книга" src="assets/icons/book-schedule.svg"/>Самоподготовка</p>
+<p class="schedule-item__time">15:00 – 16:00</p>
+</li>
+</ul>
+</div>
+<div class="schedule-card">
+<h3 class="schedule-card__title"><img alt="Часы" src="assets/icons/clock-schedule.svg"/>Расписание уроков
 				</h3>
-				<ul class="schedule-list">
-					<li class="schedule-item schedule-item--church">
-						<p class="schedule-item__text"><img src="assets/icons/church.svg" alt="Церковь">Общая молитва
+<ul class="schedule-list">
+<li class="schedule-item schedule-item--church">
+<p class="schedule-item__text"><img alt="Церковь" src="assets/icons/church.svg"/>Общая молитва
 						</p>
-						<p class="schedule-item__time">07:55 – 08:20 (25 мин)</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">1 урок</p>
-						<div class="schedule-item__info">
-							<p class="schedule-item__subject">Математика</p>
-							<p class="schedule-item__title">каб. 10 • Петров В.С.</p>
-						</div>
-						<p class="schedule-item__time">08:20 – 09:00</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">2 урок</p>
-						<div class="schedule-item__info">
-							<p class="schedule-item__subject">Литературное чтение</p>
-							<p class="schedule-item__title">каб. 11 • Коровина С.Е</p>
-						</div>
-						<p class="schedule-item__time">09:20 – 10:00</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">3 урок</p>
-						<div class="schedule-item__info">
-							<p class="schedule-item__subject">Музыка</p>
-							<p class="schedule-item__title">каб. 2 • Новикова А.Е</p>
-						</div>
-						<p class="schedule-item__time">10:10 – 10:50</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">4 урок</p>
-						<div class="schedule-item__info">
-							<p class="schedule-item__subject">Русский язык</p>
-							<p class="schedule-item__title">каб. 12 • Смирнова Е.А.</p>
-						</div>
-						<p class="schedule-item__time">11:00 – 11:40</p>
-					</li>
-					<li class="schedule-item">
-						<p class="schedule-item__text">5 урок</p>
-						<div class="schedule-item__info">
-							<p class="schedule-item__subject">Русский язык</p>
-							<p class="schedule-item__title">каб. 12 • Смирнова Е.А.</p>
-						</div>
-						<p class="schedule-item__time">11:50 – 12:30</p>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</section>
-
-	<section class="faq-feedback">
-		<div class="feedback">
-			<h2>Остались вопросы? Напишите нам</h2>
-			<p>Мы ответим на указанную почту или перезвоним в течение рабочего дня</p>
-			<form class="feedback__form">
-				<div class="form-group">
-					<label for="user-name">Ваше имя</label>
-					<input type="text" placeholder="Иван Иванов" id="user-name">
-				</div>
-				<div class="form-group">
-					<label for="user-contact">Номер телефона или Email</label>
-					<input type="text" placeholder="+7 (999) 000-00-00 / example@main.ru" id="user-contact">
-				</div>
-				<div class="form-group">
-					<label for="user-theme">Тема обращения</label>
-					<select id="user-theme" class="form-select">
-						<option value="" disabled selected hidden>Выберите тему</option>
-						<option value="admission">Поступление и приём документов</option>
-						<option value="process">Вопросы по учебному процессу</option>
-						<option value="meals">Организация питания и ГПД</option>
-						<option value="activities">Внеурочные занятия и кружки</option>
-						<option value="other">Другой вопрос</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="user-msg">Сообщение</label>
-					<textarea placeholder="Опишите ваш вопрос..." id="user-msg"></textarea>
-				</div>
-				<div class="form-footer">
-					<span class="policy-text">Согласен на обработку персональных данных</span>
-					<button type="submit" class="btn-orange">Отправить заявку</button>
-				</div>
-			</form>
-		</div>
-		<div class="faq">
-			<h2>Частые вопросы</h2>
-			<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
-			<div class="faq__list">
-				<details class="faq__item" open>
-					<summary class="faq__question">Как узнать расписание для конкретного класса?</summary>
-					<p class="faq__answer">Нажмите на нужный корпус вверху страницы (Спасский для 1–4 классов или
+<p class="schedule-item__time">07:55 – 08:20 (25 мин)</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">1 урок</p>
+<div class="schedule-item__info">
+<p class="schedule-item__subject">Математика</p>
+<p class="schedule-item__title">каб. 10 • Петров В.С.</p>
+</div>
+<p class="schedule-item__time">08:20 – 09:00</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">2 урок</p>
+<div class="schedule-item__info">
+<p class="schedule-item__subject">Литературное чтение</p>
+<p class="schedule-item__title">каб. 11 • Коровина С.Е</p>
+</div>
+<p class="schedule-item__time">09:20 – 10:00</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">3 урок</p>
+<div class="schedule-item__info">
+<p class="schedule-item__subject">Музыка</p>
+<p class="schedule-item__title">каб. 2 • Новикова А.Е</p>
+</div>
+<p class="schedule-item__time">10:10 – 10:50</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">4 урок</p>
+<div class="schedule-item__info">
+<p class="schedule-item__subject">Русский язык</p>
+<p class="schedule-item__title">каб. 12 • Смирнова Е.А.</p>
+</div>
+<p class="schedule-item__time">11:00 – 11:40</p>
+</li>
+<li class="schedule-item">
+<p class="schedule-item__text">5 урок</p>
+<div class="schedule-item__info">
+<p class="schedule-item__subject">Русский язык</p>
+<p class="schedule-item__title">каб. 12 • Смирнова Е.А.</p>
+</div>
+<p class="schedule-item__time">11:50 – 12:30</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="faq-feedback">
+<div class="feedback">
+<h2>Остались вопросы? Напишите нам</h2>
+<p>Мы ответим на указанную почту или перезвоним в течение рабочего дня</p>
+<form class="feedback__form">
+<div class="form-group">
+<label for="user-name">Ваше имя</label>
+<input id="user-name" placeholder="Иван Иванов" type="text"/>
+</div>
+<div class="form-group">
+<label for="user-contact">Номер телефона или Email</label>
+<input id="user-contact" placeholder="+7 (999) 000-00-00 / example@main.ru" type="text"/>
+</div>
+<div class="form-group">
+<label for="user-theme">Тема обращения</label>
+<select class="form-select" id="user-theme">
+<option disabled="" hidden="" selected="" value="">Выберите тему</option>
+<option value="admission">Поступление и приём документов</option>
+<option value="process">Вопросы по учебному процессу</option>
+<option value="meals">Организация питания и ГПД</option>
+<option value="activities">Внеурочные занятия и кружки</option>
+<option value="other">Другой вопрос</option>
+</select>
+</div>
+<div class="form-group">
+<label for="user-msg">Сообщение</label>
+<textarea id="user-msg" placeholder="Опишите ваш вопрос..."></textarea>
+</div>
+<div class="form-footer">
+<span class="policy-text">Согласен на обработку персональных данных</span>
+<button class="btn-orange" type="submit">Отправить заявку</button>
+</div>
+</form>
+</div>
+<div class="faq">
+<h2>Частые вопросы</h2>
+<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
+<div class="faq__list">
+<details class="faq__item" open="">
+<summary class="faq__question">Как узнать расписание для конкретного класса?</summary>
+<p class="faq__answer">Нажмите на нужный корпус вверху страницы (Спасский для 1–4 классов или
 						Покровский для 5–11 классов), затем выберите ваш класс и день недели в блоке фильтров.
 						Расписание уроков и звонков обновится автоматически.
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Различается ли расписание звонков в разные дни недели?</summary>
-					<p class="faq__answer">Основная сетка звонков едишна для всей рабочей недели, однако по праздничным
+				</p></details>
+<details class="faq__item">
+<summary class="faq__question">Различается ли расписание звонков в разные дни недели?</summary>
+<p class="faq__answer">Основная сетка звонков едишна для всей рабочей недели, однако по праздничным
 						дням или во время школьных мероприятий время проведения утренней молитвы и молебна может
 						незначительно смещаться. Все изменения заранее публикуются в объявлении на главной странице.
 					</p>
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Где проходят внеурочные занятия и самоподготовка?</summary>
-					<p class="faq__answer">Внеурочные кружки и секции проходят после основных уроков (начиная с 13:30).
+</details>
+<details class="faq__item">
+<summary class="faq__question">Где проходят внеурочные занятия и самоподготовка?</summary>
+<p class="faq__answer">Внеурочные кружки и секции проходят после основных уроков (начиная с 13:30).
 						Кабинет проведения конкретной внеурочки или группе самоподготовки можно уточнить у классного
 						руководителя или на информационном стенде корпуса.
 					</p>
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Что делать, если расписание на сайте отличается от слова учителя?
+</details>
+<details class="faq__item">
+<summary class="faq__question">Что делать, если расписание на сайте отличается от слова учителя?
 					</summary>
-					<p class="faq__answer">На сайте всегда опубликовано утвержденное постоянное расписание. При
+<p class="faq__answer">На сайте всегда опубликовано утвержденное постоянное расписание. При
 						временных заменах уроков (например, из-за болезни учителя) актуальные изменения на текущий день
 						оперативно рассылаются в классные чаты и вывешиваются на электронном табло в холле гимназии.
 					</p>
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Обязательно ли посещение общей молитвы и молебна?</summary>
-					<p class="faq__answer">Общая утренняя молитва (7:55) и дневной молебен (12:45) являются неотъемлемой
+</details>
+<details class="faq__item">
+<summary class="faq__question">Обязательно ли посещение общей молитвы и молебна?</summary>
+<p class="faq__answer">Общая утренняя молитва (7:55) и дневной молебен (12:45) являются неотъемлемой
 						частью уклада гимназии и утреннего настроя на учебу. Они внесены в официальный распорядок дня
 						для всех учащихся.
 					</p>
-				</details>
-			</div>
-		</div>
-	</section>
-
-	<footer>
-
-		<div class="footer-contacts">
-
-			<div class="contacts__info">
-
-				<h2>
+</details>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-contacts">
+<div class="contacts__info">
+<h2>
 					Контакты
 				</h2>
-
-
-				<ul class="contacts__info-list">
-
-					<li class="list-adress">
-
-						<img src="assets/icons/adres.svg" alt="Адрес">
+<ul class="contacts__info-list">
+<li class="list-adress">
+<img alt="Адрес" src="assets/icons/adres.svg"/>
 
 						г. Ковров, ул. Подлесная,
 						д. 10
 
 					</li>
-
-
-					<li class="list-phone">
-
-						<img src="assets/icons/phone.svg" alt="Телефон">
+<li class="list-phone">
+<img alt="Телефон" src="assets/icons/phone.svg"/>
 
 						+7 (49232) 4-01-95,
 						4-22-72
 
 					</li>
-
-
-					<li class="list-email">
-
-						<img src="assets/icons/email.svg" alt="Почта">
+<li class="list-email">
+<img alt="Почта" src="assets/icons/email.svg"/>
 
 						sretenskajgimn@yandex.ru
 
 					</li>
-
-
-					<li class="list-time_work">
-
-						<img src="assets/icons/clock2.svg" alt="Часы">
+<li class="list-time_work">
+<img alt="Часы" src="assets/icons/clock2.svg"/>
 
 						Пн–Пт: 8:00 – 19:00
 
 					</li>
-
-				</ul>
-
-
-				<div class="contacts__buttons">
-
-					<a href="#">
-						<img src="assets/icons/TG_vector.svg" alt="ТГ вектор">
+</ul>
+<div class="contacts__buttons">
+<a href="#">
+<img alt="ТГ вектор" src="assets/icons/TG_vector.svg"/>
 						Написать в Telegram
 					</a>
-
-					<a href="#">
-						<img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">
+<a href="#">
+<img alt="Вацап вектор" src="assets/icons/wtp_vector.svg"/>
 						Написать в WhatsApp
 					</a>
-
-				</div>
-
-			</div>
-
-
-			<div class="contact-map">
-				<div style="position:relative;overflow:hidden;"><a
-						href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
-						style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-						href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
-						style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
-						Яндекс Карты</a><iframe
-						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&utm_source=chatgpt.com&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
-						width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
-					</iframe></div>
-			</div>
-
-		</div>
-
-
-		<div class="footer-bottom">
-
-			<a href="index.html" class="brand__footer">
-
-				<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
-
-				<div class="brand__info__footer">
-
-					<span class="brand__title__footer">
+</div>
+</div>
+<div class="contact-map">
+<div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16" style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
+						Яндекс Карты</a><iframe allowfullscreen="true" frameborder="1" height="400" src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;utm_source=chatgpt.com&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16" style="position:relative;" width="560">
+</iframe></div>
+</div>
+</div>
+<div class="footer-bottom">
+<a class="brand__footer" href="index.html">
+<img alt="Логотип гимназии" class="brand__logo__footer" src="./assets/icons/logo_star.png"/>
+<div class="brand__info__footer">
+<span class="brand__title__footer">
 						Православная гимназия г. Коврова
 					</span>
-
-					<span class="brand__subtitle__footer">
+<span class="brand__subtitle__footer">
 						Частное общеобразовательное учреждение
 					</span>
-
-				</div>
-
-			</a>
-
-
-			<div class="footer__nav">
-
-				<ul class="nav__list">
-
-					<li class="nav__list-about">
-						<a href="story_school.html">
+</div>
+</a>
+<div class="footer__nav">
+<ul class="nav__list">
+<li class="nav__list-about">
+<a href="story_school.html">
 							О гимназии
 						</a>
-					</li>
-
-
-					<li class="nav__list-teach">
-						<a href="class_schedule.html">
+</li>
+<li class="nav__list-teach">
+<a href="class_schedule.html">
 							Обучение
 						</a>
-					</li>
-
-
-					<li class="nav__list-kids">
-						<a href="life.html">
+</li>
+<li class="nav__list-kids">
+<a href="life.html">
 							Жизнь гимназии
 						</a>
-					</li>
-
-
-					<li class="nav__list-faq">
-						<a href="#faq">
+</li>
+<li class="nav__list-faq">
+<a href="#faq">
 							FAQ
 						</a>
-					</li>
-
-
-					<li class="nav__list-contact">
-						<a href="contact.html">
+</li>
+<li class="nav__list-contact">
+<a href="contact.html">
 							Контакты
 						</a>
-					</li>
-
-				</ul>
-
-			</div>
-
-
-			<div class="btn_media">
-
-				<ul class="btn_media__list">
-
-					<li class="media__list-vk">
-
-						<a href="#">
-							<img src="assets/icons/vk_icon.svg" alt="ВК">
-						</a>
-
-					</li>
-
-
-					<li class="media__list-max">
-
-						<a href="#">
-							<img src="assets/icons/images-Photoroom.png" alt="max">
-						</a>
-
-					</li>
-
-
-					<li class="media__list-whp">
-
-						<a href="#">
-
-							<img src="assets/icons/whatsap_icon.svg" alt="Whatsap">
-
-						</a>
-
-					</li>
-
-				</ul>
-
-			</div>
-
-		</div>
-
-
-		<div class="footer-copyright">
-
-			<span>
+</li>
+</ul>
+</div>
+<div class="btn_media">
+<ul class="btn_media__list">
+<li class="media__list-vk">
+<a href="#">
+<img alt="ВК" src="assets/icons/vk_icon.svg"/>
+</a>
+</li>
+<li class="media__list-max">
+<a href="#">
+<img alt="max" src="assets/icons/images-Photoroom.png"/>
+</a>
+</li>
+<li class="media__list-whp">
+<a href="#">
+<img alt="Whatsap" src="assets/icons/whatsap_icon.svg"/>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer-copyright">
+<span>
 				© 2026 Православная гимназия.
 				Все права защищены.
 			</span>
-
-			<a href="#">
+<a href="#">
 				Политика конфиденциальности
 			</a>
-
-		</div>
-
-	</footer>
-
-	<script src="js/lessonsData.js"></script>
-	<script src="js/schedule.js"></script>
-	<script src="js/window.scrollY.js"></script>
-	<script src="js/scheduleAnimations.js"></script>
-	<script src="js/navigation.js"></script>
-	<script src="js/search.js"></script>
-
+</div>
+</footer>
+<script src="js/lessonsData.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/window.scrollY.js"></script>
+<script src="js/scheduleAnimations.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/search.js"></script>
 </body>
-
 </html>

@@ -1,627 +1,457 @@
 <!DOCTYPE html>
+
 <html lang="ru">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>История Гимназии</title>
-
-	<link rel="stylesheet" href="./css/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>История Гимназии</title>
+<link href="./css/style.css" rel="stylesheet"/>
 </head>
-
 <body>
-
-	<header>
-		<div class="top-bar">
-			<div class="containers">
-				<div class="top-bar__content">
-
-					<a href="index.html" class="brand">
-						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
-
-						<div class="brand__info">
-							<span class="brand__title">
+<header>
+<div class="top-bar">
+<div class="containers">
+<div class="top-bar__content">
+<a class="brand" href="index.html">
+<img alt="Логотип гимназии" class="brand__logo" src="./assets/icons/logo_star.png"/>
+<div class="brand__info">
+<span class="brand__title">
 								Православная гимназия г. Коврова
 							</span>
-
-							<span class="brand__subtitle">
+<span class="brand__subtitle">
 								Частное общеобразовательное учреждение
 							</span>
-						</div>
-					</a>
-
-					<form class="search-form" id="site-search-form">
-						<img src="assets/icons/search.svg" alt="">
-
-						<input type="search" id="site-search-input" placeholder="Поиск по сайту..." autocomplete="off">
-					</form>
-
-				</div>
-			</div>
-		</div>
-		<nav class="main-nav">
-
-			<ul class="nav-list">
-
-				<li>
-					<a href="index.html" class="nav-link">
+</div>
+</a>
+<form class="search-form" id="site-search-form">
+<img alt="" src="assets/icons/search.svg"/>
+<input autocomplete="off" id="site-search-input" placeholder="Поиск по сайту..." type="search"/>
+</form>
+</div>
+</div>
+</div>
+<nav class="main-nav">
+<ul class="nav-list">
+<li>
+<a class="nav-link" href="index.html">
 						Главная
 					</a>
-				</li>
-
-
-				<li>
-					<a href="story_school.html" class="nav-link">
-						Сведения об организации
+</li>
+<li>
+<a class="nav-link" href="sveden/index.html">
+						Сведения об образовательной организации
 					</a>
-				</li>
-
-
-				<!-- УЧЕБА -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+</li>
+<!-- УЧЕБА -->
+<li class="nav-item nav-item--mega">
+<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Учеба
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="life.html" class="nav-link">
+						<span aria-hidden="true" class="nav-arrow"></span>
+</button>
+</li>
+<li>
+<a class="nav-link" href="life.html">
 						Жизнь гимназии
 					</a>
-				</li>
-
-
-				<!-- РОДИТЕЛЯМ -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+</li>
+<!-- РОДИТЕЛЯМ -->
+<li class="nav-item nav-item--mega">
+<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Родителям
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="apply.html" class="nav-link">
+						<span aria-hidden="true" class="nav-arrow"></span>
+</button>
+</li>
+<li>
+<a class="nav-link" href="apply.html">
 						Поступающим
 					</a>
-				</li>
-
-
-				<li>
-					<a href="contact.html" class="nav-link">
+</li>
+<li>
+<a class="nav-link" href="contact.html">
 						Контакты
 					</a>
-				</li>
-
-			</ul>
-
-		</nav>
-
-		<div class="mega-menu" id="mega-menu">
-
-			<div class="mega-menu__inner">
-
-				<div class="mega-menu__header">
-
-					<div>
-
-						<h3 id="mega-menu-title">
+</li>
+</ul>
+</nav>
+<div class="mega-menu" id="mega-menu">
+<div class="mega-menu__inner">
+<div class="mega-menu__header">
+<div>
+<h3 id="mega-menu-title">
 							Учеба
 						</h3>
-
-						<p id="mega-menu-description">
+<p id="mega-menu-description">
 							Всё необходимое для учебного процесса
 						</p>
-
-					</div>
-
-
-					<button class="mega-menu__close" type="button" aria-label="Закрыть меню">
+</div>
+<button aria-label="Закрыть меню" class="mega-menu__close" type="button">
 						×
 					</button>
-
-				</div>
-
-
-				<div class="mega-menu__grid" id="mega-menu-content">
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<!-- ЗАТЕМНЕНИЕ ФОНА -->
-
-		<div class="mega-overlay" id="mega-overlay">
-		</div>
-	</header>
-
-	<main class="main-content">
-		<!-- HERO SECTION -->
-		<section class="hero-history">
-			<div class="hero-history__content">
-				<nav class="breadcrumbs" aria-label="Хлебные крошки">
-
-					<a href="index.html" class="breadcrumbs__home">
-						<img src="assets/icons/home.svg" alt="">
+</div>
+<div class="mega-menu__grid" id="mega-menu-content">
+</div>
+</div>
+</div>
+<!-- ЗАТЕМНЕНИЕ ФОНА -->
+<div class="mega-overlay" id="mega-overlay">
+</div>
+</header>
+<main class="main-content">
+<!-- HERO SECTION -->
+<section class="hero-history">
+<div class="hero-history__content">
+<nav aria-label="Хлебные крошки" class="breadcrumbs">
+<a class="breadcrumbs__home" href="index.html">
+<img alt="" src="assets/icons/home.svg"/>
 						Главная
 					</a>
-
-					<span class="breadcrumbs__separator" aria-hidden="true">›</span>
-
-					<span class="breadcrumbs__current">
+<span aria-hidden="true" class="breadcrumbs__separator">›</span>
+<span class="breadcrumbs__current">
 						История гимназии
 					</span>
-
-				</nav>
-				<h1 class="hero-history__title">История и развитие Православной гимназии</h1>
-				<p class="hero-history__subtitle">
+</nav><span class="hero-badge">О гимназии</span>
+<h1 class="hero-history__title">История и развитие Православной гимназии</h1>
+<p class="hero-history__subtitle">
 					От первого корпуса до современного духовно-образовательного комплекса. Путь созидания, веры и
 					развития.
 				</p>
-			</div>
-		</section>
-	</main>
-
-	<!-- GYMNASIUM TODAY SECTION -->
-	<section class="today-stats reveal">
-		<div class="containers">
-
-			<div class="today-stats__header">
-				<h2 class="today-stats__title">
-					<span class="today-stats__icon">
-						<img src="assets/icons/boxicons_school.svg" alt="">
-					</span> Гимназия сегодня
+</div>
+</section>
+</main>
+<!-- GYMNASIUM TODAY SECTION -->
+<section class="today-stats reveal">
+<div class="containers">
+<div class="today-stats__header">
+<h2 class="today-stats__title">
+<span class="today-stats__icon">
+<img alt="" src="assets/icons/boxicons_school.svg"/>
+</span> Гимназия сегодня
 				</h2>
-			</div>
-
-			<div class="today-stats__grid">
-
-				<div class="metric-card metric-card--area-1 reveal"
-					style="background-image: url('assets/images/stat_mg1.jpg');">
-					<div class="metric-card__value">1 Га</div>
-					<div class="metric-card__label">Площадь территории с храмом</div>
-				</div>
-
-				<div class="metric-card metric-card--area-2 reveal"
-					style="background-image:url('assets/images/stat_mg2.jpg');">
-					<div class="metric-card__value">45 × 18 м</div>
-					<div class="metric-card__label">Спортивный корпус с актовым залом</div>
-				</div>
-
-				<div class="metric-card metric-card--area-3 reveal"
-					style="background-image: url('assets/images/stat_mg3.jpg');">
-					<div class="metric-card__value">1 600+ м²</div>
-					<div class="metric-card__label">Общая площадь учебных корпусов</div>
-				</div>
-
-				<div class="metric-card metric-card--area-4 reveal"
-					style="background-image: url('assets/images/stat_mg4.jpg');">
-					<div class="metric-card__value">5 770+</div>
-					<div class="metric-card__label">Учебников и художественных книг</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-
-	<!-- TIMELINE SECTION -->
-	<section class="timeline-section reveal">
-		<div class="container container--wide">
-
-			<div class="timeline-header">
-				<h2 class="timeline-title">
-					<span class="timeline-icon">
-						<img src="assets/icons/history-edu-outline.svg" alt="">
-					</span> Основные вехи развития
+</div>
+<div class="today-stats__grid">
+<div class="metric-card metric-card--area-1 reveal" style="background-image: url('assets/images/stat_mg1.jpg');">
+<div class="metric-card__value">1 Га</div>
+<div class="metric-card__label">Площадь территории с храмом</div>
+</div>
+<div class="metric-card metric-card--area-2 reveal" style="background-image:url('assets/images/stat_mg2.jpg');">
+<div class="metric-card__value">45 × 18 м</div>
+<div class="metric-card__label">Спортивный корпус с актовым залом</div>
+</div>
+<div class="metric-card metric-card--area-3 reveal" style="background-image: url('assets/images/stat_mg3.jpg');">
+<div class="metric-card__value">1 600+ м²</div>
+<div class="metric-card__label">Общая площадь учебных корпусов</div>
+</div>
+<div class="metric-card metric-card--area-4 reveal" style="background-image: url('assets/images/stat_mg4.jpg');">
+<div class="metric-card__value">5 770+</div>
+<div class="metric-card__label">Учебников и художественных книг</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TIMELINE SECTION -->
+<section class="timeline-section reveal">
+<div class="container container--wide">
+<div class="timeline-header">
+<h2 class="timeline-title">
+<span class="timeline-icon">
+<img alt="" src="assets/icons/history-edu-outline.svg"/>
+</span> Основные вехи развития
 				</h2>
-				<p class="timeline-subtitle">Как строилась и менялась гимназия с 2017 года</p>
-			</div>
-
-			<div class="timeline">
-
-				<!-- 2017 -->
-				<article class="timeline-item reveal">
-					<div class="timeline-item__top">
-						<span class="timeline-item__year">2017</span>
-						<span class="timeline-item__badge">МАЙ 2017</span>
-					</div>
-					<h3 class="timeline-item__title">Передача территории на ул. Сосновая</h3>
-					<p class="timeline-item__text">
+<p class="timeline-subtitle">Как строилась и менялась гимназия с 2017 года</p>
+</div>
+<div class="timeline">
+<!-- 2017 -->
+<article class="timeline-item reveal">
+<div class="timeline-item__top">
+<span class="timeline-item__year">2017</span>
+<span class="timeline-item__badge">МАЙ 2017</span>
+</div>
+<h3 class="timeline-item__title">Передача территории на ул. Сосновая</h3>
+<p class="timeline-item__text">
 						Гимназии была передана территория бывшего детского сада на улице Сосновая. Именно с этого
 						момента началась масштабная работа по созданию современного образовательного комплекса.
 					</p>
-					<div class="timeline-item__gallery">
-						<img src="assets/images/2017_1.jpg" alt="Фото 2017 года 1" class="timeline-item__img">
-						<img src="assets/images/2017_1.png" alt="Фото 2017 года 2" class="timeline-item__img">
-					</div>
-				</article>
-
-				<!-- 2018 -->
-				<article class="timeline-item reveal">
-					<div class="timeline-item__top">
-						<span class="timeline-item__year">2018</span>
-						<span class="timeline-item__badge">СЕНТЯБРЬ – ДЕКАБРЬ 2018</span>
-					</div>
-					<h3 class="timeline-item__title">Реконструкция Покровского корпуса и первая библиотека</h3>
-					<p class="timeline-item__text">
+<div class="timeline-item__gallery">
+<img alt="Фото 2017 года 1" class="timeline-item__img" src="assets/images/2017_1.jpg"/>
+<img alt="Фото 2017 года 2" class="timeline-item__img" src="assets/images/2017_1.png"/>
+</div>
+</article>
+<!-- 2018 -->
+<article class="timeline-item reveal">
+<div class="timeline-item__top">
+<span class="timeline-item__year">2018</span>
+<span class="timeline-item__badge">СЕНТЯБРЬ – ДЕКАБРЬ 2018</span>
+</div>
+<h3 class="timeline-item__title">Реконструкция Покровского корпуса и первая библиотека</h3>
+<p class="timeline-item__text">
 						Завершилась реконструкция учебного здания для средних и старших классов на 112 учащихся. А 4
 						декабря состоялось торжественное открытие первой школьной библиотеки.
 					</p>
-					<div class="timeline-item__gallery">
-						<img src="assets/images/2017_1.png" alt="Фото 2018 года 1" class="timeline-item__img">
-						<img src="assets/images/2017_1.png" alt="Фото 2018 года 2" class="timeline-item__img">
-					</div>
-				</article>
-
-				<!-- 2020 -->
-				<article class="timeline-item reveal">
-					<div class="timeline-item__top">
-						<span class="timeline-item__year">2020</span>
-						<span class="timeline-item__badge">2019 – 2020 гг</span>
-					</div>
-					<h3 class="timeline-item__title">Строительство спортивного комплекса и алтаря</h3>
-					<p class="timeline-item__text">
+<div class="timeline-item__gallery">
+<img alt="Фото 2018 года 1" class="timeline-item__img" src="assets/images/2017_1.png"/>
+<img alt="Фото 2018 года 2" class="timeline-item__img" src="assets/images/2017_1.png"/>
+</div>
+</article>
+<!-- 2020 -->
+<article class="timeline-item reveal">
+<div class="timeline-item__top">
+<span class="timeline-item__year">2020</span>
+<span class="timeline-item__badge">2019 – 2020 гг</span>
+</div>
+<h3 class="timeline-item__title">Строительство спортивного комплекса и алтаря</h3>
+<p class="timeline-item__text">
 						При поддержке попечителей заложен фундамент и возведен спортивный корпус (45×18 м) с актовым
 						залом на 2 этаже, а также выстроен и освящен новый алтарь храма.
 					</p>
-					<div class="timeline-item__gallery">
-						<img src="assets/images/2020_1.jpg" alt="Фото 2018 года 1" class="timeline-item__img">
-						<img src="assets/images/2020_2.jpg" alt="Фото 2018 года 2" class="timeline-item__img">
-					</div>
-				</article>
-
-				<article class="timeline-item reveal">
-					<div class="timeline-item__top">
-						<span class="timeline-item__year">2022</span>
-						<span class="timeline-item__badge">2021 – 2022 гг</span>
-					</div>
-					<h3 class="timeline-item__title">Возведение Храма Сретения Господня</h3>
-					<p class="timeline-item__text">
+<div class="timeline-item__gallery">
+<img alt="Фото 2018 года 1" class="timeline-item__img" src="assets/images/2020_1.jpg"/>
+<img alt="Фото 2018 года 2" class="timeline-item__img" src="assets/images/2020_2.jpg"/>
+</div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-item__top">
+<span class="timeline-item__year">2022</span>
+<span class="timeline-item__badge">2021 – 2022 гг</span>
+</div>
+<h3 class="timeline-item__title">Возведение Храма Сретения Господня</h3>
+<p class="timeline-item__text">
 						Старт строительства храма на пожертвования жителей с закладкой именных кирпичей. 1 сентября 2022
 						года митрополит Тихон и епископ Стефан освятили новый храм.
 					</p>
-					<div class="timeline-item__gallery">
-						<img src="assets/images/2022_1.jpg" alt="Фото 2022 года 1" class="timeline-item__img">
-						<img src="assets/images/2022_2.jpg" alt="Фото 2022 года 2" class="timeline-item__img">
-					</div>
-				</article>
-
-				<article class="timeline-item reveal">
-					<div class="timeline-item__top">
-						<span class="timeline-item__year">2024</span>
-						<span class="timeline-item__badge">2023 – 2024 гг</span>
-					</div>
-					<h3 class="timeline-item__title">Строительство нового здания</h3>
-					<p class="timeline-item__text">
+<div class="timeline-item__gallery">
+<img alt="Фото 2022 года 1" class="timeline-item__img" src="assets/images/2022_1.jpg"/>
+<img alt="Фото 2022 года 2" class="timeline-item__img" src="assets/images/2022_2.jpg"/>
+</div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-item__top">
+<span class="timeline-item__year">2024</span>
+<span class="timeline-item__badge">2023 – 2024 гг</span>
+</div>
+<h3 class="timeline-item__title">Строительство нового здания</h3>
+<p class="timeline-item__text">
 						Старт возведения двухэтажного здания-галереи между спортзалом и Покровским корпусом. В нем
 						предусмотрены новый пищеблок, гардеробы, классы и библиотека.
 					</p>
-					<div class="timeline-item__gallery">
-						<img src="assets/images/2024_1.jpg" alt="Фото 2022 года 1" class="timeline-item__img">
-						<img src="assets/images/2024_2.jpg" alt="Фото 2022 года 2" class="timeline-item__img">
-					</div>
-				</article>
-
-				<article class="timeline-item reveal">
-					<div class="timeline-item__top">
-						<span class="timeline-item__year">2026</span>
-						<span class="timeline-item__badge">11 ЯНВАРЯ 2026</span>
-					</div>
-					<h3 class="timeline-item__title">Освящение библиотеки им. св. Николая Японского</h3>
-					<p class="timeline-item__text">
+<div class="timeline-item__gallery">
+<img alt="Фото 2022 года 1" class="timeline-item__img" src="assets/images/2024_1.jpg"/>
+<img alt="Фото 2022 года 2" class="timeline-item__img" src="assets/images/2024_2.jpg"/>
+</div>
+</article>
+<article class="timeline-item reveal">
+<div class="timeline-item__top">
+<span class="timeline-item__year">2026</span>
+<span class="timeline-item__badge">11 ЯНВАРЯ 2026</span>
+</div>
+<h3 class="timeline-item__title">Освящение библиотеки им. св. Николая Японского</h3>
+<p class="timeline-item__text">
 						Митрополит Никандр освятил новую библиотеку на 2-м этаже Архангельского корпуса и передал в дар
 						собрание трудов равноапостольного Николая Японского.
 					</p>
-					<div class="timeline-item__gallery">
-						<img src="assets/images/2026_1.png" alt="Фото 2022 года 1" class="timeline-item__img">
-						<img src="assets/images/2026_2.jpg" alt="Фото 2022 года 2" class="timeline-item__img">
-					</div>
-				</article>
-			</div>
-		</div>
-	</section>
-
-	<section class="arch-project reveal">
-		<div class="container container--wide">
-			<div class="arch-project__grid">
-
-				<!-- Левая колонка -->
-				<div class="arch-project__left">
-					<img src="assets/images/project-plan.png" alt="План комплекса" class="arch-project__main-img">
-				</div>
-
-				<!-- Центральная колонка -->
-				<div class="arch-project__center">
-					<div class="arch-project__header">
-						<span class="arch-project__badge">АРХИТЕКТУРНЫЙ ПРОЕКТ</span>
-						<h2 class="arch-project__title">Единый комплекс гимназии</h2>
-						<p class="arch-project__subtitle">
+<div class="timeline-item__gallery">
+<img alt="Фото 2022 года 1" class="timeline-item__img" src="assets/images/2026_1.png"/>
+<img alt="Фото 2022 года 2" class="timeline-item__img" src="assets/images/2026_2.jpg"/>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="arch-project reveal">
+<div class="container container--wide">
+<div class="arch-project__grid">
+<!-- Левая колонка -->
+<div class="arch-project__left">
+<img alt="План комплекса" class="arch-project__main-img" src="assets/images/project-plan.png"/>
+</div>
+<!-- Центральная колонка -->
+<div class="arch-project__center">
+<div class="arch-project__header">
+<span class="arch-project__badge">АРХИТЕКТУРНЫЙ ПРОЕКТ</span>
+<h2 class="arch-project__title">Единый комплекс гимназии</h2>
+<p class="arch-project__subtitle">
 							Территория площадью 1 ГА в спальном районе города, объединяющая учебные корпуса, спортивное
 							ядро и храм в единую экосистему.
 						</p>
-					</div>
-
-					<div class="arch-project__cards">
-						<div class="arch-card">
-							<div class="arch-card__value">1–11 классы</div>
-							<div class="arch-card__label">Обучение в едином комплексе</div>
-						</div>
-						<div class="arch-card">
-							<div class="arch-card__value">~1 ГА</div>
-							<div class="arch-card__label">Общая площадь территории</div>
-						</div>
-						<div class="arch-card">
-							<div class="arch-card__value arch-card__value">Фонтан и парковая зона</div>
-							<div class="arch-card__label">Пространство для отдыха и прогулок</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Правый блок -->
-				<div class="arch-project__right">
-					<div class="arch-project__img-wrap">
-						<img src="assets/images/project-render-1.jpg" alt="Здание">
-						<span class="arch-project__tag">В проекте</span>
-					</div>
-					<div class="arch-project__img-wrap">
-						<img src="assets/images/project-render-2.jpg" alt="Фонтан">
-						<span class="arch-project__tag">В проекте</span>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-	<section class="thanks-section reveal">
-		<div class="container container--wide">
-			<div class="thanks-card">
-
-				<div class="thanks-card__header">
-					<span class="thanks-card__badge">БЛАГОДАРНОСТЬ</span>
-					<h2 class="thanks-card__title">Попечителям и благотворителям</h2>
-					<p class="thanks-card__subtitle">
+</div>
+<div class="arch-project__cards">
+<div class="arch-card">
+<div class="arch-card__value">1–11 классы</div>
+<div class="arch-card__label">Обучение в едином комплексе</div>
+</div>
+<div class="arch-card">
+<div class="arch-card__value">~1 ГА</div>
+<div class="arch-card__label">Общая площадь территории</div>
+</div>
+<div class="arch-card">
+<div class="arch-card__value arch-card__value">Фонтан и парковая зона</div>
+<div class="arch-card__label">Пространство для отдыха и прогулок</div>
+</div>
+</div>
+</div>
+<!-- Правый блок -->
+<div class="arch-project__right">
+<div class="arch-project__img-wrap">
+<img alt="Здание" src="assets/images/project-render-1.jpg"/>
+<span class="arch-project__tag">В проекте</span>
+</div>
+<div class="arch-project__img-wrap">
+<img alt="Фонтан" src="assets/images/project-render-2.jpg"/>
+<span class="arch-project__tag">В проекте</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="thanks-section reveal">
+<div class="container container--wide">
+<div class="thanks-card">
+<div class="thanks-card__header">
+<span class="thanks-card__badge">БЛАГОДАРНОСТЬ</span>
+<h2 class="thanks-card__title">Попечителям и благотворителям</h2>
+<p class="thanks-card__subtitle">
 						Строительство корпусов, храма и развитие гимназии стали возможны благодаря поддержке
 						неравнодушных организаций, попечительского совета и жителей города, пожертвовавших на именные
 						кирпичи.
 					</p>
-				</div>
-
-				<div class="thanks-card__logos">
-					<img src="assets/images/zid_logo.png" alt="ЗиД" class="thanks-card__logo">
-					<img src="assets/images/logo-askona.png" alt="Askona" class="thanks-card__logo">
-					<img src="assets/images/logo-pro-dobro.png" alt="Про Добро" class="thanks-card__logo">
-				</div>
-
-				<div class="thanks-card__tags">
-					<span class="thanks-card__tag">Предприятия города</span>
-					<span class="thanks-card__tag">Попечительский совет</span>
-					<span class="thanks-card__tag">Жертвователи и прихожане</span>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-	<footer>
-
-		<div class="footer-contacts">
-
-			<div class="contacts__info">
-
-				<h2>
+</div>
+<div class="thanks-card__logos">
+<img alt="ЗиД" class="thanks-card__logo" src="assets/images/zid_logo.png"/>
+<img alt="Askona" class="thanks-card__logo" src="assets/images/logo-askona.png"/>
+<img alt="Про Добро" class="thanks-card__logo" src="assets/images/logo-pro-dobro.png"/>
+</div>
+<div class="thanks-card__tags">
+<span class="thanks-card__tag">Предприятия города</span>
+<span class="thanks-card__tag">Попечительский совет</span>
+<span class="thanks-card__tag">Жертвователи и прихожане</span>
+</div>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-contacts">
+<div class="contacts__info">
+<h2>
 					Контакты
 				</h2>
-
-
-				<ul class="contacts__info-list">
-
-					<li class="list-adress">
-
-						<img src="assets/icons/adres.svg" alt="Адрес">
+<ul class="contacts__info-list">
+<li class="list-adress">
+<img alt="Адрес" src="assets/icons/adres.svg"/>
 
 						г. Ковров, ул. Подлесная,
 						д. 10
 
 					</li>
-
-
-					<li class="list-phone">
-
-						<img src="assets/icons/phone.svg" alt="Телефон">
+<li class="list-phone">
+<img alt="Телефон" src="assets/icons/phone.svg"/>
 
 						+7 (49232) 4-01-95,
 						4-22-72
 
 					</li>
-
-
-					<li class="list-email">
-
-						<img src="assets/icons/email.svg" alt="Почта">
+<li class="list-email">
+<img alt="Почта" src="assets/icons/email.svg"/>
 
 						sretenskajgimn@yandex.ru
 
 					</li>
-
-
-					<li class="list-time_work">
-
-						<img src="assets/icons/clock2.svg" alt="Часы">
+<li class="list-time_work">
+<img alt="Часы" src="assets/icons/clock2.svg"/>
 
 						Пн–Пт: 8:00 – 19:00
 
 					</li>
-
-				</ul>
-
-
-				<div class="contacts__buttons">
-
-					<a href="#">
-						<img src="assets/icons/TG_vector.svg" alt="ТГ вектор">
+</ul>
+<div class="contacts__buttons">
+<a href="#">
+<img alt="ТГ вектор" src="assets/icons/TG_vector.svg"/>
 						Написать в Telegram
 					</a>
-
-					<a href="#">
-						<img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">
+<a href="#">
+<img alt="Вацап вектор" src="assets/icons/wtp_vector.svg"/>
 						Написать в WhatsApp
 					</a>
-
-				</div>
-
-			</div>
-
-
-			<div class="contact-map">
-				<div style="position:relative;overflow:hidden;"><a
-						href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
-						style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-						href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
-						style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
-						Яндекс Карты</a><iframe
-						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&utm_source=chatgpt.com&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
-						width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
-					</iframe></div>
-			</div>
-
-		</div>
-
-
-		<div class="footer-bottom">
-
-			<a href="index.html" class="brand__footer">
-
-				<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
-
-				<div class="brand__info__footer">
-
-					<span class="brand__title__footer">
+</div>
+</div>
+<div class="contact-map">
+<div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16" style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
+						Яндекс Карты</a><iframe allowfullscreen="true" frameborder="1" height="400" src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;utm_source=chatgpt.com&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16" style="position:relative;" width="560">
+</iframe></div>
+</div>
+</div>
+<div class="footer-bottom">
+<a class="brand__footer" href="index.html">
+<img alt="Логотип гимназии" class="brand__logo__footer" src="./assets/icons/logo_star.png"/>
+<div class="brand__info__footer">
+<span class="brand__title__footer">
 						Православная гимназия г. Коврова
 					</span>
-
-					<span class="brand__subtitle__footer">
+<span class="brand__subtitle__footer">
 						Частное общеобразовательное учреждение
 					</span>
-
-				</div>
-
-			</a>
-
-
-			<div class="footer__nav">
-
-				<ul class="nav__list">
-
-					<li class="nav__list-about">
-						<a href="story_school.html">
+</div>
+</a>
+<div class="footer__nav">
+<ul class="nav__list">
+<li class="nav__list-about">
+<a href="story_school.html">
 							О гимназии
 						</a>
-					</li>
-
-
-					<li class="nav__list-teach">
-						<a href="class_schedule.html">
+</li>
+<li class="nav__list-teach">
+<a href="class_schedule.html">
 							Обучение
 						</a>
-					</li>
-
-
-					<li class="nav__list-kids">
-						<a href="life.html">
+</li>
+<li class="nav__list-kids">
+<a href="life.html">
 							Жизнь гимназии
 						</a>
-					</li>
-
-
-					<li class="nav__list-faq">
-						<a href="#faq">
+</li>
+<li class="nav__list-faq">
+<a href="#faq">
 							FAQ
 						</a>
-					</li>
-
-
-					<li class="nav__list-contact">
-						<a href="contact.html">
+</li>
+<li class="nav__list-contact">
+<a href="contact.html">
 							Контакты
 						</a>
-					</li>
-
-				</ul>
-
-			</div>
-
-
-			<div class="btn_media">
-
-				<ul class="btn_media__list">
-
-					<li class="media__list-vk">
-
-						<a href="#">
-							<img src="assets/icons/vk_icon.svg" alt="ВК">
-						</a>
-
-					</li>
-
-
-					<li class="media__list-max">
-
-						<a href="#">
-							<img src="assets/icons/images-Photoroom.png" alt="max">
-						</a>
-
-					</li>
-
-
-					<li class="media__list-whp">
-
-						<a href="#">
-
-							<img src="assets/icons/whatsap_icon.svg" alt="Whatsap">
-
-						</a>
-
-					</li>
-
-				</ul>
-
-			</div>
-
-		</div>
-
-
-		<div class="footer-copyright">
-
-			<span>
+</li>
+</ul>
+</div>
+<div class="btn_media">
+<ul class="btn_media__list">
+<li class="media__list-vk">
+<a href="#">
+<img alt="ВК" src="assets/icons/vk_icon.svg"/>
+</a>
+</li>
+<li class="media__list-max">
+<a href="#">
+<img alt="max" src="assets/icons/images-Photoroom.png"/>
+</a>
+</li>
+<li class="media__list-whp">
+<a href="#">
+<img alt="Whatsap" src="assets/icons/whatsap_icon.svg"/>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer-copyright">
+<span>
 				© 2026 Православная гимназия.
 				Все права защищены.
 			</span>
-
-			<a href="#">
+<a href="#">
 				Политика конфиденциальности
 			</a>
-
-		</div>
-
-	</footer>
-
-	<script src="js/window.scrollY.js"></script>
-	<script src="js/storySchoolAnimation.js"></script>
-	<script src="js/navigation.js"></script>
-	<script src="js/search.js"></script>
-
+</div>
+</footer>
+<script src="js/window.scrollY.js"></script>
+<script src="js/storySchoolAnimation.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/search.js"></script>
 </body>
-
 </html>

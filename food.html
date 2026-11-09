@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<title>Школьное питание</title>
-
-	<link rel="stylesheet" href="./css/style.css">
+	<link href="./css/style.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -14,182 +14,127 @@
 		<div class="top-bar">
 			<div class="containers">
 				<div class="top-bar__content">
-
-					<a href="index.html" class="brand">
-						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
-
+					<a class="brand" href="index.html">
+						<img alt="Логотип гимназии" class="brand__logo" src="./assets/icons/logo_star.png" />
 						<div class="brand__info">
 							<span class="brand__title">
 								Православная гимназия г. Коврова
 							</span>
-
 							<span class="brand__subtitle">
 								Частное общеобразовательное учреждение
 							</span>
 						</div>
 					</a>
-
 					<form class="search-form" id="site-search-form">
-						<img src="assets/icons/search.svg" alt="">
-
-						<input type="search" id="site-search-input" placeholder="Поиск по сайту..." autocomplete="off">
+						<img alt="" src="assets/icons/search.svg" />
+						<input autocomplete="off" id="site-search-input" placeholder="Поиск по сайту..."
+							type="search" />
 					</form>
-
 				</div>
 			</div>
 		</div>
 		<nav class="main-nav">
-
 			<ul class="nav-list">
-
 				<li>
-					<a href="index.html" class="nav-link">
+					<a class="nav-link" href="index.html">
 						Главная
 					</a>
 				</li>
-
-
 				<li>
-					<a href="story_school.html" class="nav-link">
-						Сведения об организации
+					<a class="nav-link" href="sveden/index.html">
+						Сведения об образовательной организации
 					</a>
 				</li>
-
-
 				<!-- УЧЕБА -->
-
 				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+					<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Учеба
-						<span class="nav-arrow" aria-hidden="true"></span>
+						<span aria-hidden="true" class="nav-arrow"></span>
 					</button>
-
 				</li>
-
-
 				<li>
-					<a href="life.html" class="nav-link">
+					<a class="nav-link" href="life.html">
 						Жизнь гимназии
 					</a>
 				</li>
-
-
 				<!-- РОДИТЕЛЯМ -->
-
 				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+					<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Родителям
-						<span class="nav-arrow" aria-hidden="true"></span>
+						<span aria-hidden="true" class="nav-arrow"></span>
 					</button>
-
 				</li>
-
-
 				<li>
-					<a href="apply.html" class="nav-link">
+					<a class="nav-link" href="apply.html">
 						Поступающим
 					</a>
 				</li>
-
-
 				<li>
-					<a href="contact.html" class="nav-link">
+					<a class="nav-link" href="contact.html">
 						Контакты
 					</a>
 				</li>
-
 			</ul>
-
 		</nav>
-
 		<div class="mega-menu" id="mega-menu">
-
 			<div class="mega-menu__inner">
-
 				<div class="mega-menu__header">
-
 					<div>
-
 						<h3 id="mega-menu-title">
 							Учеба
 						</h3>
-
 						<p id="mega-menu-description">
 							Всё необходимое для учебного процесса
 						</p>
-
 					</div>
-
-
-					<button class="mega-menu__close" type="button" aria-label="Закрыть меню">
+					<button aria-label="Закрыть меню" class="mega-menu__close" type="button">
 						×
 					</button>
-
 				</div>
-
-
 				<div class="mega-menu__grid" id="mega-menu-content">
 				</div>
-
 			</div>
-
 		</div>
-
-
 		<!-- ЗАТЕМНЕНИЕ ФОНА -->
-
 		<div class="mega-overlay" id="mega-overlay">
 		</div>
 	</header>
-
 	<section class="canteen-hero">
-
 		<div class="container-journal-hero">
-			<nav class="breadcrumbs" aria-label="Хлебные крошки">
-
-				<a href="index.html" class="breadcrumbs__home">
-					<img src="assets/icons/home.svg" alt="">
+			<nav aria-label="Хлебные крошки" class="breadcrumbs">
+				<a class="breadcrumbs__home" href="index.html">
+					<img alt="" src="assets/icons/home.svg" />
 					Главная
 				</a>
-
-				<span class="breadcrumbs__separator" aria-hidden="true">›</span>
-
+				<span aria-hidden="true" class="breadcrumbs__separator">›</span>
 				<span class="breadcrumbs__current">
 					Школьное питание
 				</span>
-
-			</nav>
+			</nav><span class="hero-badge">Организация питания</span>
 			<h1 class="canteen-title">Организация школьного питания</h1>
 			<p class="canteen-subtitle">Забота о здоровье и правильном рационе учащихся...</p>
 		</div>
-
 		<div class="grid-canteen">
 			<div class="card-canteen">
-				<img src="assets/icons/приборы.svg" alt="Настольные приборы">
+				<img alt="Настольные приборы" src="assets/icons/приборы.svg" />
 				<span>2 удобные трапезные</span>
 				<p>Отдельные залы для начальной (100 мест) и старшей школы (140 мест).</p>
 			</div>
-
 			<div class="card-canteen">
-				<img src="assets/icons/hot-fresh.svg" alt="Горячее блюдо">
+				<img alt="Горячее блюдо" src="assets/icons/hot-fresh.svg" />
 				<span>Свежее и горячее</span>
 				<p>Готовится ежедневно строго по СанПиН и утвержденному меню.</p>
 			</div>
-
 			<div class="card-canteen">
-				<img src="assets/icons/shield-food.svg" alt="Настольные приборы">
+				<img alt="Настольные приборы" src="assets/icons/shield-food.svg" />
 				<span>Родительский контроль</span>
 				<p>Регулярные проверки качества блюд комиссией родителей.</p>
 			</div>
 		</div>
 	</section>
-
 	<section class="canteen-menu">
 		<div class="container-journal">
 			<div class="canteen-menu__grid">
-
 				<aside class="canteen-sidebar">
 					<div class="canteen-sidebar__buildings">
 						<div class="building-card building-card--active" data-building="spassky">
@@ -197,20 +142,16 @@
 							<h4 class="building-card__title">Спасский корпус</h4>
 							<p class="building-card__address">ул. Подлесная, д. 10</p>
 						</div>
-
 						<div class="building-card" data-building="pokrovsky">
 							<span class="building-card__badge">5–11 КЛАССЫ</span>
 							<h4 class="building-card__title">Покровский корпус</h4>
 							<p class="building-card__address">ул. Подлесная, д. 10/1</p>
 						</div>
-						<a href="#" class="pdf-download">
-							<img src="assets/icons/download-logo.svg" alt="Скачать">
+						<a class="pdf-download" href="#">
+							<img alt="Скачать" src="assets/icons/download-logo.svg" />
 							<span class="pdf-download__text">Скачать меню на 10 дней (PDF, 1.2 МБ)</span></a>
 					</div>
-
-
 				</aside>
-
 				<div class="canteen-board">
 					<div class="canteen-board__header">
 						<h3 class="canteen-board__title">Ежедневное меню</h3>
@@ -228,7 +169,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="canteen-board__meals">
 						<div class="meal-card">
 							<div class="meal-card__header">
@@ -257,9 +197,7 @@
 								<span class="meal-card__kbju">Б: 15г Ж: 16г У: 136г | 409 ккал</span>
 							</div>
 						</div>
-
 						<div class="meal-card">
-
 							<div class="meal-card__header">
 								<span class="meal-card__title">ОБЕД</span>
 								<span class="meal-card__price">70,24 ₽</span>
@@ -296,26 +234,22 @@
 			</div>
 		</div>
 	</section>
-
 	<section class="benefits">
 		<h2>Бесплатное питание и льготы</h2>
 		<div class="benefits__grid">
-
 			<article class="benefits-card">
 				<header class="benefits-card__header">
 					<div class="benefits-card__title-wrap">
-						<img class="benefits-card__icon" src="assets/icons/backpack.svg" alt="Рюкзак">
+						<img alt="Рюкзак" class="benefits-card__icon" src="assets/icons/backpack.svg" />
 						<h3 class="benefits-card__title">Учащиеся 1–4 классов</h3>
 					</div>
 					<span class="benefits-card__badge benefits-card__badge--green">Бесплатный завтрак</span>
 				</header>
-
 				<div class="benefits-card__content">
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Что положено:</span>
 						<span class="benefits-card__value">Бесплатное горячее питание (завтрак) ежедневно</span>
 					</p>
-
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Документы:</span>
 						<span class="benefits-card__value">Заявление не требуется (предоставляется автоматически
@@ -323,24 +257,21 @@
 					</p>
 				</div>
 			</article>
-
-
 			<article class="benefits-card">
 				<header class="benefits-card__header">
 					<div class="benefits-card__title-wrap">
-						<img class="benefits-card__icon" src="assets/icons/stethoscope.svg" alt="Штука как у докторов">
+						<img alt="Штука как у докторов" class="benefits-card__icon"
+							src="assets/icons/stethoscope.svg" />
 						<h3 class="benefits-card__title">Дети с ОВЗ и дети-инвалиды (1–11 классы)</h3>
 					</div>
 					<span class="benefits-card__badge benefits-card__badge--blue">Двухразовое питание</span>
 				</header>
-
 				<div class="benefits-card__content">
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Что положено:</span>
 						<span class="benefits-card__value">Бесплатное двухразовое горячее питание (завтрак +
 							обед)</span>
 					</p>
-
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Документы:</span>
 						<span class="benefits-card__value">Заявление от родителя, Заключение ПМПК (для детей с ОВЗ) или
@@ -348,23 +279,19 @@
 					</p>
 				</div>
 			</article>
-
-
 			<article class="benefits-card">
 				<header class="benefits-card__header">
 					<div class="benefits-card__title-wrap">
-						<img class=" benefits-card__icon" src="assets/icons/graph_down.svg" alt="График">
+						<img alt="График" class="benefits-card__icon" src="assets/icons/graph_down.svg" />
 						<h3 class="benefits-card__title">Малообеспеченные семьи (5–11 классы)</h3>
 					</div>
 					<span class="benefits-card__badge benefits-card__badge--green">Бесплатный завтрак</span>
 				</header>
-
 				<div class="benefits-card__content">
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Что положено:</span>
 						<span class="benefits-card__value">Бесплатное горячее питание (завтрак) ежедневно</span>
 					</p>
-
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Документы:</span>
 						<span class="benefits-card__value">Заявление от родителя,
@@ -372,25 +299,21 @@
 					</p>
 				</div>
 			</article>
-
-
 			<article class="benefits-card">
 				<header class="benefits-card__header">
 					<div class="benefits-card__title-wrap">
-						<img class="benefits-card__icon" src="assets/icons/war.svg" alt="Шлем">
+						<img alt="Шлем" class="benefits-card__icon" src="assets/icons/war.svg" />
 						<h3 class="benefits-card__title">Семьи участников СВО, мобилизованных и переселенцев</h3>
 					</div>
-					<span class="benefits-card__badge benefits-card__badge--blue"
-						benefits-card__badge--green>Двухразовое питание</span>
+					<span benefits-card__badge--green=""
+						class="benefits-card__badge benefits-card__badge--blue">Двухразовое питание</span>
 				</header>
-
 				<div class="benefits-card__content">
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Что положено:</span>
 						<span class="benefits-card__value">Бесплатное двухразовое горячее питание (завтрак +
 							обед)</span>
 					</p>
-
 					<p class="benefits-card__text">
 						<span class="benefits-card__label">Документы:</span>
 						<span class="benefits-card__value">Заявление от родителя,
@@ -400,7 +323,6 @@
 			</article>
 		</div>
 	</section>
-
 	<section class="statement">
 		<div class="statement-text">
 			<h3>Нужно оформить льготное питание?</h3>
@@ -408,22 +330,21 @@
 		</div>
 		<div class="statement-btn">
 			<div class="statement-btn__privilege">
-				<img src="assets/icons/download-privilege.svg" alt="Скачать">
+				<img alt="Скачать" src="assets/icons/download-privilege.svg" />
 				<p>Бланк заявления на льготу (.DOCX)</p>
 			</div>
 			<div class="statement-btn__family">
-				<img src="assets/icons/download-privilege-family.svg" alt="Скачать">
+				<img alt="Скачать" src="assets/icons/download-privilege-family.svg" />
 				<p>Бланк заявления для семей СВО (.DOCX)</p>
 			</div>
 		</div>
 	</section>
-
 	<section class="medical">
 		<!-- Левый блок: Карточка с бейджем -->
 		<div class="medical-card">
 			<div class="medical-card__header">
 				<div class="medical-card__title-wrap">
-					<img class="medical-card__icon" src="assets/icons/stethoscope-blue.svg" alt="Медицинский кабинет">
+					<img alt="Медицинский кабинет" class="medical-card__icon" src="assets/icons/stethoscope-blue.svg" />
 					<div class="medical-card__titles">
 						<h3 class="medical-card__title">Медицинский кабинет</h3>
 						<span class="medical-card__subtitle">Спасский корпус</span>
@@ -436,7 +357,6 @@
 				сотрудника)
 			</p>
 		</div>
-
 		<!-- Правый блок: Список параметров -->
 		<div class="medical-info">
 			<p class="medical-info__item">
@@ -453,42 +373,38 @@
 			</p>
 		</div>
 	</section>
-
-
-
 	<section class="info-section">
 		<div class="info-block">
 			<h2 class="info-block__title">Документы и акты</h2>
 			<div class="docs-list">
-				<a href="#" class="doc-card">
-					<img class="doc-card__icon" src="assets/icons/download-documents.svg" alt="Скачать">
+				<a class="doc-card" href="#">
+					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
 					<span class="doc-card__title">Положение об организации питания учащихся</span>
 					<span class="doc-card__meta">PDF, 2.4 МБ</span>
 				</a>
-				<a href="#" class="doc-card">
-					<img class="doc-card__icon" src="assets/icons/download-documents.svg" alt="Скачать">
+				<a class="doc-card" href="#">
+					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
 					<span class="doc-card__title">График посещения столовой и меню</span>
 					<span class="doc-card__meta">PDF, 1.1 МБ</span>
 				</a>
-				<a href="#" class="doc-card">
-					<img class="doc-card__icon" src="assets/icons/download-documents.svg" alt="Скачать">
+				<a class="doc-card" href="#">
+					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
 					<span class="doc-card__title">Поставщики продуктов и контрактные условия</span>
 					<span class="doc-card__meta">PDF, 850 КБ</span>
 				</a>
-				<a href="#" class="doc-card">
-					<img class="doc-card__icon" src="assets/icons/download-documents.svg" alt="Скачать">
+				<a class="doc-card" href="#">
+					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
 					<span class="doc-card__title">Акт проверки школьной столовой родительским контролем</span>
 					<span class="doc-card__meta">PDF, 3.2 МБ</span>
 				</a>
 			</div>
 		</div>
-
 		<div class="info-block">
 			<h2 class="info-block__title">Контакты и обратная связь</h2>
 			<div class="contacts-card">
 				<div class="contacts-card__hotline">
 					<h3 class="contacts-card__subtitle">Горячая линия по питанию</h3>
-					<a href="tel:+70000000000" class="contacts-card__phone">+7 (XXX) XXX-XX-XX</a>
+					<a class="contacts-card__phone" href="tel:+70000000000">+7 (XXX) XXX-XX-XX</a>
 					<p class="contacts-card__note">Минпросвещения РФ / Народный фронт</p>
 				</div>
 				<div class="contacts-card__persons">
@@ -511,16 +427,16 @@
 			<form class="feedback__form">
 				<div class="form-group">
 					<label for="user-name">Ваше имя</label>
-					<input type="text" placeholder="Иван Иванов" id="user-name">
+					<input id="user-name" placeholder="Иван Иванов" type="text" />
 				</div>
 				<div class="form-group">
 					<label for="user-contact">Номер телефона или Email</label>
-					<input type="text" placeholder="+7 (999) 000-00-00 / example@main.ru" id="user-contact">
+					<input id="user-contact" placeholder="+7 (999) 000-00-00 / example@main.ru" type="text" />
 				</div>
 				<div class="form-group">
 					<label for="user-theme">Тема обращения</label>
-					<select id="user-theme" class="form-select">
-						<option value="" disabled selected hidden>Выберите тему</option>
+					<select class="form-select" id="user-theme">
+						<option disabled="" hidden="" selected="" value="">Выберите тему</option>
 						<option value="admission">Поступление и приём документов</option>
 						<option value="process">Вопросы по учебному процессу</option>
 						<option value="meals">Организация питания и ГПД</option>
@@ -530,11 +446,11 @@
 				</div>
 				<div class="form-group">
 					<label for="user-msg">Сообщение</label>
-					<textarea placeholder="Опишите ваш вопрос..." id="user-msg"></textarea>
+					<textarea id="user-msg" placeholder="Опишите ваш вопрос..."></textarea>
 				</div>
 				<div class="form-footer">
 					<span class="policy-text">Согласен на обработку персональных данных</span>
-					<button type="submit" class="btn-orange">Отправить заявку</button>
+					<button class="btn-orange" type="submit">Отправить заявку</button>
 				</div>
 			</form>
 		</div>
@@ -542,7 +458,7 @@
 			<h2>Частые вопросы</h2>
 			<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
 			<div class="faq__list">
-				<details class="faq__item" open>
+				<details class="faq__item" open="">
 					<summary class="faq__question">1. Как оформить бесплатное питание для льготных категорий?</summary>
 					<p class="faq__answer">Для учащихся 1–4 классов горячие завтраки предоставляются автоматически,
 						заявления не требуются. Для получения льготного (в том числе двухразового) питания 5–11 классам
@@ -550,7 +466,6 @@
 						(справку об инвалидности, заключение ПМПК, справку из военкомата или выписку из ЕГИССО).
 					</p>
 				</details>
-
 				<details class="faq__item">
 					<summary class="faq__question">Можно ли отказаться от школьного питания или выбрать индивидуальное
 						меню?</summary>
@@ -559,7 +474,6 @@
 						врача-аллерголога или педиатра с указанием перечня исключаемых продуктов.
 					</p>
 				</details>
-
 				<details class="faq__item">
 					<summary class="faq__question">Как контролируется качество и температура подаваемой еды?</summary>
 					<p class="faq__answer">Качество блюд ежедневно проверяет бракеражная комиссия гимназии перед выдачей
@@ -568,7 +482,6 @@
 						состояние.
 					</p>
 				</details>
-
 				<details class="faq__item">
 					<summary class="faq__question">Что входит в ежедневный бесплатный завтрак для младших классов?
 					</summary>
@@ -580,215 +493,139 @@
 			</div>
 		</div>
 	</section>
-
 	<footer>
-
 		<div class="footer-contacts">
-
 			<div class="contacts__info">
-
 				<h2>
 					Контакты
 				</h2>
-
-
 				<ul class="contacts__info-list">
-
 					<li class="list-adress">
-
-						<img src="assets/icons/adres.svg" alt="Адрес">
+						<img alt="Адрес" src="assets/icons/adres.svg" />
 
 						г. Ковров, ул. Подлесная,
 						д. 10
 
 					</li>
-
-
 					<li class="list-phone">
-
-						<img src="assets/icons/phone.svg" alt="Телефон">
+						<img alt="Телефон" src="assets/icons/phone.svg" />
 
 						+7 (49232) 4-01-95,
 						4-22-72
 
 					</li>
-
-
 					<li class="list-email">
-
-						<img src="assets/icons/email.svg" alt="Почта">
+						<img alt="Почта" src="assets/icons/email.svg" />
 
 						sretenskajgimn@yandex.ru
 
 					</li>
-
-
 					<li class="list-time_work">
-
-						<img src="assets/icons/clock2.svg" alt="Часы">
+						<img alt="Часы" src="assets/icons/clock2.svg" />
 
 						Пн–Пт: 8:00 – 19:00
 
 					</li>
-
 				</ul>
-
-
 				<div class="contacts__buttons">
-
 					<a href="#">
-						<img src="assets/icons/TG_vector.svg" alt="ТГ вектор">
+						<img alt="ТГ вектор" src="assets/icons/TG_vector.svg" />
 						Написать в Telegram
 					</a>
-
 					<a href="#">
-						<img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">
+						<img alt="Вацап вектор" src="assets/icons/wtp_vector.svg" />
 						Написать в WhatsApp
 					</a>
-
 				</div>
-
 			</div>
-
-
 			<div class="contact-map">
 				<div style="position:relative;overflow:hidden;"><a
-						href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
+						href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps"
 						style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-						href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
+						href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16"
 						style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
-						Яндекс Карты</a><iframe
-						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&utm_source=chatgpt.com&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
-						width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
+						Яндекс Карты</a><iframe allowfullscreen="true" frameborder="1" height="400"
+						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;utm_source=chatgpt.com&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16"
+						style="position:relative;" width="560">
 					</iframe></div>
 			</div>
-
 		</div>
-
-
 		<div class="footer-bottom">
-
-			<a href="index.html" class="brand__footer">
-
-				<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
-
+			<a class="brand__footer" href="index.html">
+				<img alt="Логотип гимназии" class="brand__logo__footer" src="./assets/icons/logo_star.png" />
 				<div class="brand__info__footer">
-
 					<span class="brand__title__footer">
 						Православная гимназия г. Коврова
 					</span>
-
 					<span class="brand__subtitle__footer">
 						Частное общеобразовательное учреждение
 					</span>
-
 				</div>
-
 			</a>
-
-
 			<div class="footer__nav">
-
 				<ul class="nav__list">
-
 					<li class="nav__list-about">
 						<a href="story_school.html">
 							О гимназии
 						</a>
 					</li>
-
-
 					<li class="nav__list-teach">
 						<a href="class_schedule.html">
 							Обучение
 						</a>
 					</li>
-
-
 					<li class="nav__list-kids">
 						<a href="life.html">
 							Жизнь гимназии
 						</a>
 					</li>
-
-
 					<li class="nav__list-faq">
 						<a href="#faq">
 							FAQ
 						</a>
 					</li>
-
-
 					<li class="nav__list-contact">
 						<a href="contact.html">
 							Контакты
 						</a>
 					</li>
-
 				</ul>
-
 			</div>
-
-
 			<div class="btn_media">
-
 				<ul class="btn_media__list">
-
 					<li class="media__list-vk">
-
 						<a href="#">
-							<img src="assets/icons/vk_icon.svg" alt="ВК">
+							<img alt="ВК" src="assets/icons/vk_icon.svg" />
 						</a>
-
 					</li>
-
-
 					<li class="media__list-max">
-
 						<a href="#">
-							<img src="assets/icons/images-Photoroom.png" alt="max">
+							<img alt="max" src="assets/icons/images-Photoroom.png" />
 						</a>
-
 					</li>
-
 					<li class="media__list-whp">
-
 						<a href="#">
-
-							<img src="assets/icons/whatsap_icon.svg" alt="Whatsap">
-
+							<img alt="Whatsap" src="assets/icons/whatsap_icon.svg" />
 						</a>
-
 					</li>
-
 				</ul>
-
 			</div>
-
 		</div>
-
-
 		<div class="footer-copyright">
-
 			<span>
 				© 2026 Православная гимназия.
 				Все права защищены.
 			</span>
-
 			<a href="#">
 				Политика конфиденциальности
 			</a>
-
 		</div>
-
 	</footer>
-
 	<script src="js/script.js"></script>
 	<script src="js/window.scrollY.js"></script>
 	<script src="js/foodAnimations.js"></script>
 	<script src="js/navigation.js"></script>
 	<script src="js/search.js"></script>
-
 </body>
 
 </html>

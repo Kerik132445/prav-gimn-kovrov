@@ -1,1339 +1,1208 @@
 <!DOCTYPE html>
+
 <html lang="ru">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Документы</title>
-
-	<link rel="stylesheet" href="./css/style.css">
-</head>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Документы и локальные акты — Православная гимназия г. Коврова</title>
+<link href="./css/style.css" rel="stylesheet"/>
+<style id="documents-custom-style">
+/* Согласованный дизайн страницы документов (по образцу teachers.html) */
+.page-hero {
+    background: var(--color-bg-page, #F8FAFC);
+    padding: 24px 92px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.page-hero .site-container {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.page-hero .breadcrumbs {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    margin-bottom: 24px;
+}
+.hero-badge {
+    display: block;
+    width: fit-content;
+    background-color: #DBEAFE !important;
+    border: 1px solid #BFDBFE !important;
+    color: #1D4ED8 !important;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 4px 14px;
+    border-radius: 9999px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 2px rgba(29, 78, 216, 0.05);
+}
+.hero-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1E40AF !important;
+    line-height: 1.2;
+    margin: 0 0 10px;
+}
+.hero-subtitle {
+    font-size: 18px;
+    color: #334155;
+    line-height: 1.6;
+    max-width: 950px;
+    margin: 0;
+}
+.toolbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 16px 92px;
+    margin-bottom: 32px;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+}
+.toolbar-sticky .site-container {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.toolbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.filter-pills {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.pill-btn {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 7px 15px;
+    border-radius: 9999px;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.pill-btn:hover {
+    border-color: #0284c7;
+    color: #0284c7;
+    background: #f0f9ff;
+}
+.pill-btn--active {
+    background: #0284c7 !important;
+    border-color: #0284c7 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+.search-box {
+    position: relative;
+    width: 300px;
+}
+.search-box__input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 14px 8px 38px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9999px;
+    font-size: 13.5px;
+    background: #ffffff url('assets/icons/search.svg') no-repeat 13px center;
+    background-size: 15px 15px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+.search-box__input:focus {
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+.main-content .site-container {
+    width: min(1200px, calc(100% - 48px));
+    margin: 0 auto;
+}
+.accordions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 60px;
+}
+.accordion-document {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+}
+.accordion-document:hover {
+    border-color: #cbd5e1;
+}
+.accordion-document--active {
+    border-color: #93c5fd;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+}
+.document-title {
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background: #ffffff;
+    transition: background-color 0.15s ease;
+}
+.document-title:hover {
+    background-color: #f8fafc;
+}
+.document-title-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.document-title-text h2 {
+    font-size: 17.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.3;
+}
+.accordion-document-badge {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 9999px;
+}
+.accordion-document--active .accordion-document-badge {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+.accordion-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.25s ease;
+    opacity: 0.6;
+}
+.accordion-document--active .accordion-icon {
+    transform: rotate(180deg);
+    opacity: 1;
+}
+.accordion-content {
+    border-top: 1px solid #f1f5f9;
+    display: none;
+    padding: 10px 22px;
+    background: #fafafa;
+}
+.accordion-document--active .accordion-content {
+    display: block;
+}
+.documents-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.documents-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin: 7px 0;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+    gap: 14px;
+    transition: all 0.15s ease;
+}
+.documents-item:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.06);
+    transform: translateY(-1px);
+}
+.documents-item__info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    flex-grow: 1;
+}
+.doc-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+.documents-item__title {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: #1e293b;
+    line-height: 1.45;
+}
+.documents-item__badge {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 6px;
+    margin-left: 8px;
+    white-space: nowrap;
+}
+.documents-item__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+.doc-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.18s ease;
+    cursor: pointer;
+    line-height: 1.4;
+}
+.doc-btn--view {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    color: #0284c7;
+}
+.doc-btn--view:hover {
+    background: #e0f2fe;
+    border-color: #7dd3fc;
+    color: #0369a1;
+}
+.doc-btn--download {
+    background: #0284c7;
+    border: 1px solid #0284c7;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(2, 132, 199, 0.2);
+}
+.doc-btn--download:hover {
+    background: #0369a1;
+    border-color: #0369a1;
+}
+.doc-btn--download img {
+    width: 13px;
+    height: 13px;
+    filter: brightness(0) invert(1);
+}
+@media (max-width: 820px) {
+    .page-hero {
+        padding: 20px 16px !important;
+    }
+    .toolbar-sticky {
+        padding: 12px 16px !important;
+    }
+    .hero-title {
+        font-size: 28px;
+    }
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    .toolbar-inner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-box {
+        width: 100%;
+    }
+    .documents-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .documents-item__actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+</style></head>
 <body>
-	<header>
-		<div class="top-bar">
-			<div class="containers">
-				<div class="top-bar__content">
-
-					<a href="index.html" class="brand">
-						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
-
-						<div class="brand__info">
-							<span class="brand__title">
+<header>
+<div class="top-bar">
+<div class="containers">
+<div class="top-bar__content">
+<a class="brand" href="index.html">
+<img alt="Логотип гимназии" class="brand__logo" src="./assets/icons/logo_star.png"/>
+<div class="brand__info">
+<span class="brand__title">
 								Православная гимназия г. Коврова
 							</span>
-
-							<span class="brand__subtitle">
+<span class="brand__subtitle">
 								Частное общеобразовательное учреждение
 							</span>
-						</div>
-					</a>
-
-					<form class="search-form" id="site-search-form">
-						<img src="assets/icons/search.svg" alt="">
-
-						<input type="search" id="site-search-input" placeholder="Поиск по сайту..." autocomplete="off">
-					</form>
-
-				</div>
-			</div>
-		</div>
-		<nav class="main-nav">
-
-			<ul class="nav-list">
-
-				<li>
-					<a href="index.html" class="nav-link">
+</div>
+</a>
+<form class="search-form" id="site-search-form">
+<img alt="" src="assets/icons/search.svg"/>
+<input autocomplete="off" id="site-search-input" placeholder="Поиск по сайту..." type="search"/>
+</form>
+</div>
+</div>
+</div>
+<nav class="main-nav">
+<ul class="nav-list">
+<li>
+<a class="nav-link" href="index.html">
 						Главная
 					</a>
-				</li>
-
-
-				<li>
-					<a href="story_school.html" class="nav-link">
-						Сведения об организации
+</li>
+<li>
+<a class="nav-link" href="sveden/index.html">
+						Сведения об образовательной организации
 					</a>
-				</li>
-
-
-				<!-- УЧЕБА -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+</li>
+<!-- УЧЕБА -->
+<li class="nav-item nav-item--mega">
+<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Учеба
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="life.html" class="nav-link">
+						<span aria-hidden="true" class="nav-arrow"></span>
+</button>
+</li>
+<li>
+<a class="nav-link" href="life.html">
 						Жизнь гимназии
 					</a>
-				</li>
-
-
-				<!-- РОДИТЕЛЯМ -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+</li>
+<!-- РОДИТЕЛЯМ -->
+<li class="nav-item nav-item--mega">
+<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Родителям
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="apply.html" class="nav-link">
+						<span aria-hidden="true" class="nav-arrow"></span>
+</button>
+</li>
+<li>
+<a class="nav-link" href="apply.html">
 						Поступающим
 					</a>
-				</li>
-
-
-				<li>
-					<a href="contact.html" class="nav-link">
+</li>
+<li>
+<a class="nav-link" href="contact.html">
 						Контакты
 					</a>
-				</li>
-
-			</ul>
-
-		</nav>
-
-
-		<div class="mega-menu" id="mega-menu">
-
-			<div class="mega-menu__inner">
-
-				<div class="mega-menu__header">
-
-					<div>
-
-						<h3 id="mega-menu-title">
+</li>
+</ul>
+</nav>
+<div class="mega-menu" id="mega-menu">
+<div class="mega-menu__inner">
+<div class="mega-menu__header">
+<div>
+<h3 id="mega-menu-title">
 							Учеба
 						</h3>
-
-						<p id="mega-menu-description">
+<p id="mega-menu-description">
 							Всё необходимое для учебного процесса
 						</p>
-
-					</div>
-
-
-					<button class="mega-menu__close" type="button" aria-label="Закрыть меню">
+</div>
+<button aria-label="Закрыть меню" class="mega-menu__close" type="button">
 						×
 					</button>
-
-				</div>
-
-
-				<div class="mega-menu__grid" id="mega-menu-content">
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<!-- ЗАТЕМНЕНИЕ ФОНА -->
-
-		<div class="mega-overlay" id="mega-overlay">
-		</div>
-	</header>
-
-	<section class="documents-hero">
-		<div class="hero-content">
-			<nav class="breadcrumbs" aria-label="Хлебные крошки">
-				<a href="index.html" class="breadcrumbs__home">
-					<img src="assets/icons/home.svg" alt="">
+</div>
+<div class="mega-menu__grid" id="mega-menu-content">
+</div>
+</div>
+</div>
+<!-- ЗАТЕМНЕНИЕ ФОНА -->
+<div class="mega-overlay" id="mega-overlay">
+</div>
+</header>
+<div class="page-hero">
+<div class="site-container">
+<nav aria-label="Хлебные крошки" class="breadcrumbs">
+<a class="breadcrumbs__home" href="index.html">
+<img alt="" src="assets/icons/home.svg"/>
 					Главная
 				</a>
-				<span class="breadcrumbs__separator" aria-hidden="true">›</span>
-
-				<span class="breadcrumbs__current">
-					Документы
-				</span>
-			</nav>
-			<p class="badge_documents">БАЗА ДОКУМЕНТОВ</p>
-			<h1 class=schedule-hero__title>Документы и локальные акты</h1>
-			<p class="documents-hero__subtitle">Официальная документация и нормативно-правовая база гимназии</p>
-		</div>
-	</section>
-
-	<section class="panel-documents">
-		<div class="documents-toolbar">
-			<div class="document-tags">
-				<button class="tag-btn tag-btn--active" data-category="all">Все документы</button>
-				<button class="tag-btn" data-category="legal">Правоустанавливающие</button>
-				<button class="tag-btn" data-category="students">Обучающимся</button>
-				<button class="tag-btn" data-category="teachers">Работникам</button>
-				<button class="tag-btn" data-category="acts">Локальные акты</button>
-				<button class="tag-btn" data-category="educational_environment">ЭИОС</button>
-				<button class="tag-btn" data-category="Charity">Пожертвования</button>
-			</div>
-			<div class="container-search">
-				<input type="search" class="search-input" placeholder="Поиск по названию...">
-			</div>
-		</div>
-
-		<div class="accordions-document">
-			<div class="accordions-container">
-
-
-				<div class="accordion-document accordion-document--active" data-category="legal">
-					<div class="document-title">
-						<div class="document-title-text">
-							<h2>Правоустанавливающие документы</h2>
-							<span class="accordion-document-badge">4 файла</span>
-						</div>
-						<img src="assets/icons/arrow_down.svg" alt="Открыть/закрыть" class="accordion-icon">
-					</div>
-
-					<div class="accordion-content">
-						<div class="accordion-content__inner">
-							<div class="document-list">
-								<ul class="documents-list">
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Устав Православной гимназии</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Конфессиональное представление</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Выписка из системы государственной
+<span aria-hidden="true" class="breadcrumbs__separator">›</span>
+<span class="breadcrumbs__current">Документы</span>
+</nav>
+<span class="hero-badge">Официальные сведения</span>
+<h1 class="hero-title">Документы и локальные акты</h1>
+<p class="hero-subtitle">
+				Правоустанавливающие документы, регламенты, локальные нормативные акты и правила Православной гимназии г. Коврова.
+			</p>
+</div>
+</div>
+<div class="toolbar-sticky">
+<div class="site-container">
+<div class="toolbar-inner">
+<div class="filter-pills">
+<button class="pill-btn pill-btn--active" data-category="all">Все документы</button>
+<button class="pill-btn" data-category="legal">Правоустанавливающие</button>
+<button class="pill-btn" data-category="relations">Образовательные отношения</button>
+<button class="pill-btn" data-category="students">Обучающимся</button>
+<button class="pill-btn" data-category="teachers">Работникам</button>
+<button class="pill-btn" data-category="educational_environment">ЭИОС</button>
+<button class="pill-btn" data-category="acts">Локальные акты</button>
+<button class="pill-btn" data-category="Charity">Пожертвования</button>
+</div>
+<div class="search-box">
+<input aria-label="Поиск по документам" class="search-box__input" placeholder="Поиск по названию документа..." type="search"/>
+</div>
+</div>
+</div>
+</div>
+<main class="main-content">
+<div class="site-container">
+<div class="accordions-container">
+<div class="accordion-document accordion-document--active" data-category="legal">
+<div class="document-title">
+<div class="document-title-text">
+<h2>Правоустанавливающие документы</h2>
+<span class="accordion-document-badge">4 документа</span>
+</div>
+<img alt="Открыть/закрыть" class="accordion-icon" src="assets/icons/arrow_down.svg"/>
+</div>
+<div class="accordion-content">
+<div class="accordion-content__inner">
+<div class="document-list">
+<ul class="documents-list">
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Устав Православной гимназии</span>
+<span class="documents-item__badge">PDF • 3.4 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%A3%D0%A1%D0%A2%D0%90%D0%92%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Устав Православной гимназии для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="УСТАВ гимназии.pdf" href="documents/%D0%A3%D0%A1%D0%A2%D0%90%D0%92%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" title="Скачать файл «УСТАВ гимназии.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Конфессиональное представление</span>
+<span class="documents-item__badge">PDF • 2.3 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/20240401%20%D0%9A%D0%BE%D0%BD%D1%84%D0%B5%D1%81%D1%81%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%BE%D0%B1%D0%BE%D1%80%D0%BE%D1%82%D0%BE%D0%BC.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Конфессиональное представление для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="20240401 Конфессионал представление с оборотом.pdf" href="documents/20240401%20%D0%9A%D0%BE%D0%BD%D1%84%D0%B5%D1%81%D1%81%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D0%BE%D0%B1%D0%BE%D1%80%D0%BE%D1%82%D0%BE%D0%BC.pdf" title="Скачать файл «20240401 Конфессионал представление с оборотом.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Выписка из системы государственной
 												аккредитации</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Выписка из реестра лицензий №
+<span class="documents-item__badge">PDF • 72 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%92%D1%8B%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%20%D0%B8%D0%B7%20%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B9%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B%20%D0%BE%D0%B1%20%D0%B0%D0%BA%D0%BA%D1%80%D0%B5%D0%B4%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D0%B8.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Выписка из системы государственной аккредитации для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Выписка из государственной информационной системы об аккредитации.pdf" href="documents/%D0%92%D1%8B%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%20%D0%B8%D0%B7%20%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9%20%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%B9%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B%20%D0%BE%D0%B1%20%D0%B0%D0%BA%D0%BA%D1%80%D0%B5%D0%B4%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D0%B8.pdf" title="Скачать файл «Выписка из государственной информационной системы об аккредитации.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Выписка из реестра лицензий №
 												Л035-01297-33-00233807</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-
-
-				<div class="accordion-document" data-category="relations">
-					<div class="document-title">
-						<div class="document-title-text">
-							<h2>Образовательные отношения</h2>
-							<span class="accordion-document-badge">6 файлов</span>
-						</div>
-						<img src="assets/icons/arrow_down.svg" alt="Открыть/закрыть" class="accordion-icon">
-					</div>
-					<div class="accordion-content">
-						<div class="accordion-content__inner">
-							<div class="document-list">
-								<ul class="documents-list">
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Порядок оформления и возникновения
+<span class="documents-item__badge">PDF • 261 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/20250217-%D0%92%D1%8B%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%20%D0%B8%D0%B7%20%D1%80%D0%B5%D0%B5%D1%81%D1%82%D1%80%D0%B0%20%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D0%B9%20%E2%84%96%20%D0%9B035-01297-33-00233807.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Выписка из реестра лицензий № Л035-01297-33-00233807 для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="20250217-Выписка из реестра лицензий № Л035-01297-33-00233807.pdf" href="documents/20250217-%D0%92%D1%8B%D0%BF%D0%B8%D1%81%D0%BA%D0%B0%20%D0%B8%D0%B7%20%D1%80%D0%B5%D0%B5%D1%81%D1%82%D1%80%D0%B0%20%D0%BB%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D0%B9%20%E2%84%96%20%D0%9B035-01297-33-00233807.pdf" title="Скачать файл «20250217-Выписка из реестра лицензий № Л035-01297-33-00233807.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-document" data-category="relations">
+<div class="document-title">
+<div class="document-title-text">
+<h2>Образовательные отношения</h2>
+<span class="accordion-document-badge">6 документов</span>
+</div>
+<img alt="Открыть/закрыть" class="accordion-icon" src="assets/icons/arrow_down.svg"/>
+</div>
+<div class="accordion-content">
+<div class="accordion-content__inner">
+<div class="document-list">
+<ul class="documents-list">
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Порядок оформления и возникновения
 												образовательных
 												отношений</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о языке образования</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о формах получения
+<span class="documents-item__badge">PDF • 509 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%D0%BE%D0%B7%D0%BD%D0%B8%D0%BA%D0%BD%D0%BE%D0%B2%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D0%B9.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Порядок оформления и возникновения образовательных отношений для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Порядок оформления возникновения отношений.pdf" href="documents/%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D0%BE%D1%84%D0%BE%D1%80%D0%BC%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B2%D0%BE%D0%B7%D0%BD%D0%B8%D0%BA%D0%BD%D0%BE%D0%B2%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D0%B9.pdf" title="Скачать файл «Порядок оформления возникновения отношений.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о языке образования</span>
+<span class="documents-item__badge">PDF • 384 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%B5%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о языке образования для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о языке образования.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%8F%D0%B7%D1%8B%D0%BA%D0%B5%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.pdf" title="Скачать файл «Положение о языке образования.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о формах получения
 												образования</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Правила приема на обучение в
+<span class="documents-item__badge">PDF • 437 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%85%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о формах получения образования для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о формах получения образования.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%85%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.pdf" title="Скачать файл «Положение о формах получения образования.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Правила приема на обучение в
 												Православную
 												гимназию</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о порядке перевода,
+<span class="documents-item__badge">PDF • 346 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BF%D1%80%D0%B8%D0%B5%D0%BC%D0%B0%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D1%8E.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Правила приема на обучение в Православную гимназию для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Правила приема на обучение в гимназию.pdf" href="documents/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BF%D1%80%D0%B8%D0%B5%D0%BC%D0%B0%20%D0%BD%D0%B0%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D1%8E.pdf" title="Скачать файл «Правила приема на обучение в гимназию.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о порядке перевода,
 												отчисления
 												и
 												восстановления</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Режим занятий обучающихся</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="accordion-document" data-category="students">
-					<div class="document-title">
-						<div class="document-title-text">
-							<h2>Участники образовательных отношений: Обучающиеся</h2>
-							<span class="accordion-document-badge">10 файлов</span>
-						</div>
-						<img src="assets/icons/arrow_down.svg" alt="Открыть/закрыть" class="accordion-icon">
-					</div>
-
-					<div class="document-list">
-						<div class="accordion-content">
-							<div class="accordion-content__inner">
-								<ul class="documents-list">
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение об индивидуальном учете
+<span class="documents-item__badge">PDF • 235 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B5-2023.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о порядке перевода, отчисления и восстановления для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о переводе-2023.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%D0%B5-2023.pdf" title="Скачать файл «Положение о переводе-2023.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Режим занятий обучающихся</span>
+<span class="documents-item__badge">PDF • 685 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D0%B9%20%D0%BE%D0%B1%D1%83%D1%87%D0%B0%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Режим занятий обучающихся для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Режим занятий обучающихся 25.pdf" href="documents/%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D0%B9%20%D0%BE%D0%B1%D1%83%D1%87%D0%B0%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025.pdf" title="Скачать файл «Режим занятий обучающихся 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-document" data-category="students">
+<div class="document-title">
+<div class="document-title-text">
+<h2>Участники образовательных отношений: Обучающиеся</h2>
+<span class="accordion-document-badge">10 документов</span>
+</div>
+<img alt="Открыть/закрыть" class="accordion-icon" src="assets/icons/arrow_down.svg"/>
+</div>
+<div class="document-list">
+<div class="accordion-content">
+<div class="accordion-content__inner">
+<ul class="documents-list">
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение об индивидуальном учете
 												результатов
 												освоения программ</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о летней практике</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о системе оценки (1–4
+<span class="documents-item__badge">PDF • 459 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%B8%D0%BD%D0%B4%D0%B8%D0%B2%D0%B8%D0%B4%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%20%D1%83%D1%87%D0%B5%D1%82%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%BE%D1%81%D0%B2%D0%BE%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение об индивидуальном учете результатов освоения программ для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение об индивидуальном учете результатов освоения программ 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%B8%D0%BD%D0%B4%D0%B8%D0%B2%D0%B8%D0%B4%D1%83%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%20%D1%83%D1%87%D0%B5%D1%82%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%BE%D1%81%D0%B2%D0%BE%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%2025.pdf" title="Скачать файл «Положение об индивидуальном учете результатов освоения программ 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о летней практике</span>
+<span class="documents-item__badge">PDF • 344 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%9E%D0%9B%D0%9E%D0%96%D0%95%D0%9D%D0%98%D0%95%20%D0%BE%20%D0%BB%D0%B5%D1%82%D0%BD%D0%B5%D0%B9%20%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B5.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о летней практике для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="ПОЛОЖЕНИЕ о летней практике.pdf" href="documents/%D0%9F%D0%9E%D0%9B%D0%9E%D0%96%D0%95%D0%9D%D0%98%D0%95%20%D0%BE%20%D0%BB%D0%B5%D1%82%D0%BD%D0%B5%D0%B9%20%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B5.pdf" title="Скачать файл «ПОЛОЖЕНИЕ о летней практике.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о системе оценки (1–4
 												классы)</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о поощрении
+<span class="documents-item__badge">PDF • 120 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/2024-2025-%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D0%B8-1-4%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о системе оценки (1–4 классы) для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="2024-2025-Положение-оценки-1-4 классы.pdf" href="documents/2024-2025-%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BE%D1%86%D0%B5%D0%BD%D0%BA%D0%B8-1-4%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B.pdf" title="Скачать файл «2024-2025-Положение-оценки-1-4 классы.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о поощрении
 												учащихся</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о порядке посещения
+<span class="documents-item__badge">PDF • 1.4 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D0%BE%D1%89%D1%80%D0%B5%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о поощрении учащихся для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о поощрении учащихся 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D0%BE%D1%89%D1%80%D0%B5%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025.pdf" title="Скачать файл «Положение о поощрении учащихся 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о порядке посещения
 												мероприятий</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о школьной форме и внешнем
+<span class="documents-item__badge">PDF • 441 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D0%BF%D0%BE%D1%81%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B9%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о порядке посещения мероприятий для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о порядке посещения мероприятий 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D0%BF%D0%BE%D1%81%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BC%D0%B5%D1%80%D0%BE%D0%BF%D1%80%D0%B8%D1%8F%D1%82%D0%B8%D0%B9%2025.pdf" title="Скачать файл «Положение о порядке посещения мероприятий 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о школьной форме и внешнем
 												виде</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о правилах внутреннего
+<span class="documents-item__badge">PDF • 215 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%88%D0%BA%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%84%D0%BE%D1%80%D0%BC%D0%B5%20%D0%B8%20%D0%B2%D0%BD%D0%B5%D1%88%D0%BD%D0%B5%D0%BC%20%D0%B2%D0%B8%D0%B4%D0%B5%20%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о школьной форме и внешнем виде для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о школьной форме и внешнем виде  25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%88%D0%BA%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%84%D0%BE%D1%80%D0%BC%D0%B5%20%D0%B8%20%D0%B2%D0%BD%D0%B5%D1%88%D0%BD%D0%B5%D0%BC%20%D0%B2%D0%B8%D0%B4%D0%B5%20%2025.pdf" title="Скачать файл «Положение о школьной форме и внешнем виде  25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о правилах внутреннего
 												распорядка
 												учащихся</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о постановке учащихся и
+<span class="documents-item__badge">PDF • 3.9 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%D1%85%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B5%D0%B3%D0%BE%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B0%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о правилах внутреннего распорядка учащихся для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о правилах внутреннего распорядка 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%D1%85%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B5%D0%B3%D0%BE%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B0%2025.pdf" title="Скачать файл «Положение о правилах внутреннего распорядка 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о постановке учащихся и
 												семей
 												на
 												внутришкольный учет</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Кодекс гимназической жизни</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Правила поведения учащихся</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="accordion-document" data-category="teachers">
-					<div class="document-title">
-						<div class="document-title-text">
-							<h2>Участники образовательных отношений: Работники</h2>
-							<span class="accordion-document-badge">5 файлов</span>
-						</div>
-						<img src="assets/icons/arrow_down.svg" alt="Открыть/закрыть" class="accordion-icon">
-					</div>
-
-					<div class="document-list">
-						<div class="accordion-content">
-							<div class="accordion-content__inner">
-								<ul class="documents-list">
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Правила внутреннего трудового
+<span class="documents-item__badge">PDF • 353 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/2025-2026-%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B5%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%20%D0%B8%20%D1%81%D0%B5%D0%BC%D0%B5%D0%B9%20%D0%BD%D0%B0%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B8%D1%88%D0%BA%D0%BE%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%83%D1%87%D0%B5%D1%82.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о постановке учащихся и семей на внутришкольный учет для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="2025-2026-Положение о постановке учащихся и семей на внутришкольный учет.pdf" href="documents/2025-2026-%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B5%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%20%D0%B8%20%D1%81%D0%B5%D0%BC%D0%B5%D0%B9%20%D0%BD%D0%B0%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B8%D1%88%D0%BA%D0%BE%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%83%D1%87%D0%B5%D1%82.pdf" title="Скачать файл «2025-2026-Положение о постановке учащихся и семей на внутришкольный учет.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Кодекс гимназической жизни</span>
+<span class="documents-item__badge">PDF • 134 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9A%D0%BE%D0%B4%D0%B5%D0%BA%D1%81%20%28%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%29%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9%20%D0%B6%D0%B8%D0%B7%D0%BD%D0%B8%2024.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Кодекс гимназической жизни для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Кодекс (Правила) гимназической жизни 24.pdf" href="documents/%D0%9A%D0%BE%D0%B4%D0%B5%D0%BA%D1%81%20%28%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%29%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9%20%D0%B6%D0%B8%D0%B7%D0%BD%D0%B8%2024.pdf" title="Скачать файл «Кодекс (Правила) гимназической жизни 24.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Правила поведения учащихся</span>
+<span class="documents-item__badge">PDF • 86 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/2024-2025-%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BF%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025-%D1%80%D0%B5%D0%B4%20%281%29.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Правила поведения учащихся для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="2024-2025-Правила поведения учащихся 25-ред (1).pdf" href="documents/2024-2025-%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%BF%D0%BE%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025-%D1%80%D0%B5%D0%B4%20%281%29.pdf" title="Скачать файл «2024-2025-Правила поведения учащихся 25-ред (1).pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-document" data-category="teachers">
+<div class="document-title">
+<div class="document-title-text">
+<h2>Участники образовательных отношений: Работники</h2>
+<span class="accordion-document-badge">5 документов</span>
+</div>
+<img alt="Открыть/закрыть" class="accordion-icon" src="assets/icons/arrow_down.svg"/>
+</div>
+<div class="document-list">
+<div class="accordion-content">
+<div class="accordion-content__inner">
+<ul class="documents-list">
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Правила внутреннего трудового
 												распорядка
 												гимназии</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о порядке распределения
+<span class="documents-item__badge">PDF • 444 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B5%D0%B3%D0%BE%20%D1%82%D1%80%D1%83%D0%B4%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B0%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Правила внутреннего трудового распорядка гимназии для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Правила внутреннего трудового распорядка гимназии.pdf" href="documents/%D0%9F%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B5%D0%B3%D0%BE%20%D1%82%D1%80%D1%83%D0%B4%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B0%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" title="Скачать файл «Правила внутреннего трудового распорядка гимназии.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о порядке распределения
 												стимулирующей
 												части ФОТ</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Коллективный договор</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о системе поощрения
+<span class="documents-item__badge">PDF • 785 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%D1%82%D0%B8%D0%BC%D1%83%D0%BB%D0%B8%D1%80%D1%83%D1%8E%D1%89%D0%B5%D0%B9%20%D1%87%D0%B0%D1%81%D1%82%D0%B8%20%D1%84%D0%BE%D0%BD%D0%B4%D0%B0%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%8B%20%D1%82%D1%80%D1%83%D0%B4%D0%B0.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о порядке распределения стимулирующей части ФОТ для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о порядке распределения стимулирующей части фонда оплаты труда.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D1%80%D0%B0%D1%81%D0%BF%D1%80%D0%B5%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%D1%82%D0%B8%D0%BC%D1%83%D0%BB%D0%B8%D1%80%D1%83%D1%8E%D1%89%D0%B5%D0%B9%20%D1%87%D0%B0%D1%81%D1%82%D0%B8%20%D1%84%D0%BE%D0%BD%D0%B4%D0%B0%20%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D1%8B%20%D1%82%D1%80%D1%83%D0%B4%D0%B0.pdf" title="Скачать файл «Положение о порядке распределения стимулирующей части фонда оплаты труда.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Коллективный договор</span>
+<span class="documents-item__badge">PDF • 10.6 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%BA%D0%BE%D0%BB%D0%BB%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%2022-25.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Коллективный договор для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="коллективный договор 22-25.pdf" href="documents/%D0%BA%D0%BE%D0%BB%D0%BB%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%2022-25.pdf" title="Скачать файл «коллективный договор 22-25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о системе поощрения
 												педагогов</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Кодекс профессиональной этики
+<span class="documents-item__badge">PDF • 94 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%20%D0%BF%D0%BE%D0%BE%D1%89%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%BE%D0%B2%2B.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о системе поощрения педагогов для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о системе поощрения педагогов+.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%20%D0%BF%D0%BE%D0%BE%D1%89%D1%80%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%BE%D0%B2%2B.pdf" title="Скачать файл «Положение о системе поощрения педагогов+.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Кодекс профессиональной этики
 												педагога</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="accordion-document" data-category="educational_environment">
-					<div class="document-title">
-						<div class="document-title-text">
-							<h2>Информационная образовательная среда (ЭИОС)</h2>
-							<span class="accordion-document-badge">6 файлов</span>
-						</div>
-						<img src="assets/icons/arrow_down.svg" alt="Открыть/закрыть" class="accordion-icon">
-					</div>
-
-					<div class="document-list">
-						<div class="accordion-content">
-							<div class="accordion-content__inner">
-								<ul class="documents-list">
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение об
+<span class="documents-item__badge">PDF • 1.2 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9A%D0%BE%D0%B4%D0%B5%D0%BA%D1%81%20%D0%BF%D1%80%D0%BE%D1%84%D0%B5%D1%81%D1%81%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%8D%D1%82%D0%B8%D0%BA%D0%B8%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%B0%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Кодекс профессиональной этики педагога для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Кодекс профессиональной этики педагога 25.pdf" href="documents/%D0%9A%D0%BE%D0%B4%D0%B5%D0%BA%D1%81%20%D0%BF%D1%80%D0%BE%D1%84%D0%B5%D1%81%D1%81%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%8D%D1%82%D0%B8%D0%BA%D0%B8%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%B0%2025.pdf" title="Скачать файл «Кодекс профессиональной этики педагога 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-document" data-category="educational_environment">
+<div class="document-title">
+<div class="document-title-text">
+<h2>Информационная образовательная среда (ЭИОС)</h2>
+<span class="accordion-document-badge">7 документов</span>
+</div>
+<img alt="Открыть/закрыть" class="accordion-icon" src="assets/icons/arrow_down.svg"/>
+</div>
+<div class="document-list">
+<div class="accordion-content">
+<div class="accordion-content__inner">
+<ul class="documents-list">
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение об
 												электронно-информационной
 												образовательной среде (ЭИОС)</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение об официальном сайте
+<span class="documents-item__badge">PDF • 1.3 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%AD%D0%98%D0%9E%D0%A1%202026%20%D0%BF%D0%BE%D0%B4%D0%BF.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение об электронно-информационной образовательной среде (ЭИОС) для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение об ЭИОС 2026 подп.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%AD%D0%98%D0%9E%D0%A1%202026%20%D0%BF%D0%BE%D0%B4%D0%BF.pdf" title="Скачать файл «Положение об ЭИОС 2026 подп.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение об официальном сайте
 												Православной
 												гимназии</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о ведении электронного
+<span class="documents-item__badge">PDF • 412 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%BE%D1%84%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D1%81%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B9%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение об официальном сайте Православной гимназии для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение об официальном сайте Православной гимназии.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%BE%D1%84%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%BC%20%D1%81%D0%B0%D0%B9%D1%82%D0%B5%20%D0%9F%D1%80%D0%B0%D0%B2%D0%BE%D1%81%D0%BB%D0%B0%D0%B2%D0%BD%D0%BE%D0%B9%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" title="Скачать файл «Положение об официальном сайте Православной гимназии.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о ведении электронного
 												журнала</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о дистанционном
+<span class="documents-item__badge">PDF • 397 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B8%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%D0%B0.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о ведении электронного журнала для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о ведении электронного журнала.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B8%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%D0%B0.pdf" title="Скачать файл «Положение о ведении электронного журнала.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о дистанционном
 												обучении</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Порядок оказания учебно-методической
+<span class="documents-item__badge">PDF • 461 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B4%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%BC%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B8.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о дистанционном обучении для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о дистанционном обучении.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B4%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%BE%D0%BC%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B8.pdf" title="Скачать файл «Положение о дистанционном обучении.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Порядок оказания учебно-методической
 												помощи при
 												дистанционном обучении</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Порядок доступа педагогических
+<span class="documents-item__badge">PDF • 206 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/2024-2025_%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA_%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D0%BD%D0%B8%D1%8F_%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D0%BE_%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%B8_%D0%BF%D1%80%D0%B8_%D0%B4%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D1%82%D0%B5.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Порядок оказания учебно-методической помощи при дистанционном обучении для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="2024-2025_Порядок_оказания_учебно_методической_помощи_при_дистанте.pdf" href="documents/2024-2025_%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA_%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D0%BD%D0%B8%D1%8F_%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D0%BE_%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B9_%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%B8_%D0%BF%D1%80%D0%B8_%D0%B4%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D1%82%D0%B5.pdf" title="Скачать файл «2024-2025_Порядок_оказания_учебно_методической_помощи_при_дистанте.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Порядок доступа педагогических
 												работников к
 												информационным сетям</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="accordion-document" data-category="acts">
-					<div class="document-title">
-						<div class="document-title-text">
-							<h2>Локальные акты</h2>
-							<span class="accordion-document-badge">17 файлов</span>
-						</div>
-						<img src="assets/icons/arrow_down.svg" alt="Открыть/закрыть" class="accordion-icon">
-					</div>
-
-					<div class="document-list">
-						<div class="accordion-content">
-							<div class="accordion-content__inner">
-								<ul class="documents-list">
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение об использовании учащимися
+<span class="documents-item__badge">PDF • 366 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Порядок доступа педагогических работников к информационным сетям для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Порядок доступа педагогических работников 25.pdf" href="documents/%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF%D0%B0%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D1%85%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%2025.pdf" title="Скачать файл «Порядок доступа педагогических работников 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item"><div class="documents-item__info"><img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/><span class="documents-item__title">Договор об оказании услуг связи (доступ к сети Интернет)</span><span class="documents-item__badge">PDF • 1.3 МБ</span></div><div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%94%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%20%D1%81%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B0%D0%B9%D0%B4%D0%B5%D1%80%D0%BE%D0%BC.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Договор об оказании услуг связи (доступ к сети Интернет) для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Договор с провайдером.pdf" href="documents/%D0%94%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%20%D1%81%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B0%D0%B9%D0%B4%D0%B5%D1%80%D0%BE%D0%BC.pdf" title="Скачать Договор с провайдером.pdf"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li></ul>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-document" data-category="acts">
+<div class="document-title">
+<div class="document-title-text">
+<h2>Локальные акты</h2>
+<span class="accordion-document-badge">18 документов</span>
+</div>
+<img alt="Открыть/закрыть" class="accordion-icon" src="assets/icons/arrow_down.svg"/>
+</div>
+<div class="document-list">
+<div class="accordion-content">
+<div class="accordion-content__inner">
+<ul class="documents-list">
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение об использовании учащимися
 												мобильных
 												телефонов</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Порядок формирования аттестационной
+<span class="documents-item__badge">PDF • 436 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%9E%D0%B1%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D0%BC%D0%B8%D1%81%D1%8F%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%BE%D0%B2.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение об использовании учащимися мобильных телефонов для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение Об использовании учащимися мобильных телефонов.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%9E%D0%B1%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D0%BC%D0%B8%D1%81%D1%8F%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D1%82%D0%B5%D0%BB%D0%B5%D1%84%D0%BE%D0%BD%D0%BE%D0%B2.pdf" title="Скачать файл «Положение Об использовании учащимися мобильных телефонов.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Порядок формирования аттестационной
 												комиссии</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о педагогическом совете
+<span class="documents-item__badge">PDF • 358 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D1%84%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%B0%D1%82%D1%82%D0%B5%D1%81%D1%82%D0%B0%D1%86.%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B8%D0%B8%202023.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Порядок формирования аттестационной комиссии для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Порядок формирования аттестац. комиссии 2023.pdf" href="documents/%D0%9F%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D1%84%D0%BE%D1%80%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%B0%D1%82%D1%82%D0%B5%D1%81%D1%82%D0%B0%D1%86.%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B8%D0%B8%202023.pdf" title="Скачать файл «Порядок формирования аттестац. комиссии 2023.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о педагогическом совете
 												гимназии</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о самообследовании</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о комиссии по
+<span class="documents-item__badge">PDF • 432 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%B5%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о педагогическом совете гимназии для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о  педагогическом совете гимназии.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%20%D0%BF%D0%B5%D0%B4%D0%B0%D0%B3%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%B5%20%D0%B3%D0%B8%D0%BC%D0%BD%D0%B0%D0%B7%D0%B8%D0%B8.pdf" title="Скачать файл «Положение о  педагогическом совете гимназии.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о самообследовании</span>
+<span class="documents-item__badge">PDF • 436 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%81%D0%B0%D0%BC%D0%BE%D0%BE%D0%B1%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о самообследовании для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о самообследовании.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%81%D0%B0%D0%BC%D0%BE%D0%BE%D0%B1%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8.pdf" title="Скачать файл «Положение о самообследовании.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о комиссии по
 												урегулированию
 												споров</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о методическом объединении
+<span class="documents-item__badge">PDF • 547 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8E%20%D1%81%D0%BF%D0%BE%D1%80%D0%BE%D0%B2%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D0%B9.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о комиссии по урегулированию споров для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о комиссии по урегулированию споров между участниками образовательных отношений.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B8%D0%B8%20%D0%BF%D0%BE%20%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8E%20%D1%81%D0%BF%D0%BE%D1%80%D0%BE%D0%B2%20%D0%BC%D0%B5%D0%B6%D0%B4%D1%83%20%D1%83%D1%87%D0%B0%D1%81%D1%82%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D0%B9.pdf" title="Скачать файл «Положение о комиссии по урегулированию споров между участниками образовательных отношений.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о методическом объединении
 												учителей-предметников</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Бланк заявления для приема в
+<span class="documents-item__badge">PDF • 694 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9-%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о методическом объединении учителей-предметников для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о методическом объединении учителей-предметников.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9-%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2.pdf" title="Скачать файл «Положение о методическом объединении учителей-предметников.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Бланк заявления для приема в
 												гимназию</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о порядке проведения
+<span class="documents-item__badge">PDF • 81 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/zayavlenie_v_1klass.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Бланк заявления для приема в гимназию для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="zayavlenie_v_1klass.pdf" href="documents/zayavlenie_v_1klass.pdf" title="Скачать файл «zayavlenie_v_1klass.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о порядке проведения
 												текущего
 												контроля
 												успеваемости</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение об ученическом
+<span class="documents-item__badge">PDF • 760 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B5%D0%B3%D0%BE%20%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8F%20%D0%B8%20%D0%BF%D1%80%D0%BE%D0%BC%D0%B5%D0%B6%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D0%B9%20%D0%B0%D1%82%D1%82%D0%B5%D1%81%D1%82%D0%B0%D1%86%D0%B8%D0%B8%202026.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о порядке проведения текущего контроля успеваемости для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о порядке текущего контроля и промежуточной аттестации 2026.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D1%82%D0%B5%D0%BA%D1%83%D1%89%D0%B5%D0%B3%D0%BE%20%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8F%20%D0%B8%20%D0%BF%D1%80%D0%BE%D0%BC%D0%B5%D0%B6%D1%83%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D0%B9%20%D0%B0%D1%82%D1%82%D0%B5%D1%81%D1%82%D0%B0%D1%86%D0%B8%D0%B8%202026.pdf" title="Скачать файл «Положение о порядке текущего контроля и промежуточной аттестации 2026.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение об ученическом
 												совете</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о пользовании учебниками и
+<span class="documents-item__badge">PDF • 1.6 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%B5%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение об ученическом совете для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение об ученическом совете 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%BC%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%B5%2025.pdf" title="Скачать файл «Положение об ученическом совете 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о пользовании учебниками и
 												учебными
 												пособиями</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о воспитательной
+<span class="documents-item__badge">PDF • 387 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о пользовании учебниками и учебными пособиями для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="положение о пользовании учебниками 25.pdf" href="documents/%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B8%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8%2025.pdf" title="Скачать файл «положение о пользовании учебниками 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о воспитательной
 												работе</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о ведении классных
+<span class="documents-item__badge">PDF • 364 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B2%D0%BE%D1%81%D0%BF%D0%B8%D1%82%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о воспитательной работе для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="положение о воспитательной работе 25.pdf" href="documents/%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B2%D0%BE%D1%81%D0%BF%D0%B8%D1%82%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5%2025.pdf" title="Скачать файл «положение о воспитательной работе 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о ведении классных
 												журналов</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о системе внутреннего
+<span class="documents-item__badge">PDF • 616 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D1%8B%D1%85%20%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о ведении классных журналов для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о ведении классных журналов 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D1%8B%D1%85%20%D0%B6%D1%83%D1%80%D0%BD%D0%B0%D0%BB%D0%BE%D0%B2%2025.pdf" title="Скачать файл «Положение о ведении классных журналов 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о системе внутреннего
 												мониторинга
 												качества
 												образования</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение об организации обучения на
+<span class="documents-item__badge">PDF • 1.2 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B5%D0%B3%D0%BE%20%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о системе внутреннего мониторинга качества образования для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="положение о системе внутреннего мониторинга качества образования 25.pdf" href="documents/%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B5%20%D0%B2%D0%BD%D1%83%D1%82%D1%80%D0%B5%D0%BD%D0%BD%D0%B5%D0%B3%D0%BE%20%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%D0%B0%20%D0%BA%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0%20%D0%BE%D0%B1%D1%80%D0%B0%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F%2025.pdf" title="Скачать файл «положение о системе внутреннего мониторинга качества образования 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение об организации обучения на
 												дому</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Свод правил для родителей
+<span class="documents-item__badge">PDF • 592 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BD%D0%B0%20%D0%B4%D0%BE%D0%BC%D1%83%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение об организации обучения на дому для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение об организации обучения на дому 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D0%BE%D1%80%D0%B3%D0%B0%D0%BD%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BD%D0%B0%20%D0%B4%D0%BE%D0%BC%D1%83%2025.pdf" title="Скачать файл «Положение об организации обучения на дому 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Свод правил для родителей
 												учащихся</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение об учебно-воспитательной
+<span class="documents-item__badge">PDF • 448 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%A1%D0%B2%D0%BE%D0%B4%20%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%20%D0%B4%D0%BB%D1%8F%20%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Свод правил для родителей учащихся для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Свод правил для родителей учащихся 25.pdf" href="documents/%D0%A1%D0%B2%D0%BE%D0%B4%20%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%20%D0%B4%D0%BB%D1%8F%20%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%20%D1%83%D1%87%D0%B0%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025.pdf" title="Скачать файл «Свод правил для родителей учащихся 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение об учебно-воспитательной
 												комиссии</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о родительском
+<span class="documents-item__badge">PDF • 307 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D0%BE-%D0%B2%D0%BE%D1%81%D0%BF%D0%B8%D1%82%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B8%D0%B8%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение об учебно-воспитательной комиссии для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение об учебно-воспитательной комиссии 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%D0%B1%20%D1%83%D1%87%D0%B5%D0%B1%D0%BD%D0%BE-%D0%B2%D0%BE%D1%81%D0%BF%D0%B8%D1%82%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D0%B9%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%81%D1%81%D0%B8%D0%B8%2025.pdf" title="Скачать файл «Положение об учебно-воспитательной комиссии 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о родительском
 												комитете</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				<div class="accordion-document" data-category="Charity">
-					<div class="document-title">
-						<div class="document-title-text">
-							<h2>Благотворительные средства и добровольные пожертвования</h2>
-							<span class="accordion-document-badge">6 файлов</span>
-						</div>
-						<img src="assets/icons/arrow_down.svg" alt="Открыть/закрыть" class="accordion-icon">
-					</div>
-
-					<div class="document-list">
-						<div class="accordion-content">
-							<div class="accordion-content__inner">
-								<ul class="documents-list">
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о порядке привлечения и
+<span class="documents-item__badge">PDF • 448 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%BE%D0%BC%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%D0%B5%D1%82%D0%B5%2025.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о родительском комитете для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о родительском комитете 25.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%BE%D0%BC%20%D0%BA%D0%BE%D0%BC%D0%B8%D1%82%D0%B5%D1%82%D0%B5%2025.pdf" title="Скачать файл «Положение о родительском комитете 25.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item"><div class="documents-item__info"><img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/><span class="documents-item__title">Единый график оценочных процедур на 2026/2027 учебный год</span><span class="documents-item__badge">PDF • 164 КБ</span></div><div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%93%D1%80%D0%B0%D1%84%D0%B8%D0%BA%20%D0%BE%D1%86%D0%B5%D0%BD%D0%BE%D1%87%D0%BD%D1%8B%D1%85%20%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D0%B4%D1%83%D1%80%202026-2027%20%D0%BE%D0%B1%D0%BB.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Единый график оценочных процедур на 2026/2027 учебный год для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="График оценочных процедур 2026-2027 обл.pdf" href="documents/%D0%93%D1%80%D0%B0%D1%84%D0%B8%D0%BA%20%D0%BE%D1%86%D0%B5%D0%BD%D0%BE%D1%87%D0%BD%D1%8B%D1%85%20%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D0%B4%D1%83%D1%80%202026-2027%20%D0%BE%D0%B1%D0%BB.pdf" title="Скачать График оценочных процедур 2026-2027 обл.pdf"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li></ul>
+</div>
+</div>
+</div>
+</div>
+<div class="accordion-document" data-category="Charity">
+<div class="document-title">
+<div class="document-title-text">
+<h2>Благотворительные средства и добровольные пожертвования</h2>
+<span class="accordion-document-badge">2 документа</span>
+</div>
+<img alt="Открыть/закрыть" class="accordion-icon" src="assets/icons/arrow_down.svg"/>
+</div>
+<div class="document-list">
+<div class="accordion-content">
+<div class="accordion-content__inner">
+<ul class="documents-list">
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Положение о порядке привлечения и
 												использования
 												благотворительных средств</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Публичная оферта о заключении
+<span class="documents-item__badge">PDF • 459 КБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D0%BF%D1%80%D0%B8%D0%B2%D0%BB%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B8%20%D0%B8%D1%81%D0%BF-%D1%8F%20%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D1%82%D0%B2%20%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Положение о порядке привлечения и использования благотворительных средств для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Положение о порядке привлечения и исп-я благотв средств.pdf" href="documents/%D0%9F%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BE%20%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BA%D0%B5%20%D0%BF%D1%80%D0%B8%D0%B2%D0%BB%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%B8%20%D0%B8%D1%81%D0%BF-%D1%8F%20%D0%B1%D0%BB%D0%B0%D0%B3%D0%BE%D1%82%D0%B2%20%D1%81%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B2.pdf" title="Скачать файл «Положение о порядке привлечения и исп-я благотв средств.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+<li class="documents-item">
+<div class="documents-item__info">
+<img alt="Документ" class="doc-icon" src="assets/icons/file-documents.svg"/>
+<span class="documents-item__title">Публичная оферта о заключении
 												договора
 												добровольного
 												пожертвования</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-
-									<li class="documents-item">
-										<div class="documents-item__info">
-											<img src="assets/icons/file-documents.svg" alt="Документ" class="doc-icon">
-											<span class="documents-item__title">Положение о дистанционном
-												обучении</span>
-											<span class="documents-item__badge">PDF • 1.2 МБ</span>
-										</div>
-
-										<a href="path/to/file.pdf" download class="documents-item__download">
-											<span class="documents-item__download-text">Скачать</span>
-											<img src="assets/icons/download-documents.svg" alt="Скачать">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="faq-feedback">
-		<div class="feedback">
-			<h2>Не нашли нужный документ? Напишите нам</h2>
-			<p>Если вам требуется справка или документ, отсутствующий в открытом доступе, обратитесь в канцелярию
+<span class="documents-item__badge">PDF • 2.9 МБ</span>
+</div>
+<div class="documents-item__actions"><a class="doc-btn doc-btn--view" href="documents/%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%BE%D1%84%D0%B5%D1%80%D1%82%D0%B0%20%D0%BE%20%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B0%20%D0%B4%D0%BE%D0%B1%D1%80%D0%BE%D0%B2%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.pdf" rel="noopener noreferrer" target="_blank" title="Открыть Публичная оферта о заключении договора добровольного пожертвования для онлайн-просмотра">Просмотр</a><a class="doc-btn doc-btn--download" download="Публичная оферта о заключении договора добровольного пожертвования.pdf" href="documents/%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%BE%D1%84%D0%B5%D1%80%D1%82%D0%B0%20%D0%BE%20%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B0%20%D0%B4%D0%BE%D0%B1%D1%80%D0%BE%D0%B2%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.pdf" title="Скачать файл «Публичная оферта о заключении договора добровольного пожертвования.pdf»"><img alt="" src="assets/icons/download-documents.svg"/><span>Скачать</span></a></div></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<section class="faq-feedback">
+<div class="feedback">
+<h2>Не нашли нужный документ? Напишите нам</h2>
+<p>Если вам требуется справка или документ, отсутствующий в открытом доступе, обратитесь в канцелярию
 				гимназии.</p>
-			<form class="feedback__form">
-				<div class="form-group">
-					<label for="user-name">Ваше имя</label>
-					<input type="text" placeholder="Иван Иванов" id="user-name">
-				</div>
-				<div class="form-group">
-					<label for="user-contact">Номер телефона или Email</label>
-					<input type="text" placeholder="+7 (999) 000-00-00 / example@main.ru" id="user-contact">
-				</div>
-				<div class="form-group">
-					<label for="user-theme">Тема обращения</label>
-					<select id="user-theme" class="form-select">
-						<option value="" disabled selected hidden>Выберите тему</option>
-						<option value="admission">Поступление и приём документов</option>
-						<option value="process">Вопросы по учебному процессу</option>
-						<option value="meals">Организация питания и ГПД</option>
-						<option value="activities">Внеурочные занятия и кружки</option>
-						<option value="other">Другой вопрос</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="user-msg">Сообщение</label>
-					<textarea placeholder="Опишите ваш вопрос..." id="user-msg"></textarea>
-				</div>
-				<div class="form-footer">
-					<span class="policy-text">Согласен на обработку персональных данных</span>
-					<button type="submit" class="btn-orange">Отправить заявку</button>
-				</div>
-			</form>
-		</div>
-		<div class="faq">
-			<h2>Частые вопросы</h2>
-			<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
-			<div class="faq__list">
-				<details class="faq__item" open>
-					<summary class="faq__question">Как быстро найти нужный документ в базе?</summary>
-					<p class="faq__answer">Используйте строку текстового поиска или теги фильтрации по категориям
+<form class="feedback__form">
+<div class="form-group">
+<label for="user-name">Ваше имя</label>
+<input id="user-name" placeholder="Иван Иванов" type="text"/>
+</div>
+<div class="form-group">
+<label for="user-contact">Номер телефона или Email</label>
+<input id="user-contact" placeholder="+7 (999) 000-00-00 / example@main.ru" type="text"/>
+</div>
+<div class="form-group">
+<label for="user-theme">Тема обращения</label>
+<select class="form-select" id="user-theme">
+<option disabled="" hidden="" selected="" value="">Выберите тему</option>
+<option value="admission">Поступление и приём документов</option>
+<option value="process">Вопросы по учебному процессу</option>
+<option value="meals">Организация питания и ГПД</option>
+<option value="activities">Внеурочные занятия и кружки</option>
+<option value="other">Другой вопрос</option>
+</select>
+</div>
+<div class="form-group">
+<label for="user-msg">Сообщение</label>
+<textarea id="user-msg" placeholder="Опишите ваш вопрос..."></textarea>
+</div>
+<div class="form-footer">
+<span class="policy-text">Согласен на обработку персональных данных</span>
+<button class="btn-orange" type="submit">Отправить заявку</button>
+</div>
+</form>
+</div>
+<div class="faq">
+<h2>Частые вопросы</h2>
+<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
+<div class="faq__list">
+<details class="faq__item" open="">
+<summary class="faq__question">Как быстро найти нужный документ в базе?</summary>
+<p class="faq__answer">Используйте строку текстового поиска или теги фильтрации по категориям
 						(например, «Обучающимся» или «Локальные акты»). Список автоматически скроет лишнее и оставит
 						только нужные файлы.
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Что делать, если нужного документа нет на сайте?</summary>
-					<p class="faq__answer">Не все внутренние приказы и справки публикуются в открытом доступе. Если вы
+				</p></details>
+<details class="faq__item">
+<summary class="faq__question">Что делать, если нужного документа нет на сайте?</summary>
+<p class="faq__answer">Не все внутренние приказы и справки публикуются в открытом доступе. Если вы
 						не нашли нужный файл, воспользуйтесь формой обратной связи слева или обратитесь напрямую в
 						канцелярию гимназии.
 					</p>
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Как получить бумажную копию документа с печатью?</summary>
-					<p class="faq__answer">Официальные заверенные копии выдаются по запросу. Оставьте заявку через форму
+</details>
+<details class="faq__item">
+<summary class="faq__question">Как получить бумажную копию документа с печатью?</summary>
+<p class="faq__answer">Официальные заверенные копии выдаются по запросу. Оставьте заявку через форму
 						на этой странице, указав свои данные и название документа, а затем заберите готовый вариант у
 						секретаря в рабочие часы.
 					</p>
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Актуальны ли документы, размещенные на этой странице?
+</details>
+<details class="faq__item">
+<summary class="faq__question">Актуальны ли документы, размещенные на этой странице?
 					</summary>
-					<p class="faq__answer">Да. Нормативно-правовая база обновляется на сайте сразу после утверждения
+<p class="faq__answer">Да. Нормативно-правовая база обновляется на сайте сразу после утверждения
 						новых версий руководством гимназии. Вы скачиваете только действующие редакции.
 					</p>
-				</details>
-
-				<details class="faq__item">
-					<summary class="faq__question">Где найти бланки заявлений, согласий и правила приема?</summary>
-					<p class="faq__answer">Проще всего найти их через текстовый поиск по слову «заявление» или
+</details>
+<details class="faq__item">
+<summary class="faq__question">Где найти бланки заявлений, согласий и правила приема?</summary>
+<p class="faq__answer">Проще всего найти их через текстовый поиск по слову «заявление» или
 						«согласие». По умолчанию такие бланки прикрепляются к категориям «Обучающимся» или «Локальные
 						акты».
 					</p>
-				</details>
-			</div>
-		</div>
-	</section>
-
-	<footer>
-
-		<div class="footer-contacts">
-
-			<div class="contacts__info">
-
-				<h2>
+</details>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-contacts">
+<div class="contacts__info">
+<h2>
 					Контакты
 				</h2>
-
-
-				<ul class="contacts__info-list">
-
-					<li class="list-adress">
-
-						<img src="assets/icons/adres.svg" alt="Адрес">
+<ul class="contacts__info-list">
+<li class="list-adress">
+<img alt="Адрес" src="assets/icons/adres.svg"/>
 
 						г. Ковров, ул. Подлесная,
 						д. 10
 
 					</li>
-
-
-					<li class="list-phone">
-
-						<img src="assets/icons/phone.svg" alt="Телефон">
+<li class="list-phone">
+<img alt="Телефон" src="assets/icons/phone.svg"/>
 
 						+7 (49232) 4-01-95,
 						4-22-72
 
 					</li>
-
-
-					<li class="list-email">
-
-						<img src="assets/icons/email.svg" alt="Почта">
+<li class="list-email">
+<img alt="Почта" src="assets/icons/email.svg"/>
 
 						sretenskajgimn@yandex.ru
 
 					</li>
-
-
-					<li class="list-time_work">
-
-						<img src="assets/icons/clock2.svg" alt="Часы">
+<li class="list-time_work">
+<img alt="Часы" src="assets/icons/clock2.svg"/>
 
 						Пн–Пт: 8:00 – 19:00
 
 					</li>
-
-				</ul>
-
-
-				<div class="contacts__buttons">
-
-					<a href="#">
-						<img src="assets/icons/TG_vector.svg" alt="ТГ вектор">
+</ul>
+<div class="contacts__buttons">
+<a href="#">
+<img alt="ТГ вектор" src="assets/icons/TG_vector.svg"/>
 						Написать в Telegram
 					</a>
-
-					<a href="#">
-						<img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">
+<a href="#">
+<img alt="Вацап вектор" src="assets/icons/wtp_vector.svg"/>
 						Написать в WhatsApp
 					</a>
-
-				</div>
-
-			</div>
-
-
-			<div class="contact-map">
-				<div style="position:relative;overflow:hidden;"><a
-						href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
-						style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-						href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
-						style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
-						Яндекс Карты</a><iframe
-						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&utm_source=chatgpt.com&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
-						width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
-					</iframe></div>
-			</div>
-
-		</div>
-
-
-		<div class="footer-bottom">
-
-			<a href="index.html" class="brand__footer">
-
-				<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
-
-				<div class="brand__info__footer">
-
-					<span class="brand__title__footer">
+</div>
+</div>
+<div class="contact-map">
+<div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16" style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
+						Яндекс Карты</a><iframe allowfullscreen="true" frameborder="1" height="400" src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;utm_source=chatgpt.com&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16" style="position:relative;" width="560">
+</iframe></div>
+</div>
+</div>
+<div class="footer-bottom">
+<a class="brand__footer" href="index.html">
+<img alt="Логотип гимназии" class="brand__logo__footer" src="./assets/icons/logo_star.png"/>
+<div class="brand__info__footer">
+<span class="brand__title__footer">
 						Православная гимназия г. Коврова
 					</span>
-
-					<span class="brand__subtitle__footer">
+<span class="brand__subtitle__footer">
 						Частное общеобразовательное учреждение
 					</span>
-
-				</div>
-
-			</a>
-
-
-			<div class="footer__nav">
-
-				<ul class="nav__list">
-
-					<li class="nav__list-about">
-						<a href="story_school.html">
+</div>
+</a>
+<div class="footer__nav">
+<ul class="nav__list">
+<li class="nav__list-about">
+<a href="story_school.html">
 							О гимназии
 						</a>
-					</li>
-
-
-					<li class="nav__list-teach">
-						<a href="class_schedule.html">
+</li>
+<li class="nav__list-teach">
+<a href="class_schedule.html">
 							Обучение
 						</a>
-					</li>
-
-
-					<li class="nav__list-kids">
-						<a href="life.html">
+</li>
+<li class="nav__list-kids">
+<a href="life.html">
 							Жизнь гимназии
 						</a>
-					</li>
-
-
-					<li class="nav__list-faq">
-						<a href="#faq">
+</li>
+<li class="nav__list-faq">
+<a href="#faq">
 							FAQ
 						</a>
-					</li>
-
-
-					<li class="nav__list-contact">
-						<a href="contact.html">
+</li>
+<li class="nav__list-contact">
+<a href="contact.html">
 							Контакты
 						</a>
-					</li>
-
-				</ul>
-
-			</div>
-
-
-			<div class="btn_media">
-
-				<ul class="btn_media__list">
-
-					<li class="media__list-vk">
-
-						<a href="#">
-							<img src="assets/icons/vk_icon.svg" alt="ВК">
-						</a>
-
-					</li>
-
-
-					<li class="media__list-max">
-
-						<a href="#">
-							<img src="assets/icons/images-Photoroom.png" alt="max">
-						</a>
-
-					</li>
-
-
-					<li class="media__list-whp">
-
-						<a href="#">
-
-							<img src="assets/icons/whatsap_icon.svg" alt="Whatsap">
-
-						</a>
-
-					</li>
-
-				</ul>
-
-			</div>
-
-		</div>
-
-
-		<div class="footer-copyright">
-
-			<span>
+</li>
+</ul>
+</div>
+<div class="btn_media">
+<ul class="btn_media__list">
+<li class="media__list-vk">
+<a href="#">
+<img alt="ВК" src="assets/icons/vk_icon.svg"/>
+</a>
+</li>
+<li class="media__list-max">
+<a href="#">
+<img alt="max" src="assets/icons/images-Photoroom.png"/>
+</a>
+</li>
+<li class="media__list-whp">
+<a href="#">
+<img alt="Whatsap" src="assets/icons/whatsap_icon.svg"/>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer-copyright">
+<span>
 				© 2026 Православная гимназия.
 				Все права защищены.
 			</span>
-
-			<a href="#">
+<a href="#">
 				Политика конфиденциальности
 			</a>
-
-		</div>
-
-	</footer>
-
-	<script src="js/documents.js"></script>
-	<script src="js/window.scrollY.js"></script>
-	<script src="js/navigation.js"></script>
-	<script src="js/search.js"></script>
-
-
+</div>
+</footer>
+<script src="js/documents.js"></script>
+<script src="js/window.scrollY.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/search.js"></script>
 </body>
-
 </html>

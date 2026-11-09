@@ -69,6 +69,14 @@ const megaMenuData = {
 };
 
 
+function resolveMegaPath(path) {
+	if (!path || path.startsWith("http") || path.startsWith("#") || path.startsWith("/")) {
+		return path;
+	}
+	const isSubdir = window.location.pathname.includes("/sveden/") || window.location.pathname.includes("\\sveden\\");
+	return isSubdir ? "../" + path : path;
+}
+
 function renderMegaMenu(type) {
 
 	const data = megaMenuData[type];
@@ -89,12 +97,12 @@ function renderMegaMenu(type) {
 		const link = document.createElement("a");
 
 		link.className = "mega-menu__item";
-		link.href = item.link;
+		link.href = resolveMegaPath(item.link);
 
 
 		link.innerHTML = `
             <span class="mega-menu__icon">
-                <img src="${item.icon}" alt="">
+                <img src="${resolveMegaPath(item.icon)}" alt="">
             </span>
 
             <span class="mega-menu__text">

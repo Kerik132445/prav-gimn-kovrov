@@ -1,35 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const tagButtons = document.querySelectorAll('.tag-btn');
-	const searchInput = document.querySelector('.container-search input');
+	const tagButtons = document.querySelectorAll('.pill-btn, .tag-btn');
+	const searchInput = document.querySelector('.search-box__input, .container-search input');
 	const accordions = document.querySelectorAll('.accordion-document');
 
-	// 1. Фильтрация/сортировка по тегам
+	// 1. Фильтрация по категориям
 	tagButtons.forEach(button => {
 		button.addEventListener('click', () => {
-			const category = button.dataset.category;
+			const category = button.dataset.category || 'all';
 
 			// Переключение активной кнопки
-			tagButtons.forEach(btn => btn.classList.remove('tag-btn--active'));
-			button.classList.add('tag-btn--active');
+			tagButtons.forEach(btn => {
+				btn.classList.remove('pill-btn--active', 'tag-btn--active');
+			});
+			button.classList.add(button.classList.contains('pill-btn') ? 'pill-btn--active' : 'tag-btn--active');
+
+			// Сброс поля поиска при смене категории
+			if (searchInput) {
+				searchInput.value = '';
+			}
 
 			accordions.forEach(accordion => {
 				const accordionCategory = accordion.dataset.category;
+				const items = accordion.querySelectorAll('.documents-item');
+				items.forEach(item => {
+					item.style.display = '';
+				});
 
 				if (category === 'all') {
-					accordion.style.order = '0';
-					accordion.classList.remove('accordion-document--active');
+					accordion.style.display = '';
+					// Все видны в исходном порядке
 				} else if (accordionCategory === category) {
-					accordion.style.order = '-1'; // Поднимаем наверх
-					accordion.classList.add('accordion-document--active'); // Открываем аккордеон
+					accordion.style.display = '';
+					accordion.classList.add('accordion-document--active'); // Разворачиваем выбранную категорию
 				} else {
-					accordion.style.order = '0';
-					accordion.classList.remove('accordion-document--active'); // Закрываем остальные
+					accordion.style.display = 'none';
+					accordion.classList.remove('accordion-document--active');
 				}
 			});
 		});
 	});
 
-	// 2. Логика аккордеонов (чистая переключалка класса, без смены src)
+	// 2. Логика аккордеонов (открытие/закрытие при клике на заголовок)
 	accordions.forEach(accordion => {
 		const title = accordion.querySelector('.document-title');
 
@@ -40,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 
-	// 3. Поиск по файлам
+	// 3. Поиск по названию документов
 	if (searchInput) {
 		searchInput.addEventListener('input', (e) => {
 			const query = e.target.value.toLowerCase().trim();
@@ -65,14 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
 						accordion.style.display = '';
 						accordion.classList.add('accordion-document--active');
 					} else {
-						// Прячем весь аккордеон, если в нем нет подходящих файлов
 						accordion.style.display = 'none';
 						accordion.classList.remove('accordion-document--active');
 					}
 				} else {
-					// Сброс поиска
-					accordion.style.display = '';
-					accordion.classList.remove('accordion-document--active');
+					// Сброс поиска: возвращаем состояние текущего фильтра
+					const activeBtn = document.querySelector('.pill-btn--active, .tag-btn--active');
+					const activeCat = activeBtn?.dataset.category || 'all';
+					if (activeCat === 'all') {
+						accordion.style.display = '';
+					} else {
+						accordion.style.display = (accordion.dataset.category === activeCat) ? '' : 'none';
+					}
 				}
 			});
 		});
