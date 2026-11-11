@@ -250,6 +250,7 @@ h2 {
 .about {
 	padding: 80px 0;
 	background-color: #F8FAFC;
+	overflow-x: clip;
 }
 
 .about__wrapper {
@@ -2783,12 +2784,17 @@ details[open] summary {
 	outline: none;
 	background-color: #e2e8f0;
 	color: #64748b;
-	font-size: 13px;
+	font-size: 13.5px;
 	font-weight: 500;
-	padding: 6px 14px;
+	min-height: 40px;
+	padding: 8px 16px;
 	border-radius: 20px;
 	cursor: pointer;
 	transition: all 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
 }
 
 .class-btn--active,
@@ -8815,6 +8821,12 @@ header {
 	color: #2563a8;
 	text-decoration: none;
 	font-weight: 500;
+	display: inline-flex;
+	align-items: center;
+	padding: 4px 6px;
+	border-radius: 4px;
+	min-height: 28px;
+	box-sizing: border-box;
 
 	transition:
 		color 0.2s ease,
@@ -10715,7 +10727,6 @@ p {
 	body {
 		width: 100%;
 		min-width: 320px;
-		overflow-x: hidden;
 	}
 
 	*,
@@ -10773,7 +10784,6 @@ p {
 	.stats,
 	.benefits,
 	.info-section,
-	.medical,
 	.apply-gide,
 	.admission-info,
 	.course-enroll,
@@ -10784,155 +10794,29 @@ p {
 		padding: 32px 0;
 	}
 
-
-	/* -----------------------------------------------------
-       2. ШАПКА И ЛОГОТИП
-       Ставим элементы друг под другом и убираем отступы ПК.
-       ----------------------------------------------------- */
-
-	.top-bar {
-		padding: 16px;
+	.medical {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: 20px !important;
+		padding: 24px 0 !important;
+		width: 100% !important;
+		box-sizing: border-box !important;
 	}
 
-	.top-bar__content {
-		width: 100%;
-		padding: 0;
-		gap: 16px;
-		flex-direction: column;
-		align-items: stretch;
+	.medical-card,
+	.medical-info {
+		width: 100% !important;
+		min-width: 0 !important;
+		box-sizing: border-box !important;
 	}
 
-	.brand {
-		justify-content: center;
-		gap: 10px;
-		min-width: 0;
-	}
 
-	.brand__logo {
-		width: 42px;
-		height: 42px;
-		flex-shrink: 0;
-	}
-
-	.brand__info {
-		min-width: 0;
-	}
-
-	.brand__title {
-		font-size: 18px;
-		line-height: 1.2;
-	}
-
-	.brand__subtitle {
-		font-size: 12px;
-		line-height: 1.3;
-	}
-
-	/* Поиск занимает всю доступную ширину */
-	.search-form {
-		width: 100%;
-		min-width: 0;
-		padding: 10px 14px;
-	}
-
-	.search-form__input {
-		min-width: 0;
-		font-size: 16px;
-	}
-
+	/* Поля поиска внутри контентных страниц (search.html, documents.html) */
 	.search-box__input {
 		width: 100%;
 		min-width: 0;
-	}
-
-
-	/* -----------------------------------------------------
-       3. НАВИГАЦИЯ
-       Используем компактный вертикальный список.
-       Бургер-меню требует отдельной HTML-разметки и JavaScript.
-       ----------------------------------------------------- */
-
-	.main-nav {
-		display: flex;
-		width: 100%;
-		padding: 6px 0;
-		flex-direction: column;
-		align-items: stretch;
-	}
-
-	.main-nav__content {
-		width: 100%;
-		padding: 0 16px;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 0;
-	}
-
-	.main-nav .nav-list,
-	.nav-list {
-		width: 100%;
-		flex-direction: column;
-		align-items: stretch;
-		justify-content: flex-start;
-		gap: 0;
-		margin: 0;
-		padding: 0;
-	}
-
-	.main-nav .nav-list li,
-	.nav-list li {
-		width: 100%;
-		text-align: center;
-	}
-
-	.main-nav .nav-link,
-	.main-nav .mega-menu-toggle,
-	.nav-link {
-		display: flex;
-		width: 100%;
 		min-height: 44px;
-		padding: 10px 12px;
-		justify-content: center;
-		align-items: center;
-		white-space: normal;
-		font-size: 15px;
-		text-align: center;
-	}
-
-	.btn-donate {
-		align-self: center;
-		margin: 8px auto;
-	}
-
-	/* Мегаменю не должно выходить за экран */
-	.mega-menu {
-		max-width: 100%;
-	}
-
-	.mega-menu__inner {
-		width: calc(100% - 24px);
-		padding: 16px 0;
-	}
-
-	.mega-menu__grid {
-		grid-template-columns: minmax(0, 1fr);
-		gap: 10px;
-	}
-
-	.mega-menu__header h3 {
-		font-size: 18px;
-	}
-
-	.mega-menu__item {
-		min-width: 0;
-		padding: 12px;
-		gap: 10px;
-	}
-
-	.mega-menu__icon {
-		width: 40px;
-		height: 40px;
-		flex-shrink: 0;
+		font-size: 16px;
 	}
 
 
@@ -11849,18 +11733,6 @@ p {
 		width: calc(100% - 24px);
 	}
 
-	.top-bar {
-		padding: 14px 12px;
-	}
-
-	.brand__title {
-		font-size: 16px;
-	}
-
-	.brand__subtitle {
-		font-size: 11px;
-	}
-
 	.hero {
 		padding: 36px 0;
 	}
@@ -11963,233 +11835,621 @@ p {
 
 
 /* =========================================
-   ИСПРАВЛЕНИЕ МОБИЛЬНОЙ НАВИГАЦИИ
-   До 768px
+   АДАПТИВНАЯ ШАПКА И МОБИЛЬНЫЙ OFF-CANVAS DRAWER
    ========================================= */
 
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
 
-	/* 1. Основная навигация — одна компактная строка */
-
-	.main-nav {
-		display: flex;
-		width: 100%;
-		padding: 6px 0;
-		overflow: visible;
-	}
-
-	.main-nav__content {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-		gap: 8px;
-		width: 100%;
-		min-width: 0;
-		padding: 0 10px;
-	}
-
-	/* Список можно прокручивать пальцем по горизонтали */
-	.main-nav .nav-list {
-		display: flex;
-		flex-direction: row;
-		flex: 1 1 auto;
-		justify-content: flex-start;
-		align-items: center;
-		gap: 4px;
-
-		width: auto;
-		min-width: 0;
-		margin: 0;
-		padding: 0;
-
-		overflow-x: auto;
-		overflow-y: hidden;
-		white-space: nowrap;
-
-		scrollbar-width: none;
-		-webkit-overflow-scrolling: touch;
-		overscroll-behavior-x: contain;
-	}
-
-	.main-nav .nav-list::-webkit-scrollbar {
-		display: none;
-	}
-
-	/* Отменяем прежнюю ширину 100% у каждого пункта */
-	.main-nav .nav-list li {
-		flex: 0 0 auto;
-		width: auto;
-		text-align: center;
-	}
-
-	.main-nav .nav-link,
-	.main-nav .mega-menu-toggle {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 6px;
-
-		width: auto;
-		min-height: 42px;
-		padding: 10px 9px;
-
-		font-size: 13px;
-		white-space: nowrap;
-	}
-
-	.main-nav .btn-donate {
-		flex: 0 0 auto;
-		margin: 0;
-		padding: 9px 10px;
-		font-size: 12px;
-	}
-
-	.main-nav .nav-item--bvi {
-		position: static !important;
-		transform: none !important;
-		flex: 0 0 auto !important;
-		margin-left: 8px !important;
-		margin-right: 8px !important;
-	}
-
-
-	/* 2. Мегаменю — панель с ограниченной высотой */
-
-	.mega-menu {
-		position: absolute;
-		top: 100%;
-		left: 8px;
-		right: 8px;
-
-		width: auto;
-		max-width: none;
-
-		/* Не позволяет панели выйти за низ экрана */
-		max-height: calc(100vh - 200px);
-		max-height: calc(100dvh - 200px);
-
-		overflow-x: hidden;
-		overflow-y: auto;
-		overscroll-behavior: contain;
-		-webkit-overflow-scrolling: touch;
-
-		border-radius: 0 0 14px 14px;
-		z-index: 1000;
-	}
-
-	/* Внутренние отступы панели */
-	.mega-menu__inner {
-		width: auto;
-		max-width: 100%;
-		margin: 0;
-		padding: 14px 12px 18px;
-	}
-
-	/* Уменьшаем заголовок и убираем лишнюю высоту */
-	.mega-menu__header {
-		align-items: center;
-		gap: 12px;
-		margin-bottom: 12px;
-	}
-
-	.mega-menu__header h3 {
-		font-size: 18px;
-		line-height: 1.3;
-	}
-
-	.mega-menu__header p {
-		display: none;
-	}
-
-	.mega-menu__close {
-		width: 36px;
-		height: 36px;
-		flex: 0 0 36px;
-	}
-
-
-	/* 3. Карточки мегаменю — компактнее */
-
-	.mega-menu__grid {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr);
-		gap: 8px;
-	}
-
-	.mega-menu__item {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-
-		width: 100%;
-		min-width: 0;
-		min-height: 60px;
-		padding: 10px;
-
-		border-radius: 10px;
-	}
-
-	.mega-menu__icon {
-		width: 38px;
-		height: 38px;
-		flex: 0 0 38px;
-		border-radius: 9px;
-	}
-
-	.mega-menu__icon img {
-		width: 21px;
-		height: 21px;
-	}
-
-	.mega-menu__text {
-		flex: 1;
-		min-width: 0;
-	}
-
-	.mega-menu__text strong {
-		font-size: 13px;
-		line-height: 1.35;
-	}
-
-	.mega-menu__text small {
-		margin-top: 3px;
-		font-size: 11px;
-		line-height: 1.35;
+	.mobile-header-actions,
+	.mobile-drawer,
+	.mobile-drawer-backdrop {
+		display: none !important;
 	}
 
 }
 
+@media (max-width: 1023px) {
 
-/* На совсем маленьких экранах уменьшаем отступы */
+	/* 1. Компактная однострочная мобильная шапка */
+	.main-nav,
+	.top-bar .search-form,
+	.mega-menu,
+	.mega-overlay {
+		display: none !important;
+	}
 
-@media (max-width: 380px) {
+	.top-bar {
+		padding: 10px 0;
+		min-height: 60px;
+	}
 
-	.main-nav__content {
-		padding: 0 6px;
+	.top-bar__content {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		width: 100%;
+		min-width: 0;
+		padding: 0 14px;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex: 1 1 auto;
+		min-width: 0;
+		min-height: 44px;
+		text-align: left;
+		text-decoration: none;
+		overflow: hidden;
+	}
+
+	.brand__logo {
+		width: 38px;
+		height: 38px;
+		flex: 0 0 38px;
+		object-fit: contain;
+	}
+
+	.brand__info {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+		min-width: 0;
+		flex: 1 1 auto;
+		gap: 2px;
+	}
+
+	.brand__title {
+		font-size: clamp(13.5px, 3.6vw, 17px);
+		line-height: 1.18;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0;
+		text-align: left;
+		overflow-wrap: break-word;
+	}
+
+	.brand__subtitle {
+		width: 100%;
+		max-width: 100%;
+		font-size: clamp(10px, 2.5vw, 12px);
+		line-height: 1.2;
+		color: rgba(255, 255, 255, 0.8);
+		margin: 0;
+		text-align: left;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.mobile-header-actions {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex: 0 0 auto;
+	}
+
+	.mobile-header-bvi-btn,
+	.mobile-menu-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		min-width: 44px;
+		min-height: 44px;
+		padding: 0;
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.1);
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		color: #ffffff;
+		cursor: pointer;
+		flex: 0 0 44px;
+		transition: background-color 0.2s ease, border-color 0.2s ease;
+	}
+
+	.mobile-header-bvi-btn:hover,
+	.mobile-menu-toggle:hover,
+	.mobile-header-bvi-btn:focus-visible,
+	.mobile-menu-toggle:focus-visible {
+		background: rgba(255, 255, 255, 0.18);
+		border-color: rgba(255, 255, 255, 0.45);
+	}
+
+	.mobile-header-bvi-btn:focus-visible,
+	.mobile-menu-toggle:focus-visible,
+	.mobile-drawer__close:focus-visible,
+	.mobile-drawer__link:focus-visible,
+	.mobile-drawer__sub-toggle:focus-visible,
+	.mobile-drawer__sub-link:focus-visible,
+	.mobile-drawer__bvi-btn:focus-visible {
+		outline: 2px solid #60a5fa;
+		outline-offset: 2px;
+	}
+
+	.mobile-menu-toggle__box {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 20px;
+		height: 15px;
+	}
+
+	.mobile-menu-toggle__line {
+		display: block;
+		width: 100%;
+		height: 2px;
+		border-radius: 2px;
+		background: #ffffff;
+		transition: transform 0.22s ease, opacity 0.18s ease;
+	}
+
+	.mobile-menu-toggle.is-active .mobile-menu-toggle__line:nth-child(1) {
+		transform: translateY(6.5px) rotate(45deg);
+	}
+
+	.mobile-menu-toggle.is-active .mobile-menu-toggle__line:nth-child(2) {
+		opacity: 0;
+	}
+
+	.mobile-menu-toggle.is-active .mobile-menu-toggle__line:nth-child(3) {
+		transform: translateY(-6.5px) rotate(-45deg);
+	}
+
+	/* 2. Блокировка прокрутки страницы при открытой шторке */
+	body.mobile-drawer-open {
+		position: fixed;
+		left: 0;
+		right: 0;
+		width: 100%;
+		overflow: hidden;
+	}
+
+	/* 3. Подложка и выдвижная панель навигации */
+	.mobile-drawer-backdrop {
+		position: fixed;
+		inset: 0;
+		z-index: 10000;
+		background: rgba(15, 23, 42, 0.56);
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: opacity 0.24s ease, visibility 0.24s ease;
+	}
+
+	.mobile-drawer-backdrop.is-visible {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	.mobile-drawer {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 10001;
+		width: min(360px, 88vw);
+		max-width: 100vw;
+		height: 100vh;
+		height: 100dvh;
+		display: flex;
+		flex-direction: column;
+		background: #ffffff;
+		color: #0f172a;
+		box-shadow: -8px 0 32px rgba(15, 23, 42, 0.22);
+		transform: translateX(100%);
+		visibility: hidden;
+		pointer-events: none;
+		transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.26s ease;
+		overscroll-behavior: contain;
+		padding-bottom: env(safe-area-inset-bottom, 0px);
+	}
+
+	.mobile-drawer.is-open {
+		transform: translateX(0);
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	.mobile-drawer__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 14px;
+		background: var(--color-brand-dark, #132238);
+		color: #ffffff;
+		flex-shrink: 0;
+	}
+
+	.mobile-drawer__brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		min-width: 0;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.mobile-drawer__logo {
+		width: 34px;
+		height: 34px;
+		flex: 0 0 34px;
+		object-fit: contain;
+	}
+
+	.mobile-drawer__brand-info {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	.mobile-drawer__brand-title {
+		font-size: 14.5px;
+		font-weight: 700;
+		line-height: 1.2;
+		color: #ffffff;
+	}
+
+	.mobile-drawer__brand-sub {
+		font-size: 11.5px;
+		color: rgba(255, 255, 255, 0.78);
+	}
+
+	.mobile-drawer__close {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		min-width: 44px;
+		min-height: 44px;
+		flex: 0 0 44px;
+		padding: 0;
+		border-radius: 10px;
+		background: rgba(255, 255, 255, 0.12);
+		border: 1px solid rgba(255, 255, 255, 0.22);
+		color: #ffffff;
+		cursor: pointer;
+	}
+
+	.mobile-drawer__search {
+		padding: 12px 16px;
+		background: #f8fafc;
+		border-bottom: 1px solid #e2e8f0;
+		flex-shrink: 0;
+	}
+
+	.mobile-search-form {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		background: #ffffff;
+		border: 1px solid #cbd5e1;
+		border-radius: 10px;
+		padding: 4px 4px 4px 12px;
+		min-height: 44px;
+	}
+
+	.mobile-search-form:focus-within {
+		border-color: #2563eb;
+		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+	}
+
+	.mobile-search-form img {
+		width: 18px;
+		height: 18px;
+		flex-shrink: 0;
+		opacity: 0.65;
+	}
+
+	.mobile-search-form input {
+		flex: 1 1 auto;
+		min-width: 0;
+		border: none;
+		outline: none;
+		background: transparent;
+		font-size: 16px;
+		color: #0f172a;
+		padding: 6px 0;
+	}
+
+	.mobile-search-btn {
+		min-height: 36px;
+		padding: 8px 14px;
+		border: none;
+		border-radius: 7px;
+		background: #1e3a5f;
+		color: #ffffff;
+		font-size: 13.5px;
+		font-weight: 600;
+		cursor: pointer;
+		flex-shrink: 0;
+	}
+
+	.mobile-drawer__nav {
+		flex: 1 1 auto;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		padding: 8px 12px 16px;
+		overscroll-behavior-y: contain;
+	}
+
+	.mobile-drawer__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
 		gap: 4px;
 	}
 
-	.main-nav .nav-link,
-	.main-nav .mega-menu-toggle {
-		padding: 9px 7px;
+	.mobile-drawer__item {
+		border-radius: 10px;
+	}
+
+	.mobile-drawer__item-head {
+		display: flex;
+		align-items: stretch;
+		gap: 4px;
+	}
+
+	.mobile-drawer__link {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		min-height: 46px;
+		padding: 11px 12px;
+		font-size: 15.5px;
+		font-weight: 600;
+		color: #0f172a;
+		text-decoration: none;
+		border-radius: 10px;
+		transition: background-color 0.15s ease;
+	}
+
+	.mobile-drawer__link--main {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	span.mobile-drawer__link--main {
+		cursor: default;
+	}
+
+	.mobile-drawer__link:hover,
+	.mobile-drawer__link:focus-visible {
+		background: #f1f5f9;
+	}
+
+	.mobile-drawer__sub-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 46px;
+		min-width: 46px;
+		min-height: 46px;
+		flex: 0 0 46px;
+		padding: 0;
+		border: none;
+		border-radius: 10px;
+		background: #f1f5f9;
+		color: #334155;
+		cursor: pointer;
+		transition: background-color 0.15s ease;
+	}
+
+	.mobile-drawer__sub-toggle:hover {
+		background: #e2e8f0;
+	}
+
+	.mobile-drawer__sub-toggle svg {
+		transition: transform 0.2s ease;
+	}
+
+	.mobile-drawer__item.is-expanded .mobile-drawer__sub-toggle svg {
+		transform: rotate(180deg);
+	}
+
+	.mobile-drawer__sub-list {
+		display: none;
+		list-style: none;
+		margin: 4px 0 8px 10px;
+		padding: 4px 0 4px 10px;
+		border-left: 2px solid #cbd5e1;
+	}
+
+	.mobile-drawer__item.is-expanded .mobile-drawer__sub-list {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.mobile-drawer__sub-link {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: 44px;
+		padding: 9px 12px;
+		border-radius: 8px;
+		font-size: 14px;
+		font-weight: 500;
+		color: #1e293b;
+		text-decoration: none;
+		line-height: 1.3;
+	}
+
+	.mobile-drawer__sub-link strong {
+		font-size: 14px;
+		font-weight: 600;
+		color: #0f172a;
+	}
+
+	.mobile-drawer__sub-link small {
 		font-size: 12px;
+		font-weight: 400;
+		color: #64748b;
+		margin-top: 2px;
 	}
 
-	.main-nav .btn-donate {
-		padding: 8px;
-		font-size: 11px;
+	.mobile-drawer__sub-link--hub {
+		font-weight: 700;
+		color: #1d4ed8;
+		background: #eff6ff;
 	}
 
-	.mega-menu {
-		left: 5px;
-		right: 5px;
-		max-height: calc(100vh - 180px);
-		max-height: calc(100dvh - 180px);
+	.mobile-drawer__sub-link:hover,
+	.mobile-drawer__sub-link:focus-visible {
+		background: #f1f5f9;
 	}
 
-	.mega-menu__inner {
-		padding: 12px 8px;
+	.mobile-drawer__footer {
+		padding: 12px 16px 16px;
+		border-top: 1px solid #e2e8f0;
+		background: #f8fafc;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		flex-shrink: 0;
+	}
+
+	.mobile-drawer__bvi-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		width: 100%;
+		min-height: 46px;
+		padding: 10px 14px;
+		border-radius: 10px;
+		border: 1px solid #cbd5e1;
+		background: #ffffff;
+		color: #0f172a;
+		font-size: 14.5px;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	.mobile-drawer__contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		font-size: 13px;
+		color: #475569;
+	}
+
+	.mobile-drawer__phone {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 38px;
+		font-weight: 600;
+		color: #1e3a5f;
+		text-decoration: none;
+	}
+
+	.mobile-drawer__address {
+		margin: 0;
+		font-size: 12.5px;
+		color: #64748b;
+	}
+
+	/* Секция педагогов на планшетах и смартфонах без обрезки/вылета замещаемого img */
+	.teachers {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 24px;
+		padding: 24px 18px;
+		margin-top: 32px;
+		border-radius: 16px;
+	}
+
+	.teachers__info {
+		width: 100%;
+		min-width: 0;
+	}
+
+	.teachers__media {
+		width: 100%;
+		max-width: 540px;
+		margin: 0 auto;
+		min-width: 0;
+		overflow: hidden;
+		border-radius: 14px;
+	}
+
+	.teachers__media img {
+		width: 100%;
+		height: auto;
+		max-height: none;
+		object-fit: cover;
+		border-radius: 14px;
+		overflow: hidden !important;
+	}
+
+	/* Предсказуемое появление секций без сдвига и наложений при прокрутке */
+	.js-reveal,
+	.js-reveal-image {
+		transform: none;
+		transition: opacity 0.28s ease;
+		transition-delay: 0s !important;
+	}
+
+	.js-reveal.is-visible,
+	.js-reveal-image.is-visible {
+		transform: none;
+	}
+
+	/* Запас снизу подвала, чтобы кнопка «Наверх» не перекрывала контакты и политику */
+	.footer-bottom {
+		padding-bottom: 84px !important;
+	}
+
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+
+	.mobile-drawer,
+	.mobile-drawer-backdrop,
+	.mobile-menu-toggle__line,
+	.mobile-drawer__sub-toggle svg {
+		transition: none;
+	}
+
+}
+
+@media (max-width: 360px) {
+
+	.top-bar__content {
+		gap: 8px;
+		padding: 0 10px;
+	}
+
+	.brand {
+		gap: 8px;
+	}
+
+	.brand__logo {
+		width: 32px;
+		height: 32px;
+		flex-basis: 32px;
+	}
+
+	.brand__title {
+		font-size: 13px;
+	}
+
+	.brand__subtitle {
+		font-size: 10px;
+	}
+
+	.mobile-header-actions {
+		gap: 6px;
 	}
 
 }
@@ -12698,5 +12958,297 @@ p {
 		bottom: 50px;
 		width: min(280px, calc(100vw - 32px));
 		max-height: calc(100vh - 140px);
+	}
+}
+
+/* ==========================================================================
+   STAGE 5 & 6 MOBILE / TABLET POLISH (<= 1023px / <= 640px)
+   ========================================================================== */
+@media (max-width: 1023px) {
+	.js-card,
+	.animate-on-scroll,
+	.teachers-group.animate-on-scroll {
+		opacity: 1 !important;
+		transform: none !important;
+		transition: none !important;
+	}
+
+	.schedule-card.is-visible .schedule-item,
+	.instruction-card.is-visible .instruction-list__item {
+		animation: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+	}
+
+	.canteen-hero {
+		gap: 20px;
+		margin-bottom: 24px !important;
+	}
+
+	.canteen-hero .container-journal-hero {
+		margin-bottom: 4px;
+	}
+
+	.tab-btn,
+	.class-btn,
+	.day-btn,
+	.pill-btn,
+	.filter-pills .pill-btn,
+	.filters-block__btn,
+	.load-more-btn {
+		min-height: 44px;
+		padding: 10px 14px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.filter-pills {
+		flex-wrap: wrap;
+		overflow-x: visible;
+		padding: 4px 0;
+		gap: 8px;
+	}
+
+	.container_life {
+		padding: 24px 32px;
+	}
+
+	.featured-news,
+	.featured-news__content,
+	.sub-news-card,
+	.sub-news-card__content,
+	.search-result {
+		min-width: 0;
+		max-width: 100%;
+	}
+
+	.featured-news__content {
+		width: 100%;
+		padding: 0;
+	}
+
+	.featured-news .meta-group,
+	.sub-news-card .meta-group {
+		flex-wrap: wrap;
+		gap: 6px 12px;
+		align-items: center;
+	}
+
+	.featured-news .meta-group__tag,
+	.sub-news-card .meta-group__tag {
+		white-space: nowrap;
+		flex-shrink: 0;
+		max-width: 100%;
+	}
+
+	.featured-news__date,
+	.sub-news-card__date {
+		min-width: 0;
+		max-width: 100%;
+		overflow-wrap: anywhere;
+	}
+
+	.featured-news__title,
+	.featured-news__excerpt,
+	.sub-news-card__title,
+	.sub-news-card__excerpt,
+	.news-article__title,
+	.news-article__content,
+	.policy-container {
+		overflow-wrap: break-word;
+	}
+
+	.featured-news__more-link,
+	.sub-news-card__more-link,
+	.news-page__back,
+	.search-result__link {
+		min-height: 44px;
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.news-page__back {
+		padding: 8px 4px;
+		margin-bottom: 20px;
+	}
+
+	.news-gallery__arrow,
+	.news-lightbox__close,
+	.news-lightbox__arrow {
+		width: 44px !important;
+		height: 44px !important;
+		min-width: 44px;
+		min-height: 44px;
+	}
+
+	.news-gallery__thumbnail {
+		min-width: 56px;
+		min-height: 44px;
+	}
+
+	.search-results-section {
+		padding: 28px 0 48px !important;
+	}
+
+	.search-result {
+		padding: 18px 16px;
+	}
+
+	.search-result__title {
+		text-align: left;
+	}
+
+	.policy-container {
+		margin: 0 auto 40px !important;
+		padding: 24px 16px 0 !important;
+		max-width: 100%;
+	}
+
+	.policy-header {
+		margin-bottom: 20px;
+		padding-bottom: 16px;
+	}
+
+	.policy-header h1 {
+		font-size: 24px;
+	}
+
+	.policy-section ul {
+		margin-left: 18px;
+	}
+
+	.feedback__form input:not([type="checkbox"]):not([type="radio"]),
+	.feedback__form select,
+	.feedback__form textarea,
+	.feedback__form button[type="submit"],
+	.apply-form input:not([type="checkbox"]):not([type="radio"]),
+	.apply-form select,
+	.apply-form textarea {
+		font-size: 16px;
+		min-height: 44px;
+	}
+
+	.policy-checkbox-label {
+		min-height: 44px;
+		padding: 6px 0;
+	}
+
+	.policy-checkbox-label input[type="checkbox"] {
+		width: 20px !important;
+		height: 20px !important;
+		flex-shrink: 0;
+	}
+
+	.contacts-main__map iframe {
+		width: 100% !important;
+		max-width: 100%;
+		min-height: 260px;
+	}
+
+	.timeline-item__top {
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+	.teachers-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 18px;
+	}
+}
+
+@media (max-width: 820px) {
+	.container_life {
+		padding: 20px 16px 36px;
+	}
+}
+
+@media (max-width: 767px) {
+	/* Компактная высота виджетов Яндекс Карт на мобильных экранах (<= 767px) без изменения планшетов и ПК */
+	.contacts-main__map {
+		position: relative;
+		flex: none;
+		width: 100%;
+		height: 300px;
+		min-height: 300px;
+	}
+
+	.contacts-main__map iframe {
+		position: relative;
+		z-index: 1;
+		display: block;
+		width: 100%;
+		height: 100%;
+		min-height: 300px;
+	}
+
+	.contact-map {
+		width: 100%;
+		height: 300px;
+	}
+
+	/* Полноценная ширина и компактные отступы на странице «Жизнь гимназии» */
+	.gym-life-page {
+		padding: 12px 0 48px;
+	}
+
+	.container_life {
+		padding: 16px 16px 24px;
+	}
+
+	.filters-block {
+		margin-bottom: 20px;
+	}
+
+	.filters-block__list {
+		gap: 8px;
+	}
+
+	.filters-block__btn {
+		padding: 8px 14px;
+		font-size: 13px;
+		min-height: 44px;
+	}
+
+	.news-grid {
+		gap: 20px;
+	}
+
+	.news-grid__load-more {
+		margin-top: 24px;
+	}
+}
+
+@media (max-width: 640px) {
+	.sub-news-list {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 20px;
+	}
+
+	.featured-news {
+		padding: 16px;
+		gap: 16px;
+	}
+
+	.featured-news__img-wrap {
+		height: 220px;
+	}
+
+	.featured-news__title {
+		font-size: 22px;
+	}
+
+	.featured-news__excerpt {
+		margin-bottom: 12px;
+	}
+
+	.sub-news-card__img-wrap {
+		height: 200px;
+	}
+
+	.load-more-btn {
+		width: 100%;
 	}
 }

@@ -232,7 +232,7 @@
 
 .sveden-layout {
 	display: grid;
-	grid-template-columns: 290px 1fr;
+	grid-template-columns: 290px minmax(0, 1fr);
 	gap: 28px;
 	align-items: start;
 }
@@ -355,10 +355,12 @@ body.header-is-hidden .sveden-sidebar {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	gap: 12px;
 	width: 100%;
+	min-height: 44px;
 	background: none;
 	border: none;
-	padding: 4px 0;
+	padding: 10px 8px;
 	font-size: 14px;
 	font-weight: 600;
 	color: #0f172a;
@@ -367,6 +369,7 @@ body.header-is-hidden .sveden-sidebar {
 }
 
 .sveden-mobile-nav__toggle svg {
+	flex-shrink: 0;
 	transition: transform 0.2s ease;
 }
 
@@ -385,12 +388,18 @@ body.header-is-hidden .sveden-sidebar {
 	gap: 4px;
 }
 
+.sveden-mobile-nav__menu .sveden-sidebar__link {
+	min-height: 44px;
+}
+
 .sveden-mobile-nav.open .sveden-mobile-nav__menu {
 	display: flex;
 }
 
 /* Контентная область подраздела */
 .sveden-content {
+	min-width: 0;
+	max-width: 100%;
 	background: #ffffff;
 	border: 1px solid #e2e8f0;
 	border-radius: 12px;
@@ -494,8 +503,12 @@ body.header-is-hidden .sveden-sidebar {
 
 /* Таблицы сведений (microdata) */
 .sveden-table-wrap {
+	display: block;
 	width: 100%;
+	max-width: 100%;
 	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior-x: contain;
 	margin: 16px 0;
 	border: 1px solid #e2e8f0;
 	border-radius: 8px;
@@ -583,6 +596,11 @@ body.header-is-hidden .sveden-sidebar {
 	align-items: center;
 	gap: 12px;
 	flex-grow: 1;
+	min-width: 0;
+}
+
+.sveden-doc-info > div {
+	min-width: 0;
 }
 
 .sveden-doc-icon {
@@ -598,6 +616,7 @@ body.header-is-hidden .sveden-sidebar {
 	color: #0f172a;
 	text-decoration: none;
 	line-height: 1.4;
+	overflow-wrap: anywhere;
 }
 
 .sveden-doc-meta {
@@ -631,12 +650,13 @@ body.header-is-hidden .sveden-sidebar {
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
+	min-height: 44px;
 	color: #0284c7;
 	font-size: 13px;
 	font-weight: 500;
 	text-decoration: none;
 	margin-top: 24px;
-	padding: 8px 14px;
+	padding: 10px 14px;
 	background: #f0f9ff;
 	border: 1px solid #bae6fd;
 	border-radius: 6px;
@@ -652,18 +672,22 @@ body.header-is-hidden .sveden-sidebar {
    ========================================================================== */
 @media (max-width: 1024px) {
 
+	.sveden-hero {
+		padding: 24px 24px 20px;
+	}
+
 	.sveden-layout-container,
 	.sveden-page-wrap>.containers {
 		padding: 0 24px 48px;
 	}
 
 	.sveden-grid {
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 18px;
 	}
 
 	.sveden-layout {
-		grid-template-columns: 240px 1fr;
+		grid-template-columns: 240px minmax(0, 1fr);
 		gap: 20px;
 	}
 
@@ -672,9 +696,20 @@ body.header-is-hidden .sveden-sidebar {
 	}
 }
 
+@media (max-width: 1023px) {
+	a.sveden-badge-sign,
+	.sveden-doc-actions a,
+	.sveden-doc-actions button {
+		min-height: 40px;
+		padding: 8px 12px;
+		display: inline-flex;
+		align-items: center;
+	}
+}
+
 @media (max-width: 900px) {
 	.sveden-layout {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 	}
 
 	.sveden-sidebar {
@@ -690,20 +725,31 @@ body.header-is-hidden .sveden-sidebar {
 
 	.sveden-layout-container,
 	.sveden-page-wrap>.containers {
-		padding: 0 16px 36px;
+		padding: 0 14px 36px;
 	}
 
 	.sveden-grid {
-		grid-template-columns: 1fr;
+		grid-template-columns: minmax(0, 1fr);
 		gap: 14px;
 	}
 
 	.sveden-hero {
-		padding: 28px 0 20px;
+		padding: 20px 14px 18px;
 	}
 
 	.sveden-hero__title {
-		font-size: 24px;
+		font-size: 23px;
+	}
+
+	.sveden-legal-notice {
+		padding: 12px 14px;
+		gap: 10px;
+		align-items: flex-start;
+	}
+
+	.sveden-legal-notice__text {
+		font-size: 13px;
+		line-height: 1.45;
 	}
 
 	.sveden-content {
@@ -716,7 +762,39 @@ body.header-is-hidden .sveden-sidebar {
 
 	.sveden-table th,
 	.sveden-table td {
-		padding: 10px;
-		font-size: 12.5px;
+		padding: 9px 10px;
+		font-size: 13.5px;
+	}
+
+	.sveden-doc-item {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 12px;
+	}
+
+	.sveden-doc-info {
+		width: 100%;
+		align-items: flex-start;
+	}
+
+	.sveden-doc-actions {
+		width: 100%;
+		flex-wrap: wrap;
+	}
+}
+
+@media (max-width: 380px) {
+	.sveden-hero {
+		padding: 18px 10px 16px;
+	}
+
+	.sveden-layout-container,
+	.sveden-page-wrap>.containers {
+		padding: 0 10px 32px;
+	}
+
+	.sveden-content {
+		padding: 14px 10px;
 	}
 }

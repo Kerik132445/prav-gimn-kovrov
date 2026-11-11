@@ -326,6 +326,14 @@
     .search-box {
         width: 100%;
     }
+    .search-box__input {
+        font-size: 16px;
+        min-height: 44px;
+    }
+    .pill-btn {
+        min-height: 44px;
+        padding: 10px 16px;
+    }
     .documents-item {
         flex-direction: column;
         align-items: flex-start;
@@ -334,6 +342,39 @@
     .documents-item__actions {
         width: 100%;
         justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+    .doc-btn {
+        min-height: 44px;
+        padding: 10px 16px;
+        justify-content: center;
+    }
+}
+@media (max-width: 1023px) {
+    .pill-btn,
+    .doc-btn {
+        min-height: 44px;
+    }
+    .search-box__input {
+        font-size: 16px;
+        min-height: 44px;
+    }
+}
+@media (max-width: 480px) {
+    .main-content .site-container {
+        width: calc(100% - 20px);
+    }
+    .document-title {
+        padding: 14px 14px;
+    }
+    .accordion-content {
+        padding: 10px 12px;
+    }
+    .documents-item__actions {
+        justify-content: stretch;
+    }
+    .doc-btn {
+        flex: 1 1 130px;
     }
 }
 </style>	<link rel="stylesheet" href="css/bvi.css">

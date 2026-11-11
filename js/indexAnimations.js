@@ -231,7 +231,18 @@ async function loadHomeNews() {
 
 	} catch (error) {
 
-		console.error("Не удалось загрузить новости:", error);
+		if (typeof news !== "undefined" && Array.isArray(news) && news.length > 0) {
+			homeNews = news.map(item => ({
+				id: item.id,
+				title: item.title,
+				date: item.date,
+				description: item.excerpt || item.description || "",
+				image: item.image,
+				alt: item.alt || item.title
+			}));
+			renderHomeNews();
+			return;
+		}
 
 		homeNewsList.innerHTML = `
             <p class="news-error">
@@ -253,7 +264,9 @@ function createHomeNewsCard(news) {
 	article.className = "news";
 
 	const image = news.image
-		? `${window.API_BASE_URL}${news.image}`
+		? (/^(https?:\/\/|assets\/|\.?\/)/.test(news.image)
+			? news.image
+			: `${window.API_BASE_URL}${news.image}`)
 		: "assets/icons/news1.png";
 
 	article.innerHTML = `

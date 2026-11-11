@@ -1,29 +1,38 @@
+document.addEventListener("DOMContentLoaded", () => {
+	const revealSections = document.querySelectorAll(
+		".apply-company, .apply-gide, .admission-info, .course-enroll"
+	);
 
-if (!entry.isIntersecting) {
-	return;
-}
+	revealSections.forEach((section) => {
+		section.classList.add("js-reveal");
+	});
 
-entry.target.classList.add('is-visible');
+	if (!("IntersectionObserver" in window)) {
+		revealSections.forEach((section) => section.classList.add("is-visible"));
+		return;
+	}
 
-observer.unobserve(entry.target);
+	const revealObserver = new IntersectionObserver(
+		(entries, observer) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) {
+					return;
+				}
 
-        });
+				entry.target.classList.add("is-visible");
+				observer.unobserve(entry.target);
+			});
+		},
+		{
+			threshold: 0.01,
+			rootMargin: "0px 0px -24px 0px"
+		}
+	);
 
-    },
-
-{
-	threshold: 0.12
-}
-
-);
-
-
-revealSections.forEach(section => {
-
-	revealObserver.observe(section);
-
+	revealSections.forEach((section) => {
+		revealObserver.observe(section);
+	});
 });
-
 
 
 // ========================================
