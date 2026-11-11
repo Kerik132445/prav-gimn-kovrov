@@ -1,0 +1,291 @@
+/* ==========================================================================
+   BVI (Версия для слабовидящих по ГОСТ Р 52872-2019)
+   ========================================================================== */
+
+/* Кнопка включения в навигационном меню (ghost-style) */
+.nav-item--bvi {
+	position: absolute;
+	right: 80px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: inline-flex;
+	align-items: center;
+	flex-shrink: 0;
+	list-style: none;
+	margin: 0;
+}
+
+@media (max-width: 1300px) {
+	.nav-item--bvi {
+		right: 40px;
+	}
+}
+
+@media (max-width: 1100px) {
+	.nav-item--bvi {
+		right: 24px;
+	}
+}
+
+@media (max-width: 900px) {
+	.nav-item--bvi {
+		right: 16px;
+	}
+}
+
+.bvi-toggle-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	padding: 6px 12px;
+	background: transparent;
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-radius: 8px;
+	font-size: 13.5px;
+	font-weight: 500;
+	font-family: inherit;
+	cursor: pointer;
+	text-decoration: none;
+	white-space: nowrap;
+	line-height: 1.2;
+	transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+	margin-left: auto;
+	box-sizing: border-box;
+	outline: none;
+}
+
+.bvi-toggle-btn:hover {
+	background: rgba(255, 255, 255, 0.15);
+	border-color: rgba(255, 255, 255, 0.7);
+	color: #ffffff;
+}
+
+.bvi-toggle-btn:focus-visible {
+	outline: 2px solid rgba(255, 255, 255, 0.7);
+	outline-offset: 2px;
+}
+
+.bvi-toggle-btn svg,
+.bvi-toggle-btn .bvi-icon {
+	width: 16px;
+	height: 16px;
+	stroke: #ffffff;
+	flex-shrink: 0;
+	display: block;
+	transition: stroke 0.25s ease;
+}
+
+.bvi-toggle-btn span {
+	color: #ffffff;
+	display: inline;
+}
+
+@media (max-width: 768px) {
+	.nav-item--bvi {
+		position: static !important;
+		transform: none !important;
+		margin-left: 8px !important;
+		margin-right: 8px !important;
+		flex: 0 0 auto !important;
+	}
+
+	.bvi-toggle-btn {
+		padding: 6px 10px;
+		font-size: 12.5px;
+		margin-left: 0;
+	}
+
+	.bvi-toggle-btn svg,
+	.bvi-toggle-btn .bvi-icon {
+		width: 15px;
+		height: 15px;
+	}
+}
+
+/* Мобильное меню в виде вертикального списка / бургер */
+.main-nav .nav-list[style*="column"] .nav-item--bvi,
+.main-nav.is-open .nav-item--bvi,
+.nav-list.is-vertical .nav-item--bvi {
+	position: static !important;
+	transform: none !important;
+	margin-left: 0 !important;
+	margin-top: 10px !important;
+	width: 100% !important;
+	justify-content: center !important;
+}
+
+/* Панель настроек доступности вверху страницы */
+.bvi-panel {
+	display: none;
+	background: #1e293b;
+	color: #ffffff;
+	padding: 10px 16px;
+	font-size: 14px;
+	border-bottom: 2px solid #3b82f6;
+	z-index: 99999;
+	position: relative;
+}
+
+.bvi-panel.is-active {
+	display: block;
+}
+
+.bvi-panel__container {
+	max-width: 1200px;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.bvi-panel__group {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.bvi-panel__label {
+	font-weight: 500;
+	font-size: 13px;
+	color: #cbd5e1;
+}
+
+.bvi-btn {
+	background: #334155;
+	color: #ffffff;
+	border: 1px solid #64748b;
+	padding: 4px 10px;
+	border-radius: 4px;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+.bvi-btn:hover, .bvi-btn.is-active {
+	background: #2563eb;
+	border-color: #3b82f6;
+}
+
+.bvi-btn--theme-white {
+	background: #ffffff;
+	color: #000000;
+}
+
+.bvi-btn--theme-black {
+	background: #000000;
+	color: #ffffff;
+	border-color: #ffffff;
+}
+
+.bvi-btn--theme-blue {
+	background: #cbf0ff;
+	color: #064e3b;
+	border-color: #38bdf8;
+}
+
+.bvi-btn--close {
+	background: #dc2626;
+	border-color: #ef4444;
+}
+
+.bvi-btn--close:hover {
+	background: #b91c1c;
+}
+
+/* Режимы шрифта */
+body.bvi-font-md {
+	font-size: 18px !important;
+}
+body.bvi-font-md * {
+	font-size: 1.08em;
+}
+
+body.bvi-font-lg {
+	font-size: 22px !important;
+}
+body.bvi-font-lg * {
+	font-size: 1.18em;
+}
+
+/* Цветовые схемы */
+body.bvi-theme-white {
+	background-color: #ffffff !important;
+	color: #000000 !important;
+}
+body.bvi-theme-white .bvi-toggle-btn {
+	color: #000000 !important;
+	border-color: #000000 !important;
+	background: transparent !important;
+}
+body.bvi-theme-white .bvi-toggle-btn svg {
+	stroke: #000000 !important;
+}
+body.bvi-theme-white .bvi-toggle-btn span {
+	color: #000000 !important;
+}
+
+body.bvi-theme-black {
+	background-color: #000000 !important;
+	color: #ffffff !important;
+}
+body.bvi-theme-black .bvi-toggle-btn {
+	color: #ffffff !important;
+	border-color: #ffffff !important;
+	background: transparent !important;
+}
+body.bvi-theme-black .bvi-toggle-btn svg {
+	stroke: #ffffff !important;
+}
+body.bvi-theme-black .bvi-toggle-btn span {
+	color: #ffffff !important;
+}
+body.bvi-theme-black a {
+	color: #ffff00 !important;
+	text-decoration: underline !important;
+}
+body.bvi-theme-black header,
+body.bvi-theme-black footer,
+body.bvi-theme-black main,
+body.bvi-theme-black section,
+body.bvi-theme-black div,
+body.bvi-theme-black article,
+body.bvi-theme-black aside,
+body.bvi-theme-black table,
+body.bvi-theme-black th,
+body.bvi-theme-black td {
+	background-color: #000000 !important;
+	color: #ffffff !important;
+	border-color: #ffffff !important;
+}
+
+body.bvi-theme-blue {
+	background-color: #e0f2fe !important;
+	color: #034975 !important;
+}
+body.bvi-theme-blue .bvi-toggle-btn {
+	color: #034975 !important;
+	border-color: #034975 !important;
+	background: transparent !important;
+}
+body.bvi-theme-blue .bvi-toggle-btn svg {
+	stroke: #034975 !important;
+}
+body.bvi-theme-blue .bvi-toggle-btn span {
+	color: #034975 !important;
+}
+body.bvi-theme-blue a {
+	color: #024b80 !important;
+	text-decoration: underline !important;
+}
+
+/* Скрытие изображений */
+body.bvi-hide-images img,
+body.bvi-hide-images svg:not(.bvi-icon) {
+	opacity: 0.05 !important;
+	filter: grayscale(100%) !important;
+}

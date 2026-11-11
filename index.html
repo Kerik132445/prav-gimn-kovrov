@@ -7,6 +7,7 @@
 	<title>Православная гимназия</title>
 
 	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="css/bvi.css">
 </head>
 
 <body>
@@ -104,6 +105,15 @@
 					<a href="contact.html" class="nav-link">
 						Контакты
 					</a>
+				</li>
+				<li class="nav-item--bvi">
+					<button type="button" class="bvi-toggle-btn" aria-label="Версия для слабовидящих">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bvi-icon" width="16" height="16">
+							<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+							<circle cx="12" cy="12" r="3"></circle>
+						</svg>
+						<span>Версия для слабовидящих</span>
+					</button>
 				</li>
 
 			</ul>
@@ -257,7 +267,7 @@
 
 					<div class="about__image">
 
-						<img src="./assets/icons/Ученики.png" alt="Ученики гимназии">
+						<img src="./assets/icons/Ученики.webp" alt="Ученики гимназии">
 
 					</div>
 
@@ -508,7 +518,7 @@
 
 			<div class="teachers__media">
 
-				<img src="assets/images/teacher.png" alt="Педагог гимназии">
+				<img src="assets/images/teacher.webp" alt="Педагог гимназии">
 
 			</div>
 
@@ -550,7 +560,7 @@
 							Номер телефона или Email
 						</label>
 
-						<input type="text" placeholder="+7 (999) 000-00-00 / example@main.ru" id="user-contact">
+						<input type="text" placeholder="+7 (999) 123-45-67 или email@mail.ru" id="user-contact">
 
 					</div>
 
@@ -604,15 +614,11 @@
 
 
 					<div class="form-footer">
-
-						<span class="policy-text">
-							Согласен на обработку персональных данных
-						</span>
-
-						<button type="submit" class="btn-orange">
-							Отправить заявку
-						</button>
-
+						<label class="policy-checkbox-label" style="display:flex; align-items:center; gap:8px; font-size:13px; color:#475569; cursor:pointer;">
+							<input type="checkbox" required checked style="accent-color:#2563eb; width:16px; height:16px;">
+							<span>Согласен на <a href="policy.html" target="_blank" style="color:#0284c7; text-decoration:underline;">обработку персональных данных</a> (152-ФЗ)</span>
+						</label>
+						<button type="submit" class="btn-orange">Отправить заявку</button>
 					</div>
 
 				</form>
@@ -778,10 +784,10 @@
 					<div style="position:relative;overflow:hidden;"><a
 							href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
 							style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-							href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
-							style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
+							href="https://yandex.ru/maps/10664/kovrov/house/podlesnaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
+							style="color:#eee;font-size:12px;position:absolute;top:14px;">Подлесная улица, 10 —
 							Яндекс Карты</a><iframe
-							src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&utm_source=chatgpt.com&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
+							src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
 							width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
 						</iframe></div>
 				</div>
@@ -790,121 +796,118 @@
 
 
 			<div class="footer-bottom">
+				<div class="footer-container">
+					<div class="footer-top-row">
+						<a href="index.html" class="brand__footer">
+							<img src="assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer" width="48" height="48">
+							<div class="brand__info__footer">
+								<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+								<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+							</div>
+						</a>
 
-				<a href="index.html" class="brand__footer">
-
-					<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer">
-
-					<div class="brand__info__footer">
-
-						<span class="brand__title__footer">
-							Православная гимназия г. Коврова
-						</span>
-
-						<span class="brand__subtitle__footer">
-							Частное общеобразовательное учреждение
-						</span>
-
+						<div class="btn_media">
+							<ul class="btn_media__list">
+								<li class="media__list-vk">
+									<a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+										<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-max">
+									<a href="#" aria-label="Мессенджер">
+										<img src="assets/icons/images-Photoroom.png" alt="Мессенджер" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-whp">
+									<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+										<img src="assets/icons/whatsap_icon.svg" alt="WhatsApp" width="20" height="20">
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 
-				</a>
+					<div class="footer-divider"></div>
 
+					<div class="footer-nav-grid">
+						<div class="footer-col">
+							<h3 class="footer-col__title">О гимназии</h3>
+							<ul class="footer-col__list">
+								<li><a href="story_school.html">История гимназии</a></li>
+								<li><a href="sveden/index.html">Сведения об организации</a></li>
+								<li><a href="teachers.html">Учителя</a></li>
+								<li><a href="contact.html">Контакты</a></li>
+							</ul>
+						</div>
 
-				<div class="footer__nav">
+						<div class="footer-col">
+							<h3 class="footer-col__title">Обучение</h3>
+							<ul class="footer-col__list">
+								<li><a href="class_schedule.html">Расписание</a></li>
+								<li><a href="food.html">Школьное питание</a></li>
+								<li><a href="documents.html">Документы</a></li>
+								<li><a href="dairy.html">Электронный дневник</a></li>
+							</ul>
+						</div>
 
-					<ul class="nav__list">
+						<div class="footer-col">
+							<h3 class="footer-col__title">Информация</h3>
+							<ul class="footer-col__list">
+								<li><a href="news.html">Новости</a></li>
+								<li><a href="life.html">Жизнь гимназии</a></li>
+								<li><a href="index.html#faq">Частые вопросы (FAQ)</a></li>
+								<li><a href="apply.html">Поступающим</a></li>
+							</ul>
+						</div>
+					</div>
 
-						<li class="nav__list-about">
-							<a href="story_school.html">
-								О гимназии
-							</a>
-						</li>
+					<div class="footer-divider"></div>
 
+					<div class="footer-contacts-bar">
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Адрес</span>
+								<span class="footer-contact-item__text">601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</span>
+							</div>
+						</div>
 
-						<li class="nav__list-teach">
-							<a href="class_schedule.html">
-								Обучение
-							</a>
-						</li>
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Телефон</span>
+								<div class="footer-contact-item__phones">
+									<a href="tel:+74923240195" class="footer-contact-item__link">+7 (49232) 4-01-95</a>,
+									<a href="tel:+74923242272" class="footer-contact-item__link">4-22-72</a>
+								</div>
+							</div>
+						</div>
 
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Электронная почта</span>
+								<a href="mailto:sretenskajgimn@yandex.ru" class="footer-contact-item__link">sretenskajgimn@yandex.ru</a>
+							</div>
+						</div>
+					</div>
 
-						<li class="nav__list-kids">
-							<a href="life.html">
-								Жизнь гимназии
-							</a>
-						</li>
+					<div class="footer-divider"></div>
 
-
-						<li class="nav__list-faq">
-							<a href="#faq">
-								FAQ
-							</a>
-						</li>
-
-
-						<li class="nav__list-contact">
-							<a href="contact.html">
-								Контакты
-							</a>
-						</li>
-
-					</ul>
-
+					<div class="footer-copyright">
+						<span class="footer-copyright__text">© 2026 Православная гимназия. Все права защищены.</span>
+						<a href="policy.html" class="footer-copyright__policy">Политика конфиденциальности</a>
+					</div>
 				</div>
-
-
-				<div class="btn_media">
-
-					<ul class="btn_media__list">
-
-						<li class="media__list-vk">
-
-							<a href="#">
-								<img src="assets/icons/vk_icon.svg" alt="ВК">
-							</a>
-
-						</li>
-
-
-						<li class="media__list-max">
-
-							<a href="#">
-								<img src="assets/icons/images-Photoroom.png" alt="max">
-							</a>
-
-						</li>
-
-
-						<li class="media__list-whp">
-
-							<a href="#">
-
-								<img src="assets/icons/whatsap_icon.svg" alt="Whatsap">
-
-							</a>
-
-						</li>
-
-					</ul>
-
-				</div>
-
 			</div>
-
-
-			<div class="footer-copyright">
-
-				<span>
-					© 2026 Православная гимназия.
-					Все права защищены.
-				</span>
-
-				<a href="#">
-					Политика конфиденциальности
-				</a>
-
-			</div>
-
 		</footer>
 
 	</main>
@@ -916,6 +919,7 @@
 	<script src="js/navigation.js"></script>
 	<script src="js/search.js"></script>
 
+	<script src="js/bvi.js"></script>
 </body>
 
 </html>

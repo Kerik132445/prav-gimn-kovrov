@@ -69,9 +69,11 @@
 	.sveden-hero {
 		padding: 20px 16px;
 	}
+
 	.sveden-hero__title {
 		font-size: 28px;
 	}
+
 	.sveden-hero__subtitle {
 		font-size: 16px;
 	}
@@ -116,7 +118,7 @@
 .sveden-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 22px;
+	gap: 24px;
 }
 
 .sveden-card {
@@ -220,8 +222,8 @@
    МАКЕТ ПОДРАЗДЕЛОВ (2 КОЛОНКИ: САЙДБАР + КОНТЕНТ)
    ========================================================================== */
 .sveden-layout-container,
-.sveden-page-wrap > .containers {
-	max-width: 1200px;
+.sveden-page-wrap>.containers {
+	max-width: 1400px;
 	margin: 0 auto;
 	padding: 0 32px 60px;
 	box-sizing: border-box;
@@ -242,8 +244,35 @@
 	border-radius: 12px;
 	padding: 16px;
 	position: sticky;
-	top: 20px;
+	top: calc(var(--header-height, 120px) + 20px);
+	max-height: calc(100vh - var(--header-height, 120px) - 36px);
+	overflow-y: auto;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+	transition: top 0.4s cubic-bezier(0.22, 1, 0.36, 1), max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+	scrollbar-width: thin;
+	scrollbar-color: #cbd5e1 transparent;
+}
+
+body.header-is-hidden .sveden-sidebar {
+	top: 20px;
+	max-height: calc(100vh - 40px);
+}
+
+.sveden-sidebar::-webkit-scrollbar {
+	width: 4px;
+}
+
+.sveden-sidebar::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.sveden-sidebar::-webkit-scrollbar-thumb {
+	background: #cbd5e1;
+	border-radius: 4px;
+}
+
+.sveden-sidebar::-webkit-scrollbar-thumb:hover {
+	background: #94a3b8;
 }
 
 .sveden-sidebar__title {
@@ -622,8 +651,9 @@
    АДАПТИВНОСТЬ
    ========================================================================== */
 @media (max-width: 1024px) {
+
 	.sveden-layout-container,
-	.sveden-page-wrap > .containers {
+	.sveden-page-wrap>.containers {
 		padding: 0 24px 48px;
 	}
 
@@ -657,8 +687,9 @@
 }
 
 @media (max-width: 640px) {
+
 	.sveden-layout-container,
-	.sveden-page-wrap > .containers {
+	.sveden-page-wrap>.containers {
 		padding: 0 16px 36px;
 	}
 

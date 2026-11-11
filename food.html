@@ -7,6 +7,7 @@
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<title>Школьное питание</title>
 	<link href="./css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/bvi.css">
 </head>
 
 <body>
@@ -73,6 +74,15 @@
 					<a class="nav-link" href="contact.html">
 						Контакты
 					</a>
+				</li>
+				<li class="nav-item--bvi">
+					<button type="button" class="bvi-toggle-btn" aria-label="Версия для слабовидящих">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bvi-icon" width="16" height="16">
+							<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+							<circle cx="12" cy="12" r="3"></circle>
+						</svg>
+						<span>Версия для слабовидящих</span>
+					</button>
 				</li>
 			</ul>
 		</nav>
@@ -377,25 +387,20 @@
 		<div class="info-block">
 			<h2 class="info-block__title">Документы и акты</h2>
 			<div class="docs-list">
-				<a class="doc-card" href="#">
-					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
-					<span class="doc-card__title">Положение об организации питания учащихся</span>
-					<span class="doc-card__meta">PDF, 2.4 МБ</span>
+				<a class="doc-card" href="sveden/catering.html">
+					<img alt="Документ" class="doc-card__icon" src="assets/icons/download-documents.svg" />
+					<span class="doc-card__title">Официальный раздел: Организация питания в образовательной организации</span>
+					<span class="doc-card__meta">Сведения об условиях питания, трапезных и меню</span>
 				</a>
-				<a class="doc-card" href="#">
+				<a class="doc-card" href="documents/%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC%20%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%B8%D0%B9%20%D0%BE%D0%B1%D1%83%D1%87%D0%B0%D1%8E%D1%89%D0%B8%D1%85%D1%81%D1%8F%2025.pdf" target="_blank">
 					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
-					<span class="doc-card__title">График посещения столовой и меню</span>
-					<span class="doc-card__meta">PDF, 1.1 МБ</span>
+					<span class="doc-card__title">Режим занятий обучающихся и график питания</span>
+					<span class="doc-card__meta">PDF, 420 КБ</span>
 				</a>
-				<a class="doc-card" href="#">
+				<a class="doc-card" href="documents/%D0%9F%D1%83%D0%B1%D0%BB%D0%B8%D1%87%D0%BD%D0%B0%D1%8F%20%D0%BE%D1%84%D0%B5%D1%80%D1%82%D0%B0%20%D0%BE%20%D0%B7%D0%B0%D0%BA%D0%BB%D1%8E%D1%87%D0%B5%D0%BD%D0%B8%D0%B8%20%D0%B4%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D1%80%D0%B0%20%D0%B4%D0%BE%D0%B1%D1%80%D0%BE%D0%B2%D0%BE%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE%20%D0%BF%D0%BE%D0%B6%D0%B5%D1%80%D1%82%D0%B2%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F.pdf" target="_blank">
 					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
-					<span class="doc-card__title">Поставщики продуктов и контрактные условия</span>
-					<span class="doc-card__meta">PDF, 850 КБ</span>
-				</a>
-				<a class="doc-card" href="#">
-					<img alt="Скачать" class="doc-card__icon" src="assets/icons/download-documents.svg" />
-					<span class="doc-card__title">Акт проверки школьной столовой родительским контролем</span>
-					<span class="doc-card__meta">PDF, 3.2 МБ</span>
+					<span class="doc-card__title">Договор с ГБУЗ ВО «Ковровская городская больница №2»</span>
+					<span class="doc-card__meta">Медицинское обслуживание (2 медработника)</span>
 				</a>
 			</div>
 		</div>
@@ -403,18 +408,18 @@
 			<h2 class="info-block__title">Контакты и обратная связь</h2>
 			<div class="contacts-card">
 				<div class="contacts-card__hotline">
-					<h3 class="contacts-card__subtitle">Горячая линия по питанию</h3>
-					<a class="contacts-card__phone" href="tel:+70000000000">+7 (XXX) XXX-XX-XX</a>
-					<p class="contacts-card__note">Минпросвещения РФ / Народный фронт</p>
+					<h3 class="contacts-card__subtitle">Горячая линия по школьному питанию</h3>
+					<a class="contacts-card__phone" href="tel:88002009185">8 (800) 200-91-85</a>
+					<p class="contacts-card__note">Минпросвещения РФ (звонок бесплатный)</p>
 				</div>
 				<div class="contacts-card__persons">
 					<p class="contacts-card__person">
-						<strong>Ответственный за питание:</strong> Иванов И. И.
-						<a href="tel:+70000000000">+7 (XXX) XXX-XX-XX</a>
+						<strong>Ответственный за питание:</strong> Ткаченко Ирина Николаевна (зам. директора по УВР)
+						<a href="tel:+74923240195">8 (49232) 401-95</a>
 					</p>
 					<p class="contacts-card__person">
-						<strong>Директор гимназии:</strong> Бунтилов М. В.
-						<a href="tel:+70000000000">+7 (XXX) XXX-XX-XX</a>
+						<strong>Директор гимназии:</strong> протоиерей Михаил Бунтилов
+						<a href="tel:+79206225676">8-920-622-56-76</a>
 					</p>
 				</div>
 			</div>
@@ -431,7 +436,7 @@
 				</div>
 				<div class="form-group">
 					<label for="user-contact">Номер телефона или Email</label>
-					<input id="user-contact" placeholder="+7 (999) 000-00-00 / example@main.ru" type="text" />
+					<input id="user-contact" placeholder="+7 (999) 123-45-67 или email@mail.ru" type="text" />
 				</div>
 				<div class="form-group">
 					<label for="user-theme">Тема обращения</label>
@@ -449,9 +454,12 @@
 					<textarea id="user-msg" placeholder="Опишите ваш вопрос..."></textarea>
 				</div>
 				<div class="form-footer">
-					<span class="policy-text">Согласен на обработку персональных данных</span>
-					<button class="btn-orange" type="submit">Отправить заявку</button>
-				</div>
+<label class="policy-checkbox-label" style="display:flex; align-items:center; gap:8px; font-size:13px; color:#475569; cursor:pointer;">
+<input type="checkbox" required checked style="accent-color:#2563eb; width:16px; height:16px;">
+<span>Согласен на <a href="policy.html" target="_blank" style="color:#0284c7; text-decoration:underline;">обработку персональных данных</a> (152-ФЗ)</span>
+</label>
+<button class="btn-orange" type="submit">Отправить заявку</button>
+</div>
 			</form>
 		</div>
 		<div class="faq">
@@ -542,90 +550,134 @@
 				<div style="position:relative;overflow:hidden;"><a
 						href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps"
 						style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-						href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16"
-						style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
+						href="https://yandex.ru/maps/10664/kovrov/house/podlesnaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16"
+						style="color:#eee;font-size:12px;position:absolute;top:14px;">Подлесная улица, 10 —
 						Яндекс Карты</a><iframe allowfullscreen="true" frameborder="1" height="400"
-						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;utm_source=chatgpt.com&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16"
+						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16"
 						style="position:relative;" width="560">
 					</iframe></div>
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<a class="brand__footer" href="index.html">
-				<img alt="Логотип гимназии" class="brand__logo__footer" src="./assets/icons/logo_star.png" />
-				<div class="brand__info__footer">
-					<span class="brand__title__footer">
-						Православная гимназия г. Коврова
-					</span>
-					<span class="brand__subtitle__footer">
-						Частное общеобразовательное учреждение
-					</span>
+				<div class="footer-container">
+					<div class="footer-top-row">
+						<a href="index.html" class="brand__footer">
+							<img src="assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer" width="48" height="48">
+							<div class="brand__info__footer">
+								<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+								<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+							</div>
+						</a>
+
+						<div class="btn_media">
+							<ul class="btn_media__list">
+								<li class="media__list-vk">
+									<a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+										<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-max">
+									<a href="#" aria-label="Мессенджер">
+										<img src="assets/icons/images-Photoroom.png" alt="Мессенджер" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-whp">
+									<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+										<img src="assets/icons/whatsap_icon.svg" alt="WhatsApp" width="20" height="20">
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-nav-grid">
+						<div class="footer-col">
+							<h3 class="footer-col__title">О гимназии</h3>
+							<ul class="footer-col__list">
+								<li><a href="story_school.html">История гимназии</a></li>
+								<li><a href="sveden/index.html">Сведения об организации</a></li>
+								<li><a href="teachers.html">Учителя</a></li>
+								<li><a href="contact.html">Контакты</a></li>
+							</ul>
+						</div>
+
+						<div class="footer-col">
+							<h3 class="footer-col__title">Обучение</h3>
+							<ul class="footer-col__list">
+								<li><a href="class_schedule.html">Расписание</a></li>
+								<li><a href="food.html">Школьное питание</a></li>
+								<li><a href="documents.html">Документы</a></li>
+								<li><a href="dairy.html">Электронный дневник</a></li>
+							</ul>
+						</div>
+
+						<div class="footer-col">
+							<h3 class="footer-col__title">Информация</h3>
+							<ul class="footer-col__list">
+								<li><a href="news.html">Новости</a></li>
+								<li><a href="life.html">Жизнь гимназии</a></li>
+								<li><a href="index.html#faq">Частые вопросы (FAQ)</a></li>
+								<li><a href="apply.html">Поступающим</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-contacts-bar">
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Адрес</span>
+								<span class="footer-contact-item__text">601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</span>
+							</div>
+						</div>
+
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Телефон</span>
+								<div class="footer-contact-item__phones">
+									<a href="tel:+74923240195" class="footer-contact-item__link">+7 (49232) 4-01-95</a>,
+									<a href="tel:+74923242272" class="footer-contact-item__link">4-22-72</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Электронная почта</span>
+								<a href="mailto:sretenskajgimn@yandex.ru" class="footer-contact-item__link">sretenskajgimn@yandex.ru</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-copyright">
+						<span class="footer-copyright__text">© 2026 Православная гимназия. Все права защищены.</span>
+						<a href="policy.html" class="footer-copyright__policy">Политика конфиденциальности</a>
+					</div>
 				</div>
-			</a>
-			<div class="footer__nav">
-				<ul class="nav__list">
-					<li class="nav__list-about">
-						<a href="story_school.html">
-							О гимназии
-						</a>
-					</li>
-					<li class="nav__list-teach">
-						<a href="class_schedule.html">
-							Обучение
-						</a>
-					</li>
-					<li class="nav__list-kids">
-						<a href="life.html">
-							Жизнь гимназии
-						</a>
-					</li>
-					<li class="nav__list-faq">
-						<a href="#faq">
-							FAQ
-						</a>
-					</li>
-					<li class="nav__list-contact">
-						<a href="contact.html">
-							Контакты
-						</a>
-					</li>
-				</ul>
 			</div>
-			<div class="btn_media">
-				<ul class="btn_media__list">
-					<li class="media__list-vk">
-						<a href="#">
-							<img alt="ВК" src="assets/icons/vk_icon.svg" />
-						</a>
-					</li>
-					<li class="media__list-max">
-						<a href="#">
-							<img alt="max" src="assets/icons/images-Photoroom.png" />
-						</a>
-					</li>
-					<li class="media__list-whp">
-						<a href="#">
-							<img alt="Whatsap" src="assets/icons/whatsap_icon.svg" />
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer-copyright">
-			<span>
-				© 2026 Православная гимназия.
-				Все права защищены.
-			</span>
-			<a href="#">
-				Политика конфиденциальности
-			</a>
-		</div>
-	</footer>
+		</footer>
 	<script src="js/script.js"></script>
 	<script src="js/window.scrollY.js"></script>
 	<script src="js/foodAnimations.js"></script>
 	<script src="js/navigation.js"></script>
 	<script src="js/search.js"></script>
+	<script src="js/bvi.js"></script>
 </body>
 
 </html>

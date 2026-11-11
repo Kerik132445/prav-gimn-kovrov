@@ -1,357 +1,425 @@
 <!DOCTYPE html>
 
 <html lang="ru">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Контакты</title>
-<link href="./css/style.css" rel="stylesheet"/>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<title>Контакты</title>
+	<link href="./css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/bvi.css">
 </head>
+
 <body>
-<header>
-<div class="top-bar">
-<div class="containers">
-<div class="top-bar__content">
-<a class="brand" href="index.html">
-<img alt="Логотип гимназии" class="brand__logo" src="./assets/icons/logo_star.png"/>
-<div class="brand__info">
-<span class="brand__title">
+	<header>
+		<div class="top-bar">
+			<div class="containers">
+				<div class="top-bar__content">
+					<a class="brand" href="index.html">
+						<img alt="Логотип гимназии" class="brand__logo" src="./assets/icons/logo_star.png" />
+						<div class="brand__info">
+							<span class="brand__title">
 								Православная гимназия г. Коврова
 							</span>
-<span class="brand__subtitle">
+							<span class="brand__subtitle">
 								Частное общеобразовательное учреждение
 							</span>
-</div>
-</a>
-<form class="search-form" id="site-search-form">
-<img alt="" src="assets/icons/search.svg"/>
-<input autocomplete="off" id="site-search-input" placeholder="Поиск по сайту..." type="search"/>
-</form>
-</div>
-</div>
-</div>
-<nav class="main-nav">
-<ul class="nav-list">
-<li>
-<a class="nav-link" href="index.html">
+						</div>
+					</a>
+					<form class="search-form" id="site-search-form">
+						<img alt="" src="assets/icons/search.svg" />
+						<input autocomplete="off" id="site-search-input" placeholder="Поиск по сайту..."
+							type="search" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<nav class="main-nav">
+			<ul class="nav-list">
+				<li>
+					<a class="nav-link" href="index.html">
 						Главная
 					</a>
-</li>
-<li>
-<a class="nav-link" href="sveden/index.html">
+				</li>
+				<li>
+					<a class="nav-link" href="sveden/index.html">
 						Сведения об образовательной организации
 					</a>
-</li>
-<!-- УЧЕБА -->
-<li class="nav-item nav-item--mega">
-<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
+				</li>
+				<!-- УЧЕБА -->
+				<li class="nav-item nav-item--mega">
+					<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Учеба
 						<span aria-hidden="true" class="nav-arrow"></span>
-</button>
-</li>
-<li>
-<a class="nav-link" href="life.html">
+					</button>
+				</li>
+				<li>
+					<a class="nav-link" href="life.html">
 						Жизнь гимназии
 					</a>
-</li>
-<!-- РОДИТЕЛЯМ -->
-<li class="nav-item nav-item--mega">
-<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
+				</li>
+				<!-- РОДИТЕЛЯМ -->
+				<li class="nav-item nav-item--mega">
+					<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
 						Родителям
 						<span aria-hidden="true" class="nav-arrow"></span>
-</button>
-</li>
-<li>
-<a class="nav-link" href="apply.html">
+					</button>
+				</li>
+				<li>
+					<a class="nav-link" href="apply.html">
 						Поступающим
 					</a>
-</li>
-<li>
-<a class="nav-link" href="contact.html">
+				</li>
+				<li>
+					<a class="nav-link" href="contact.html">
 						Контакты
 					</a>
-</li>
-</ul>
-</nav>
-<div class="mega-menu" id="mega-menu">
-<div class="mega-menu__inner">
-<div class="mega-menu__header">
-<div>
-<h3 id="mega-menu-title">
+				</li>
+				<li class="nav-item--bvi">
+					<button type="button" class="bvi-toggle-btn" aria-label="Версия для слабовидящих">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bvi-icon" width="16" height="16">
+							<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+							<circle cx="12" cy="12" r="3"></circle>
+						</svg>
+						<span>Версия для слабовидящих</span>
+					</button>
+				</li>
+			</ul>
+		</nav>
+		<div class="mega-menu" id="mega-menu">
+			<div class="mega-menu__inner">
+				<div class="mega-menu__header">
+					<div>
+						<h3 id="mega-menu-title">
 							Учеба
 						</h3>
-<p id="mega-menu-description">
+						<p id="mega-menu-description">
 							Всё необходимое для учебного процесса
 						</p>
-</div>
-<button aria-label="Закрыть меню" class="mega-menu__close" type="button">
+					</div>
+					<button aria-label="Закрыть меню" class="mega-menu__close" type="button">
 						×
 					</button>
-</div>
-<div class="mega-menu__grid" id="mega-menu-content">
-</div>
-</div>
-</div>
-<!-- ЗАТЕМНЕНИЕ ФОНА -->
-<div class="mega-overlay" id="mega-overlay">
-</div>
-</header>
-<section class="hero-contacts">
-<div class="hero-contacts__header">
-<nav aria-label="Хлебные крошки" class="breadcrumbs">
-<a class="breadcrumbs__home" href="index.html">
-<img alt="" src="assets/icons/home.svg"/>
+				</div>
+				<div class="mega-menu__grid" id="mega-menu-content">
+				</div>
+			</div>
+		</div>
+		<!-- ЗАТЕМНЕНИЕ ФОНА -->
+		<div class="mega-overlay" id="mega-overlay">
+		</div>
+	</header>
+	<section class="hero-contacts">
+		<div class="hero-contacts__header">
+			<nav aria-label="Хлебные крошки" class="breadcrumbs">
+				<a class="breadcrumbs__home" href="index.html">
+					<img alt="" src="assets/icons/home.svg" />
 					Главная
 				</a>
-<span aria-hidden="true" class="breadcrumbs__separator">›</span>
-<span class="breadcrumbs__current">
+				<span aria-hidden="true" class="breadcrumbs__separator">›</span>
+				<span class="breadcrumbs__current">
 					Контакты
 				</span>
-</nav><span class="hero-badge">Связь с гимназией</span>
-<h1>Контакты</h1>
-<p>Свяжитесь с нами удобным способом или посетите гимназию лично</p>
-</div>
-<div class="hero-contacts__cards">
-<div class="hero-card">
-<div class="hero-card__icon">
-<img alt="Телефон" src="assets/icons/phone-orange.svg"/>
-</div>
-<h3>8 (49232) 401-95</h3>
-<p>Приемная директора<br/>Пн–Пт: 8:30 – 17:00</p>
-</div>
-<div class="hero-card">
-<div class="hero-card__icon">
-<img alt="Адрес" src="assets/icons/location-orange.svg"/>
-</div>
-<h3>ул. Подлесная, д. 10</h3>
-<p>г. Ковров, Владимирская обл.<br/>Индекс: 601900</p>
-</div>
-<div class="hero-card">
-<div class="hero-card__icon">
-<img alt="Транспорт" src="assets/icons/bus-orange.svg"/>
-</div>
-<h3>Остановка «Улица Подлесная»</h3>
-<p>Автобусы № 2, 12, 17<br/>От остановки 3 минуты пешком</p>
-</div>
-</div>
-</section>
-<!-- Секция: Карта + Основная информация -->
-<section class="contacts-main">
-<!-- Левая колонка: Карта -->
-<div class="contacts-main__map">
-<a href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a href="https://yandex.ru/maps/10664/kovrov/house/sosnovaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16" style="color:#eee;font-size:12px;position:absolute;top:14px;">Сосновая улица, 10 —
+			</nav><span class="hero-badge">Связь с гимназией</span>
+			<h1>Контакты</h1>
+			<p>Свяжитесь с нами удобным способом или посетите гимназию лично</p>
+		</div>
+		<div class="hero-contacts__cards">
+			<div class="hero-card">
+				<div class="hero-card__icon">
+					<img alt="Телефон" src="assets/icons/phone-orange.svg" />
+				</div>
+				<h3>8 (49232) 401-95</h3>
+				<p>Приемная директора<br />Пн–Пт: 8:30 – 17:00</p>
+			</div>
+			<div class="hero-card">
+				<div class="hero-card__icon">
+					<img alt="Адрес" src="assets/icons/location-orange.svg" />
+				</div>
+				<h3>ул. Подлесная, д. 10</h3>
+				<p>г. Ковров, Владимирская обл.<br />Индекс: 601909</p>
+			</div>
+			<div class="hero-card">
+				<div class="hero-card__icon">
+					<img alt="Транспорт" src="assets/icons/bus-orange.svg" />
+				</div>
+				<h3>Остановка «Улица Подлесная»</h3>
+				<p>Автобусы № 2, 12, 17<br />От остановки 3 минуты пешком</p>
+			</div>
+		</div>
+	</section>
+	<!-- Секция: Карта + Основная информация -->
+	<section class="contacts-main">
+		<!-- Левая колонка: Карта -->
+		<div class="contacts-main__map">
+			<a href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps"
+				style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
+				href="https://yandex.ru/maps/10664/kovrov/house/podlesnaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16"
+				style="color:#eee;font-size:12px;position:absolute;top:14px;">Подлесная улица, 10 —
 				Яндекс Карты
 			</a>
-<iframe frameborder="0" height="100%" src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;utm_source=chatgpt.com&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16" title="Карта проезда к гимназии" width="100%">
-</iframe>
-</div>
-<!-- Правая колонка: Адрес и часы работы -->
-<div class="contacts-main__info">
-<h2 class="contacts-main__title">Главный корпус</h2>
-<div class="contacts-info-item">
-<img alt="Адрес" class="contacts-info-item__icon" src="assets/icons/location.svg"/>
-<div>
-<strong>Адрес:</strong>
-<p>601900, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</p>
-</div>
-</div>
-<div class="contacts-info-item">
-<img alt="Время работы" class="contacts-info-item__icon" src="assets/icons/clock-contact.svg"/>
-<div>
-<strong>Режим работы:</strong>
-<p>Ежедневно с 08:00 до 16:00</p>
-<p class="contacts-info-item__note">Директор: протоиерей Михаил Бунтилов (тел. 8-920-622-56-76)</p>
-</div>
-</div>
-<div class="contacts-info-item">
-<img alt="Email" class="contacts-info-item__icon" src="assets/icons/mail.svg"/>
-<div>
-<strong>Электронная почта:</strong>
-<p><a href="mailto:sretenskajgimn@yandex.ru">sretenskajgimn@yandex.ru</a></p>
-</div>
-</div>
-</div>
-</section>
-<!-- Секция: Телефоны отделов -->
-<section class="contacts-departments">
-<h2 class="contacts-departments__title">Телефоны служб и отделов</h2>
-<div class="contacts-departments__grid">
-<div class="department-card">
-<span class="department-card__name">Приемная / Секретарь</span>
-<a class="department-card__phone" href="tel:+74923200000">8 (49232) 401-95</a>
-<span class="department-card__hours">Пн–Пт: 08:30 – 17:00</span>
-</div>
-<div class="department-card">
-<span class="department-card__name">Пост охраны (Вахта)</span>
-<a class="department-card__phone" href="tel:+74923200001">8 (49232) 401-95</a>
-<span class="department-card__hours">Круглосуточно</span>
-</div>
-<div class="department-card">
-<span class="department-card__name">Бухгалтерия</span>
-<a class="department-card__phone" href="tel:+74923200002">8 (49232) 401-95</a>
-<span class="department-card__hours">Пн–Пт: 09:00 – 16:00</span>
-</div>
-<div class="department-card">
-<span class="department-card__name">Завуч по УВР</span>
-<a class="department-card__phone" href="tel:+74923200003">8 (49232) 401-95</a>
-<span class="department-card__hours">Пн–Пт: 09:00 – 17:00</span>
-</div>
-</div>
-</section>
-<!-- Секция: Реквизиты (Аккордеон или выпадающий блок) -->
-<section class="contacts-requisites">
-<details class="requisites-accordion">
-<summary class="requisites-accordion__title">Юридическая информация и реквизиты организации</summary>
-<div class="requisites-accordion__content">
-<p><strong>Полное наименование:</strong> ЧОУ «Православная гимназия г. Коврова»</p>
-<p><strong>ОГРН:</strong> 1023300000000 | <strong>ИНН:</strong> 3305000000 | <strong>КПП:</strong>
-					330501001</p>
-<p><strong>Расчетный счет:</strong> 40703810000000000000 в ПАО Сбербанк</p>
-<p><strong>БИК:</strong> 041708602 | <strong>Корр. счет:</strong> 30101810000000000602</p>
-</div>
-</details>
-</section>
-<section class="faq-feedback">
-<div class="feedback">
-<h2>Остались вопросы? Напишите нам</h2>
-<p>Мы ответим на указанную почту или перезвоним в течение рабочего дня</p>
-<form class="feedback__form">
-<div class="form-group">
-<label for="user-name">Ваше имя</label>
-<input id="user-name" placeholder="Иван Иванов" type="text"/>
-</div>
-<div class="form-group">
-<label for="user-contact">Номер телефона или Email</label>
-<input id="user-contact" placeholder="+7 (999) 000-00-00 / example@main.ru" type="text"/>
-</div>
-<div class="form-group">
-<label for="user-theme">Тема обращения</label>
-<select class="form-select" id="user-theme">
-<option disabled="" hidden="" selected="" value="">Выберите тему</option>
-<option value="admission">Поступление и приём документов</option>
-<option value="process">Вопросы по учебному процессу</option>
-<option value="meals">Организация питания и ГПД</option>
-<option value="activities">Внеурочные занятия и кружки</option>
-<option value="other">Другой вопрос</option>
-</select>
-</div>
-<div class="form-group">
-<label for="user-msg">Сообщение</label>
-<textarea id="user-msg" placeholder="Опишите ваш вопрос..."></textarea>
-</div>
-<div class="form-footer">
-<span class="policy-text">Согласен на обработку персональных данных</span>
-<button class="btn-orange" type="submit">Отправить заявку</button>
-</div>
-</form>
-</div>
-<div class="faq">
-<h2>Частые вопросы</h2>
-<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
-<div class="faq__list">
-<details class="faq__item" open="">
-<summary class="faq__question">Как добраться до гимназии на общественном транспорте?</summary>
-<p class="faq__answer">До остановки «Улица Подлесная» ходят автобусы № 2, 12 и 17. От остановки до
+			<iframe frameborder="0" height="100%"
+				src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16"
+				title="Карта проезда к гимназии" width="100%">
+			</iframe>
+		</div>
+		<!-- Правая колонка: Адрес и часы работы -->
+		<div class="contacts-main__info">
+			<h2 class="contacts-main__title">Главный корпус</h2>
+			<div class="contacts-info-item">
+				<img alt="Адрес" class="contacts-info-item__icon" src="assets/icons/location.svg" />
+				<div>
+					<strong>Адрес:</strong>
+					<p>601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</p>
+				</div>
+			</div>
+			<div class="contacts-info-item">
+				<img alt="Время работы" class="contacts-info-item__icon" src="assets/icons/clock-contact.svg" />
+				<div>
+					<strong>Режим работы:</strong>
+					<p>Ежедневно с 08:00 до 16:00</p>
+					<p class="contacts-info-item__note">Директор: протоиерей Михаил Бунтилов (тел. 8-920-622-56-76)</p>
+				</div>
+			</div>
+			<div class="contacts-info-item">
+				<img alt="Email" class="contacts-info-item__icon" src="assets/icons/mail.svg" />
+				<div>
+					<strong>Электронная почта:</strong>
+					<p><a href="mailto:sretenskajgimn@yandex.ru">sretenskajgimn@yandex.ru</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Секция: Телефоны отделов -->
+	<section class="contacts-departments">
+		<h2 class="contacts-departments__title">Телефоны служб и отделов</h2>
+		<div class="contacts-departments__grid">
+			<div class="department-card">
+				<span class="department-card__name">Приемная / Секретарь</span>
+				<a class="department-card__phone" href="tel:+74923240195">8 (49232) 401-95</a>
+				<span class="department-card__hours">Пн–Пт: 08:00 – 16:00</span>
+			</div>
+			<div class="department-card">
+				<span class="department-card__name">Директор (моб.)</span>
+				<a class="department-card__phone" href="tel:+79206225676">8-920-622-56-76</a>
+				<span class="department-card__hours">прот. Михаил Бунтилов</span>
+			</div>
+			<div class="department-card">
+				<span class="department-card__name">Завуч по УВР / Учительская</span>
+				<a class="department-card__phone" href="tel:+74923242272">8 (49232) 422-72</a>
+				<span class="department-card__hours">Пн–Пт: 08:30 – 16:00</span>
+			</div>
+			<div class="department-card">
+				<span class="department-card__name">Бухгалтерия</span>
+				<a class="department-card__phone" href="tel:+74923240195">8 (49232) 401-95</a>
+				<span class="department-card__hours">Пн–Пт: 09:00 – 16:00</span>
+			</div>
+		</div>
+	</section>
+	<!-- Секция: Реквизиты (Аккордеон или выпадающий блок) -->
+	<section class="contacts-requisites">
+		<details class="requisites-accordion">
+			<summary class="requisites-accordion__title">Юридическая информация и реквизиты организации</summary>
+			<div class="requisites-accordion__content">
+				<p><strong>Полное наименование:</strong> Частное общеобразовательное учреждение «Православная гимназия г. Коврова»</p>
+				<p><strong>Краткое наименование:</strong> ЧОУ «Православная гимназия г. Коврова»</p>
+				<p><strong>ОГРН:</strong> 1043302208223 | <strong>ИНН:</strong> 3305051862 | <strong>КПП:</strong> 330501001</p>
+				<p><strong>Банк:</strong> Ульяновское отделение №8588 ПАО СБЕРБАНК</p>
+				<p><strong>Расчетный счет:</strong> 40703810810000000118 | <strong>Корр. счет:</strong> 30101810000000000602 | <strong>БИК:</strong> 047308602</p>
+				<p><strong>Назначение платежа:</strong> Пожертвование на уставную деятельность</p>
+				<p><strong>Юридический и фактический адрес:</strong> 601909, Владимирская область, г. Ковров, ул. Подлесная, д. 10</p>
+			</div>
+		</details>
+	</section>
+	<section class="faq-feedback">
+		<div class="feedback">
+			<h2>Остались вопросы? Напишите нам</h2>
+			<p>Мы ответим на указанную почту или перезвоним в течение рабочего дня</p>
+			<form class="feedback__form">
+				<div class="form-group">
+					<label for="user-name">Ваше имя</label>
+					<input id="user-name" placeholder="Иван Иванов" type="text" />
+				</div>
+				<div class="form-group">
+					<label for="user-contact">Номер телефона или Email</label>
+					<input id="user-contact" placeholder="+7 (999) 123-45-67 или email@mail.ru" type="text" />
+				</div>
+				<div class="form-group">
+					<label for="user-theme">Тема обращения</label>
+					<select class="form-select" id="user-theme">
+						<option disabled="" hidden="" selected="" value="">Выберите тему</option>
+						<option value="admission">Поступление и приём документов</option>
+						<option value="process">Вопросы по учебному процессу</option>
+						<option value="meals">Организация питания и ГПД</option>
+						<option value="activities">Внеурочные занятия и кружки</option>
+						<option value="other">Другой вопрос</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="user-msg">Сообщение</label>
+					<textarea id="user-msg" placeholder="Опишите ваш вопрос..."></textarea>
+				</div>
+				<div class="form-footer">
+					<label class="policy-checkbox-label" style="display:flex; align-items:center; gap:8px; font-size:13px; color:#475569; cursor:pointer;">
+						<input type="checkbox" required checked style="accent-color:#2563eb; width:16px; height:16px;">
+						<span>Согласен на <a href="policy.html" target="_blank" style="color:#0284c7; text-decoration:underline;">обработку персональных данных</a> (152-ФЗ)</span>
+					</label>
+					<button class="btn-orange" type="submit">Отправить заявку</button>
+				</div>
+			</form>
+		</div>
+		<div class="faq">
+			<h2>Частые вопросы</h2>
+			<p class="subtitle-faq">Получить мгновенные ответы на самые частые вопросы</p>
+			<div class="faq__list">
+				<details class="faq__item" open="">
+					<summary class="faq__question">Как добраться до гимназии на общественном транспорте?</summary>
+					<p class="faq__answer">До остановки «Улица Подлесная» ходят автобусы № 2, 12 и 17. От остановки до
 						центральных ворот — около 3 минут пешком.
 					</p>
-</details>
-<details class="faq__item">
-<summary class="faq__question">Есть ли возле гимназии парковка для родителей?</summary>
-<p class="faq__answer">Да, напротив главных ворот со стороны ул. Сосновая расположена бесплатная
+				</details>
+				<details class="faq__item">
+					<summary class="faq__question">Есть ли возле гимназии парковка для родителей?</summary>
+					<p class="faq__answer">Да, напротив главных ворот со стороны ул. Сосновая расположена бесплатная
 						парковка на 15 машиномест.
 					</p>
-</details>
-<details class="faq__item">
-<summary class="faq__question">Как записаться на личный приём к директору?</summary>
-<p class="faq__answer">Приём директора проходит по четвергам с 15:00 до 17:00. Предварительная
+				</details>
+				<details class="faq__item">
+					<summary class="faq__question">Как записаться на личный приём к директору?</summary>
+					<p class="faq__answer">Приём директора проходит по четвергам с 15:00 до 17:00. Предварительная
 						запись осуществляется через секретарский отдел по телефону или через форму обратной связи на
 						сайте.
 					</p>
-</details>
-<details class="faq__item">
-<summary class="faq__question">В какое время работает приемная комиссия и секретариат?</summary>
-<p class="faq__answer">Приемная и секретарский отдел работают с понедельника по пятницу с 08:30 до
+				</details>
+				<details class="faq__item">
+					<summary class="faq__question">В какое время работает приемная комиссия и секретариат?</summary>
+					<p class="faq__answer">Приемная и секретарский отдел работают с понедельника по пятницу с 08:30 до
 						17:00 (суббота и воскресенье — выходные).
 					</p>
-</details>
-</div>
-</div>
-</section>
-<footer>
-<div class="footer-bottom">
-<a class="brand__footer" href="index.html">
-<img alt="Логотип гимназии" class="brand__logo__footer" src="./assets/icons/logo_star.png"/>
-<div class="brand__info__footer">
-<span class="brand__title__footer">
-						Православная гимназия г. Коврова
-					</span>
-<span class="brand__subtitle__footer">
-						Частное общеобразовательное учреждение
-					</span>
-</div>
-</a>
-<div class="footer__nav">
-<ul class="nav__list">
-<li class="nav__list-about">
-<a href="story_school.html">
-							О гимназии
+				</details>
+			</div>
+		</div>
+	</section>
+	<footer>
+		<div class="footer-bottom">
+				<div class="footer-container">
+					<div class="footer-top-row">
+						<a href="index.html" class="brand__footer">
+							<img src="assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer" width="48" height="48">
+							<div class="brand__info__footer">
+								<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+								<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+							</div>
 						</a>
-</li>
-<li class="nav__list-teach">
-<a href="class_schedule.html">
-							Обучение
-						</a>
-</li>
-<li class="nav__list-kids">
-<a href="life.html">
-							Жизнь гимназии
-						</a>
-</li>
-<li class="nav__list-faq">
-<a href="#faq">
-							FAQ
-						</a>
-</li>
-<li class="nav__list-contact">
-<a href="contact.html">
-							Контакты
-						</a>
-</li>
-</ul>
-</div>
-<div class="btn_media">
-<ul class="btn_media__list">
-<li class="media__list-vk">
-<a href="#">
-<img alt="ВК" src="assets/icons/vk_icon.svg"/>
-</a>
-</li>
-<li class="media__list-max">
-<a href="#">
-<img alt="max" src="assets/icons/images-Photoroom.png"/>
-</a>
-</li>
-<li class="media__list-whp">
-<a href="#">
-<img alt="Whatsap" src="assets/icons/whatsap_icon.svg"/>
-</a>
-</li>
-</ul>
-</div>
-</div>
-<div class="footer-copyright">
-<span>
-				© 2026 Православная гимназия.
-				Все права защищены.
-			</span>
-<a href="#">
-				Политика конфиденциальности
-			</a>
-</div>
-</footer>
-<script src="js/window.scrollY.js"></script>
-<script src="js/contactAnimations.js"></script>
-<script src="js/navigation.js"></script>
-<script src="js/search.js"></script>
+
+						<div class="btn_media">
+							<ul class="btn_media__list">
+								<li class="media__list-vk">
+									<a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+										<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-max">
+									<a href="#" aria-label="Мессенджер">
+										<img src="assets/icons/images-Photoroom.png" alt="Мессенджер" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-whp">
+									<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+										<img src="assets/icons/whatsap_icon.svg" alt="WhatsApp" width="20" height="20">
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-nav-grid">
+						<div class="footer-col">
+							<h3 class="footer-col__title">О гимназии</h3>
+							<ul class="footer-col__list">
+								<li><a href="story_school.html">История гимназии</a></li>
+								<li><a href="sveden/index.html">Сведения об организации</a></li>
+								<li><a href="teachers.html">Учителя</a></li>
+								<li><a href="contact.html">Контакты</a></li>
+							</ul>
+						</div>
+
+						<div class="footer-col">
+							<h3 class="footer-col__title">Обучение</h3>
+							<ul class="footer-col__list">
+								<li><a href="class_schedule.html">Расписание</a></li>
+								<li><a href="food.html">Школьное питание</a></li>
+								<li><a href="documents.html">Документы</a></li>
+								<li><a href="dairy.html">Электронный дневник</a></li>
+							</ul>
+						</div>
+
+						<div class="footer-col">
+							<h3 class="footer-col__title">Информация</h3>
+							<ul class="footer-col__list">
+								<li><a href="news.html">Новости</a></li>
+								<li><a href="life.html">Жизнь гимназии</a></li>
+								<li><a href="index.html#faq">Частые вопросы (FAQ)</a></li>
+								<li><a href="apply.html">Поступающим</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-contacts-bar">
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Адрес</span>
+								<span class="footer-contact-item__text">601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</span>
+							</div>
+						</div>
+
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Телефон</span>
+								<div class="footer-contact-item__phones">
+									<a href="tel:+74923240195" class="footer-contact-item__link">+7 (49232) 4-01-95</a>,
+									<a href="tel:+74923242272" class="footer-contact-item__link">4-22-72</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Электронная почта</span>
+								<a href="mailto:sretenskajgimn@yandex.ru" class="footer-contact-item__link">sretenskajgimn@yandex.ru</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-copyright">
+						<span class="footer-copyright__text">© 2026 Православная гимназия. Все права защищены.</span>
+						<a href="policy.html" class="footer-copyright__policy">Политика конфиденциальности</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	<script src="js/window.scrollY.js"></script>
+	<script src="js/contactAnimations.js"></script>
+	<script src="js/navigation.js"></script>
+	<script src="js/search.js"></script>
+	<script src="js/bvi.js"></script>
 </body>
+
 </html>

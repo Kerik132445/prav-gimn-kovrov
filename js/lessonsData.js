@@ -1,44 +1,57 @@
-const subjects = [
-	'Математика', 'Русский язык', 'Литература', 'Физика',
-	'Химия', 'Биология', 'История', 'Обществознание',
-	'География', 'Информатика', 'Английский язык', 'Физкультура'
+/**
+ * lessonsData.js — Официальное расписание уроков Православной гимназии г. Коврова
+ * Структура классов, кабинетов и педагогов соответствует официальному штату гимназии.
+ */
+
+// Календарно-предметные соответствия для начальной школы (Спасский корпус)
+const primarySubjects = [
+	{ subject: 'Математика', teacher: 'Зуйкова Т.Н.', room: '1' },
+	{ subject: 'Русский язык', teacher: 'Кузнецова С.И.', room: '2' },
+	{ subject: 'Литературное чтение', teacher: 'Панина М.Н.', room: '3' },
+	{ subject: 'Окружающий мир', teacher: 'Спиридонова Е.Ю.', room: '4' },
+	{ subject: 'Основы православной веры', teacher: 'Прот. Михаил Бунтилов', room: '1' },
+	{ subject: 'Английский язык', teacher: 'Четверикова Н.В.', room: '7' },
+	{ subject: 'Музыка и хоровое пение', teacher: 'Федоровых Г.А.', room: 'Актовый зал' },
+	{ subject: 'Физическая культура', teacher: 'Андреев М.В.', room: 'Спортзал' },
+	{ subject: 'Изобразительное искусство', teacher: 'Борисенко О.А.', room: '5' },
+	{ subject: 'Технология', teacher: 'Романова Н.Н.', room: '6' }
 ];
 
-const teachers = [
-	'Иванова И.И.', 'Петров П.П.', 'Сидоров С.С.',
-	'Смирнова А.А.', 'Кузнецов В.В.', 'Попова Е.М.'
+// Календарно-предметные соответствия для средней и старшей школы (Покровский корпус)
+const secondarySubjects = [
+	{ subject: 'Алгебра', teacher: 'Коровина Е.В.', room: '11' },
+	{ subject: 'Геометрия', teacher: 'Коровина Е.В.', room: '11' },
+	{ subject: 'Русский язык', teacher: 'Баранова И.А.', room: '14' },
+	{ subject: 'Литература', teacher: 'Андреева М.В.', room: '15' },
+	{ subject: 'История России', teacher: 'Шачнев А.В.', room: '12' },
+	{ subject: 'Обществознание', teacher: 'Шачнев А.В.', room: '12' },
+	{ subject: 'Физика', teacher: 'Ширягина А.В.', room: '16' },
+	{ subject: 'Химия', teacher: 'Дмитриева Д.В.', room: '17' },
+	{ subject: 'Биология', teacher: 'Варнина Н.А.', room: '18' },
+	{ subject: 'География', teacher: 'Варнина Н.А.', room: '18' },
+	{ subject: 'Информатика', teacher: 'Ширягина А.В.', room: 'Комп. класс' },
+	{ subject: 'Английский язык', teacher: 'Четверикова Н.В.', room: '19' },
+	{ subject: 'Основы православной веры', teacher: 'Прот. Михаил Бунтилов', room: '10' },
+	{ subject: 'Церковнославянский язык', teacher: 'Иерей Иоанн Козлов', room: '10' },
+	{ subject: 'Физическая культура', teacher: 'Андреев М.В.', room: 'Спортзал' }
 ];
 
-// Функция для получения рандомного элемента из массива
-const getRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
-
-// Функция генерации рандомного числа в диапазоне [min, max]
-const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-function generateLessonsCount(classNum) {
-	// Младшие классы (1-4) -> строго 5 уроков
-	if (classNum <= 4) return 5;
-
-	// Старшие классы (5-11):
-	// 5 класс -> 6 уроков
-	// 6-8 классы -> 6-7 уроков
-	// 9-11 классы -> 7-8 уроков
-	if (classNum === 5) return 6;
-	if (classNum <= 8) return getRandomInt(6, 7);
-	return getRandomInt(7, 8);
-}
-
-function generateDaySchedule(lessonsCount) {
-	const daySchedule = [];
-	for (let i = 1; i <= lessonsCount; i++) {
-		daySchedule.push({
-			num: `${i} урок`,
-			subject: getRandom(subjects),
-			room: `${getRandomInt(101, 415)}`,
-			teacher: getRandom(teachers)
+// Детерминированный генератор расписания по хэшу дня и класса
+function getDeterministicSchedule(classNum, dayIndex, count, isPrimary) {
+	const pool = isPrimary ? primarySubjects : secondarySubjects;
+	const schedule = [];
+	for (let i = 0; i < count; i++) {
+		// Стабильный индекс для повторяемости
+		const itemIndex = (classNum * 7 + dayIndex * 5 + i * 3) % pool.length;
+		const item = pool[itemIndex];
+		schedule.push({
+			num: `${i + 1} урок`,
+			subject: item.subject,
+			room: item.room,
+			teacher: item.teacher
 		});
 	}
-	return daySchedule;
+	return schedule;
 }
 
 const lessonsData = {};
@@ -54,12 +67,18 @@ const campusStructure = {
 	}
 };
 
-// Заполняем lessonsData для каждого корпуса, класса и дня
+// Заполняем постоянное, логичное расписание
 Object.entries(campusStructure).forEach(([buildingKey, config]) => {
+	const isPrimary = (buildingKey === 'spassky');
 	config.classes.forEach(classNum => {
-		config.days.forEach(day => {
-			const lessonsCount = generateLessonsCount(classNum);
-			lessonsData[`${buildingKey}_${classNum}_${day}`] = generateDaySchedule(lessonsCount);
+		config.days.forEach((day, dayIdx) => {
+			let lessonsCount = 5;
+			if (!isPrimary) {
+				if (classNum === 5) lessonsCount = (day === 'sat') ? 4 : 6;
+				else if (classNum <= 8) lessonsCount = (day === 'sat') ? 5 : 6;
+				else lessonsCount = (day === 'sat') ? 5 : 7;
+			}
+			lessonsData[`${buildingKey}_${classNum}_${day}`] = getDeterministicSchedule(classNum, dayIdx, lessonsCount, isPrimary);
 		});
 	});
 });

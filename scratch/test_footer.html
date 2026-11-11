@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test Footer Redesign</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<style>
+		body {
+			margin: 0;
+			background: #f8fafc;
+			font-family: 'Inter', system-ui, sans-serif;
+		}
+		.test-content {
+			padding: 40px 24px;
+			max-width: 800px;
+			margin: 0 auto;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="test-content">
+		<h1>Тест редизайна футера</h1>
+		<p>Ниже отображается обновлённая структура футера согласно требованиям ТЗ.</p>
+	</div>
+
+	<footer>
+		<div class="footer-bottom">
+			<div class="footer-container">
+				<!-- Верхняя часть: Логотип слева, Соцсети справа -->
+				<div class="footer-top-row">
+					<a href="../index.html" class="brand__footer">
+						<img src="../assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer" width="46" height="46">
+						<div class="brand__info__footer">
+							<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+							<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+						</div>
+					</a>
+
+					<div class="btn_media">
+						<ul class="btn_media__list">
+							<li class="media__list-vk">
+								<a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+									<img src="../assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
+								</a>
+							</li>
+							<li class="media__list-max">
+								<a href="#" aria-label="Мессенджер">
+									<img src="../assets/icons/images-Photoroom.png" alt="Мессенджер" width="20" height="20">
+								</a>
+							</li>
+							<li class="media__list-whp">
+								<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+									<img src="../assets/icons/whatsap_icon.svg" alt="WhatsApp" width="20" height="20">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="footer-divider"></div>
+
+				<!-- Основная навигационная часть: 3 колонки -->
+				<div class="footer-nav-grid">
+					<div class="footer-col">
+						<h3 class="footer-col__title">О гимназии</h3>
+						<ul class="footer-col__list">
+							<li><a href="../story_school.html">История гимназии</a></li>
+							<li><a href="../sveden/index.html">Сведения об организации</a></li>
+							<li><a href="../teachers.html">Учителя</a></li>
+							<li><a href="../contact.html">Контакты</a></li>
+						</ul>
+					</div>
+
+					<div class="footer-col">
+						<h3 class="footer-col__title">Обучение</h3>
+						<ul class="footer-col__list">
+							<li><a href="../class_schedule.html">Расписание</a></li>
+							<li><a href="../food.html">Школьное питание</a></li>
+							<li><a href="../documents.html">Документы</a></li>
+							<li><a href="../dairy.html">Электронный дневник</a></li>
+						</ul>
+					</div>
+
+					<div class="footer-col">
+						<h3 class="footer-col__title">Информация</h3>
+						<ul class="footer-col__list">
+							<li><a href="../news.html">Новости</a></li>
+							<li><a href="../life.html">Жизнь гимназии</a></li>
+							<li><a href="../index.html#faq">Частые вопросы (FAQ)</a></li>
+							<li><a href="../apply.html">Поступающим</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="footer-divider"></div>
+
+				<!-- Контактная информация: фактический адрес, телефон, email -->
+				<div class="footer-contacts-bar">
+					<div class="footer-contact-item">
+						<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+							<circle cx="12" cy="10" r="3"></circle>
+						</svg>
+						<div class="footer-contact-item__content">
+							<span class="footer-contact-item__label">Адрес</span>
+							<span class="footer-contact-item__text">601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</span>
+						</div>
+					</div>
+
+					<div class="footer-contact-item">
+						<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+						</svg>
+						<div class="footer-contact-item__content">
+							<span class="footer-contact-item__label">Телефон</span>
+							<div class="footer-contact-item__phones">
+								<a href="tel:+74923240195" class="footer-contact-item__link">+7 (49232) 4-01-95</a>,
+								<a href="tel:+74923242272" class="footer-contact-item__link">4-22-72</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="footer-contact-item">
+						<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+							<polyline points="22,6 12,13 2,6"></polyline>
+						</svg>
+						<div class="footer-contact-item__content">
+							<span class="footer-contact-item__label">Электронная почта</span>
+							<a href="mailto:sretenskajgimn@yandex.ru" class="footer-contact-item__link">sretenskajgimn@yandex.ru</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="footer-divider"></div>
+
+				<!-- Нижняя часть: Копирайт и Политика конфиденциальности -->
+				<div class="footer-copyright">
+					<span class="footer-copyright__text">© 2026 Православная гимназия. Все права защищены.</span>
+					<a href="../policy.html" class="footer-copyright__policy">Политика конфиденциальности</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
