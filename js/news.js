@@ -1,4 +1,6 @@
+(() => {
 const API_URL = `${window.API_BASE_URL}/api/news/`;
+let useLocalAssets = false;
 
 const params = new URLSearchParams(window.location.search);
 const rawId = params.get("id");
@@ -28,13 +30,25 @@ function getImageUrl(image) {
 	}
 
 	if (image.startsWith("/uploads")) {
-		if (window.location.protocol === "file:" || !window.API_BASE_URL) {
+		if (useLocalAssets || window.location.protocol === "file:" || !window.API_BASE_URL) {
 			return image.replace(/^\//, "");
 		}
 		return `${window.API_BASE_URL}${image}`;
 	}
 
 	return image;
+}
+
+function applyLocalImageFallback(imgElement, rawSource) {
+	if (!imgElement || imgElement.dataset.localFallbackApplied) {
+		return;
+	}
+	const raw = typeof rawSource === "object" && rawSource ? rawSource.image : rawSource;
+	const localPath = String(raw || "").replace(/^\//, "");
+	if (localPath) {
+		imgElement.dataset.localFallbackApplied = "1";
+		imgElement.src = localPath;
+	}
 }
 
 
@@ -224,6 +238,7 @@ async function loadNews() {
 			throw new Error("Не удалось получить список новостей с сервера");
 		} catch (error) {
 			console.warn("Backend API недоступен, загружаем последнюю новость из встроенного резерва:", error);
+			useLocalAssets = true;
 			const fallbackLatest = FALLBACK_NEWS[0];
 			if (window.history && window.history.replaceState) {
 				window.history.replaceState({ id: fallbackLatest.id }, "", `news.html?id=${fallbackLatest.id}`);
@@ -242,6 +257,7 @@ async function loadNews() {
 		if (!response.ok) {
 			if (response.status === 404) {
 				if (fallbackItem) {
+					useLocalAssets = true;
 					displayNews(fallbackItem);
 					return;
 				}
@@ -259,6 +275,7 @@ async function loadNews() {
 		console.warn("Backend API недоступен, загружаем новость из встроенной базы данных:", error);
 
 		if (fallbackItem) {
+			useLocalAssets = true;
 			displayNews(fallbackItem);
 		} else {
 			titleElement.textContent = "Не удалось загрузить новость";
@@ -390,16 +407,14 @@ function displayNews(currentNews) {
 		currentImageIndex = index;
 
 
+		delete imageElement.dataset.localFallbackApplied;
 		imageElement.src =
 			getImageUrl(
 				images[currentImageIndex]
 			);
 
 		imageElement.onerror = function() {
-			const raw = String(images[currentImageIndex] || "").replace(/^\//, "");
-			if (raw && !this.src.endsWith(raw)) {
-				this.src = raw;
-			}
+			applyLocalImageFallback(this, images[currentImageIndex]);
 		};
 
 
@@ -435,16 +450,14 @@ function displayNews(currentNews) {
 
 	function updateLightbox() {
 
+		delete lightboxImage.dataset.localFallbackApplied;
 		lightboxImage.src =
 			getImageUrl(
 				images[currentImageIndex]
 			);
 
 		lightboxImage.onerror = function() {
-			const raw = String(images[currentImageIndex] || "").replace(/^\//, "");
-			if (raw && !this.src.endsWith(raw)) {
-				this.src = raw;
-			}
+			applyLocalImageFallback(this, images[currentImageIndex]);
 		};
 
 
@@ -538,10 +551,7 @@ function displayNews(currentNews) {
 				getImageUrl(image);
 
 			thumbnailImage.onerror = function() {
-				const raw = String(image || "").replace(/^\//, "");
-				if (raw && !this.src.endsWith(raw)) {
-					this.src = raw;
-				}
+				applyLocalImageFallback(this, image);
 			};
 
 
@@ -791,3 +801,4 @@ function displayNews(currentNews) {
 // ========================================
 
 loadNews();
+})();

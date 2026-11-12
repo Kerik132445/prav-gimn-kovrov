@@ -161,3 +161,27 @@ body {
 	font-size: 13px;
 	line-height: 1.4;
 }
+
+@media (max-width: 1023px) {
+	.form-group input,
+	.login-button {
+		font-size: 16px;
+		min-height: 44px;
+	}
+}
+
+@media (max-width: 640px) {
+	.login-page {
+		padding: 16px;
+		align-items: center;
+	}
+
+	.login-card {
+		padding: 28px 20px;
+		border-radius: 14px;
+	}
+
+	.login-header h1 {
+		font-size: 22px;
+	}
+}

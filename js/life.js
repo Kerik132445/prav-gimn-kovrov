@@ -1,4 +1,6 @@
+(() => {
 const API_URL = `${window.API_BASE_URL}/api/news/`;
+let useLocalAssets = false;
 
 
 const filterButtons =
@@ -369,6 +371,7 @@ async function loadNews() {
 		animateInitialNews();
 	} catch (error) {
 		console.warn("Backend API недоступен, загружаем новости из встроенной базы данных:", error);
+		useLocalAssets = true;
 		news = FALLBACK_NEWS;
 		updateNews();
 		animateInitialNews();
@@ -394,6 +397,8 @@ function createNewsCard(item) {
 					src="${getImageUrl(item.image)}"
 					alt="${item.title}"
 					class="sub-news-card__img"
+					loading="lazy"
+					decoding="async"
 				>
 
 			</div>
@@ -752,6 +757,9 @@ function getImageUrl(image) {
 	if (
 		image.startsWith("/uploads")
 	) {
+		if (useLocalAssets || window.location.protocol === "file:" || !window.API_BASE_URL) {
+			return image.replace(/^\//, "");
+		}
 
 		return `${window.API_BASE_URL}${image}`;
 	}
@@ -847,3 +855,4 @@ function animateFilteredNews() {
 // ========================================
 
 loadNews();
+})();

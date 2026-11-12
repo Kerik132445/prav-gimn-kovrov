@@ -15,21 +15,47 @@
 	margin: 0;
 }
 
-@media (max-width: 1300px) {
-	.nav-item--bvi {
-		right: 40px;
+@media (max-width: 1480px) and (min-width: 1024px) {
+	.main-nav .main-nav__content {
+		padding: 0 24px;
+	}
+
+	.main-nav .nav-list {
+		width: 100%;
+		justify-content: flex-start;
+		gap: 14px;
+	}
+
+	.nav-item--bvi,
+	.main-nav .nav-item--bvi {
+		position: static !important;
+		right: auto !important;
+		top: auto !important;
+		transform: none !important;
+		margin-left: auto !important;
 	}
 }
 
-@media (max-width: 1100px) {
-	.nav-item--bvi {
-		right: 24px;
+@media (max-width: 1180px) and (min-width: 1024px) {
+	.main-nav .main-nav__content {
+		padding: 0 12px;
 	}
-}
 
-@media (max-width: 900px) {
-	.nav-item--bvi {
-		right: 16px;
+	.main-nav .nav-list {
+		gap: 8px;
+		padding: 0;
+	}
+
+	.main-nav .nav-link,
+	.main-nav .mega-menu-toggle {
+		font-size: 12.5px;
+		gap: 4px;
+	}
+
+	.bvi-toggle-btn {
+		font-size: 12px;
+		padding: 5px 8px;
+		gap: 4px;
 	}
 }
 
@@ -38,6 +64,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 6px;
+	min-height: 36px;
 	padding: 6px 12px;
 	background: transparent;
 	color: #ffffff;
@@ -97,10 +124,15 @@
 		margin-left: 0;
 	}
 
-	.bvi-toggle-btn svg,
-	.bvi-toggle-btn .bvi-icon {
-		width: 15px;
-		height: 15px;
+	.bvi-btn {
+		min-height: 40px;
+		min-width: 40px;
+		padding: 8px 12px;
+	}
+
+	.bvi-panel__group {
+		flex-wrap: wrap;
+		gap: 6px;
 	}
 }
 

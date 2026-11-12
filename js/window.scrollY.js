@@ -14,6 +14,10 @@ window.addEventListener('resize', setHeaderHeight);
 window.addEventListener('load', setHeaderHeight);
 
 window.addEventListener('scroll', () => {
+	if (document.body.classList.contains('mobile-drawer-open')) {
+		return;
+	}
+
 	const currentScrollY = window.scrollY;
 
 	// Максимальная возможная позиция прокрутки

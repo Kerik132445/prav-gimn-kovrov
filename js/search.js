@@ -1,3 +1,4 @@
+(() => {
 console.log("SEARCH JS ЗАПУЩЕН");
 
 const API_URL = `${window.API_BASE_URL}/api/news/`;
@@ -26,8 +27,9 @@ if (searchForm && searchInput) {
 			return;
 		}
 
+		const inSveden = window.location.pathname.includes("/sveden/");
 		window.location.href =
-			`search.html?q=${encodeURIComponent(query)}`;
+			`${inSveden ? "../" : ""}search.html?q=${encodeURIComponent(query)}`;
 
 	});
 
@@ -988,3 +990,4 @@ async function performSearch() {
 // ========================================
 
 performSearch();
+})();

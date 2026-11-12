@@ -1,62 +1,4 @@
-// ========================================
-// HEADER
-// ========================================
-
-const header = document.querySelector('body > header');
-
-let lastScrollY = window.scrollY;
-let ticking = false;
-
-function updateHeader() {
-
-	const currentScrollY = window.scrollY;
-
-	// Самый верх
-	if (currentScrollY <= 10) {
-
-		header.classList.remove('header-hidden');
-
-		lastScrollY = currentScrollY;
-		ticking = false;
-
-		return;
-	}
-
-	// Скролл вниз
-	if (currentScrollY > lastScrollY + 8) {
-
-		header.classList.add('header-hidden');
-
-	}
-
-	// Скролл вверх
-	else if (currentScrollY < lastScrollY - 8) {
-
-		header.classList.remove('header-hidden');
-
-	}
-
-	lastScrollY = currentScrollY;
-	ticking = false;
-}
-
-
-window.addEventListener('scroll', () => {
-
-	if (!ticking) {
-
-		requestAnimationFrame(updateHeader);
-
-		ticking = true;
-
-	}
-
-}, {
-	passive: true
-});
-
-
-
+(() => {
 // ========================================
 // ПОЯВЛЕНИЕ СЕКЦИЙ
 // ========================================
@@ -237,7 +179,7 @@ tabButtons.forEach(button => {
 
 		// Перезапускаем анимацию меню
 
-		mealCards.forEach(card => {
+		document.querySelectorAll('.meal-card').forEach(card => {
 
 			card.classList.remove('is-menu-visible');
 
@@ -274,3 +216,4 @@ buildings.forEach(building => {
 	});
 
 });
+})();
