@@ -2,6 +2,35 @@ document.addEventListener('DOMContentLoaded', () => {
 	const tagButtons = document.querySelectorAll('.pill-btn, .tag-btn');
 	const searchInput = document.querySelector('.search-box__input, .container-search input');
 	const accordions = document.querySelectorAll('.accordion-document');
+	const header = document.querySelector('header');
+	const toolbar = document.querySelector('.toolbar-sticky');
+	const accordionsContainer = document.querySelector('.accordions-container');
+
+	function scrollToFilteredList() {
+		if (!accordionsContainer) return;
+
+		const headerHeight = header ? header.offsetHeight : 0;
+		const isToolbarSticky = toolbar && getComputedStyle(toolbar).position === 'sticky';
+		const toolbarHeight = isToolbarSticky ? toolbar.offsetHeight : 0;
+		const toolbarBottom = toolbar ? toolbar.getBoundingClientRect().bottom : 0;
+		const accordionsRect = accordionsContainer.getBoundingClientRect();
+		const currentBodyPaddingTop = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
+
+		const triggerLine = isToolbarSticky ? toolbarBottom + 12 : headerHeight + 12;
+		if (accordionsRect.top >= triggerLine) return;
+
+		// Compensate for body padding-top returning to headerHeight as header slides back into view
+		const accordionsDocTop = accordionsRect.top + window.scrollY + (headerHeight - currentBodyPaddingTop);
+		const targetY = Math.max(0, accordionsDocTop - headerHeight - toolbarHeight - 24);
+
+		if (header) header.classList.remove('header-hidden');
+		document.body.classList.remove('header-is-hidden');
+
+		window.scrollTo({
+			top: targetY,
+			behavior: 'smooth'
+		});
+	}
 
 	// 1. Фильтрация по категориям
 	tagButtons.forEach(button => {
@@ -37,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					accordion.classList.remove('accordion-document--active');
 				}
 			});
+
+			scrollToFilteredList();
 		});
 	});
 

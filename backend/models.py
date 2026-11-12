@@ -1,9 +1,8 @@
-from sqlalchemy import Column, Integer, String, Text, ForeignKey
+from datetime import datetime, timezone
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint
 from sqlalchemy.orm import relationship
 
 from database import Base
-
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
 
 
 class Admin(Base):
@@ -136,4 +135,162 @@ class LoginAttempt(Base):
     blocked_until = Column(
         DateTime,
         nullable=True
+    )
+
+
+class Teacher(Base):
+
+    __tablename__ = "teachers"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    last_name = Column(String(100), nullable=False)
+
+    first_name = Column(String(100), nullable=False)
+
+    middle_name = Column(String(100), nullable=False)
+
+    photo = Column(String(255), nullable=False)
+
+    position = Column(String(255), nullable=False)
+
+    category = Column(String(64), nullable=False, default="other", index=True)
+
+    classroom_guidance = Column(String(150), nullable=True)
+
+    experience_years = Column(Integer, nullable=True)
+
+    qualification = Column(String(150), nullable=True)
+
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+
+
+class SchoolClass(Base):
+
+    __tablename__ = "school_classes"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    name = Column(String(32), unique=True, nullable=False, index=True)
+
+    grade = Column(Integer, nullable=True, index=True)
+
+    building = Column(String(32), nullable=False, default="pokrovsky", index=True)
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
+    lessons = relationship(
+        "ScheduleLesson",
+        back_populates="school_class",
+        cascade="all, delete-orphan",
+    )
+
+
+class ScheduleLesson(Base):
+
+    __tablename__ = "schedule_lessons"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    class_id = Column(
+        Integer,
+        ForeignKey("school_classes.id", ondelete="CASCADE"),
+        nullable=False,
+        index=True,
+    )
+
+    day_of_week = Column(String(16), nullable=False, index=True)
+
+    lesson_number = Column(Integer, nullable=False)
+
+    subject = Column(String(150), nullable=False)
+
+    start_time = Column(String(5), nullable=False)
+
+    end_time = Column(String(5), nullable=False)
+
+    room = Column(String(64), nullable=True)
+
+    teacher_id = Column(
+        Integer,
+        ForeignKey("teachers.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
+
+    period = Column(String(64), nullable=False, default="main", index=True)
+
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+
+    school_class = relationship("SchoolClass", back_populates="lessons")
+
+    teacher = relationship("Teacher")
+
+
+class MenuDayMeal(Base):
+
+    __tablename__ = "menu_day_meals"
+    __table_args__ = (
+        UniqueConstraint(
+            "age_group",
+            "week_number",
+            "day_of_week",
+            "meal_type",
+            name="uq_menu_day_meal_slot",
+        ),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    age_group = Column(String(32), nullable=False, index=True)
+
+    week_number = Column(Integer, nullable=False, index=True)
+
+    day_of_week = Column(Integer, nullable=False, index=True)
+
+    meal_type = Column(String(32), nullable=False, index=True)
+
+    price = Column(String(64), nullable=True)
+
+    kbju = Column(String(128), nullable=True)
+
+    note = Column(String(255), nullable=True)
+
+
+class MenuItem(Base):
+
+    __tablename__ = "menu_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    age_group = Column(String(32), nullable=False, index=True)
+
+    week_number = Column(Integer, nullable=False, index=True)
+
+    day_of_week = Column(Integer, nullable=False, index=True)
+
+    meal_type = Column(String(32), nullable=False, index=True)
+
+    dish_category = Column(String(32), nullable=True, index=True)
+
+    name = Column(String(200), nullable=False)
+
+    weight = Column(String(64), nullable=True)
+
+    description = Column(String(500), nullable=True)
+
+    composition = Column(String(500), nullable=True)
+
+    image = Column(String(255), nullable=True)
+
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
     )

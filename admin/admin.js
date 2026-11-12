@@ -1202,6 +1202,18 @@ async function initAdmin() {
 
 		await loadNews();
 
+		if (typeof window.initTeachersAdmin === "function") {
+			await window.initTeachersAdmin();
+		}
+
+		if (typeof window.initScheduleAdmin === "function") {
+			await window.initScheduleAdmin();
+		}
+
+		if (typeof window.initMenuAdmin === "function") {
+			await window.initMenuAdmin();
+		}
+
 	} catch (error) {
 
 		console.error(error);
@@ -1299,6 +1311,71 @@ async function apiFetch(
 		options
 	);
 }
+
+
+const ADMIN_TABS = {
+	news: { sectionId: "news-section", siteHref: "../life.html" },
+	teachers: { sectionId: "teachers-section", siteHref: "../teachers.html" },
+	schedule: { sectionId: "schedule-section", siteHref: "../class_schedule.html" },
+	menu: { sectionId: "menu-section", siteHref: "../food.html" }
+};
+
+function switchAdminTab(tabName) {
+	const activeKey = Object.prototype.hasOwnProperty.call(ADMIN_TABS, tabName) ? tabName : "news";
+
+	document.querySelectorAll("[data-admin-tab]").forEach(btn => {
+		btn.classList.toggle("admin-tab--active", btn.dataset.adminTab === activeKey);
+	});
+
+	Object.entries(ADMIN_TABS).forEach(([key, cfg]) => {
+		const section = document.getElementById(cfg.sectionId);
+		if (!section) return;
+		const isActive = key === activeKey;
+		section.classList.toggle("admin-section--active", isActive);
+		section.hidden = !isActive;
+	});
+
+	const siteLink = document.querySelector(".admin-header__site-link");
+	if (siteLink) {
+		siteLink.href = ADMIN_TABS[activeKey].siteHref;
+	}
+
+	if (window.location.hash !== `#${activeKey}`) {
+		history.replaceState(null, "", `#${activeKey}`);
+	}
+}
+
+document.querySelectorAll("[data-admin-tab]").forEach(btn => {
+	btn.addEventListener("click", () => {
+		switchAdminTab(btn.dataset.adminTab || "news");
+	});
+});
+
+if (window.location.hash) {
+	const hashTab = window.location.hash.slice(1);
+	if (Object.prototype.hasOwnProperty.call(ADMIN_TABS, hashTab)) {
+		switchAdminTab(hashTab);
+	}
+}
+
+window.AdminApp = {
+	apiFetch,
+	escapeHtml,
+	getImageUrl,
+	switchTab: switchAdminTab,
+	teachersCache: [],
+	onTeachersUpdatedCallbacks: [],
+	notifyTeachersUpdated(list) {
+		this.teachersCache = Array.isArray(list) ? list : [];
+		this.onTeachersUpdatedCallbacks.forEach(cb => {
+			try {
+				cb(this.teachersCache);
+			} catch (e) {
+				console.error(e);
+			}
+		});
+	}
+};
 
 
 initAdmin();

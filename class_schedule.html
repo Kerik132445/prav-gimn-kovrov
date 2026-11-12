@@ -136,18 +136,14 @@
 </div>
 </div>
 <div class="schedule-filters">
-<div class="class-tabs">
-<button class="class-btn class-btn--active" data-class="1">1 класс</button>
-<button class="class-btn" data-class="2">2 класс</button>
-<button class="class-btn" data-class="3">3 класс</button>
-<button class="class-btn" data-class="4">4 класс</button>
+<div class="class-tabs" id="schedule-class-tabs">
 </div>
-<div class="day-tabs">
-<button class="day-btn day-btn--active" data-day="monday">Понедельник</button>
-<button class="day-btn" data-day="tuesday">Вторник</button>
-<button class="day-btn" data-day="wednesday">Среда</button>
-<button class="day-btn" data-day="thursday">Четверг</button>
-<button class="day-btn" data-day="friday">Пятница</button>
+<div class="day-tabs" id="schedule-day-tabs">
+<button class="day-btn day-btn--active" data-day="mon" type="button">Понедельник</button>
+<button class="day-btn" data-day="tue" type="button">Вторник</button>
+<button class="day-btn" data-day="wed" type="button">Среда</button>
+<button class="day-btn" data-day="thursday" type="button">Четверг</button>
+<button class="day-btn" data-day="fri" type="button">Пятница</button>
 </div>
 </div>
 <div class="schedule-content">
@@ -213,51 +209,9 @@
 <div class="schedule-card">
 <h3 class="schedule-card__title"><img alt="Часы" src="assets/icons/clock-schedule.svg"/>Расписание уроков
 				</h3>
-<ul class="schedule-list">
-<li class="schedule-item schedule-item--church">
-<p class="schedule-item__text"><img alt="Церковь" src="assets/icons/church.svg"/>Общая молитва
-						</p>
-<p class="schedule-item__time">07:55 – 08:20 (25 мин)</p>
-</li>
-<li class="schedule-item">
-<p class="schedule-item__text">1 урок</p>
-<div class="schedule-item__info">
-<p class="schedule-item__subject">Математика</p>
-<p class="schedule-item__title">каб. 10 • Петров В.С.</p>
-</div>
-<p class="schedule-item__time">08:20 – 09:00</p>
-</li>
-<li class="schedule-item">
-<p class="schedule-item__text">2 урок</p>
-<div class="schedule-item__info">
-<p class="schedule-item__subject">Литературное чтение</p>
-<p class="schedule-item__title">каб. 11 • Коровина С.Е</p>
-</div>
-<p class="schedule-item__time">09:20 – 10:00</p>
-</li>
-<li class="schedule-item">
-<p class="schedule-item__text">3 урок</p>
-<div class="schedule-item__info">
-<p class="schedule-item__subject">Музыка</p>
-<p class="schedule-item__title">каб. 2 • Новикова А.Е</p>
-</div>
-<p class="schedule-item__time">10:10 – 10:50</p>
-</li>
-<li class="schedule-item">
-<p class="schedule-item__text">4 урок</p>
-<div class="schedule-item__info">
-<p class="schedule-item__subject">Русский язык</p>
-<p class="schedule-item__title">каб. 12 • Смирнова Е.А.</p>
-</div>
-<p class="schedule-item__time">11:00 – 11:40</p>
-</li>
-<li class="schedule-item">
-<p class="schedule-item__text">5 урок</p>
-<div class="schedule-item__info">
-<p class="schedule-item__subject">Русский язык</p>
-<p class="schedule-item__title">каб. 12 • Смирнова Е.А.</p>
-</div>
-<p class="schedule-item__time">11:50 – 12:30</p>
+<ul class="schedule-list" id="schedule-lessons-list">
+<li class="schedule-item schedule-item--status">
+<p class="schedule-item__text">Загрузка расписания...</p>
 </li>
 </ul>
 </div>
@@ -507,7 +461,7 @@
 				</div>
 			</div>
 		</footer>
-<script src="js/lessonsData.js"></script>
+<script src="js/config.js"></script>
 <script src="js/schedule.js"></script>
 <script src="js/window.scrollY.js"></script>
 <script src="js/scheduleAnimations.js"></script>

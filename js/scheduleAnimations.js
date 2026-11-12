@@ -130,73 +130,20 @@ campusCards.forEach(card => {
 // АНИМАЦИЯ ПРИ ПЕРЕКЛЮЧЕНИИ
 // ========================================
 
-const filterButtons = document.querySelectorAll(`
+const scheduleFilters = document.querySelector('.schedule-filters');
 
-    .class-btn,
-    .day-btn
-
-`);
-
-
-filterButtons.forEach(button => {
-
-	button.addEventListener('click', () => {
-
-		const parent = button.parentElement;
-
-		if (parent) {
-
-			parent
-				.querySelectorAll('button')
-				.forEach(btn => {
-
-					btn.classList.remove(
-						'class-btn--active',
-						'day-btn--active'
-					);
-
-				});
-
-		}
-
-
-		if (button.classList.contains('class-btn')) {
-
-			button.classList.add(
-				'class-btn--active'
-			);
-
-		}
-
-
-		if (button.classList.contains('day-btn')) {
-
-			button.classList.add(
-				'day-btn--active'
-			);
-
-		}
-
-
-		// Перезапускаем анимацию строк
+if (scheduleFilters) {
+	scheduleFilters.addEventListener('click', (event) => {
+		const button = event.target.closest('.class-btn, .day-btn');
+		if (!button) return;
 
 		scheduleCards.forEach(card => {
-
-			card.classList.remove(
-				'is-visible'
-			);
-
+			card.classList.remove('is-visible');
 			void card.offsetWidth;
-
-			card.classList.add(
-				'is-visible'
-			);
-
+			card.classList.add('is-visible');
 		});
-
 	});
-
-});
+}
 
 
 

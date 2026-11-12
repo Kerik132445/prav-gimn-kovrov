@@ -66,10 +66,6 @@
 }
 
 @media (max-width: 820px) {
-	.sveden-hero {
-		padding: 20px 16px;
-	}
-
 	.sveden-hero__title {
 		font-size: 28px;
 	}
@@ -599,7 +595,7 @@ body.header-is-hidden .sveden-sidebar {
 	min-width: 0;
 }
 
-.sveden-doc-info > div {
+.sveden-doc-info>div {
 	min-width: 0;
 }
 
@@ -697,6 +693,7 @@ body.header-is-hidden .sveden-sidebar {
 }
 
 @media (max-width: 1023px) {
+
 	a.sveden-badge-sign,
 	.sveden-doc-actions a,
 	.sveden-doc-actions button {
@@ -721,11 +718,22 @@ body.header-is-hidden .sveden-sidebar {
 	}
 }
 
+@media (max-width: 820px) {
+	.sveden-hero {
+		padding: 20px 16px;
+	}
+
+	.sveden-layout-container,
+	.sveden-page-wrap>.containers {
+		padding: 0 16px 40px;
+	}
+}
+
 @media (max-width: 640px) {
 
 	.sveden-layout-container,
 	.sveden-page-wrap>.containers {
-		padding: 0 14px 36px;
+		padding: 0 16px 36px;
 	}
 
 	.sveden-grid {
@@ -734,7 +742,7 @@ body.header-is-hidden .sveden-sidebar {
 	}
 
 	.sveden-hero {
-		padding: 20px 14px 18px;
+		padding: 20px 16px 18px;
 	}
 
 	.sveden-hero__title {
@@ -753,7 +761,7 @@ body.header-is-hidden .sveden-sidebar {
 	}
 
 	.sveden-content {
-		padding: 18px 14px;
+		padding: 18px 16px;
 	}
 
 	.sveden-content__title {
@@ -786,15 +794,15 @@ body.header-is-hidden .sveden-sidebar {
 
 @media (max-width: 380px) {
 	.sveden-hero {
-		padding: 18px 10px 16px;
+		padding: 18px 16px 16px;
 	}
 
 	.sveden-layout-container,
 	.sveden-page-wrap>.containers {
-		padding: 0 10px 32px;
+		padding: 0 16px 32px;
 	}
 
 	.sveden-content {
-		padding: 14px 10px;
+		padding: 14px 16px;
 	}
 }

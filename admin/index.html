@@ -51,34 +51,307 @@
 	<main class="admin-main">
 
 
-		<section class="admin-toolbar">
+		<nav class="admin-tabs" aria-label="Разделы админ-панели">
 
-			<div>
-
-				<h2>
-					Новости
-				</h2>
-
-				<p>
-					Управление публикациями гимназии
-				</p>
-
-			</div>
-
-
-			<button class="admin-button admin-button--primary" id="create-news-button">
-				+ Создать новость
+			<button type="button" class="admin-tab admin-tab--active" data-admin-tab="news">
+				Новости
 			</button>
+
+			<button type="button" class="admin-tab" data-admin-tab="teachers">
+				Учителя
+				<span class="admin-tab__count" id="teachers-tab-count">0</span>
+			</button>
+
+			<button type="button" class="admin-tab" data-admin-tab="schedule">
+				Расписание
+				<span class="admin-tab__count" id="schedule-tab-count">0</span>
+			</button>
+
+			<button type="button" class="admin-tab" data-admin-tab="menu">
+				Меню питания
+				<span class="admin-tab__count" id="menu-tab-count">0</span>
+			</button>
+
+		</nav>
+
+
+		<section class="admin-section admin-section--active" id="news-section">
+
+
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Новости
+					</h2>
+
+					<p>
+						Управление публикациями гимназии
+					</p>
+
+				</div>
+
+
+				<button class="admin-button admin-button--primary" id="create-news-button">
+					+ Создать новость
+				</button>
+
+			</section>
+
+
+
+			<section class="news-list" id="news-list">
+
+				<div class="admin-loading">
+					Загрузка новостей...
+				</div>
+
+			</section>
+
 
 		</section>
 
 
+		<section class="admin-section" id="teachers-section" hidden>
 
-		<section class="news-list" id="news-list">
 
-			<div class="admin-loading">
-				Загрузка новостей...
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Учителя
+					</h2>
+
+					<p>
+						Управление педагогическим составом и порядком отображения
+					</p>
+
+				</div>
+
+
+				<button class="admin-button admin-button--primary" id="create-teacher-button" type="button">
+					+ Добавить учителя
+				</button>
+
+			</section>
+
+
+			<div class="teachers-admin-filters">
+
+				<input
+					type="search"
+					id="teachers-admin-search"
+					class="teachers-admin-filters__search"
+					placeholder="Поиск по ФИО, должности или классу..."
+				>
+
+				<select id="teachers-admin-category-filter" class="teachers-admin-filters__select">
+					<option value="all">Все кафедры и разделы</option>
+					<option value="admins">Администрация</option>
+					<option value="start_teachers">Начальные классы</option>
+					<option value="church">Духовенство и основы веры</option>
+					<option value="lang">Филология и языки</option>
+					<option value="accuracy">Точные и естественные науки</option>
+					<option value="naturally">Общественные науки и история</option>
+					<option value="work">Труд, спорт, искусство</option>
+					<option value="other">Внеурочная деятельность</option>
+				</select>
+
 			</div>
+
+
+			<section class="news-list teachers-admin-list" id="teachers-list">
+
+				<div class="admin-loading">
+					Загрузка преподавателей...
+				</div>
+
+			</section>
+
+
+		</section>
+
+
+		<section class="admin-section" id="schedule-section" hidden>
+
+
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Расписание уроков
+					</h2>
+
+					<p>
+						Управление классами, учебными днями, кабинетами и занятостью преподавателей
+					</p>
+
+				</div>
+
+				<div class="schedule-toolbar-actions">
+
+					<button class="admin-button" id="create-class-button" type="button">
+						+ Добавить класс
+					</button>
+
+					<button class="admin-button admin-button--primary" id="create-lesson-button" type="button">
+						+ Добавить урок
+					</button>
+
+				</div>
+
+			</section>
+
+
+			<div class="schedule-admin-controls">
+
+				<div class="schedule-class-picker">
+
+					<label for="schedule-class-select" class="schedule-control-label">Класс:</label>
+
+					<select id="schedule-class-select" class="teachers-admin-filters__select schedule-class-select"></select>
+
+					<span class="teacher-badge" id="schedule-class-building-badge"></span>
+
+				</div>
+
+				<div class="schedule-bulk-actions">
+
+					<button type="button" class="admin-button" id="open-copy-day-button">
+						Копировать день
+					</button>
+
+					<button type="button" class="admin-button" id="open-copy-class-button">
+						Копировать класс
+					</button>
+
+					<button type="button" class="admin-button" id="clear-day-button">
+						Очистить день
+					</button>
+
+					<button type="button" class="admin-button news-card__delete" id="clear-class-button">
+						Очистить класс
+					</button>
+
+					<button type="button" class="admin-button news-card__delete" id="delete-class-button">
+						Удалить класс
+					</button>
+
+				</div>
+
+			</div>
+
+
+			<div class="schedule-day-tabs" id="schedule-day-tabs" role="tablist" aria-label="Дни недели">
+
+				<button type="button" class="schedule-day-tab schedule-day-tab--active" data-schedule-day="mon">Понедельник</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="tue">Вторник</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="wed">Среда</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="thu">Четверг</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="fri">Пятница</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="sat">Суббота</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="all">Вся неделя</button>
+
+			</div>
+
+
+			<section class="news-list schedule-lessons-list" id="schedule-lessons-list">
+
+				<div class="admin-loading">
+					Загрузка расписания...
+				</div>
+
+			</section>
+
+
+		</section>
+
+
+		<section class="admin-section" id="menu-section" hidden>
+
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Меню школьного питания
+					</h2>
+
+					<p>
+						Независимое управление рационом для 1–4 и 5–11 классов на 2 учебные недели
+					</p>
+
+				</div>
+
+				<div class="schedule-toolbar-actions">
+
+					<button class="admin-button" id="menu-open-copy-day-button" type="button">
+						Копировать день
+					</button>
+
+					<button class="admin-button" id="menu-open-copy-week-button" type="button">
+						Копировать неделю
+					</button>
+
+					<button class="admin-button admin-button--primary" id="menu-create-item-button" type="button">
+						+ Добавить блюдо
+					</button>
+
+				</div>
+
+			</section>
+
+			<div class="menu-admin-nav">
+
+				<div class="menu-group-tabs" id="menu-group-tabs" role="tablist" aria-label="Возрастная группа">
+
+					<button type="button" class="menu-group-tab menu-group-tab--active" data-menu-group="spassky">
+						<span class="menu-group-tab__badge">1–4 КЛАССЫ</span>
+						<strong>Спасский корпус</strong>
+						<small id="menu-group-count-spassky">0 блюд</small>
+					</button>
+
+					<button type="button" class="menu-group-tab" data-menu-group="pokrovsky">
+						<span class="menu-group-tab__badge">5–11 КЛАССЫ</span>
+						<strong>Покровский корпус</strong>
+						<small id="menu-group-count-pokrovsky">0 блюд</small>
+					</button>
+
+				</div>
+
+				<div class="menu-week-day-bar">
+
+					<div class="menu-week-tabs" id="menu-week-tabs" role="tablist" aria-label="Учебная неделя">
+						<button type="button" class="schedule-day-tab schedule-day-tab--active" data-menu-week="1">1 неделя</button>
+						<button type="button" class="schedule-day-tab" data-menu-week="2">2 неделя</button>
+					</div>
+
+					<div class="menu-day-tabs" id="menu-day-tabs" role="tablist" aria-label="Дни недели">
+						<button type="button" class="schedule-day-tab schedule-day-tab--active" data-menu-day="1">1 день (Пн)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="2">2 день (Вт)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="3">3 день (Ср)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="4">4 день (Чт)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="5">5 день (Пт)</button>
+					</div>
+
+					<button type="button" class="admin-button news-card__delete" id="menu-clear-day-button">
+						Очистить день
+					</button>
+
+				</div>
+
+				<div class="menu-context-bar" id="menu-context-bar">
+					Меню для 1–4 классов (Спасский корпус) → 1 неделя → 1 день (Понедельник)
+				</div>
+
+			</div>
+
+			<section class="menu-day-workspace" id="menu-day-workspace">
+				<div class="admin-loading">Загрузка меню питания...</div>
+			</section>
 
 		</section>
 
@@ -305,8 +578,768 @@
 	</div>
 
 
+	<div class="modal" id="teacher-modal">
+
+		<div class="modal__overlay" id="teacher-modal-overlay"></div>
+
+
+		<div class="modal__window">
+
+
+			<div class="modal__header">
+
+				<div>
+
+					<p class="modal__label">
+						Преподаватель
+					</p>
+
+					<h2 id="teacher-modal-title">
+						Добавление учителя
+					</h2>
+
+				</div>
+
+
+				<button class="modal__close" id="teacher-modal-close" type="button" aria-label="Закрыть">
+					×
+				</button>
+
+			</div>
+
+
+			<form class="news-form" id="teacher-form" novalidate>
+
+				<input type="hidden" id="teacher-id">
+
+
+				<div class="form-error-banner" id="teacher-form-error" hidden></div>
+
+
+				<div class="form-row form-row--three">
+
+					<label class="form-field">
+						<span>Фамилия *</span>
+						<input type="text" id="teacher-last-name" maxlength="100" placeholder="Панина" required>
+					</label>
+
+					<label class="form-field">
+						<span>Имя *</span>
+						<input type="text" id="teacher-first-name" maxlength="100" placeholder="Мария" required>
+					</label>
+
+					<label class="form-field">
+						<span>Отчество *</span>
+						<input type="text" id="teacher-middle-name" maxlength="100" placeholder="Николаевна" required>
+					</label>
+
+				</div>
+
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Должность *</span>
+						<input type="text" id="teacher-position" maxlength="255" placeholder="Учитель начальных классов" required>
+					</label>
+
+					<label class="form-field">
+						<span>Кафедра / раздел</span>
+						<select id="teacher-category">
+							<option value="start_teachers">Начальные классы</option>
+							<option value="admins">Администрация</option>
+							<option value="church">Духовенство и основы веры</option>
+							<option value="lang">Филология и языки</option>
+							<option value="accuracy">Точные и естественные науки</option>
+							<option value="naturally">Общественные науки и история</option>
+							<option value="work">Труд, спорт, искусство</option>
+							<option value="other">Внеурочная деятельность</option>
+						</select>
+					</label>
+
+				</div>
+
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Классное руководство</span>
+						<input type="text" id="teacher-classroom-guidance" maxlength="150" placeholder="Классный руководитель 2А класса">
+					</label>
+
+					<label class="form-field">
+						<span>Педагогический стаж (лет)</span>
+						<input type="number" id="teacher-experience" min="0" max="100" step="1" placeholder="46">
+					</label>
+
+				</div>
+
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Квалификационная категория</span>
+						<input type="text" id="teacher-qualification" maxlength="150" placeholder="Высшая категория">
+					</label>
+
+					<label class="form-field">
+						<span>Порядок отображения</span>
+						<input type="number" id="teacher-sort-order" min="0" max="1000000" step="1" placeholder="10">
+						<small class="form-hint">Меньшее число отображается выше в разделе</small>
+					</label>
+
+				</div>
+
+
+				<div class="form-field">
+
+					<span id="teacher-photo-label">Фотография *</span>
+
+					<input type="file" id="teacher-photo-input" accept=".jpg,.jpeg,.png,.webp">
+
+					<small class="form-hint">Допустимые форматы: JPG, PNG, WEBP. Максимальный размер: 10 МБ.</small>
+
+					<div class="form-error-text" id="teacher-photo-error" hidden></div>
+
+				</div>
+
+
+				<div class="teacher-photo-preview" id="teacher-photo-preview" hidden>
+
+					<div class="teacher-photo-preview__box">
+						<img id="teacher-photo-preview-img" src="" alt="Предпросмотр фотографии учителя">
+					</div>
+
+					<div class="teacher-photo-preview__meta">
+						<p class="teacher-photo-preview__caption" id="teacher-photo-caption"></p>
+						<button type="button" class="admin-button teacher-photo-preview__reset" id="teacher-photo-reset" hidden>
+							Сбросить выбранное фото
+						</button>
+					</div>
+
+				</div>
+
+
+				<div class="modal__actions">
+
+					<button type="button" class="admin-button" id="teacher-cancel-button">
+						Отмена
+					</button>
+
+					<button type="submit" class="admin-button admin-button--primary" id="teacher-save-button">
+						Добавить учителя
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка добавления класса -->
+	<div class="modal" id="class-modal">
+
+		<div class="modal__overlay" id="class-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Расписание</p>
+					<h2>Новый класс</h2>
+				</div>
+
+				<button class="modal__close" id="class-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="class-form" novalidate>
+
+				<div class="form-error-banner" id="class-form-error" hidden></div>
+
+				<label class="form-field">
+					<span>Название класса *</span>
+					<input type="text" id="class-name-input" maxlength="32" required placeholder="Например: 5А, 8Б, 10А">
+				</label>
+
+				<label class="form-field">
+					<span>Корпус</span>
+					<select id="class-building-select">
+						<option value="">Определить автоматически (1–4 Спасский, 5–11 Покровский)</option>
+						<option value="spassky">Спасский корпус (1–4 классы)</option>
+						<option value="pokrovsky">Покровский корпус (5–11 классы)</option>
+					</select>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="class-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="class-save-button">Создать класс</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка добавления / редактирования урока -->
+	<div class="modal" id="lesson-modal">
+
+		<div class="modal__overlay" id="lesson-modal-overlay"></div>
+
+		<div class="modal__window">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Урок в расписании</p>
+					<h2 id="lesson-modal-title">Добавление урока</h2>
+				</div>
+
+				<button class="modal__close" id="lesson-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="lesson-form" novalidate>
+
+				<input type="hidden" id="lesson-id">
+
+				<div class="form-error-banner" id="lesson-form-error" hidden></div>
+
+				<div class="form-row form-row--three">
+
+					<label class="form-field">
+						<span>Класс *</span>
+						<select id="lesson-class-select" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>День недели *</span>
+						<select id="lesson-day-select" required>
+							<option value="mon">Понедельник</option>
+							<option value="tue">Вторник</option>
+							<option value="wed">Среда</option>
+							<option value="thu">Четверг</option>
+							<option value="fri">Пятница</option>
+							<option value="sat">Суббота</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>Номер урока *</span>
+						<input type="number" id="lesson-number-input" min="1" max="20" step="1" required placeholder="1">
+					</label>
+
+				</div>
+
+				<label class="form-field">
+					<span>Название предмета *</span>
+					<input type="text" id="lesson-subject-input" maxlength="150" required placeholder="Математика">
+				</label>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Время начала *</span>
+						<input type="time" id="lesson-start-time" required value="08:20">
+					</label>
+
+					<label class="form-field">
+						<span>Время окончания *</span>
+						<input type="time" id="lesson-end-time" required value="09:00">
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Кабинет</span>
+						<input type="text" id="lesson-room-input" maxlength="64" placeholder="10 или Спортзал">
+					</label>
+
+					<label class="form-field">
+						<span>Преподаватель</span>
+						<select id="lesson-teacher-select">
+							<option value="">Не указан</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="lesson-cancel-button">Отмена</button>
+					<button type="button" class="admin-button" id="lesson-save-next-button">Сохранить и добавить ещё</button>
+					<button type="submit" class="admin-button admin-button--primary" id="lesson-save-button">Добавить урок</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования дня -->
+	<div class="modal" id="copy-day-modal">
+
+		<div class="modal__overlay" id="copy-day-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать расписание дня</h2>
+				</div>
+
+				<button class="modal__close" id="copy-day-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="copy-day-form" novalidate>
+
+				<div class="form-error-banner" id="copy-day-error" hidden></div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Из класса</span>
+						<select id="copy-day-source-class" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>Из дня</span>
+						<select id="copy-day-source-day" required>
+							<option value="mon">Понедельник</option>
+							<option value="tue">Вторник</option>
+							<option value="wed">Среда</option>
+							<option value="thu">Четверг</option>
+							<option value="fri">Пятница</option>
+							<option value="sat">Суббота</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>В класс</span>
+						<select id="copy-day-target-class" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>В день</span>
+						<select id="copy-day-target-day" required>
+							<option value="mon">Понедельник</option>
+							<option value="tue">Вторник</option>
+							<option value="wed">Среда</option>
+							<option value="thu">Четверг</option>
+							<option value="fri">Пятница</option>
+							<option value="sat">Суббота</option>
+						</select>
+					</label>
+
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-day-include-teachers" checked>
+					<span>Перенести также назначенных преподавателей</span>
+				</label>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-day-overwrite">
+					<span>Перезаписать существующие уроки в целевом дне</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="copy-day-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="copy-day-submit-button">Копировать день</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования класса -->
+	<div class="modal" id="copy-class-modal">
+
+		<div class="modal__overlay" id="copy-class-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать расписание класса</h2>
+				</div>
+
+				<button class="modal__close" id="copy-class-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="copy-class-form" novalidate>
+
+				<div class="form-error-banner" id="copy-class-error" hidden></div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Из класса</span>
+						<select id="copy-class-source" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>В класс</span>
+						<select id="copy-class-target" required></select>
+					</label>
+
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-class-include-teachers">
+					<span>Перенести также преподавателей (вызовет конфликт, если учитель уже занят в эти же часы)</span>
+				</label>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-class-overwrite">
+					<span>Перезаписать существующее расписание целевого класса</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="copy-class-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="copy-class-submit-button">Копировать класс</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка добавления/редактирования блюда -->
+	<div class="modal" id="menu-item-modal">
+
+		<div class="modal__overlay" id="menu-item-modal-overlay"></div>
+
+		<div class="modal__window">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Школьное питание</p>
+					<h2 id="menu-item-modal-title">Добавление блюда</h2>
+				</div>
+
+				<button class="modal__close" id="menu-item-modal-close" type="button" aria-label="Закрыть">×</button>
+
+			</div>
+
+			<form class="news-form" id="menu-item-form" novalidate>
+
+				<input type="hidden" id="menu-item-id">
+
+				<div class="form-error-banner" id="menu-item-form-error" hidden></div>
+
+				<div class="form-row form-row--three">
+
+					<label class="form-field">
+						<span>Возрастная группа *</span>
+						<select id="menu-item-age-group" required>
+							<option value="spassky">1–4 классы (Спасский)</option>
+							<option value="pokrovsky">5–11 классы (Покровский)</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>Неделя *</span>
+						<select id="menu-item-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>День *</span>
+						<select id="menu-item-day" required>
+							<option value="1">1 день (Пн)</option>
+							<option value="2">2 день (Вт)</option>
+							<option value="3">3 день (Ср)</option>
+							<option value="4">4 день (Чт)</option>
+							<option value="5">5 день (Пт)</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Приём пищи *</span>
+						<select id="menu-item-meal-type" required>
+							<option value="breakfast">Завтрак</option>
+							<option value="lunch">Обед</option>
+							<option value="snack">Полдник / доп.</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>Категория блюда</span>
+						<select id="menu-item-dish-category">
+							<option value="">Не указана</option>
+							<option value="first">Первое блюдо</option>
+							<option value="second">Второе / гарнир</option>
+							<option value="salad">Салат / закуска</option>
+							<option value="drink">Напиток</option>
+							<option value="bakery">Хлеб / выпечка</option>
+							<option value="fruit">Фрукты / овощи</option>
+							<option value="dessert">Десерт</option>
+							<option value="other">Другое</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Название блюда *</span>
+						<input type="text" id="menu-item-name" maxlength="200" placeholder="Каша рисовая молочная" required>
+					</label>
+
+					<label class="form-field">
+						<span>Выход / вес</span>
+						<input type="text" id="menu-item-weight" maxlength="64" placeholder="210 г">
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Описание (необязательно)</span>
+						<textarea id="menu-item-description" rows="2" maxlength="500" placeholder="Краткое описание или подача"></textarea>
+					</label>
+
+					<label class="form-field">
+						<span>Состав (необязательно)</span>
+						<textarea id="menu-item-composition" rows="2" maxlength="500" placeholder="Основные ингредиенты"></textarea>
+					</label>
+
+				</div>
+
+				<label class="form-field">
+					<span>Фотография блюда (JPG, PNG, WEBP до 10 МБ, необязательно)</span>
+					<input type="file" id="menu-item-image" accept="image/jpeg,image/png,image/webp">
+				</label>
+
+				<div class="menu-image-preview-wrap" id="menu-item-image-preview-wrap" hidden>
+					<div class="image-preview" id="menu-item-image-preview"></div>
+					<button type="button" class="admin-button news-card__delete" id="menu-item-remove-image-button" hidden>
+						Убрать фотографию
+					</button>
+				</div>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="menu-item-cancel-button">Отмена</button>
+					<button type="button" class="admin-button" id="menu-item-save-next-button">Сохранить и добавить ещё</button>
+					<button type="submit" class="admin-button admin-button--primary" id="menu-item-save-button">Добавить блюдо</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования дня меню -->
+	<div class="modal" id="menu-copy-day-modal">
+
+		<div class="modal__overlay" id="menu-copy-day-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать меню дня</h2>
+				</div>
+
+				<button class="modal__close" id="menu-copy-day-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="menu-copy-day-form" novalidate>
+
+				<div class="form-error-banner" id="menu-copy-day-error" hidden></div>
+
+				<p class="menu-modal-subtitle">Источник:</p>
+				<div class="form-row form-row--three">
+					<label class="form-field">
+						<span>Группа</span>
+						<select id="menu-copy-day-src-group" required>
+							<option value="spassky">1–4 кл.</option>
+							<option value="pokrovsky">5–11 кл.</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-day-src-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>День</span>
+						<select id="menu-copy-day-src-day" required>
+							<option value="1">1 день (Пн)</option>
+							<option value="2">2 день (Вт)</option>
+							<option value="3">3 день (Ср)</option>
+							<option value="4">4 день (Чт)</option>
+							<option value="5">5 день (Пт)</option>
+						</select>
+					</label>
+				</div>
+
+				<p class="menu-modal-subtitle">Назначение:</p>
+				<div class="form-row form-row--three">
+					<label class="form-field">
+						<span>Группа</span>
+						<select id="menu-copy-day-dst-group" required>
+							<option value="spassky">1–4 кл.</option>
+							<option value="pokrovsky">5–11 кл.</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-day-dst-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>День</span>
+						<select id="menu-copy-day-dst-day" required>
+							<option value="1">1 день (Пн)</option>
+							<option value="2">2 день (Вт)</option>
+							<option value="3">3 день (Ср)</option>
+							<option value="4">4 день (Чт)</option>
+							<option value="5">5 день (Пт)</option>
+						</select>
+					</label>
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="menu-copy-day-overwrite">
+					<span>Перезаписать существующее меню в целевом дне</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="menu-copy-day-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="menu-copy-day-submit-button">Копировать день</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования недели меню -->
+	<div class="modal" id="menu-copy-week-modal">
+
+		<div class="modal__overlay" id="menu-copy-week-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать меню недели</h2>
+				</div>
+
+				<button class="modal__close" id="menu-copy-week-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="menu-copy-week-form" novalidate>
+
+				<div class="form-error-banner" id="menu-copy-week-error" hidden></div>
+
+				<p class="menu-modal-subtitle">Откуда копировать (все 5 дней):</p>
+				<div class="form-row">
+					<label class="form-field">
+						<span>Возрастная группа</span>
+						<select id="menu-copy-week-src-group" required>
+							<option value="spassky">1–4 классы (Спасский)</option>
+							<option value="pokrovsky">5–11 классы (Покровский)</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-week-src-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+				</div>
+
+				<p class="menu-modal-subtitle">Куда скопировать:</p>
+				<div class="form-row">
+					<label class="form-field">
+						<span>Возрастная группа</span>
+						<select id="menu-copy-week-dst-group" required>
+							<option value="spassky">1–4 классы (Спасский)</option>
+							<option value="pokrovsky">5–11 классы (Покровский)</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-week-dst-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="menu-copy-week-overwrite">
+					<span>Перезаписать существующее меню в целевой неделе</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="menu-copy-week-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="menu-copy-week-submit-button">Копировать неделю</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
 	<script src="../js/config.js"></script>
 	<script src="admin.js"></script>
+	<script src="teachers.js"></script>
+	<script src="schedule.js"></script>
+	<script src="menu.js"></script>
 
 </body>
 

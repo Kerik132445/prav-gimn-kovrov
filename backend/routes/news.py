@@ -21,6 +21,7 @@ from sanitizer import sanitize_html
 
 from PIL import Image, UnidentifiedImageError
 
+from media import ALLOWED_IMAGE_FORMATS, MAX_IMAGE_SIZE, delete_file_by_url, ensure_upload_subdir, save_validated_image
 from routes.auth import require_admin, require_csrf
 
 router = APIRouter(
@@ -41,20 +42,7 @@ def get_db():
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-UPLOAD_DIR = os.path.join(BASE_DIR, "uploads", "news")
-
-os.makedirs(
-    UPLOAD_DIR,
-    exist_ok=True
-)
-
-MAX_IMAGE_SIZE = 10 * 1024 * 1024  # 10 МБ
-
-ALLOWED_IMAGE_FORMATS = {
-    "JPEG": ".jpg",
-    "PNG": ".png",
-    "WEBP": ".webp"
-}
+UPLOAD_DIR = ensure_upload_subdir("news")
 
 
 # =========================================================
@@ -252,99 +240,7 @@ async def upload_news_image(
             detail="Новость не найдена"
         )
 
-    # ========================================
-    # Читаем файл
-    # ========================================
-
-    file_data = await file.read(
-        MAX_IMAGE_SIZE + 1
-    )
-
-    # ========================================
-    # Проверяем размер
-    # ========================================
-
-    if len(file_data) > MAX_IMAGE_SIZE:
-
-        raise HTTPException(
-            status_code=400,
-            detail="Размер изображения не должен превышать 10 МБ"
-        )
-
-    if not file_data:
-
-        raise HTTPException(
-            status_code=400,
-            detail="Файл пустой"
-        )
-
-    # ========================================
-    # Проверяем настоящее содержимое
-    # ========================================
-
-    try:
-
-        image = Image.open(
-            __import__("io").BytesIO(file_data)
-        )
-
-        image.verify()
-
-        image_format = image.format
-
-    except (
-        UnidentifiedImageError,
-        OSError
-    ):
-
-        raise HTTPException(
-            status_code=400,
-            detail="Файл не является корректным изображением"
-        )
-
-    # ========================================
-    # Проверяем формат
-    # ========================================
-
-    if image_format not in ALLOWED_IMAGE_FORMATS:
-
-        raise HTTPException(
-            status_code=400,
-            detail="Разрешены только JPG, PNG и WEBP"
-        )
-
-    # ========================================
-    # Генерируем собственное имя
-    # ========================================
-
-    extension = ALLOWED_IMAGE_FORMATS[
-        image_format
-    ]
-
-    filename = (
-        f"{uuid.uuid4()}"
-        f"{extension}"
-    )
-
-    file_path = os.path.join(
-        UPLOAD_DIR,
-        filename
-    )
-
-    # ========================================
-    # Сохраняем файл
-    # ========================================
-
-    with open(
-        file_path,
-        "wb"
-    ) as buffer:
-
-        buffer.write(file_data)
-
-    image_url = (
-        f"/uploads/news/{filename}"
-    )
+    image_url = await save_validated_image(file, "news")
 
     # ========================================
     # Добавляем запись в БД
@@ -488,11 +384,10 @@ def delete_news_image(
     deleted_image_url = image.image
 
     # Удаляем файл с диска
-    file_path = image.image.lstrip("/")
-
-    if os.path.exists(file_path):
-
-        os.remove(file_path)
+    if not delete_file_by_url(image.image, subdir="news"):
+        file_path = image.image.lstrip("/")
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
     # Удаляем запись
     db.delete(image)
@@ -547,12 +442,10 @@ def delete_news(
 
     # Удаляем физические файлы
     for image in news.images:
-
-        file_path = image.image.lstrip("/")
-
-        if os.path.exists(file_path):
-
-            os.remove(file_path)
+        if not delete_file_by_url(image.image, subdir="news"):
+            file_path = image.image.lstrip("/")
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
     db.delete(news)
 
