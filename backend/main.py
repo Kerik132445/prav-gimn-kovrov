@@ -8,6 +8,7 @@ from routes.news import router as news_router
 from routes.auth import router as auth_router
 from routes.teachers import router as teachers_router
 from routes.schedule import router as schedule_router
+from routes.menu import router as menu_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -64,6 +65,7 @@ app.include_router(news_router)
 app.include_router(auth_router)
 app.include_router(teachers_router)
 app.include_router(schedule_router)
+app.include_router(menu_router)
 
 
 @app.get("/")

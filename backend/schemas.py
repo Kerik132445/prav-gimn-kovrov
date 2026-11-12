@@ -331,3 +331,198 @@ class ScheduleReorderItem(BaseModel):
 
 class ScheduleReorderRequest(BaseModel):
     items: list[ScheduleReorderItem] = Field(min_length=1)
+
+
+# =========================================================
+# Школьное меню питания
+# =========================================================
+
+MENU_AGE_GROUPS = ("spassky", "pokrovsky")
+MENU_WEEK_NUMBERS = (1, 2)
+MENU_DAYS = (1, 2, 3, 4, 5)
+MENU_MEAL_TYPES = ("breakfast", "lunch", "snack")
+MENU_DISH_CATEGORIES = (
+    "first",
+    "second",
+    "salad",
+    "drink",
+    "bakery",
+    "fruit",
+    "dessert",
+    "other",
+)
+
+
+def _validate_age_group_value(value: str) -> str:
+    cleaned = (value or "").strip().lower()
+    if cleaned not in MENU_AGE_GROUPS:
+        raise ValueError("Некорректная возрастная группа (допустимы 1–4 или 5–11 классы)")
+    return cleaned
+
+
+def _validate_meal_type_value(value: str) -> str:
+    cleaned = (value or "").strip().lower()
+    if cleaned not in MENU_MEAL_TYPES:
+        raise ValueError("Некорректный приём пищи")
+    return cleaned
+
+
+def _validate_dish_category_value(value: str | None) -> str | None:
+    if value is None:
+        return None
+    cleaned = value.strip().lower()
+    if not cleaned:
+        return None
+    if cleaned not in MENU_DISH_CATEGORIES:
+        raise ValueError("Некорректная категория блюда")
+    return cleaned
+
+
+class MenuItemPayload(BaseModel):
+    age_group: str
+    week_number: int = Field(ge=1, le=2)
+    day_of_week: int = Field(ge=1, le=5)
+    meal_type: str
+    dish_category: str | None = None
+    name: str
+    weight: str | None = None
+    description: str | None = None
+    composition: str | None = None
+    sort_order: int = Field(default=0, ge=0, le=1_000_000)
+
+    @field_validator("age_group")
+    @classmethod
+    def check_age_group(cls, v: str) -> str:
+        return _validate_age_group_value(v)
+
+    @field_validator("meal_type")
+    @classmethod
+    def check_meal_type(cls, v: str) -> str:
+        return _validate_meal_type_value(v)
+
+    @field_validator("dish_category")
+    @classmethod
+    def check_dish_category(cls, v: str | None) -> str | None:
+        return _validate_dish_category_value(v)
+
+    @field_validator("name")
+    @classmethod
+    def check_name(cls, v: str) -> str:
+        return _clean_required_text(v, 200, "Название блюда")
+
+    @field_validator("weight")
+    @classmethod
+    def check_weight(cls, v: str | None) -> str | None:
+        return _clean_optional_text(v, 64, "Выход / вес")
+
+    @field_validator("description")
+    @classmethod
+    def check_description(cls, v: str | None) -> str | None:
+        return _clean_optional_text(v, 500, "Описание")
+
+    @field_validator("composition")
+    @classmethod
+    def check_composition(cls, v: str | None) -> str | None:
+        return _clean_optional_text(v, 500, "Состав")
+
+
+class MenuItemOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    age_group: str
+    week_number: int
+    day_of_week: int
+    meal_type: str
+    dish_category: str | None = None
+    name: str
+    weight: str | None = None
+    description: str | None = None
+    composition: str | None = None
+    image: str | None = None
+    sort_order: int = 0
+
+
+class MenuDayMealPayload(BaseModel):
+    age_group: str
+    week_number: int = Field(ge=1, le=2)
+    day_of_week: int = Field(ge=1, le=5)
+    meal_type: str
+    price: str | None = None
+    kbju: str | None = None
+    note: str | None = None
+
+    @field_validator("age_group")
+    @classmethod
+    def check_age_group(cls, v: str) -> str:
+        return _validate_age_group_value(v)
+
+    @field_validator("meal_type")
+    @classmethod
+    def check_meal_type(cls, v: str) -> str:
+        return _validate_meal_type_value(v)
+
+    @field_validator("price")
+    @classmethod
+    def check_price(cls, v: str | None) -> str | None:
+        return _clean_optional_text(v, 64, "Стоимость")
+
+    @field_validator("kbju")
+    @classmethod
+    def check_kbju(cls, v: str | None) -> str | None:
+        return _clean_optional_text(v, 128, "Пищевая ценность (КБЖУ)")
+
+    @field_validator("note")
+    @classmethod
+    def check_note(cls, v: str | None) -> str | None:
+        return _clean_optional_text(v, 255, "Примечание")
+
+
+class MenuDayMealOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    age_group: str
+    week_number: int
+    day_of_week: int
+    meal_type: str
+    price: str | None = None
+    kbju: str | None = None
+    note: str | None = None
+
+
+class MenuReorderItem(BaseModel):
+    id: int = Field(gt=0)
+    sort_order: int = Field(ge=0, le=1_000_000)
+
+
+class MenuReorderRequest(BaseModel):
+    items: list[MenuReorderItem] = Field(min_length=1)
+
+
+class MenuCopyDayRequest(BaseModel):
+    source_age_group: str
+    source_week: int = Field(ge=1, le=2)
+    source_day: int = Field(ge=1, le=5)
+    target_age_group: str
+    target_week: int = Field(ge=1, le=2)
+    target_day: int = Field(ge=1, le=5)
+    overwrite: bool = False
+
+    @field_validator("source_age_group", "target_age_group")
+    @classmethod
+    def check_age_groups(cls, v: str) -> str:
+        return _validate_age_group_value(v)
+
+
+class MenuCopyWeekRequest(BaseModel):
+    source_age_group: str
+    source_week: int = Field(ge=1, le=2)
+    target_age_group: str
+    target_week: int = Field(ge=1, le=2)
+    overwrite: bool = False
+
+    @field_validator("source_age_group", "target_age_group")
+    @classmethod
+    def check_age_groups(cls, v: str) -> str:
+        return _validate_age_group_value(v)

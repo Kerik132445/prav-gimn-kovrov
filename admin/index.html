@@ -67,6 +67,11 @@
 				<span class="admin-tab__count" id="schedule-tab-count">0</span>
 			</button>
 
+			<button type="button" class="admin-tab" data-admin-tab="menu">
+				Меню питания
+				<span class="admin-tab__count" id="menu-tab-count">0</span>
+			</button>
+
 		</nav>
 
 
@@ -261,6 +266,92 @@
 
 			</section>
 
+
+		</section>
+
+
+		<section class="admin-section" id="menu-section" hidden>
+
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Меню школьного питания
+					</h2>
+
+					<p>
+						Независимое управление рационом для 1–4 и 5–11 классов на 2 учебные недели
+					</p>
+
+				</div>
+
+				<div class="schedule-toolbar-actions">
+
+					<button class="admin-button" id="menu-open-copy-day-button" type="button">
+						Копировать день
+					</button>
+
+					<button class="admin-button" id="menu-open-copy-week-button" type="button">
+						Копировать неделю
+					</button>
+
+					<button class="admin-button admin-button--primary" id="menu-create-item-button" type="button">
+						+ Добавить блюдо
+					</button>
+
+				</div>
+
+			</section>
+
+			<div class="menu-admin-nav">
+
+				<div class="menu-group-tabs" id="menu-group-tabs" role="tablist" aria-label="Возрастная группа">
+
+					<button type="button" class="menu-group-tab menu-group-tab--active" data-menu-group="spassky">
+						<span class="menu-group-tab__badge">1–4 КЛАССЫ</span>
+						<strong>Спасский корпус</strong>
+						<small id="menu-group-count-spassky">0 блюд</small>
+					</button>
+
+					<button type="button" class="menu-group-tab" data-menu-group="pokrovsky">
+						<span class="menu-group-tab__badge">5–11 КЛАССЫ</span>
+						<strong>Покровский корпус</strong>
+						<small id="menu-group-count-pokrovsky">0 блюд</small>
+					</button>
+
+				</div>
+
+				<div class="menu-week-day-bar">
+
+					<div class="menu-week-tabs" id="menu-week-tabs" role="tablist" aria-label="Учебная неделя">
+						<button type="button" class="schedule-day-tab schedule-day-tab--active" data-menu-week="1">1 неделя</button>
+						<button type="button" class="schedule-day-tab" data-menu-week="2">2 неделя</button>
+					</div>
+
+					<div class="menu-day-tabs" id="menu-day-tabs" role="tablist" aria-label="Дни недели">
+						<button type="button" class="schedule-day-tab schedule-day-tab--active" data-menu-day="1">1 день (Пн)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="2">2 день (Вт)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="3">3 день (Ср)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="4">4 день (Чт)</button>
+						<button type="button" class="schedule-day-tab" data-menu-day="5">5 день (Пт)</button>
+					</div>
+
+					<button type="button" class="admin-button news-card__delete" id="menu-clear-day-button">
+						Очистить день
+					</button>
+
+				</div>
+
+				<div class="menu-context-bar" id="menu-context-bar">
+					Меню для 1–4 классов (Спасский корпус) → 1 неделя → 1 день (Понедельник)
+				</div>
+
+			</div>
+
+			<section class="menu-day-workspace" id="menu-day-workspace">
+				<div class="admin-loading">Загрузка меню питания...</div>
+			</section>
 
 		</section>
 
@@ -938,10 +1029,317 @@
 	</div>
 
 
+	<!-- Модалка добавления/редактирования блюда -->
+	<div class="modal" id="menu-item-modal">
+
+		<div class="modal__overlay" id="menu-item-modal-overlay"></div>
+
+		<div class="modal__window">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Школьное питание</p>
+					<h2 id="menu-item-modal-title">Добавление блюда</h2>
+				</div>
+
+				<button class="modal__close" id="menu-item-modal-close" type="button" aria-label="Закрыть">×</button>
+
+			</div>
+
+			<form class="news-form" id="menu-item-form" novalidate>
+
+				<input type="hidden" id="menu-item-id">
+
+				<div class="form-error-banner" id="menu-item-form-error" hidden></div>
+
+				<div class="form-row form-row--three">
+
+					<label class="form-field">
+						<span>Возрастная группа *</span>
+						<select id="menu-item-age-group" required>
+							<option value="spassky">1–4 классы (Спасский)</option>
+							<option value="pokrovsky">5–11 классы (Покровский)</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>Неделя *</span>
+						<select id="menu-item-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>День *</span>
+						<select id="menu-item-day" required>
+							<option value="1">1 день (Пн)</option>
+							<option value="2">2 день (Вт)</option>
+							<option value="3">3 день (Ср)</option>
+							<option value="4">4 день (Чт)</option>
+							<option value="5">5 день (Пт)</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Приём пищи *</span>
+						<select id="menu-item-meal-type" required>
+							<option value="breakfast">Завтрак</option>
+							<option value="lunch">Обед</option>
+							<option value="snack">Полдник / доп.</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>Категория блюда</span>
+						<select id="menu-item-dish-category">
+							<option value="">Не указана</option>
+							<option value="first">Первое блюдо</option>
+							<option value="second">Второе / гарнир</option>
+							<option value="salad">Салат / закуска</option>
+							<option value="drink">Напиток</option>
+							<option value="bakery">Хлеб / выпечка</option>
+							<option value="fruit">Фрукты / овощи</option>
+							<option value="dessert">Десерт</option>
+							<option value="other">Другое</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Название блюда *</span>
+						<input type="text" id="menu-item-name" maxlength="200" placeholder="Каша рисовая молочная" required>
+					</label>
+
+					<label class="form-field">
+						<span>Выход / вес</span>
+						<input type="text" id="menu-item-weight" maxlength="64" placeholder="210 г">
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Описание (необязательно)</span>
+						<textarea id="menu-item-description" rows="2" maxlength="500" placeholder="Краткое описание или подача"></textarea>
+					</label>
+
+					<label class="form-field">
+						<span>Состав (необязательно)</span>
+						<textarea id="menu-item-composition" rows="2" maxlength="500" placeholder="Основные ингредиенты"></textarea>
+					</label>
+
+				</div>
+
+				<label class="form-field">
+					<span>Фотография блюда (JPG, PNG, WEBP до 10 МБ, необязательно)</span>
+					<input type="file" id="menu-item-image" accept="image/jpeg,image/png,image/webp">
+				</label>
+
+				<div class="menu-image-preview-wrap" id="menu-item-image-preview-wrap" hidden>
+					<div class="image-preview" id="menu-item-image-preview"></div>
+					<button type="button" class="admin-button news-card__delete" id="menu-item-remove-image-button" hidden>
+						Убрать фотографию
+					</button>
+				</div>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="menu-item-cancel-button">Отмена</button>
+					<button type="button" class="admin-button" id="menu-item-save-next-button">Сохранить и добавить ещё</button>
+					<button type="submit" class="admin-button admin-button--primary" id="menu-item-save-button">Добавить блюдо</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования дня меню -->
+	<div class="modal" id="menu-copy-day-modal">
+
+		<div class="modal__overlay" id="menu-copy-day-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать меню дня</h2>
+				</div>
+
+				<button class="modal__close" id="menu-copy-day-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="menu-copy-day-form" novalidate>
+
+				<div class="form-error-banner" id="menu-copy-day-error" hidden></div>
+
+				<p class="menu-modal-subtitle">Источник:</p>
+				<div class="form-row form-row--three">
+					<label class="form-field">
+						<span>Группа</span>
+						<select id="menu-copy-day-src-group" required>
+							<option value="spassky">1–4 кл.</option>
+							<option value="pokrovsky">5–11 кл.</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-day-src-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>День</span>
+						<select id="menu-copy-day-src-day" required>
+							<option value="1">1 день (Пн)</option>
+							<option value="2">2 день (Вт)</option>
+							<option value="3">3 день (Ср)</option>
+							<option value="4">4 день (Чт)</option>
+							<option value="5">5 день (Пт)</option>
+						</select>
+					</label>
+				</div>
+
+				<p class="menu-modal-subtitle">Назначение:</p>
+				<div class="form-row form-row--three">
+					<label class="form-field">
+						<span>Группа</span>
+						<select id="menu-copy-day-dst-group" required>
+							<option value="spassky">1–4 кл.</option>
+							<option value="pokrovsky">5–11 кл.</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-day-dst-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>День</span>
+						<select id="menu-copy-day-dst-day" required>
+							<option value="1">1 день (Пн)</option>
+							<option value="2">2 день (Вт)</option>
+							<option value="3">3 день (Ср)</option>
+							<option value="4">4 день (Чт)</option>
+							<option value="5">5 день (Пт)</option>
+						</select>
+					</label>
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="menu-copy-day-overwrite">
+					<span>Перезаписать существующее меню в целевом дне</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="menu-copy-day-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="menu-copy-day-submit-button">Копировать день</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования недели меню -->
+	<div class="modal" id="menu-copy-week-modal">
+
+		<div class="modal__overlay" id="menu-copy-week-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать меню недели</h2>
+				</div>
+
+				<button class="modal__close" id="menu-copy-week-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="menu-copy-week-form" novalidate>
+
+				<div class="form-error-banner" id="menu-copy-week-error" hidden></div>
+
+				<p class="menu-modal-subtitle">Откуда копировать (все 5 дней):</p>
+				<div class="form-row">
+					<label class="form-field">
+						<span>Возрастная группа</span>
+						<select id="menu-copy-week-src-group" required>
+							<option value="spassky">1–4 классы (Спасский)</option>
+							<option value="pokrovsky">5–11 классы (Покровский)</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-week-src-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+				</div>
+
+				<p class="menu-modal-subtitle">Куда скопировать:</p>
+				<div class="form-row">
+					<label class="form-field">
+						<span>Возрастная группа</span>
+						<select id="menu-copy-week-dst-group" required>
+							<option value="spassky">1–4 классы (Спасский)</option>
+							<option value="pokrovsky">5–11 классы (Покровский)</option>
+						</select>
+					</label>
+					<label class="form-field">
+						<span>Неделя</span>
+						<select id="menu-copy-week-dst-week" required>
+							<option value="1">1 неделя</option>
+							<option value="2">2 неделя</option>
+						</select>
+					</label>
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="menu-copy-week-overwrite">
+					<span>Перезаписать существующее меню в целевой неделе</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="menu-copy-week-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="menu-copy-week-submit-button">Копировать неделю</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
 	<script src="../js/config.js"></script>
 	<script src="admin.js"></script>
 	<script src="teachers.js"></script>
 	<script src="schedule.js"></script>
+	<script src="menu.js"></script>
 
 </body>
 

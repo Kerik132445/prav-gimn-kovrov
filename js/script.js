@@ -1,327 +1,255 @@
-let currentBuilding = 'spassky';
-let currentWeek = 'week1';
-let currentDay = 'day1';
+(() => {
+	const MENU_API_URL = `${window.API_BASE_URL}/api/menu`;
 
+	const MEAL_TYPE_TITLES = {
+		breakfast: "ЗАВТРАК",
+		lunch: "ОБЕД",
+		snack: "ПОЛДНИК"
+	};
 
-const menuData = {
-	spassky: {
-		week1: {
-			day1: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Каша рисовая молочная с маслом сливочным', weight: '210 г' },
-						{ name: 'Яблоко свежее', weight: '1 шт' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб пшеничный', weight: '32 г' }
-					],
-					kbju: 'Б: 15г Ж: 16г У: 136г | 409 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Суп картофельный с горохом, мясом', weight: '212 г' },
-						{ name: 'Сосиска отварная', weight: '60 г' },
-						{ name: 'Макароны отварные с маслом сливочным', weight: '157 г' },
-						{ name: 'Сок фруктовый', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '29 г' }
-					],
-					kbju: 'Б: 26г Ж: 32г У: 77г | 624 ккал'
-				}
-			},
-			day2: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Куры в соусе', weight: '80/30 г' },
-						{ name: 'Рис отварной', weight: '150 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '52 г' }
-					],
-					kbju: 'Б: 18г Ж: 21г У: 78г | 584 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Щи с картофелем', weight: '200 г' },
-						{ name: 'Биточки из филе кур', weight: '60 г' },
-						{ name: 'Картофельное пюре', weight: '150 г' },
-						{ name: 'Компот из сухофруктов', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '25 г' }
-					],
-					kbju: 'Б: 28г Ж: 28г У: 84г | 712 ккал'
-				}
-			},
-			day3: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Запеканка из творога с молоком сгущеным', weight: '150/20 г' },
-						{ name: 'Масло сливочное', weight: '10 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб пшеничный', weight: '65 г' }
-					],
-					kbju: 'Б: 21г Ж: 18г У: 115г | 333 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Рассольник домашний', weight: '200 г' },
-						{ name: 'Жаркое по-домашнему', weight: '210 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '45 г' }
-					],
-					kbju: 'Б: 24г Ж: 20г У: 58г | 792 ккал'
-				}
-			},
-			day4: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Митболы в соусе', weight: '60/40 г' },
-						{ name: 'Картофельное пюре', weight: '150 г' },
-						{ name: 'Огурец свежий', weight: '20 г' },
-						{ name: 'Компот из сухофруктов', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '41 г' }
-					],
-					kbju: 'Б: 24г Ж: 15г У: 117г | 599 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Борщ из св. капусты с картофелем, сметаной', weight: '205 г' },
-						{ name: 'Гуляш из свинины', weight: '100 г' },
-						{ name: 'Каша гречневая с маслом сливочным', weight: '153 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '42 г' }
-					],
-					kbju: 'Б: 24г Ж: 27г У: 85г | 642 ккал'
-				}
-			},
-			day5: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Котлета из цыплят', weight: '75 г' },
-						{ name: 'Макароны отварные с маслом сливочным', weight: '160 г' },
-						{ name: 'Сок фруктовый', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '28 г' }
-					],
-					kbju: 'Б: 28г Ж: 22г У: 73г | 538 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Суп картофельный с горохом', weight: '200 г' },
-						{ name: 'Плов', weight: '200 г' },
-						{ name: 'Компот из сухофруктов', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '30 г' }
-					],
-					kbju: 'Б: 16г Ж: 19г У: 101г | 505 ккал'
-				}
-			}
-		},
-		week2: {
-			day1: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Каша молочная пшенная с маслом слив.', weight: '215 г' },
-						{ name: 'Сыр порционно', weight: '23 г' },
-						{ name: 'Кофейный напиток', weight: '200 г' },
-						{ name: 'Хлеб пшеничный', weight: '57 г' }
-					],
-					kbju: 'Б: 14г Ж: 16г У: 84г | 455 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Суп картофельный с горохом, свининой', weight: '212 г' },
-						{ name: 'Сосиска отварная', weight: '60 г' },
-						{ name: 'Макароны отварные с маслом сливочным', weight: '160 г' },
-						{ name: 'Сок фруктовый', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '25 г' }
-					],
-					kbju: 'Б: 21г Ж: 25г У: 85г | 733 ккал'
-				}
-			},
-			day2: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Омлет натуральный с м.с.', weight: '166 г' },
-						{ name: 'Сосиска отварная', weight: '60 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб пшеничный', weight: '33 г' }
-					],
-					kbju: 'Б: 27г Ж: 43г У: 36г | 510 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Щи из св. капусты с картофелем', weight: '200 г' },
-						{ name: 'Куры в соусе', weight: '60/30 г' },
-						{ name: 'Картофельное пюре', weight: '150 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '30 г' }
-					],
-					kbju: 'Б: 18г Ж: 27г У: 63г | 625 ккал'
-				}
-			},
-			day3: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Гуляш из свинины', weight: '70/50 г' },
-						{ name: 'Каша гречневая с маслом сливочным', weight: '152 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '25 г' }
-					],
-					kbju: 'Б: 21г Ж: 23г У: 67г | 557 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Рассольник домашний со сметаной', weight: '210 г' },
-						{ name: 'Биточки из филе кур', weight: '60 г' },
-						{ name: 'Макароны отварные с маслом сливочным', weight: '157 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '48 г' }
-					],
-					kbju: 'Б: 29г Ж: 26г У: 96г | 715 ккал'
-				}
-			},
-			day4: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Шницель рыбный', weight: '70 г' },
-						{ name: 'Картофельное пюре', weight: '150 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '34 г' }
-					],
-					kbju: 'Б: 16г Ж: 23г У: 58г | 586 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Борщ из св. капусты с картофелем и сметаной', weight: '210 г' },
-						{ name: 'Митболы в соусе', weight: '60/40 г' },
-						{ name: 'Рис отварной', weight: '150 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '31 г' }
-					],
-					kbju: 'Б: 25г Ж: 16г У: 121г | 574 ккал'
-				}
-			},
-			day5: {
-				breakfast: {
-					price: '75,92 ₽',
-					dishes: [
-						{ name: 'Куры в соусе', weight: '80/30 г' },
-						{ name: 'Рис отварной', weight: '170 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '26 г' }
-					],
-					kbju: 'Б: 18г Ж: 21г У: 70г | 584 ккал'
-				},
-				lunch: {
-					price: '70,24 ₽',
-					dishes: [
-						{ name: 'Суп с вермишелью, цыпленком', weight: '210 г' },
-						{ name: 'Котлета из свинины', weight: '65 г' },
-						{ name: 'Картофельное пюре', weight: '150 г' },
-						{ name: 'Чай с сахаром', weight: '200 г' },
-						{ name: 'Хлеб ржаной', weight: '43 г' }
-					],
-					kbju: 'Б: 15г Ж: 27г У: 88г | 574 ккал'
-				}
+	const MEAL_ORDER = ["breakfast", "lunch", "snack"];
+
+	const DISH_CATEGORY_LABELS = {
+		first: "Первое",
+		second: "Второе",
+		salad: "Салат",
+		drink: "Напиток",
+		bakery: "Выпечка",
+		fruit: "Фрукты",
+		dessert: "Десерт",
+		other: "Другое"
+	};
+
+	const container = document.getElementById("canteen-meals-container")
+		|| document.querySelector(".canteen-board__meals");
+	const dayButtons = document.querySelectorAll(".tab-group:nth-child(2) .tab-btn");
+	const weekButtons = document.querySelectorAll(".tab-group:nth-child(1) .tab-btn");
+	const campusButtons = document.querySelectorAll(".building-card");
+
+	let currentBuilding = "spassky";
+	let currentWeek = 1;
+	let currentDay = 1;
+
+	const weekCache = new Map();
+	let activeRequestId = 0;
+
+	function escapeHtml(text) {
+		return String(text ?? "")
+			.replaceAll("&", "&amp;")
+			.replaceAll("<", "&lt;")
+			.replaceAll(">", "&gt;")
+			.replaceAll('"', "&quot;")
+			.replaceAll("'", "&#039;");
+	}
+
+	function resolveImageUrl(imagePath) {
+		if (!imagePath) return "";
+		if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
+			return imagePath;
+		}
+		if (imagePath.startsWith("/")) {
+			return `${window.API_BASE_URL}${imagePath}`;
+		}
+		return `${window.API_BASE_URL}/${imagePath}`;
+	}
+
+	function parseWeekNumber(rawWeek) {
+		const digits = String(rawWeek || "").replace(/\D+/g, "");
+		const num = Number(digits);
+		return num === 2 ? 2 : 1;
+	}
+
+	function parseDayNumber(rawDay) {
+		const digits = String(rawDay || "").replace(/\D+/g, "");
+		const num = Number(digits);
+		return num >= 1 && num <= 5 ? num : 1;
+	}
+
+	function renderDishItem(dish) {
+		const categoryLabel = dish.dish_category
+			? (DISH_CATEGORY_LABELS[dish.dish_category] || dish.dish_category)
+			: "";
+		const hasRichFields = Boolean(dish.image || dish.description || dish.composition || categoryLabel);
+
+		if (!hasRichFields) {
+			return `
+				<li class="meal-card__item">
+					<span class="meal-card__dish-name">${escapeHtml(dish.name)}</span>
+					${dish.weight ? `<span class="meal-card__dish-weight">${escapeHtml(dish.weight)}</span>` : ""}
+				</li>
+			`;
+		}
+
+		const extraParts = [];
+		if (categoryLabel) {
+			extraParts.push(`<span class="meal-card__dish-tag">${escapeHtml(categoryLabel)}</span>`);
+		}
+		if (dish.description) {
+			extraParts.push(`<p class="meal-card__dish-extra">${escapeHtml(dish.description)}</p>`);
+		}
+		if (dish.composition) {
+			extraParts.push(`<p class="meal-card__dish-extra">Состав: ${escapeHtml(dish.composition)}</p>`);
+		}
+
+		const thumbHtml = dish.image
+			? `<img src="${escapeHtml(resolveImageUrl(dish.image))}" alt="${escapeHtml(dish.name)}" class="meal-card__dish-thumb" loading="lazy">`
+			: "";
+
+		return `
+			<li class="meal-card__item meal-card__item--rich">
+				<div class="meal-card__dish-main">
+					${thumbHtml}
+					<div class="meal-card__dish-content">
+						<div class="meal-card__dish-row">
+							<span class="meal-card__dish-name">${escapeHtml(dish.name)}</span>
+							${dish.weight ? `<span class="meal-card__dish-weight">${escapeHtml(dish.weight)}</span>` : ""}
+						</div>
+						${extraParts.join("")}
+					</div>
+				</div>
+			</li>
+		`;
+	}
+
+	function renderMealCard(mealType, dishes, summary) {
+		const title = MEAL_TYPE_TITLES[mealType] || mealType.toUpperCase();
+		const price = summary?.price ? `<span class="meal-card__price">${escapeHtml(summary.price)}</span>` : "";
+		const footerText = summary?.kbju || summary?.note || "";
+
+		const listHtml = dishes.length
+			? dishes.map(renderDishItem).join("")
+			: `<li class="meal-card__item meal-card__item--empty">Список блюд уточняется</li>`;
+
+		const footerHtml = footerText
+			? `
+				<div class="meal-card__footer">
+					<span class="meal-card__kbju">${escapeHtml(footerText)}</span>
+				</div>
+			`
+			: "";
+
+		return `
+			<div class="meal-card is-menu-visible" data-meal-type="${escapeHtml(mealType)}">
+				<div class="meal-card__header">
+					<span class="meal-card__title">${escapeHtml(title)}</span>
+					${price}
+				</div>
+				<ul class="meal-card__list">
+					${listHtml}
+				</ul>
+				${footerHtml}
+			</div>
+		`;
+	}
+
+	function renderStatus(message, { isError = false } = {}) {
+		if (!container) return;
+		container.innerHTML = `
+			<div class="meal-card meal-card--status ${isError ? "meal-card--error" : ""}">
+				<p class="meal-card__status-text">${escapeHtml(message)}</p>
+				${isError ? `<button type="button" class="meal-card__retry-btn" id="menu-retry-button">Повторить попытку</button>` : ""}
+			</div>
+		`;
+	}
+
+	function renderCurrentDay(weekPayload) {
+		if (!container) return;
+
+		const items = Array.isArray(weekPayload?.items) ? weekPayload.items : [];
+		const summaries = Array.isArray(weekPayload?.meal_summaries) ? weekPayload.meal_summaries : [];
+
+		const dayItems = items.filter(item => item.day_of_week === currentDay);
+		const daySummaries = summaries.filter(s => s.day_of_week === currentDay);
+
+		const cardsHtml = [];
+		for (const mealType of MEAL_ORDER) {
+			const mealDishes = dayItems
+				.filter(item => item.meal_type === mealType)
+				.sort((a, b) => a.sort_order - b.sort_order || a.id - b.id);
+			const mealSummary = daySummaries.find(s => s.meal_type === mealType);
+
+			const hasContent = mealDishes.length > 0 || Boolean(mealSummary && (mealSummary.price || mealSummary.kbju || mealSummary.note));
+			if (hasContent) {
+				cardsHtml.push(renderMealCard(mealType, mealDishes, mealSummary));
 			}
 		}
-	}
-};
 
-// Привязываем Покровский корпус к той же базе данных
-menuData.pokrovsky = menuData.spassky;
+		if (!cardsHtml.length) {
+			renderStatus("Меню на выбранный день пока не заполнено.");
+			return;
+		}
 
-function renderMealCard(title, mealData) {
-	if (!mealData) return '';
+		container.innerHTML = cardsHtml.join("");
 
-	const dishesHTML = mealData.dishes.map(dish => `
-        <li class="meal-card__item">
-            <span class="meal-card__dish-name">${dish.name}</span>
-            <span class="meal-card__dish-weight">${dish.weight}</span>
-        </li>
-    `).join('');
-
-	return `
-        <div class="meal-card">
-            <div class="meal-card__header">
-                <span class="meal-card__title">${title}</span>
-                <span class="meal-card__price">${mealData.price}</span>
-            </div>
-            <ul class="meal-card__list">
-                ${dishesHTML}
-            </ul>
-            <div class="meal-card__footer">
-                <span class="meal-card__kbju">${mealData.kbju}</span>
-            </div>
-        </div>
-    `;
-}
-
-function updateMenu() {
-	const dayData = menuData[currentBuilding]?.[currentWeek]?.[currentDay];
-
-	if (!dayData) {
-		console.error('Данные не найдены');
-		return;
+		void container.offsetWidth;
+		container.querySelectorAll(".meal-card").forEach(card => {
+			card.classList.add("is-menu-visible");
+		});
 	}
 
-	const container = document.querySelector('.canteen-board__meals');
-	container.innerHTML = renderMealCard('ЗАВТРАК', dayData.breakfast) +
-		renderMealCard('ОБЕД', dayData.lunch);
-}
+	async function loadAndRender({ forceRefresh = false } = {}) {
+		if (!container) return;
 
-const dayButtons = document.querySelectorAll('.tab-group:nth-child(2) .tab-btn');
+		const cacheKey = `${currentBuilding}:${currentWeek}`;
+		if (!forceRefresh && weekCache.has(cacheKey)) {
+			renderCurrentDay(weekCache.get(cacheKey));
+			return;
+		}
 
-dayButtons.forEach(btn => {
-	btn.addEventListener('click', () => {
-		dayButtons.forEach(b => b.classList.remove('tab-btn--active'));
-		btn.classList.add('tab-btn--active');
+		const reqId = ++activeRequestId;
+		renderStatus("Загрузка меню...");
 
-		currentDay = btn.dataset.day;
-		updateMenu()
+		try {
+			const response = await fetch(
+				`${MENU_API_URL}/?age_group=${encodeURIComponent(currentBuilding)}&week_number=${currentWeek}`
+			);
+			if (!response.ok) {
+				throw new Error(`Ошибка сервера: ${response.status}`);
+			}
+			const data = await response.json();
+			weekCache.set(cacheKey, data);
+			if (reqId !== activeRequestId) return;
+			renderCurrentDay(data);
+		} catch (error) {
+			console.error(error);
+			if (reqId !== activeRequestId) return;
+			renderStatus("Не удалось загрузить меню питания. Проверьте подключение или попробуйте снова.", { isError: true });
+		}
+	}
+
+	container?.addEventListener("click", (event) => {
+		if (event.target.closest("#menu-retry-button")) {
+			loadAndRender({ forceRefresh: true });
+		}
 	});
-});
 
-
-const weekButtons = document.querySelectorAll('.tab-group:nth-child(1) .tab-btn');
-
-weekButtons.forEach(btn => {
-	btn.addEventListener('click', () => {
-		weekButtons.forEach(b => b.classList.remove('tab-btn--active'));
-		btn.classList.add('tab-btn--active');
-
-		currentWeek = btn.dataset.week;
-		updateMenu()
+	dayButtons.forEach(btn => {
+		btn.addEventListener("click", () => {
+			dayButtons.forEach(b => b.classList.remove("tab-btn--active"));
+			btn.classList.add("tab-btn--active");
+			currentDay = parseDayNumber(btn.dataset.day);
+			loadAndRender();
+		});
 	});
-});
 
-
-const campusButtons = document.querySelectorAll('.building-card');
-
-campusButtons.forEach(btn => {
-	btn.addEventListener('click', (e) => {
-		campusButtons.forEach(b => b.classList.remove('building-card--active'));
-		btn.classList.add('building-card--active');
-
-		currentBuilding = btn.dataset.Building;
-		currentBuilding = e.currentTarget.dataset.building
-		updateMenu()
+	weekButtons.forEach(btn => {
+		btn.addEventListener("click", () => {
+			weekButtons.forEach(b => b.classList.remove("tab-btn--active"));
+			btn.classList.add("tab-btn--active");
+			currentWeek = parseWeekNumber(btn.dataset.week);
+			loadAndRender();
+		});
 	});
-});
 
+	campusButtons.forEach(btn => {
+		btn.addEventListener("click", (event) => {
+			campusButtons.forEach(b => b.classList.remove("building-card--active"));
+			btn.classList.add("building-card--active");
+			const targetBuilding = event.currentTarget?.dataset?.building || btn.dataset.building || "spassky";
+			currentBuilding = targetBuilding;
+			loadAndRender();
+		});
+	});
 
-
-updateMenu();
+	loadAndRender();
+})();

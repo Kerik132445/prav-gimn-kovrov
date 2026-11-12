@@ -179,64 +179,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="canteen-board__meals">
-						<div class="meal-card">
-							<div class="meal-card__header">
-								<span class="meal-card__title">ЗАВТРАК</span>
-								<span class="meal-card__price">75,92 ₽</span>
-							</div>
-							<ul class="meal-card__list">
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Каша рисовая молочная</span>
-									<span class="meal-card__dish-weight">210 г</span>
-								</li>
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Яблоко свежее</span>
-									<span class="meal-card__dish-weight">1 шт</span>
-								</li>
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Чай с сахаром</span>
-									<span class="meal-card__dish-weight">200 г</span>
-								</li>
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Хлеб пшеничный</span>
-									<span class="meal-card__dish-weight">32 г</span>
-								</li>
-							</ul>
-							<div class="meal-card__footer">
-								<span class="meal-card__kbju">Б: 15г Ж: 16г У: 136г | 409 ккал</span>
-							</div>
-						</div>
-						<div class="meal-card">
-							<div class="meal-card__header">
-								<span class="meal-card__title">ОБЕД</span>
-								<span class="meal-card__price">70,24 ₽</span>
-							</div>
-							<ul class="meal-card__list">
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Суп картофельный с горохом</span>
-									<span class="meal-card__dish-weight">212 г</span>
-								</li>
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Сосиска отварная</span>
-									<span class="meal-card__dish-weight">60 г</span>
-								</li>
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Макароны отварные</span>
-									<span class="meal-card__dish-weight">157 г</span>
-								</li>
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Сок фруктовый</span>
-									<span class="meal-card__dish-weight">200 г</span>
-								</li>
-								<li class="meal-card__item">
-									<span class="meal-card__dish-name">Хлеб ржаной</span>
-									<span class="meal-card__dish-weight">29 г</span>
-								</li>
-							</ul>
-							<div class="meal-card__footer">
-								<span class="meal-card__kbju">Б: 26г Ж: 32г У: 77г | 624 ккал</span>
-							</div>
+					<div class="canteen-board__meals" id="canteen-meals-container" aria-live="polite">
+						<div class="meal-card meal-card--status">
+							<p class="meal-card__status-text">Загрузка меню...</p>
 						</div>
 					</div>
 					<span class="canteen-board__note">* Утверждено директором, соответствует СанПиН</span>
@@ -672,6 +617,7 @@
 				</div>
 			</div>
 		</footer>
+	<script src="js/config.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/window.scrollY.js"></script>
 	<script src="js/foodAnimations.js"></script>

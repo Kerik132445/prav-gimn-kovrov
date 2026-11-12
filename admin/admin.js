@@ -1210,6 +1210,10 @@ async function initAdmin() {
 			await window.initScheduleAdmin();
 		}
 
+		if (typeof window.initMenuAdmin === "function") {
+			await window.initMenuAdmin();
+		}
+
 	} catch (error) {
 
 		console.error(error);
@@ -1312,7 +1316,8 @@ async function apiFetch(
 const ADMIN_TABS = {
 	news: { sectionId: "news-section", siteHref: "../life.html" },
 	teachers: { sectionId: "teachers-section", siteHref: "../teachers.html" },
-	schedule: { sectionId: "schedule-section", siteHref: "../class_schedule.html" }
+	schedule: { sectionId: "schedule-section", siteHref: "../class_schedule.html" },
+	menu: { sectionId: "menu-section", siteHref: "../food.html" }
 };
 
 function switchAdminTab(tabName) {

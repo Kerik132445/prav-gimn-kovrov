@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -229,3 +229,68 @@ class ScheduleLesson(Base):
     school_class = relationship("SchoolClass", back_populates="lessons")
 
     teacher = relationship("Teacher")
+
+
+class MenuDayMeal(Base):
+
+    __tablename__ = "menu_day_meals"
+    __table_args__ = (
+        UniqueConstraint(
+            "age_group",
+            "week_number",
+            "day_of_week",
+            "meal_type",
+            name="uq_menu_day_meal_slot",
+        ),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    age_group = Column(String(32), nullable=False, index=True)
+
+    week_number = Column(Integer, nullable=False, index=True)
+
+    day_of_week = Column(Integer, nullable=False, index=True)
+
+    meal_type = Column(String(32), nullable=False, index=True)
+
+    price = Column(String(64), nullable=True)
+
+    kbju = Column(String(128), nullable=True)
+
+    note = Column(String(255), nullable=True)
+
+
+class MenuItem(Base):
+
+    __tablename__ = "menu_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    age_group = Column(String(32), nullable=False, index=True)
+
+    week_number = Column(Integer, nullable=False, index=True)
+
+    day_of_week = Column(Integer, nullable=False, index=True)
+
+    meal_type = Column(String(32), nullable=False, index=True)
+
+    dish_category = Column(String(32), nullable=True, index=True)
+
+    name = Column(String(200), nullable=False)
+
+    weight = Column(String(64), nullable=True)
+
+    description = Column(String(500), nullable=True)
+
+    composition = Column(String(500), nullable=True)
+
+    image = Column(String(255), nullable=True)
+
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
