@@ -51,34 +51,216 @@
 	<main class="admin-main">
 
 
-		<section class="admin-toolbar">
+		<nav class="admin-tabs" aria-label="Разделы админ-панели">
 
-			<div>
-
-				<h2>
-					Новости
-				</h2>
-
-				<p>
-					Управление публикациями гимназии
-				</p>
-
-			</div>
-
-
-			<button class="admin-button admin-button--primary" id="create-news-button">
-				+ Создать новость
+			<button type="button" class="admin-tab admin-tab--active" data-admin-tab="news">
+				Новости
 			</button>
+
+			<button type="button" class="admin-tab" data-admin-tab="teachers">
+				Учителя
+				<span class="admin-tab__count" id="teachers-tab-count">0</span>
+			</button>
+
+			<button type="button" class="admin-tab" data-admin-tab="schedule">
+				Расписание
+				<span class="admin-tab__count" id="schedule-tab-count">0</span>
+			</button>
+
+		</nav>
+
+
+		<section class="admin-section admin-section--active" id="news-section">
+
+
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Новости
+					</h2>
+
+					<p>
+						Управление публикациями гимназии
+					</p>
+
+				</div>
+
+
+				<button class="admin-button admin-button--primary" id="create-news-button">
+					+ Создать новость
+				</button>
+
+			</section>
+
+
+
+			<section class="news-list" id="news-list">
+
+				<div class="admin-loading">
+					Загрузка новостей...
+				</div>
+
+			</section>
+
 
 		</section>
 
 
+		<section class="admin-section" id="teachers-section" hidden>
 
-		<section class="news-list" id="news-list">
 
-			<div class="admin-loading">
-				Загрузка новостей...
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Учителя
+					</h2>
+
+					<p>
+						Управление педагогическим составом и порядком отображения
+					</p>
+
+				</div>
+
+
+				<button class="admin-button admin-button--primary" id="create-teacher-button" type="button">
+					+ Добавить учителя
+				</button>
+
+			</section>
+
+
+			<div class="teachers-admin-filters">
+
+				<input
+					type="search"
+					id="teachers-admin-search"
+					class="teachers-admin-filters__search"
+					placeholder="Поиск по ФИО, должности или классу..."
+				>
+
+				<select id="teachers-admin-category-filter" class="teachers-admin-filters__select">
+					<option value="all">Все кафедры и разделы</option>
+					<option value="admins">Администрация</option>
+					<option value="start_teachers">Начальные классы</option>
+					<option value="church">Духовенство и основы веры</option>
+					<option value="lang">Филология и языки</option>
+					<option value="accuracy">Точные и естественные науки</option>
+					<option value="naturally">Общественные науки и история</option>
+					<option value="work">Труд, спорт, искусство</option>
+					<option value="other">Внеурочная деятельность</option>
+				</select>
+
 			</div>
+
+
+			<section class="news-list teachers-admin-list" id="teachers-list">
+
+				<div class="admin-loading">
+					Загрузка преподавателей...
+				</div>
+
+			</section>
+
+
+		</section>
+
+
+		<section class="admin-section" id="schedule-section" hidden>
+
+
+			<section class="admin-toolbar">
+
+				<div>
+
+					<h2>
+						Расписание уроков
+					</h2>
+
+					<p>
+						Управление классами, учебными днями, кабинетами и занятостью преподавателей
+					</p>
+
+				</div>
+
+				<div class="schedule-toolbar-actions">
+
+					<button class="admin-button" id="create-class-button" type="button">
+						+ Добавить класс
+					</button>
+
+					<button class="admin-button admin-button--primary" id="create-lesson-button" type="button">
+						+ Добавить урок
+					</button>
+
+				</div>
+
+			</section>
+
+
+			<div class="schedule-admin-controls">
+
+				<div class="schedule-class-picker">
+
+					<label for="schedule-class-select" class="schedule-control-label">Класс:</label>
+
+					<select id="schedule-class-select" class="teachers-admin-filters__select schedule-class-select"></select>
+
+					<span class="teacher-badge" id="schedule-class-building-badge"></span>
+
+				</div>
+
+				<div class="schedule-bulk-actions">
+
+					<button type="button" class="admin-button" id="open-copy-day-button">
+						Копировать день
+					</button>
+
+					<button type="button" class="admin-button" id="open-copy-class-button">
+						Копировать класс
+					</button>
+
+					<button type="button" class="admin-button" id="clear-day-button">
+						Очистить день
+					</button>
+
+					<button type="button" class="admin-button news-card__delete" id="clear-class-button">
+						Очистить класс
+					</button>
+
+					<button type="button" class="admin-button news-card__delete" id="delete-class-button">
+						Удалить класс
+					</button>
+
+				</div>
+
+			</div>
+
+
+			<div class="schedule-day-tabs" id="schedule-day-tabs" role="tablist" aria-label="Дни недели">
+
+				<button type="button" class="schedule-day-tab schedule-day-tab--active" data-schedule-day="mon">Понедельник</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="tue">Вторник</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="wed">Среда</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="thu">Четверг</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="fri">Пятница</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="sat">Суббота</button>
+				<button type="button" class="schedule-day-tab" data-schedule-day="all">Вся неделя</button>
+
+			</div>
+
+
+			<section class="news-list schedule-lessons-list" id="schedule-lessons-list">
+
+				<div class="admin-loading">
+					Загрузка расписания...
+				</div>
+
+			</section>
+
 
 		</section>
 
@@ -305,8 +487,461 @@
 	</div>
 
 
+	<div class="modal" id="teacher-modal">
+
+		<div class="modal__overlay" id="teacher-modal-overlay"></div>
+
+
+		<div class="modal__window">
+
+
+			<div class="modal__header">
+
+				<div>
+
+					<p class="modal__label">
+						Преподаватель
+					</p>
+
+					<h2 id="teacher-modal-title">
+						Добавление учителя
+					</h2>
+
+				</div>
+
+
+				<button class="modal__close" id="teacher-modal-close" type="button" aria-label="Закрыть">
+					×
+				</button>
+
+			</div>
+
+
+			<form class="news-form" id="teacher-form" novalidate>
+
+				<input type="hidden" id="teacher-id">
+
+
+				<div class="form-error-banner" id="teacher-form-error" hidden></div>
+
+
+				<div class="form-row form-row--three">
+
+					<label class="form-field">
+						<span>Фамилия *</span>
+						<input type="text" id="teacher-last-name" maxlength="100" placeholder="Панина" required>
+					</label>
+
+					<label class="form-field">
+						<span>Имя *</span>
+						<input type="text" id="teacher-first-name" maxlength="100" placeholder="Мария" required>
+					</label>
+
+					<label class="form-field">
+						<span>Отчество *</span>
+						<input type="text" id="teacher-middle-name" maxlength="100" placeholder="Николаевна" required>
+					</label>
+
+				</div>
+
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Должность *</span>
+						<input type="text" id="teacher-position" maxlength="255" placeholder="Учитель начальных классов" required>
+					</label>
+
+					<label class="form-field">
+						<span>Кафедра / раздел</span>
+						<select id="teacher-category">
+							<option value="start_teachers">Начальные классы</option>
+							<option value="admins">Администрация</option>
+							<option value="church">Духовенство и основы веры</option>
+							<option value="lang">Филология и языки</option>
+							<option value="accuracy">Точные и естественные науки</option>
+							<option value="naturally">Общественные науки и история</option>
+							<option value="work">Труд, спорт, искусство</option>
+							<option value="other">Внеурочная деятельность</option>
+						</select>
+					</label>
+
+				</div>
+
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Классное руководство</span>
+						<input type="text" id="teacher-classroom-guidance" maxlength="150" placeholder="Классный руководитель 2А класса">
+					</label>
+
+					<label class="form-field">
+						<span>Педагогический стаж (лет)</span>
+						<input type="number" id="teacher-experience" min="0" max="100" step="1" placeholder="46">
+					</label>
+
+				</div>
+
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Квалификационная категория</span>
+						<input type="text" id="teacher-qualification" maxlength="150" placeholder="Высшая категория">
+					</label>
+
+					<label class="form-field">
+						<span>Порядок отображения</span>
+						<input type="number" id="teacher-sort-order" min="0" max="1000000" step="1" placeholder="10">
+						<small class="form-hint">Меньшее число отображается выше в разделе</small>
+					</label>
+
+				</div>
+
+
+				<div class="form-field">
+
+					<span id="teacher-photo-label">Фотография *</span>
+
+					<input type="file" id="teacher-photo-input" accept=".jpg,.jpeg,.png,.webp">
+
+					<small class="form-hint">Допустимые форматы: JPG, PNG, WEBP. Максимальный размер: 10 МБ.</small>
+
+					<div class="form-error-text" id="teacher-photo-error" hidden></div>
+
+				</div>
+
+
+				<div class="teacher-photo-preview" id="teacher-photo-preview" hidden>
+
+					<div class="teacher-photo-preview__box">
+						<img id="teacher-photo-preview-img" src="" alt="Предпросмотр фотографии учителя">
+					</div>
+
+					<div class="teacher-photo-preview__meta">
+						<p class="teacher-photo-preview__caption" id="teacher-photo-caption"></p>
+						<button type="button" class="admin-button teacher-photo-preview__reset" id="teacher-photo-reset" hidden>
+							Сбросить выбранное фото
+						</button>
+					</div>
+
+				</div>
+
+
+				<div class="modal__actions">
+
+					<button type="button" class="admin-button" id="teacher-cancel-button">
+						Отмена
+					</button>
+
+					<button type="submit" class="admin-button admin-button--primary" id="teacher-save-button">
+						Добавить учителя
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка добавления класса -->
+	<div class="modal" id="class-modal">
+
+		<div class="modal__overlay" id="class-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Расписание</p>
+					<h2>Новый класс</h2>
+				</div>
+
+				<button class="modal__close" id="class-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="class-form" novalidate>
+
+				<div class="form-error-banner" id="class-form-error" hidden></div>
+
+				<label class="form-field">
+					<span>Название класса *</span>
+					<input type="text" id="class-name-input" maxlength="32" required placeholder="Например: 5А, 8Б, 10А">
+				</label>
+
+				<label class="form-field">
+					<span>Корпус</span>
+					<select id="class-building-select">
+						<option value="">Определить автоматически (1–4 Спасский, 5–11 Покровский)</option>
+						<option value="spassky">Спасский корпус (1–4 классы)</option>
+						<option value="pokrovsky">Покровский корпус (5–11 классы)</option>
+					</select>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="class-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="class-save-button">Создать класс</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка добавления / редактирования урока -->
+	<div class="modal" id="lesson-modal">
+
+		<div class="modal__overlay" id="lesson-modal-overlay"></div>
+
+		<div class="modal__window">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Урок в расписании</p>
+					<h2 id="lesson-modal-title">Добавление урока</h2>
+				</div>
+
+				<button class="modal__close" id="lesson-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="lesson-form" novalidate>
+
+				<input type="hidden" id="lesson-id">
+
+				<div class="form-error-banner" id="lesson-form-error" hidden></div>
+
+				<div class="form-row form-row--three">
+
+					<label class="form-field">
+						<span>Класс *</span>
+						<select id="lesson-class-select" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>День недели *</span>
+						<select id="lesson-day-select" required>
+							<option value="mon">Понедельник</option>
+							<option value="tue">Вторник</option>
+							<option value="wed">Среда</option>
+							<option value="thu">Четверг</option>
+							<option value="fri">Пятница</option>
+							<option value="sat">Суббота</option>
+						</select>
+					</label>
+
+					<label class="form-field">
+						<span>Номер урока *</span>
+						<input type="number" id="lesson-number-input" min="1" max="20" step="1" required placeholder="1">
+					</label>
+
+				</div>
+
+				<label class="form-field">
+					<span>Название предмета *</span>
+					<input type="text" id="lesson-subject-input" maxlength="150" required placeholder="Математика">
+				</label>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Время начала *</span>
+						<input type="time" id="lesson-start-time" required value="08:20">
+					</label>
+
+					<label class="form-field">
+						<span>Время окончания *</span>
+						<input type="time" id="lesson-end-time" required value="09:00">
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Кабинет</span>
+						<input type="text" id="lesson-room-input" maxlength="64" placeholder="10 или Спортзал">
+					</label>
+
+					<label class="form-field">
+						<span>Преподаватель</span>
+						<select id="lesson-teacher-select">
+							<option value="">Не указан</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="lesson-cancel-button">Отмена</button>
+					<button type="button" class="admin-button" id="lesson-save-next-button">Сохранить и добавить ещё</button>
+					<button type="submit" class="admin-button admin-button--primary" id="lesson-save-button">Добавить урок</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования дня -->
+	<div class="modal" id="copy-day-modal">
+
+		<div class="modal__overlay" id="copy-day-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать расписание дня</h2>
+				</div>
+
+				<button class="modal__close" id="copy-day-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="copy-day-form" novalidate>
+
+				<div class="form-error-banner" id="copy-day-error" hidden></div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Из класса</span>
+						<select id="copy-day-source-class" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>Из дня</span>
+						<select id="copy-day-source-day" required>
+							<option value="mon">Понедельник</option>
+							<option value="tue">Вторник</option>
+							<option value="wed">Среда</option>
+							<option value="thu">Четверг</option>
+							<option value="fri">Пятница</option>
+							<option value="sat">Суббота</option>
+						</select>
+					</label>
+
+				</div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>В класс</span>
+						<select id="copy-day-target-class" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>В день</span>
+						<select id="copy-day-target-day" required>
+							<option value="mon">Понедельник</option>
+							<option value="tue">Вторник</option>
+							<option value="wed">Среда</option>
+							<option value="thu">Четверг</option>
+							<option value="fri">Пятница</option>
+							<option value="sat">Суббота</option>
+						</select>
+					</label>
+
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-day-include-teachers" checked>
+					<span>Перенести также назначенных преподавателей</span>
+				</label>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-day-overwrite">
+					<span>Перезаписать существующие уроки в целевом дне</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="copy-day-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="copy-day-submit-button">Копировать день</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка копирования класса -->
+	<div class="modal" id="copy-class-modal">
+
+		<div class="modal__overlay" id="copy-class-modal-overlay"></div>
+
+		<div class="modal__window modal__window--compact">
+
+			<div class="modal__header">
+
+				<div>
+					<p class="modal__label">Массовое управление</p>
+					<h2>Копировать расписание класса</h2>
+				</div>
+
+				<button class="modal__close" id="copy-class-modal-close" type="button">×</button>
+
+			</div>
+
+			<form class="news-form" id="copy-class-form" novalidate>
+
+				<div class="form-error-banner" id="copy-class-error" hidden></div>
+
+				<div class="form-row">
+
+					<label class="form-field">
+						<span>Из класса</span>
+						<select id="copy-class-source" required></select>
+					</label>
+
+					<label class="form-field">
+						<span>В класс</span>
+						<select id="copy-class-target" required></select>
+					</label>
+
+				</div>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-class-include-teachers">
+					<span>Перенести также преподавателей (вызовет конфликт, если учитель уже занят в эти же часы)</span>
+				</label>
+
+				<label class="schedule-checkbox">
+					<input type="checkbox" id="copy-class-overwrite">
+					<span>Перезаписать существующее расписание целевого класса</span>
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" id="copy-class-cancel-button">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="copy-class-submit-button">Копировать класс</button>
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
 	<script src="../js/config.js"></script>
 	<script src="admin.js"></script>
+	<script src="teachers.js"></script>
+	<script src="schedule.js"></script>
 
 </body>
 

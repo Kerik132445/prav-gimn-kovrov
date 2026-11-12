@@ -1049,3 +1049,583 @@ select {
 	}
 
 }
+
+
+/* ========================================
+   ADMIN TABS & TEACHERS MANAGEMENT
+======================================== */
+
+.admin-tabs {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px;
+	margin-bottom: 28px;
+	background: #ffffff;
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+}
+
+.admin-tab {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 18px;
+	border: 0;
+	border-radius: 8px;
+	background: transparent;
+	color: #555;
+	font-weight: 600;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-tab:hover {
+	background: #f5f5f5;
+	color: #222;
+}
+
+.admin-tab--active {
+	background: #222;
+	color: #ffffff;
+}
+
+.admin-tab--active:hover {
+	background: #222;
+	color: #ffffff;
+}
+
+.admin-tab__count {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 22px;
+	height: 22px;
+	padding: 0 7px;
+	border-radius: 999px;
+	background: rgba(15, 23, 42, 0.08);
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.admin-tab--active .admin-tab__count {
+	background: rgba(255, 255, 255, 0.2);
+	color: #ffffff;
+}
+
+.admin-section {
+	display: none;
+}
+
+.admin-section--active {
+	display: block;
+}
+
+.teachers-admin-filters {
+	display: grid;
+	grid-template-columns: 1fr 280px;
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+.teachers-admin-filters__search,
+.teachers-admin-filters__select {
+	width: 100%;
+	padding: 11px 14px;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	background: #ffffff;
+	outline: none;
+	font-size: 14px;
+}
+
+.teachers-admin-filters__search:focus,
+.teachers-admin-filters__select:focus {
+	border-color: #777;
+}
+
+.teacher-admin-card {
+	background: #ffffff;
+	border: 1px solid #e5e5e5;
+	border-radius: 12px;
+	padding: 16px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 18px;
+}
+
+.teacher-admin-card__main {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	min-width: 0;
+	flex: 1;
+}
+
+.teacher-admin-card__photo {
+	width: 68px;
+	height: 84px;
+	object-fit: cover;
+	object-position: top center;
+	border-radius: 10px;
+	background: #f1f5f9;
+	border: 1px solid #e2e8f0;
+	flex-shrink: 0;
+}
+
+.teacher-admin-card__info {
+	min-width: 0;
+	flex: 1;
+}
+
+.teacher-admin-card__top {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+	margin-bottom: 4px;
+}
+
+.teacher-admin-card__order {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 8px;
+	border-radius: 6px;
+	background: #f1f5f9;
+	color: #475569;
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.teacher-admin-card__name {
+	margin: 0;
+	font-size: 17px;
+	line-height: 1.3;
+}
+
+.teacher-admin-card__position {
+	margin: 0 0 8px;
+	color: #555;
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.teacher-admin-card__badges {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex-wrap: wrap;
+}
+
+.teacher-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 3px 9px;
+	border-radius: 6px;
+	font-size: 12px;
+	font-weight: 600;
+	background: #f1f5f9;
+	color: #475569;
+}
+
+.teacher-badge--orange {
+	background: #fff7ed;
+	color: #c2410c;
+	border: 1px solid #fed7aa;
+}
+
+.teacher-badge--blue {
+	background: #eff6ff;
+	color: #1d4ed8;
+}
+
+.teacher-badge--light {
+	background: #f0f9ff;
+	color: #0369a1;
+}
+
+.teacher-admin-card__actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.teacher-order-btn {
+	padding: 11px 12px;
+	min-width: 40px;
+	font-weight: 700;
+}
+
+.teacher-order-btn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.form-row--three {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.form-hint {
+	margin: 0;
+	font-size: 12px;
+	color: #64748b;
+	line-height: 1.4;
+}
+
+.form-error-text {
+	font-size: 13px;
+	font-weight: 600;
+	color: #b00020;
+}
+
+.form-error-banner {
+	padding: 12px 14px;
+	border-radius: 10px;
+	background: #fef2f2;
+	border: 1px solid #fecaca;
+	color: #991b1b;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.teacher-photo-preview {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	padding: 14px;
+	border-radius: 12px;
+	border: 1px solid #e2e8f0;
+	background: #f8fafc;
+}
+
+.teacher-photo-preview__box {
+	width: 96px;
+	height: 120px;
+	border-radius: 10px;
+	overflow: hidden;
+	background: #e2e8f0;
+	border: 1px solid #cbd5e1;
+	flex-shrink: 0;
+}
+
+.teacher-photo-preview__box img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+}
+
+.teacher-photo-preview__meta {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+	min-width: 0;
+}
+
+.teacher-photo-preview__caption {
+	margin: 0;
+	font-size: 14px;
+	color: #334155;
+	word-break: break-word;
+}
+
+.teacher-photo-preview__reset {
+	padding: 8px 12px;
+	font-size: 13px;
+}
+
+@media (max-width: 768px) {
+
+	.admin-tabs {
+		display: flex;
+		width: 100%;
+	}
+
+	.admin-tab {
+		flex: 1;
+		justify-content: center;
+		min-height: 44px;
+	}
+
+	.teachers-admin-filters {
+		grid-template-columns: 1fr;
+	}
+
+	.teacher-admin-card {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 14px;
+		padding: 16px;
+	}
+
+	.teacher-admin-card__actions {
+		width: 100%;
+		flex-wrap: wrap;
+	}
+
+	.teacher-admin-card__actions .admin-button {
+		flex: 1 1 auto;
+	}
+
+	.teacher-order-btn {
+		flex: 0 0 44px !important;
+	}
+
+}
+
+@media (max-width: 640px) {
+
+	.form-row--three {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 14px;
+	}
+
+	.teacher-photo-preview {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+}
+
+
+/* ========================================
+   SCHEDULE MANAGEMENT
+======================================== */
+
+.modal__window--compact {
+	max-width: 540px;
+}
+
+.schedule-toolbar-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.schedule-admin-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 14px;
+	padding: 16px 18px;
+	margin-bottom: 18px;
+	background: #ffffff;
+	border: 1px solid #e5e5e5;
+	border-radius: 14px;
+}
+
+.schedule-class-picker {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.schedule-control-label {
+	font-size: 14px;
+	font-weight: 600;
+	color: #334155;
+}
+
+.schedule-class-select {
+	width: auto;
+	min-width: 190px;
+}
+
+.schedule-bulk-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.schedule-bulk-actions .admin-button {
+	padding: 8px 12px;
+	font-size: 13px;
+}
+
+.schedule-day-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 20px;
+}
+
+.schedule-day-tab {
+	padding: 9px 15px;
+	border: 1px solid #d9d9d9;
+	border-radius: 10px;
+	background: #ffffff;
+	color: #475569;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.schedule-day-tab:hover {
+	border-color: #94a3b8;
+	color: #0f172a;
+}
+
+.schedule-day-tab--active {
+	background: #222;
+	border-color: #222;
+	color: #ffffff;
+}
+
+.schedule-admin-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 16px 20px;
+	background: #ffffff;
+	border: 1px solid #e5e5e5;
+	border-radius: 14px;
+}
+
+.schedule-admin-card__main {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	min-width: 0;
+	flex: 1;
+}
+
+.schedule-admin-card__slot {
+	display: flex;
+	flex-direction: column;
+	min-width: 108px;
+	padding: 8px 12px;
+	border-radius: 10px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	text-align: center;
+}
+
+.schedule-admin-card__number {
+	font-size: 13px;
+	font-weight: 700;
+	color: #0f172a;
+}
+
+.schedule-admin-card__time {
+	font-size: 12px;
+	font-weight: 600;
+	color: #2563eb;
+	margin-top: 2px;
+}
+
+.schedule-admin-card__info {
+	min-width: 0;
+}
+
+.schedule-admin-card__subject {
+	margin: 0 0 4px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #0f172a;
+}
+
+.schedule-admin-card__meta {
+	margin: 0;
+	font-size: 13px;
+	color: #475569;
+}
+
+.schedule-admin-card__meta--muted {
+	color: #94a3b8;
+}
+
+.schedule-admin-card__actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-shrink: 0;
+}
+
+.schedule-week-group {
+	padding: 18px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+}
+
+.schedule-week-group__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12px;
+}
+
+.schedule-week-group__header h3 {
+	margin: 0;
+	font-size: 16px;
+	color: #0f172a;
+}
+
+.schedule-week-group__list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.schedule-week-group__empty {
+	margin: 0;
+	font-size: 14px;
+	color: #64748b;
+}
+
+.schedule-checkbox {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	font-size: 14px;
+	color: #334155;
+	cursor: pointer;
+}
+
+.schedule-checkbox input {
+	margin-top: 3px;
+	flex-shrink: 0;
+}
+
+.admin-empty #empty-add-lesson-button {
+	margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+
+	.admin-tabs {
+		flex-wrap: wrap;
+	}
+
+	.schedule-admin-controls {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.schedule-class-select {
+		width: 100%;
+	}
+
+	.schedule-admin-card {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.schedule-admin-card__actions {
+		flex-wrap: wrap;
+	}
+
+	.schedule-admin-card__actions .admin-button {
+		flex: 1 1 auto;
+	}
+
+}
