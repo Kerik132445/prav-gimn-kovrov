@@ -72,6 +72,11 @@
 				<span class="admin-tab__count" id="menu-tab-count">0</span>
 			</button>
 
+			<button type="button" class="admin-tab" data-admin-tab="feedback">
+				Обращения
+				<span class="admin-tab__count admin-tab__count--badge" id="feedback-tab-count">0</span>
+			</button>
+
 		</nav>
 
 
@@ -355,6 +360,44 @@
 
 		</section>
 
+		<section class="admin-section" id="feedback-section" hidden>
+
+			<section class="admin-toolbar">
+				<div>
+					<h2>Обращения с сайта</h2>
+					<p>Сообщения, вопросы и заявки, отправленные через форму обратной связи</p>
+				</div>
+				<button class="admin-button" id="feedback-refresh-btn" type="button" title="Обновить список">
+					↻ Обновить
+				</button>
+			</section>
+
+			<!-- Filter & Search Toolbar -->
+			<div class="feedback-admin-filters">
+				<div class="feedback-status-tabs" role="tablist">
+					<button type="button" class="feedback-status-tab feedback-status-tab--active" data-feedback-filter="all">
+						Все (<span id="fb-filter-all-count">0</span>)
+					</button>
+					<button type="button" class="feedback-status-tab" data-feedback-filter="new">
+						Новые (<span id="fb-filter-new-count">0</span>)
+					</button>
+					<button type="button" class="feedback-status-tab" data-feedback-filter="processed">
+						Обработанные (<span id="fb-filter-processed-count">0</span>)
+					</button>
+				</div>
+
+				<div class="feedback-search-box">
+					<input type="search" id="feedback-admin-search" placeholder="Поиск по имени, контакту, теме или тексту..." autocomplete="off">
+				</div>
+			</div>
+
+			<section class="feedback-list-container" id="feedback-list-container">
+				<div class="feedback-list" id="feedback-list">
+					<div class="admin-loading">Загрузка обращений...</div>
+				</div>
+			</section>
+
+		</section>
 
 	</main>
 
@@ -1334,12 +1377,68 @@
 
 	</div>
 
+	<!-- FEEDBACK DETAIL MODAL -->
+	<div class="modal" id="feedback-modal" hidden>
+		<div class="modal__overlay" id="feedback-modal-overlay"></div>
+		<div class="modal__window modal__window--feedback">
+			<div class="modal__header">
+				<h2 id="feedback-modal-title">Обращение #<span id="fb-modal-id"></span></h2>
+				<button type="button" class="modal__close" id="feedback-modal-close" aria-label="Закрыть">✕</button>
+			</div>
+			<div class="feedback-modal-body">
+				<div class="feedback-modal-meta">
+					<div class="fb-meta-item">
+						<span class="fb-meta-label">Статус:</span>
+						<span id="fb-modal-status-badge" class="fb-badge fb-badge--new">Новое</span>
+					</div>
+					<div class="fb-meta-item">
+						<span class="fb-meta-label">Дата отправки:</span>
+						<span id="fb-modal-date" class="fb-meta-val"></span>
+					</div>
+					<div class="fb-meta-item">
+						<span class="fb-meta-label">Отправитель:</span>
+						<span id="fb-modal-name" class="fb-meta-val"></span>
+					</div>
+					<div class="fb-meta-item">
+						<span class="fb-meta-label">Телефон / Email:</span>
+						<span id="fb-modal-contact" class="fb-meta-val"></span>
+					</div>
+					<div class="fb-meta-item">
+						<span class="fb-meta-label">Страница сайта:</span>
+						<span id="fb-modal-page" class="fb-meta-val"></span>
+					</div>
+					<div class="fb-meta-item">
+						<span class="fb-meta-label">Тема:</span>
+						<span id="fb-modal-subject" class="fb-meta-val"></span>
+					</div>
+					<div class="fb-meta-item" id="fb-modal-ip-row">
+						<span class="fb-meta-label">IP-адрес:</span>
+						<span id="fb-modal-ip" class="fb-meta-val"></span>
+					</div>
+				</div>
+
+				<div class="feedback-modal-message-box">
+					<h4>Текст обращения:</h4>
+					<div id="fb-modal-message" class="feedback-modal-message-text"></div>
+				</div>
+
+				<div class="modal__actions feedback-modal-actions">
+					<button type="button" class="admin-button admin-button--danger" id="fb-modal-delete-btn">Удалить обращение</button>
+					<div style="display:flex; gap:8px;">
+						<button type="button" class="admin-button" id="fb-modal-toggle-status-btn">Отметить как обработанное</button>
+						<button type="button" class="admin-button admin-button--primary" id="fb-modal-close-btn">Закрыть</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script src="../js/config.js"></script>
 	<script src="admin.js"></script>
 	<script src="teachers.js"></script>
 	<script src="schedule.js"></script>
 	<script src="menu.js"></script>
+	<script src="feedback.js?v=2.2"></script>
 
 </body>
 

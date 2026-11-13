@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
@@ -526,3 +527,177 @@ class MenuCopyWeekRequest(BaseModel):
     @classmethod
     def check_age_groups(cls, v: str) -> str:
         return _validate_age_group_value(v)
+
+
+# =========================================================
+# FEEDBACK SCHEMAS
+# =========================================================
+
+class FeedbackCreate(BaseModel):
+    name: str
+    contact: str
+    subject: str | None = None
+    message: str
+    consent: bool = Field(..., description="Согласие на обработку персональных данных (152-ФЗ)")
+    source_page: str | None = None
+    hp: str | None = None
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 100, "Ваше имя")
+        if len(cleaned) < 2:
+            raise ValueError("Имя должно содержать не менее 2 символов")
+        return cleaned
+
+    @field_validator("contact")
+    @classmethod
+    def validate_contact(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 100, "Телефон или Email")
+        if "@" in cleaned:
+            email_pattern = r"^[\w\.-]+@([\w-]+\.)+[\w-]{2,}$"
+            if not re.match(email_pattern, cleaned):
+                raise ValueError("Введите корректный адрес электронной почты (например, name@example.ru)")
+        else:
+            digits = re.sub(r"\D", "", cleaned)
+            if len(digits) < 10 or len(digits) > 15:
+                raise ValueError("Номер телефона должен содержать от 10 до 15 цифр")
+            phone_pattern = r"^(\+?[0-9\s\-\(\)]{10,25})$"
+            if not re.match(phone_pattern, cleaned):
+                raise ValueError("Введите корректный номер телефона (например, +7 (999) 123-45-67)")
+        return cleaned
+
+    @field_validator("subject")
+    @classmethod
+    def validate_subject(cls, v: str | None) -> str | None:
+        if v is None:
+            return None
+        cleaned = v.strip()
+        if not cleaned:
+            return None
+        if len(cleaned) > 150:
+            raise ValueError("Тема обращения не должна превышать 150 символов")
+        return cleaned
+
+    @field_validator("source_page")
+    @classmethod
+    def validate_source_page(cls, v: str | None) -> str | None:
+        if v is None:
+            return None
+        cleaned = v.strip()
+        return cleaned[:100] if cleaned else None
+
+    @field_validator("message")
+    @classmethod
+    def validate_message(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 3000, "Сообщение")
+        if len(cleaned) < 5:
+            raise ValueError("Сообщение должно содержать не менее 5 символов")
+        return cleaned
+
+    @field_validator("consent")
+    @classmethod
+    def validate_consent(cls, v: bool) -> bool:
+        if not v:
+            raise ValueError("Необходимо согласие на обработку персональных данных")
+        return v
+
+
+class FeedbackStatusUpdate(BaseModel):
+    status: str
+
+    @field_validator("status")
+    @classmethod
+    def validate_status(cls, v: str) -> str:
+        if v not in ("new", "processed"):
+            raise ValueError("Статус должен быть 'new' или 'processed'")
+        return v
+
+
+class RostochekEnrollCreate(BaseModel):
+    parent_name: str
+    child_name: str
+    child_age: str
+    course: str
+    contact: str
+    comment: str | None = None
+    consent: bool = Field(..., description="Согласие на обработку персональных данных (152-ФЗ)")
+    hp: str | None = None
+
+    @field_validator("parent_name")
+    @classmethod
+    def validate_parent_name(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 100, "Имя родителя")
+        if len(cleaned) < 2:
+            raise ValueError("Имя родителя должно содержать не менее 2 символов")
+        return cleaned
+
+    @field_validator("child_name")
+    @classmethod
+    def validate_child_name(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 100, "Имя ребёнка")
+        if len(cleaned) < 2:
+            raise ValueError("Имя ребёнка должно содержать не менее 2 символов")
+        return cleaned
+
+    @field_validator("child_age")
+    @classmethod
+    def validate_child_age(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 50, "Возраст ребёнка")
+        return cleaned
+
+    @field_validator("course")
+    @classmethod
+    def validate_course(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 150, "Направление")
+        return cleaned
+
+    @field_validator("contact")
+    @classmethod
+    def validate_contact(cls, v: str) -> str:
+        cleaned = _clean_required_text(v, 100, "Телефон или Email")
+        if "@" in cleaned:
+            email_pattern = r"^[\w\.-]+@([\w-]+\.)+[\w-]{2,}$"
+            if not re.match(email_pattern, cleaned):
+                raise ValueError("Введите корректный адрес электронной почты (например, name@example.ru)")
+        else:
+            digits = re.sub(r"\D", "", cleaned)
+            if len(digits) < 10 or len(digits) > 15:
+                raise ValueError("Номер телефона должен содержать от 10 до 15 цифр")
+            phone_pattern = r"^(\+?[0-9\s\-\(\)]{10,25})$"
+            if not re.match(phone_pattern, cleaned):
+                raise ValueError("Введите корректный номер телефона (например, +7 (999) 123-45-67)")
+        return cleaned
+
+    @field_validator("comment")
+    @classmethod
+    def validate_comment(cls, v: str | None) -> str | None:
+        if v is None:
+            return None
+        cleaned = v.strip()
+        if not cleaned:
+            return None
+        if len(cleaned) > 2000:
+            raise ValueError("Комментарий не должен превышать 2000 символов")
+        return cleaned
+
+    @field_validator("consent")
+    @classmethod
+    def validate_consent(cls, v: bool) -> bool:
+        if not v:
+            raise ValueError("Необходимо согласие на обработку персональных данных")
+        return v
+
+
+class FeedbackOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    contact: str
+    subject: str | None = None
+    message: str
+    status: str
+    source_page: str | None = None
+    created_at: datetime
+

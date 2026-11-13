@@ -224,8 +224,8 @@
 					</a>
 
 
-					<a href="dairy.html" class="quick-card">
-						<img src="./assets/icons/dairy.svg" alt="Дневник">
+					<a href="diary.html" class="quick-card">
+						<img src="./assets/icons/diary.svg" alt="Дневник">
 
 						<span>
 							Электронный дневник
@@ -541,85 +541,48 @@
 				</p>
 
 
-				<form class="feedback__form">
+								<form class="feedback__form" data-page="main" data-page-name="Главная страница">
+					<input type="hidden" name="source_page" value="Главная страница">
 
 					<div class="form-group">
-
 						<label for="user-name">
-							Ваше имя
+							Ваше имя <span style="color:#ef4444;">*</span>
 						</label>
-
-						<input type="text" placeholder="Иван Иванов" id="user-name">
-
+						<input type="text" placeholder="Иван Иванов" id="user-name" maxlength="100" autocomplete="name" required>
 					</div>
 
-
 					<div class="form-group">
-
 						<label for="user-contact">
-							Номер телефона или Email
+							Номер телефона или Email <span style="color:#ef4444;">*</span>
 						</label>
-
-						<input type="text" placeholder="+7 (999) 123-45-67 или email@mail.ru" id="user-contact">
-
+						<input type="text" placeholder="+7 (999) 123-45-67 или email@mail.ru" id="user-contact" maxlength="100" autocomplete="email tel" required>
 					</div>
 
-
 					<div class="form-group">
-
 						<label for="user-theme">
-							Тема обращения
+							Тема обращения <span class="label-optional">(необязательно)</span>
 						</label>
-
-						<select id="user-theme" class="form-select">
-
-							<option value="" disabled selected hidden>
-								Выберите тему
-							</option>
-
-							<option value="admission">
-								Поступление и приём документов
-							</option>
-
-							<option value="process">
-								Вопросы по учебному процессу
-							</option>
-
-							<option value="meals">
-								Организация питания и ГПД
-							</option>
-
-							<option value="activities">
-								Внеурочные занятия и кружки
-							</option>
-
-							<option value="other">
-								Другой вопрос
-							</option>
-
+						<select id="user-theme" name="theme" class="form-select">
+							<option value="">Не выбрана — задам свой вопрос</option>
 						</select>
-
 					</div>
-
 
 					<div class="form-group">
-
 						<label for="user-msg">
-							Сообщение
+							Сообщение <span style="color:#ef4444;">*</span>
 						</label>
-
-						<textarea placeholder="Опишите ваш вопрос..." id="user-msg"></textarea>
-
+						<textarea placeholder="Опишите подробно ваш вопрос..." id="user-msg" maxlength="3000" rows="4" required></textarea>
 					</div>
-
 
 					<div class="form-footer">
 						<label class="policy-checkbox-label" style="display:flex; align-items:center; gap:8px; font-size:13px; color:#475569; cursor:pointer;">
-							<input type="checkbox" required checked style="accent-color:#2563eb; width:16px; height:16px;">
+							<input type="checkbox" id="user-consent" required style="accent-color:#2563eb; width:16px; height:16px;">
 							<span>Согласен на <a href="policy.html" target="_blank" style="color:#0284c7; text-decoration:underline;">обработку персональных данных</a> (152-ФЗ)</span>
 						</label>
-						<button type="submit" class="btn-orange">Отправить заявку</button>
+						<button type="submit" class="btn-orange" id="feedback-submit-btn">Отправить обращение</button>
 					</div>
+
+					<div class="feedback-status" id="feedback-status" role="alert" aria-live="polite" style="display:none;"></div>
 
 				</form>
 
@@ -766,8 +729,8 @@
 					<div class="contacts__buttons">
 
 						<a href="#">
-							<img src="assets/icons/TG_vector.svg" alt="ТГ вектор">
-							Написать в Telegram
+							<img src="assets/icons/max_vector.svg" alt="MAX вектор">
+						Написать в MAX
 						</a>
 
 						<a href="#">
@@ -809,7 +772,7 @@
 						<div class="btn_media">
 							<ul class="btn_media__list">
 								<li class="media__list-vk">
-									<a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+									<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
 										<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
 									</a>
 								</li>
@@ -846,7 +809,7 @@
 								<li><a href="class_schedule.html">Расписание</a></li>
 								<li><a href="food.html">Школьное питание</a></li>
 								<li><a href="documents.html">Документы</a></li>
-								<li><a href="dairy.html">Электронный дневник</a></li>
+								<li><a href="diary.html">Электронный дневник</a></li>
 							</ul>
 						</div>
 
@@ -857,6 +820,7 @@
 								<li><a href="life.html">Жизнь гимназии</a></li>
 								<li><a href="index.html#faq">Частые вопросы (FAQ)</a></li>
 								<li><a href="apply.html">Поступающим</a></li>
+								<li><a href="rostochek.html">Центр «Росточек»</a></li>
 							</ul>
 						</div>
 					</div>
@@ -921,6 +885,7 @@
 	<script src="js/search.js"></script>
 
 	<script src="js/bvi.js"></script>
+	<script src="js/feedback.js?v=2.2"></script>
 </body>
 
 </html>

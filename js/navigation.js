@@ -50,10 +50,16 @@
 			description: "Всё важное для родителей и учеников",
 			items: [
 				{
+					title: "Центр «Росточек»",
+					description: "Раннее развитие и подготовка к школе",
+					icon: "assets/icons/kid.svg",
+					link: "rostochek.html"
+				},
+				{
 					title: "Электронный дневник",
 					description: "Успеваемость и оценки",
-					icon: "assets/icons/dairy.svg",
-					link: "dairy.html"
+					icon: "assets/icons/diary.svg",
+					link: "diary.html"
 				},
 				{
 					title: "Частые вопросы",

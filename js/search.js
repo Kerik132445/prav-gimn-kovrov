@@ -98,7 +98,7 @@ const pages = [
 
 	{
 		title: "Электронный дневник",
-		url: "dairy.html",
+		url: "diary.html",
 		description: "Электронный дневник и успеваемость"
 	}
 

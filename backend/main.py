@@ -9,6 +9,7 @@ from routes.auth import router as auth_router
 from routes.teachers import router as teachers_router
 from routes.schedule import router as schedule_router
 from routes.menu import router as menu_router
+from routes.feedback import router as feedback_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -44,8 +45,11 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5501",
         "http://127.0.0.1:5501",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
         "http://localhost:3000",
         "http://localhost:8000",
+        "http://127.0.0.1:8000",
         "https://krytoi-site.tuqo.ru",
     ],
     allow_origin_regex=r"^https:\/\/.*\.vercel\.app$",
@@ -66,6 +70,7 @@ app.include_router(auth_router)
 app.include_router(teachers_router)
 app.include_router(schedule_router)
 app.include_router(menu_router)
+app.include_router(feedback_router)
 
 
 @app.get("/")

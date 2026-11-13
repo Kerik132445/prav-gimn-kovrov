@@ -221,38 +221,50 @@
 <div class="feedback">
 <h2>Остались вопросы? Напишите нам</h2>
 <p>Мы ответим на указанную почту или перезвоним в течение рабочего дня</p>
-<form class="feedback__form">
-<div class="form-group">
-<label for="user-name">Ваше имя</label>
-<input id="user-name" placeholder="Иван Иванов" type="text"/>
-</div>
-<div class="form-group">
-<label for="user-contact">Номер телефона или Email</label>
-<input id="user-contact" placeholder="+7 (999) 123-45-67 или email@mail.ru" type="text"/>
-</div>
-<div class="form-group">
-<label for="user-theme">Тема обращения</label>
-<select class="form-select" id="user-theme">
-<option disabled="" hidden="" selected="" value="">Выберите тему</option>
-<option value="admission">Поступление и приём документов</option>
-<option value="process">Вопросы по учебному процессу</option>
-<option value="meals">Организация питания и ГПД</option>
-<option value="activities">Внеурочные занятия и кружки</option>
-<option value="other">Другой вопрос</option>
-</select>
-</div>
-<div class="form-group">
-<label for="user-msg">Сообщение</label>
-<textarea id="user-msg" placeholder="Опишите ваш вопрос..."></textarea>
-</div>
-<div class="form-footer">
-<label class="policy-checkbox-label" style="display:flex; align-items:center; gap:8px; font-size:13px; color:#475569; cursor:pointer;">
-<input type="checkbox" required checked style="accent-color:#2563eb; width:16px; height:16px;">
-<span>Согласен на <a href="policy.html" target="_blank" style="color:#0284c7; text-decoration:underline;">обработку персональных данных</a> (152-ФЗ)</span>
-</label>
-<button class="btn-orange" type="submit">Отправить заявку</button>
-</div>
-</form>
+								<form class="feedback__form" data-page="schedule" data-page-name="Расписание уроков">
+					<input type="hidden" name="source_page" value="Расписание уроков">
+
+					<div class="form-group">
+						<label for="user-name">
+							Ваше имя <span style="color:#ef4444;">*</span>
+						</label>
+						<input type="text" placeholder="Иван Иванов" id="user-name" maxlength="100" autocomplete="name" required>
+					</div>
+
+					<div class="form-group">
+						<label for="user-contact">
+							Номер телефона или Email <span style="color:#ef4444;">*</span>
+						</label>
+						<input type="text" placeholder="+7 (999) 123-45-67 или email@mail.ru" id="user-contact" maxlength="100" autocomplete="email tel" required>
+					</div>
+
+					<div class="form-group">
+						<label for="user-theme">
+							Тема обращения <span class="label-optional">(необязательно)</span>
+						</label>
+						<select id="user-theme" name="theme" class="form-select">
+							<option value="">Не выбрана — задам свой вопрос</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="user-msg">
+							Сообщение <span style="color:#ef4444;">*</span>
+						</label>
+						<textarea placeholder="Опишите подробно ваш вопрос..." id="user-msg" maxlength="3000" rows="4" required></textarea>
+					</div>
+
+					<div class="form-footer">
+						<label class="policy-checkbox-label" style="display:flex; align-items:center; gap:8px; font-size:13px; color:#475569; cursor:pointer;">
+							<input type="checkbox" id="user-consent" required style="accent-color:#2563eb; width:16px; height:16px;">
+							<span>Согласен на <a href="policy.html" target="_blank" style="color:#0284c7; text-decoration:underline;">обработку персональных данных</a> (152-ФЗ)</span>
+						</label>
+						<button type="submit" class="btn-orange" id="feedback-submit-btn">Отправить обращение</button>
+					</div>
+
+					<div class="feedback-status" id="feedback-status" role="alert" aria-live="polite" style="display:none;"></div>
+
+				</form>
 </div>
 <div class="faq">
 <h2>Частые вопросы</h2>
@@ -332,8 +344,8 @@
 </ul>
 <div class="contacts__buttons">
 <a href="#">
-<img alt="ТГ вектор" src="assets/icons/TG_vector.svg"/>
-						Написать в Telegram
+<img src="assets/icons/max_vector.svg" alt="MAX вектор">
+						Написать в MAX
 					</a>
 <a href="#">
 <img alt="Вацап вектор" src="assets/icons/wtp_vector.svg"/>
@@ -361,7 +373,7 @@
 						<div class="btn_media">
 							<ul class="btn_media__list">
 								<li class="media__list-vk">
-									<a href="https://vk.com" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+									<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
 										<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
 									</a>
 								</li>
@@ -398,7 +410,7 @@
 								<li><a href="class_schedule.html">Расписание</a></li>
 								<li><a href="food.html">Школьное питание</a></li>
 								<li><a href="documents.html">Документы</a></li>
-								<li><a href="dairy.html">Электронный дневник</a></li>
+								<li><a href="diary.html">Электронный дневник</a></li>
 							</ul>
 						</div>
 
@@ -468,5 +480,6 @@
 <script src="js/navigation.js"></script>
 <script src="js/search.js"></script>
 	<script src="js/bvi.js"></script>
+	<script src="js/feedback.js?v=2.2"></script>
 </body>
 </html>

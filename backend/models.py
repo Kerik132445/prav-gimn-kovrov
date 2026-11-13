@@ -1,8 +1,10 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint
 from sqlalchemy.orm import relationship
 
 from database import Base
+
+MSK_TIMEZONE = timezone(timedelta(hours=3))
 
 
 class Admin(Base):
@@ -294,3 +296,32 @@ class MenuItem(Base):
         nullable=False,
         default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
     )
+
+
+class FeedbackMessage(Base):
+
+    __tablename__ = "feedback_messages"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    name = Column(String(100), nullable=False)
+
+    contact = Column(String(100), nullable=False)
+
+    subject = Column(String(150), nullable=True)
+
+    message = Column(Text, nullable=False)
+
+    status = Column(String(20), nullable=False, default="new", index=True)
+
+    ip_address = Column(String(50), nullable=True)
+
+    source_page = Column(String(100), nullable=True, index=True)
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(MSK_TIMEZONE).replace(tzinfo=None),
+        index=True,
+    )
+

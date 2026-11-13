@@ -302,6 +302,33 @@ function createHomeNewsCard(news) {
         </div>
     `;
 
+	article.style.cursor = "pointer";
+
+	// Клик по любому месту карточки открывает новость
+	article.addEventListener("click", (e) => {
+		// Если пользователь выделяет текст — не переходим
+		const selection = window.getSelection();
+		if (selection && selection.toString().length > 0) {
+			return;
+		}
+
+		// Если клик пришёлся не по ссылке (хотя CSS stretched-link уже перехватывает клик)
+		if (!e.target.closest("a")) {
+			const targetUrl = `news.html?id=${news.id}`;
+			if (e.ctrlKey || e.metaKey) {
+				window.open(targetUrl, "_blank");
+			} else {
+				window.location.href = targetUrl;
+			}
+		}
+	});
+
+	article.addEventListener("auxclick", (e) => {
+		if (e.button === 1 && !e.target.closest("a")) {
+			window.open(`news.html?id=${news.id}`, "_blank");
+		}
+	});
+
 	return article;
 }
 

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Варианты дизайна кнопки «Задать вопрос»</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #F8FAFC;
+    padding: 40px;
+    color: #0F172A;
+  }
+  .preview-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  }
+  .preview-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    color: #1E3A8A;
+  }
+  .preview-card p {
+    color: #64748B;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #F8FAFC;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px dashed #CBD5E1;
+  }
+  /* Primary Button */
+  .btn-primary {
+    background: #2563EB;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 18px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: all 0.25s ease;
+  }
+  .btn-primary:hover {
+    background: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  }
+
+  /* Current State (Problem) */
+  .btn-current {
+    background: #FFFFFF;
+    color: #0B132B;
+    font-size: 18px;
+    padding: 18px 28px;
+    border-radius: 8px;
+    border: 2px solid #FFFFFF;
+    text-decoration: none;
+  }
+
+  /* Variant 1: Outline Blue */
+  .btn-v1 {
+    background: #FFFFFF;
+    color: #2563EB;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 16px 28px;
+    border-radius: 10px;
+    border: 2px solid #2563EB;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+  }
+  .btn-v1:hover {
+    background: #EFF6FF;
+    border-color: #1D4ED8;
+    color: #1D4ED8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.15);
+  }
+
+  /* Variant 2: Soft Blue */
+  .btn-v2 {
+    background: #EFF6FF;
+    color: #1E40AF;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 16px 28px;
+    border-radius: 10px;
+    border: 1.5px solid #BFDBFE;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+  }
+  .btn-v2:hover {
+    background: #DBEAFE;
+    border-color: #93C5FD;
+    color: #1E3A8A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.12);
+  }
+
+  /* Variant 3: Elevated White Card */
+  .btn-v3 {
+    background: #FFFFFF;
+    color: #1E293B;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 16px 28px;
+    border-radius: 10px;
+    border: 1.5px solid #CBD5E1;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    transition: all 0.25s ease;
+  }
+  .btn-v3 .icon-bubble {
+    color: #2563EB;
+  }
+  .btn-v3:hover {
+    border-color: #93C5FD;
+    color: #2563EB;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+  }
+
+  /* Variant 4: Warm Accent (Gold/Amber) */
+  .btn-v4 {
+    background: #FFFFFF;
+    color: #B45309;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 16px 28px;
+    border-radius: 10px;
+    border: 2px solid #F59E0B;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+  }
+  .btn-v4:hover {
+    background: #FFFBEB;
+    border-color: #D97706;
+    color: #92400E;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.2);
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+  <h1>Сравнение вариантов кнопки «Задать вопрос»</h1>
+  <p style="color:#64748B; margin-bottom: 30px;">Фон секции: <code>#F8FAFC</code> (светло-серый/голубоватый). Кнопка «Записаться на собеседование» — основное действие (Primary CTA).</p>
+
+  <!-- Текущее состояние -->
+  <div class="preview-card" style="opacity: 0.85;">
+    <h3>❌ Сейчас (сливается с фоном)</h3>
+    <p>Белый фон кнопки на фоне #F8FAFC без контрастного контура и тени растворяется в пространстве страницы.</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">Записаться на собеседование</a>
+      <a href="#" class="btn-current">Задать вопрос</a>
+    </div>
+  </div>
+
+  <!-- Вариант 1 -->
+  <div class="preview-card">
+    <h3>⭐ Вариант 1: Благородный синий Outline (Рекомендуемый)</h3>
+    <p>Канонический паттерн Primary + Secondary. Четкая фирменная синяя рамка, синий текст, иконка диалога. Идеальный контраст без перегрузки.</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">Записаться на собеседование</a>
+      <a href="#" class="btn-v1">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Задать вопрос
+      </a>
+    </div>
+  </div>
+
+  <!-- Вариант 2 -->
+  <div class="preview-card">
+    <h3>Вариант 2: Мягкий Soft Blue (Пастельная заливка)</h3>
+    <p>Нежно-голубая заливка в тон бейджиков сайта («Приёмная кампания»). Выглядит дружелюбно, цельно и свежо.</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">Записаться на собеседование</a>
+      <a href="#" class="btn-v2">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        Задать вопрос
+      </a>
+    </div>
+  </div>
+
+  <!-- Вариант 3 -->
+  <div class="preview-card">
+    <h3>Вариант 3: Объёмная белая карточка (Elevated Button с тенью)</h3>
+    <p>Сохраняет чистый белый цвет, но обретает четкую контрастную границу (#CBD5E1) и мягкую глубину за счет элегантной тени.</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">Записаться на собеседование</a>
+      <a href="#" class="btn-v3">
+        <svg class="icon icon-bubble" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+        Задать вопрос
+      </a>
+    </div>
+  </div>
+
+  <!-- Вариант 4 -->
+  <div class="preview-card">
+    <h3>Вариант 4: Тёплый акцент (Янтарно-золотой контур)</h3>
+    <p>Перекликается с тёплыми акцентами сайта (купола, логотип, оранжевые кнопки отправки форм). Создает приятный контраст синему.</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">Записаться на собеседование</a>
+      <a href="#" class="btn-v4">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        Задать вопрос
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

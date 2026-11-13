@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<title>Центр раннего развития «Росточек» | Православная гимназия г. Коврова</title>
+	<meta name="description"
+		content="Центр раннего развития детей «Росточек» при Православной гимназии г. Коврова: 7 программ развития и подготовки к школе для детей от 5 до 8 лет. Английский язык, творчество, логика, спорт. Набор на 2026–2027 учебный год." />
+
+	<!-- Open Graph / Meta -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Центр раннего развития детей «Росточек» — Православная гимназия г. Коврова" />
+	<meta property="og:description"
+		content="«Росточек» — первые шаги к большим открытиям! Программы развития и подготовки к школе для дошкольников и первоклассников." />
+	<meta property="og:image" content="./assets/icons/logo_star.png" />
+
+	<!-- Стили проекта -->
+	<link href="./css/style.css?v=2.2" rel="stylesheet" />
+	<link href="./css/bvi.css" rel="stylesheet" />
+	<link href="./css/rostochek.css" rel="stylesheet" />
+</head>
+
+<body data-page="rostochek">
+	<header>
+		<!-- ВЕРХНЯЯ ИНФОРМАЦИОННАЯ ПАНЕЛЬ -->
+		<div class="top-bar">
+			<div class="containers">
+				<div class="top-bar__content">
+					<a class="brand" href="index.html">
+						<img alt="Логотип гимназии" class="brand__logo" src="./assets/icons/logo_star.png" />
+						<div class="brand__info">
+							<span class="brand__title">
+								Православная гимназия г. Коврова
+							</span>
+							<span class="brand__subtitle">
+								Частное общеобразовательное учреждение
+							</span>
+						</div>
+					</a>
+
+					<form class="search-form" id="site-search-form" action="search.html" method="get">
+						<img alt="" src="assets/icons/search.svg" />
+						<input autocomplete="off" id="site-search-input" name="q" placeholder="Поиск по сайту..." type="search" />
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!-- ГЛАВНАЯ НАВИГАЦИЯ САЙТА -->
+		<nav class="main-nav" aria-label="Основное меню">
+			<ul class="nav-list">
+				<li>
+					<a class="nav-link" href="index.html">
+						Главная
+					</a>
+				</li>
+				<li>
+					<a class="nav-link" href="sveden/index.html">
+						Сведения об образовательной организации
+					</a>
+				</li>
+
+				<!-- МЕГАМЕНЮ: УЧЕБА -->
+				<li class="nav-item nav-item--mega">
+					<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
+						Учеба
+						<span aria-hidden="true" class="nav-arrow"></span>
+					</button>
+				</li>
+
+				<li>
+					<a class="nav-link" href="life.html">
+						Жизнь гимназии
+					</a>
+				</li>
+
+				<!-- МЕГАМЕНЮ: РОДИТЕЛЯМ -->
+				<li class="nav-item nav-item--mega">
+					<button aria-expanded="false" class="nav-link mega-menu-toggle" type="button">
+						Родителям
+						<span aria-hidden="true" class="nav-arrow"></span>
+					</button>
+				</li>
+
+				<li>
+					<a class="nav-link" href="apply.html">
+						Поступающим
+					</a>
+				</li>
+				<li>
+					<a class="nav-link" href="contact.html">
+						Контакты
+					</a>
+				</li>
+
+				<!-- ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ -->
+				<li class="nav-item--bvi">
+					<button type="button" class="bvi-toggle-btn" aria-label="Версия для слабовидящих">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bvi-icon" width="16" height="16" aria-hidden="true">
+							<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+							<circle cx="12" cy="12" r="3"></circle>
+						</svg>
+						<span>Версия для слабовидящих</span>
+					</button>
+				</li>
+			</ul>
+		</nav>
+
+		<!-- ВЫПЛЫВАЮЩЕЕ ДЕСКТОПНОЕ МЕГАМЕНЮ -->
+		<div class="mega-menu" id="mega-menu">
+			<div class="mega-menu__inner">
+				<div class="mega-menu__header">
+					<div>
+						<h3 id="mega-menu-title">Учеба</h3>
+						<p id="mega-menu-description">Всё необходимое для учебного процесса</p>
+					</div>
+					<button aria-label="Закрыть меню" class="mega-menu__close" type="button">×</button>
+				</div>
+				<div class="mega-menu__grid" id="mega-menu-content"></div>
+			</div>
+		</div>
+		<div class="mega-overlay" id="mega-overlay"></div>
+	</header>
+
+	<main>
+		<!-- ====================================================================
+		     БЛОК 1: ПЕРВЫЙ ЭКРАН (HERO)
+		     ==================================================================== -->
+		<section class="rst-hero" aria-labelledby="rst-hero-title">
+			<div class="rst-container">
+				<!-- ХЛЕБНЫЕ КРОШКИ -->
+				<nav aria-label="Хлебные крошки" class="breadcrumbs">
+					<a class="breadcrumbs__home" href="index.html">
+						<img alt="" src="assets/icons/home.svg" />
+						Главная
+					</a>
+					<span aria-hidden="true" class="breadcrumbs__separator">›</span>
+					<a href="apply.html">Поступающим</a>
+					<span aria-hidden="true" class="breadcrumbs__separator">›</span>
+					<span class="breadcrumbs__current">Центр «Росточек»</span>
+				</nav>
+
+				<div class="rst-hero__grid">
+					<!-- Левая колонка: Заголовок, описание и действия -->
+					<div class="rst-hero__content">
+						<div class="rst-hero__kicker">Центр раннего развития детей «Росточек»</div>
+
+						<h1 class="rst-hero__title" id="rst-hero-title">
+							Растём, учимся и открываем новое!
+						</h1>
+
+						<p class="rst-hero__desc">
+							Помогаем детям подготовиться к школе, познакомиться с английским языком, раскрыть творческие способности и полюбить процесс обучения.
+						</p>
+
+						<div class="rst-hero__actions">
+							<a href="#programs" class="rst-hero__btn-programs">
+								Наши программы
+							</a>
+							<a href="#enroll-form" class="rst-hero__btn-enroll">
+								Записать ребёнка
+							</a>
+						</div>
+
+						<div class="rst-hero__info-note">
+							<span class="rst-hero__info-dot" aria-hidden="true"></span>
+							<span>Развивающие занятия для детей от 5 лет</span>
+						</div>
+					</div>
+
+					<!-- Правая колонка: Тематическая фотография -->
+					<div class="rst-hero__media">
+						<div class="rst-hero__photo-card">
+							<picture>
+								<source srcset="assets/images/rostochek-hero.webp" type="image/webp">
+								<img src="assets/images/rostochek-hero.jpg" alt="Дети на развивающих занятиях в центре «Росточек»" width="600" height="400" class="rst-hero__photo" loading="eager" decoding="async">
+							</picture>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ====================================================================
+		     БЛОК 2: О ЦЕНТРЕ «РОСТОЧЕК»
+		     ==================================================================== -->
+		<section class="rst-section rst-section--white" id="about" aria-labelledby="rst-about-title">
+			<div class="rst-container">
+				<div class="rst-about-grid">
+					<!-- Текстовое описание -->
+					<div class="rst-about-content">
+						<span class="rst-section-tag">О нашем центре</span>
+						<h2 class="rst-section-title" id="rst-about-title">
+							Пространство радости, бережного развития и первых побед
+						</h2>
+
+						<p>
+							Дошкольный возраст — это особенный период, когда закладывается фундамент для всей будущей учебы, формируется характер, любознательность и уверенность в собственных силах. В центре раннего развития «Росточек» мы стремимся сделать так, чтобы первые шаги в мир знаний были для ребёнка радостными и вдохновляющими.
+						</p>
+
+						<p>
+							Дополнительные развивающие занятия помогают детям не только освоить базовые навыки счета, чтения, письма и английского языка, но и научиться главному — с удовольствием познавать новое, свободно задавать вопросы, общаться со сверстниками и чувствовать поддержку мудрых педагогов.
+						</p>
+
+						<div class="rst-about-pillars">
+							<div class="rst-pillar-card">
+								<div class="rst-pillar-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+									</svg>
+								</div>
+								<h4>Любознательность</h4>
+								<p>Развиваем интерес к обучению через занимательные игровые задания и живые открытия.</p>
+							</div>
+
+							<div class="rst-pillar-card">
+								<div class="rst-pillar-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+									</svg>
+								</div>
+								<h4>Школьная адаптация</h4>
+								<p>Плавное привыкание к школьной обстановке, правилам и дисциплине без лишнего стресса.</p>
+							</div>
+
+							<div class="rst-pillar-card">
+								<div class="rst-pillar-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+										<polyline points="14 2 14 8 20 8"></polyline>
+									</svg>
+								</div>
+								<h4>Всесторонность</h4>
+								<p>Гармоничный баланс интеллектуальных, творческих, языковых и спортивных занятий.</p>
+							</div>
+
+							<div class="rst-pillar-card">
+								<div class="rst-pillar-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<circle cx="12" cy="12" r="10"></circle>
+										<path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+										<line x1="9" y1="9" x2="9.01" y2="9"></line>
+										<line x1="15" y1="9" x2="15.01" y2="9"></line>
+									</svg>
+								</div>
+								<h4>Доброжелательность</h4>
+								<p>Тёплая и уважительная среда православной гимназии, где ценят личность каждого ребёнка.</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Визуальный блок с цитатой и акцентами -->
+					<div class="rst-about-visual">
+						<div class="rst-about-frame">
+							<div class="rst-quote-box">
+								<h3>Бережный старт для вашего малыша</h3>
+								<p>
+									«Каждый ребёнок рождается с жаждой познания мира. Наша задача как педагогов и родителей — не заглушить этот огонёк сухими требованиями, а бережно поливать росток детской любознательности добротой, терпением и увлекательными занятиями».
+								</p>
+							</div>
+
+							<div class="rst-about-chips">
+								<span class="rst-chip">🌱 Подготовка к школе</span>
+								<span class="rst-chip">🎨 Творческая мастерская</span>
+								<span class="rst-chip">🇬🇧 Английский язык</span>
+								<span class="rst-chip">⚽ «Школа мяча»</span>
+								<span class="rst-chip">📐 «Умные математики»</span>
+								<span class="rst-chip">🤝 Поддержка родителей</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ====================================================================
+		     БЛОК 3: НАШИ РАЗВИВАЮЩИЕ ПРОГРАММЫ (7 КАРТОЧЕК)
+		     ==================================================================== -->
+		<section class="rst-section rst-section--alt" id="programs" aria-labelledby="rst-programs-title">
+			<div class="rst-container">
+				<div class="rst-section-header">
+					<span class="rst-section-tag">Развивающие программы</span>
+					<h2 class="rst-section-title" id="rst-programs-title">
+						7 направлений для способностей и увлечений вашего ребёнка
+					</h2>
+					<p class="rst-section-desc">
+						Каждая программа разработана с учётом возрастных потребностей детей и помогает раскрыть сильные стороны ребёнка — от уверенной подготовки к 1 классу до спортивной ловкости и логического мышления.
+					</p>
+				</div>
+
+				<!-- Фильтры категорий программ -->
+				<div class="rst-programs-filters" role="tablist" aria-label="Фильтр программ по возрасту">
+					<button type="button" class="rst-filter-btn rst-filter-btn--active" data-filter="all">Все программы (7)</button>
+					<button type="button" class="rst-filter-btn" data-filter="preschool">Подготовка к школе (2)</button>
+					<button type="button" class="rst-filter-btn" data-filter="5-6years">Детям 5–6 лет (4)</button>
+					<button type="button" class="rst-filter-btn" data-filter="school">Школьникам и 1 классу (3)</button>
+				</div>
+
+				<!-- Сетка карточек всех 7 программ -->
+				<div class="rst-programs-grid">
+
+					<!-- ПРОГРАММА 1 -->
+					<article class="rst-program-card rst-program-card--featured" data-category="preschool 5-6years">
+						<div class="rst-program-card__top">
+							<span class="rst-age-badge">Для детей от 5 лет</span>
+							<span class="rst-type-badge">Двухгодичная</span>
+						</div>
+						<div class="rst-program-card__icon" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+								<circle cx="12" cy="11" r="3"></circle>
+							</svg>
+						</div>
+						<h3 class="rst-program-card__title">Подготовка к школе «Учусь, играя»</h3>
+						<p class="rst-program-card__desc">
+							Подготовка к школьной жизни в увлекательном и бережном формате. Знакомство с первыми знаниями и развитие устойчивого интереса к обучению через развивающие игры, сюжетные задания и живое общение.
+						</p>
+
+						<div class="rst-program-skills">
+							<span class="rst-program-skills__title">Ключевые направления:</span>
+							<ul class="rst-program-skills__list">
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Развитие связной речи и слухового внимания</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Мелкая моторика и подготовка руки к письму</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Первые математические представления и формы</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Навыки дружбы и сотрудничества со сверстниками</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="rst-program-card__footer">
+							<button type="button" class="rst-btn rst-btn--outline-green rst-btn--block rst-program-enroll-btn" data-course="Подготовка к школе «Учусь, играя»">
+								Записаться на курс
+							</button>
+						</div>
+					</article>
+
+					<!-- ПРОГРАММА 2 -->
+					<article class="rst-program-card rst-program-card--featured" data-category="preschool 5-6years">
+						<div class="rst-program-card__top">
+							<span class="rst-age-badge">Для детей от 6 лет</span>
+							<span class="rst-type-badge">Интенсивный курс</span>
+						</div>
+						<div class="rst-program-card__icon" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+								<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+							</svg>
+						</div>
+						<h3 class="rst-program-card__title">Подготовка к школе «Год до школы»</h3>
+						<p class="rst-program-card__desc">
+							Комплексный подготовительный курс для будущих первоклассников. Занятия помогают систематизировать знания, освоить основы чтения и письма, развить усидчивость и уверенность перед школьной партой.
+						</p>
+
+						<div class="rst-program-skills">
+							<span class="rst-program-skills__title">Ключевые направления:</span>
+							<ul class="rst-program-skills__list">
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Звуко-буквенный анализ и основы слогового чтения</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Счет, состав числа и пространственная ориентация</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Графические диктанты и тренировка координации</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Психологическая готовность к урокам и переменам</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="rst-program-card__footer">
+							<button type="button" class="rst-btn rst-btn--outline-green rst-btn--block rst-program-enroll-btn" data-course="Подготовка к школе «Год до школы»">
+								Записаться на курс
+							</button>
+						</div>
+					</article>
+
+					<!-- ПРОГРАММА 3 -->
+					<article class="rst-program-card" data-category="5-6years">
+						<div class="rst-program-card__top">
+							<span class="rst-age-badge">Для детей от 6 лет</span>
+							<span class="rst-type-badge">Игровой английский</span>
+						</div>
+						<div class="rst-program-card__icon" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="10"></circle>
+								<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+								<path d="M2 12h20"></path>
+							</svg>
+						</div>
+						<h3 class="rst-program-card__title">«Английский для дошколят»</h3>
+						<p class="rst-program-card__desc">
+							Первое радостное знакомство с английским языком в доступной и естественной форме. Через весёлые песенки, подвижные игры и живые диалоги ребёнок легко впитывает правильное произношение.
+						</p>
+
+						<div class="rst-program-skills">
+							<span class="rst-program-skills__title">Ключевые направления:</span>
+							<ul class="rst-program-skills__list">
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Базовый словарный запас (животные, семья, цвета, счёт)</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Понимание простых фраз и инструкций на слух</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Постановка фонетики и естественных интонаций</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Преодоление языкового барьера без зубрёжки</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="rst-program-card__footer">
+							<button type="button" class="rst-btn rst-btn--outline-green rst-btn--block rst-program-enroll-btn" data-course="«Английский для дошколят»">
+								Записаться на курс
+							</button>
+						</div>
+					</article>
+
+					<!-- ПРОГРАММА 4 -->
+					<article class="rst-program-card" data-category="school">
+						<div class="rst-program-card__top">
+							<span class="rst-age-badge">Для детей от 7 лет</span>
+							<span class="rst-type-badge">Для школьников</span>
+						</div>
+						<div class="rst-program-card__icon" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+							</svg>
+						</div>
+						<h3 class="rst-program-card__title">«Английский для школьников»</h3>
+						<p class="rst-program-card__desc">
+							Поддерживающий и углубляющий курс для младших школьников. Занятия помогают полюбить английский язык, уверенно отвечать на уроках в школе и свободно использовать иностранные слова в диалогах.
+						</p>
+
+						<div class="rst-program-skills">
+							<span class="rst-program-skills__title">Ключевые направления:</span>
+							<ul class="rst-program-skills__list">
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Практическая разговорная речь и диалоги</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Чтение иллюстрированных текстов и понимание смысла</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Наглядная грамматика без сложных терминов</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Уверенность при ответах у доски в школе</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="rst-program-card__footer">
+							<button type="button" class="rst-btn rst-btn--outline-green rst-btn--block rst-program-enroll-btn" data-course="«Английский для школьников»">
+								Записаться на курс
+							</button>
+						</div>
+					</article>
+
+					<!-- ПРОГРАММА 5 -->
+					<article class="rst-program-card" data-category="5-6years">
+						<div class="rst-program-card__top">
+							<span class="rst-age-badge">Для детей 5–6 лет</span>
+							<span class="rst-type-badge">Спорт и здоровье</span>
+						</div>
+						<div class="rst-program-card__icon" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="10"></circle>
+								<path d="M12 2a14.5 14.5 0 0 0 0 20"></path>
+								<path d="M2 12h20"></path>
+							</svg>
+						</div>
+						<h3 class="rst-program-card__title">«Школа мяча»</h3>
+						<p class="rst-program-card__desc">
+							Развивающие физкультурно-оздоровительные занятия с элементами подвижных игр. Помогают выплеснуть накопившуюся энергию с пользой для осанки, мышечного корсета и координации движений.
+						</p>
+
+						<div class="rst-program-skills">
+							<span class="rst-program-skills__title">Ключевые направления:</span>
+							<ul class="rst-program-skills__list">
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Развитие ловкости, скорости реакции и баланса</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Укрепление осанки и общей физической выносливости</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Базовые элементы владения мячом (броски, ловля, ведение)</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Командный дух, чувство локтя и честная игра</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="rst-program-card__footer">
+							<button type="button" class="rst-btn rst-btn--outline-green rst-btn--block rst-program-enroll-btn" data-course="«Школа мяча»">
+								Записаться на курс
+							</button>
+						</div>
+					</article>
+
+					<!-- ПРОГРАММА 6 -->
+					<article class="rst-program-card" data-category="5-6years">
+						<div class="rst-program-card__top">
+							<span class="rst-age-badge">Для детей 5–6 лет</span>
+							<span class="rst-type-badge">Творчество</span>
+						</div>
+						<div class="rst-program-card__icon" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+								<circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+								<circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+								<circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+								<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path>
+							</svg>
+						</div>
+						<h3 class="rst-program-card__title">«Золотые ручки»</h3>
+						<p class="rst-program-card__desc">
+							Творческая мастерская рисования, лепки и оригами. Пространство, где детская фантазия оживает в ярких картинах и поделках, воспитывая художественный вкус, аккуратность и терпение.
+						</p>
+
+						<div class="rst-program-skills">
+							<span class="rst-program-skills__title">Ключевые направления:</span>
+							<ul class="rst-program-skills__list">
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Рисование красками, мелками и смешанными техниками</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Лепка из пластилина и создание объемных композиций</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Оригами и развитие мелких точных движений пальцев</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Радость от создания красивых вещей своими руками</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="rst-program-card__footer">
+							<button type="button" class="rst-btn rst-btn--outline-green rst-btn--block rst-program-enroll-btn" data-course="Творческая мастерская «Золотые ручки»">
+								Записаться на курс
+							</button>
+						</div>
+					</article>
+
+					<!-- ПРОГРАММА 7 -->
+					<article class="rst-program-card" data-category="school">
+						<div class="rst-program-card__top">
+							<span class="rst-age-badge">Для 1 класса</span>
+							<span class="rst-type-badge">Повышенная сложность</span>
+						</div>
+						<div class="rst-program-card__icon" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<rect x="4" y="4" width="16" height="16" rx="2"></rect>
+								<line x1="9" y1="9" x2="15" y2="15"></line>
+								<line x1="15" y1="9" x2="9" y2="15"></line>
+							</svg>
+						</div>
+						<h3 class="rst-program-card__title">«Умные математики»</h3>
+						<p class="rst-program-card__desc">
+							Курс повышенной сложности для любознательных первоклассников. Занятия учат мыслить нестандартно, замечать числовые закономерности, решать увлекательные головоломки и задачи на смекалку.
+						</p>
+
+						<div class="rst-program-skills">
+							<span class="rst-program-skills__title">Ключевые направления:</span>
+							<ul class="rst-program-skills__list">
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Нестандартные логические и комбинаторные задачи</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Пространственное воображение и геометрические ребусы</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Математическая интуиция и быстрый устный счет</span>
+								</li>
+								<li class="rst-program-skills__item">
+									<span class="rst-program-skills__check">✓</span>
+									<span>Умение рассуждать, проверять гипотезы и делать выводы</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="rst-program-card__footer">
+							<button type="button" class="rst-btn rst-btn--outline-green rst-btn--block rst-program-enroll-btn" data-course="«Умные математики»">
+								Записаться на курс
+							</button>
+						</div>
+					</article>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- ====================================================================
+		     БЛОК 4: ПОЧЕМУ РОДИТЕЛИ ВЫБИРАЮТ «РОСТОЧЕК»?
+		     ==================================================================== -->
+		<section class="rst-section rst-section--white" id="advantages" aria-labelledby="rst-advantages-title">
+			<div class="rst-container">
+				<div class="rst-section-header">
+					<span class="rst-section-tag">Преимущества центра</span>
+					<h2 class="rst-section-title" id="rst-advantages-title">
+						Почему родители доверяют нам развитие своих детей
+					</h2>
+					<p class="rst-section-desc">
+						Мы объединяем высокие образовательные традиции гимназии, профессиональную заботу педагогов и открытость для каждой семьи.
+					</p>
+				</div>
+
+				<div class="rst-advantages-grid">
+					<!-- Преимущество 1 -->
+					<div class="rst-adv-card">
+						<div class="rst-adv-icon-wrap" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+								<circle cx="9" cy="7" r="4"></circle>
+								<path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+								<path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+							</svg>
+						</div>
+						<h3>Опытные педагоги</h3>
+						<p>
+							Внимание к индивидуальным особенностям детей, бережная поддержка в процессе обучения и доброжелательное отношение к каждому маленькому ученику.
+						</p>
+					</div>
+
+					<!-- Преимущество 2 -->
+					<div class="rst-adv-card">
+						<div class="rst-adv-icon-wrap" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+								<polyline points="9 22 9 12 15 12 15 22"></polyline>
+							</svg>
+						</div>
+						<h3>Уютная обстановка</h3>
+						<p>
+							Комфортная и безопасная атмосфера гимназии, в которой ребёнку легко адаптироваться к новым занятиям, чувствовать себя защищенно и спокойно.
+						</p>
+					</div>
+
+					<!-- Преимущество 3 -->
+					<div class="rst-adv-card">
+						<div class="rst-adv-icon-wrap" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+							</svg>
+						</div>
+						<h3>Бесплатные консультации</h3>
+						<p>
+							Регулярная возможность для родителей обсудить с преподавателями вопросы воспитания, готовности к школе и гармоничного развития ребёнка.
+						</p>
+					</div>
+
+					<!-- Преимущество 4 -->
+					<div class="rst-adv-card">
+						<div class="rst-adv-icon-wrap" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+								<circle cx="12" cy="12" r="3"></circle>
+							</svg>
+						</div>
+						<h3>Открытые занятия</h3>
+						<p>
+							Возможность для мам и пап лично познакомиться с процессом обучения, увидеть первые успехи малыша и порадоваться его новым навыкам.
+						</p>
+					</div>
+
+					<!-- Преимущество 5 -->
+					<div class="rst-adv-card">
+						<div class="rst-adv-icon-wrap" aria-hidden="true">
+							<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="8" r="7"></circle>
+								<polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+							</svg>
+						</div>
+						<h3>Качественная подготовка</h3>
+						<p>
+							Продуманные занятия, направленные на системное развитие знаний, моторики, речи и практических умений, необходимых ребёнку для уверенного будущего.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ====================================================================
+		     БЛОК 5: КАК ЗАПИСАТЬСЯ?
+		     ==================================================================== -->
+		<section class="rst-section rst-section--alt" id="how-to-enroll" aria-labelledby="rst-steps-title">
+			<div class="rst-container">
+				<div class="rst-section-header">
+					<span class="rst-section-tag">Простой порядок записи</span>
+					<h2 class="rst-section-title" id="rst-steps-title">
+						Три удобных способа записать ребёнка в «Росточек»
+					</h2>
+					<p class="rst-section-desc">
+						Выберите подходящий для вашей семьи вариант — онлайн или по телефону.
+					</p>
+				</div>
+
+				<div class="rst-steps-grid">
+					<!-- Шаг 1 -->
+					<div class="rst-step-card">
+						<span class="rst-step-number">1</span>
+						<h3>Заявка на сайте</h3>
+						<p>
+							Заполните короткую форму записи ниже. Выберите интересующую программу, укажите имя ребёнка и контакты для связи.
+						</p>
+						<a href="#enroll-form" class="rst-step-action-link">
+							<span>Заполнить онлайн-форму</span>
+							<span aria-hidden="true">↓</span>
+						</a>
+					</div>
+
+					<!-- Шаг 2 -->
+					<div class="rst-step-card">
+						<span class="rst-step-number">2</span>
+						<h3>Звонок руководителю</h3>
+						<p>
+							Позвоните напрямую руководителю центра Оксане Александровне. Вы сможете задать любые вопросы о программах и наборе.
+						</p>
+						<a href="tel:+79049577551" class="rst-step-action-link">
+							<span>8-904-957-75-51</span>
+							<span aria-hidden="true">📞</span>
+						</a>
+					</div>
+
+					<!-- Шаг 3 -->
+					<div class="rst-step-card">
+						<span class="rst-step-number">3</span>
+						<h3>Родительские встречи</h3>
+						<p>
+							Вы можете записаться на общем родительском собрании. Чтобы уточнить актуальные даты ближайших встреч и собраний, свяжитесь с руководителем.
+						</p>
+						<a href="tel:+79049577551" class="rst-step-action-link">
+							<span>Уточнить даты встреч</span>
+							<span aria-hidden="true">→</span>
+						</a>
+					</div>
+				</div>
+
+				<!-- Карточка руководителя центра -->
+				<div class="rst-director-card">
+					<div class="rst-director-photo-wrap">
+						<img src="assets/images/teachers/borisenko-oksana.webp" alt="Борисенко Оксана Александровна — руководитель центра «Росточек»" loading="lazy" width="140" height="140" />
+					</div>
+
+					<div class="rst-director-info">
+						<h3>Оксана Александровна Борисенко</h3>
+						<p class="rst-director-role">Руководитель Центра раннего развития детей «Росточек»</p>
+						<p class="rst-director-bio">
+							Учитель начальных классов Православной гимназии г. Коврова. Высшая квалификационная категория, высшее педагогическое образование, педагогический стаж 15 лет.
+						</p>
+						<a href="tel:+79049577551" class="rst-director-phone">
+							<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+							<span>8-904-957-75-51</span>
+						</a>
+					</div>
+
+					<div class="rst-director-cta">
+						<a href="tel:+79049577551" class="rst-btn rst-btn--primary">
+							Позвонить руководителю
+						</a>
+						<a href="#enroll-form" class="rst-btn rst-btn--secondary">
+							Записаться онлайн
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ====================================================================
+		     БЛОК 6: ФОРМА ЗАПИСИ НА ЗАНЯТИЯ
+		     ==================================================================== -->
+		<section class="rst-enroll-section" id="enroll-form" aria-labelledby="rst-enroll-title">
+			<div class="rst-container">
+				<div class="rst-form-wrapper">
+					<div class="rst-form-header">
+						<span class="rst-section-tag">Онлайн-запись</span>
+						<h2 id="rst-enroll-title">Запись в Центр раннего развития «Росточек»</h2>
+						<p>
+							Заполните форму, и руководитель центра свяжется с вами для уточнения актуальной информации о наборе, расписании и подтверждения записи.
+						</p>
+					</div>
+
+					<form id="rst-enroll-form" novalidate aria-label="Форма записи в центр «Росточек»">
+						<!-- Спам-ловушка Honeypot -->
+						<div style="display:none !important; position:absolute; left:-9999px;" aria-hidden="true">
+							<input type="text" id="enroll-hp" name="enroll_hp" tabindex="-1" autocomplete="off" />
+						</div>
+
+						<div class="rst-form-grid">
+							<!-- 1. Имя родителя -->
+							<div class="rst-form-group">
+								<label for="enroll-parent-name" class="rst-label">
+									Имя родителя <span class="rst-label-req" aria-hidden="true">*</span>
+								</label>
+								<input type="text" id="enroll-parent-name" name="parent_name" class="rst-input" placeholder="Например: Анна Васильевна" maxlength="100" autocomplete="name" required />
+							</div>
+
+							<!-- 2. Имя ребёнка -->
+							<div class="rst-form-group">
+								<label for="enroll-child-name" class="rst-label">
+									Имя ребёнка <span class="rst-label-req" aria-hidden="true">*</span>
+								</label>
+								<input type="text" id="enroll-child-name" name="child_name" class="rst-input" placeholder="Например: Михаил" maxlength="100" autocomplete="off" required />
+							</div>
+
+							<!-- 3. Возраст ребёнка -->
+							<div class="rst-form-group">
+								<label for="enroll-child-age" class="rst-label">
+									Возраст ребёнка <span class="rst-label-req" aria-hidden="true">*</span>
+								</label>
+								<select id="enroll-child-age" name="child_age" class="rst-select" required>
+									<option value="" disabled selected hidden>Выберите возраст</option>
+									<option value="5 лет">5 лет</option>
+									<option value="6 лет">6 лет</option>
+									<option value="7 лет">7 лет (первоклассник)</option>
+									<option value="8 лет">8 лет</option>
+									<option value="Другой возраст">Другой возраст</option>
+								</select>
+							</div>
+
+							<!-- 4. Направление занятий -->
+							<div class="rst-form-group">
+								<label for="enroll-course" class="rst-label">
+									Интересующее направление <span class="rst-label-req" aria-hidden="true">*</span>
+								</label>
+								<select id="enroll-course" name="course" class="rst-select" required>
+									<option value="" disabled selected hidden>Выберите программу</option>
+									<option value="Подготовка к школе «Учусь, играя» (от 5 лет, двухгодичная)">Подготовка к школе «Учусь, играя» (от 5 лет)</option>
+									<option value="Подготовка к школе «Год до школы» (от 6 лет)">Подготовка к школе «Год до школы» (от 6 лет)</option>
+									<option value="«Английский для дошколят» (от 6 лет)">«Английский для дошколят» (от 6 лет)</option>
+									<option value="«Английский для школьников» (от 7 лет)">«Английский для школьников» (от 7 лет)</option>
+									<option value="«Школа мяча» (5–6 лет)">«Школа мяча» (5–6 лет)</option>
+									<option value="Творческая мастерская «Золотые ручки» (5–6 лет)">Творческая мастерская «Золотые ручки» (5–6 лет)</option>
+									<option value="«Умные математики» (курс повышенной сложности для 1 класса)">«Умные математики» (для 1 класса)</option>
+									<option value="Помогите подобрать подходящую программу">Помогите подобрать программу (консультация)</option>
+								</select>
+							</div>
+
+							<!-- 5. Номер телефона или Email -->
+							<div class="rst-form-group rst-form-group--full">
+								<label for="enroll-contact" class="rst-label">
+									Номер телефона или Email <span class="rst-label-req" aria-hidden="true">*</span>
+									<span class="rst-label-hint">(для связи с руководителем)</span>
+								</label>
+								<input type="text" id="enroll-contact" name="contact" class="rst-input" placeholder="+7 (904) 957-75-51 или email@mail.ru" maxlength="100" autocomplete="tel email" required />
+							</div>
+
+							<!-- 6. Дополнительный комментарий -->
+							<div class="rst-form-group rst-form-group--full">
+								<label for="enroll-comment" class="rst-label">
+									Дополнительный комментарий <span class="rst-label-hint">(необязательно)</span>
+								</label>
+								<textarea id="enroll-comment" name="comment" class="rst-textarea" rows="3" placeholder="Удобное время для звонка, особенности ребёнка, пожелания или вопросы к руководителю..."></textarea>
+							</div>
+						</div>
+
+						<!-- Чекбокс согласия 152-ФЗ -->
+						<div class="rst-consent-row">
+							<label class="rst-checkbox-label">
+								<input type="checkbox" id="enroll-consent" name="consent" required />
+								<span>
+									Я даю согласие на <a href="policy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a> в соответствии с Федеральным законом № 152-ФЗ «О персональных данных».
+								</span>
+							</label>
+						</div>
+
+						<div class="rst-form-footer">
+							<button type="submit" class="rst-btn rst-btn--primary" id="enroll-submit-btn">
+								Отправить заявку на запись
+							</button>
+
+							<!-- Статус отправки -->
+							<div class="rst-status-box" id="enroll-status-box" role="alert" aria-live="polite"></div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- ====================================================================
+		     ЧАСТЫЕ ВОПРОСЫ РОДИТЕЛЕЙ (FAQ)
+		     ==================================================================== -->
+		<section class="rst-section rst-section--white" id="faq" aria-labelledby="rst-faq-title">
+			<div class="rst-container">
+				<div class="rst-section-header">
+					<span class="rst-section-tag">Вопросы и ответы</span>
+					<h2 class="rst-section-title" id="rst-faq-title">Частые вопросы о центре «Росточек»</h2>
+					<p class="rst-section-desc">
+						Собрали ответы на самые частые вопросы родителей будущих воспитанников.
+					</p>
+				</div>
+
+				<div class="rst-faq-list">
+					<details class="rst-faq-item">
+						<summary class="rst-faq-question">С какого возраста можно записать ребёнка в центр?</summary>
+						<div class="rst-faq-answer">
+							В центре действуют группы для детей разного возраста: двухгодичная подготовка к школе «Учусь, играя», занятия «Школа мяча» и мастерская «Золотые ручки» принимают детей от 5 лет. Программы «Год до школы» и «Английский для дошколят» рассчитаны на детей от 6 лет, а «Английский для школьников» и «Умные математики» — на первоклассников и младших школьников от 7 лет.
+						</div>
+					</details>
+
+					<details class="rst-faq-item">
+						<summary class="rst-faq-question">Могут ли родители присутствовать на занятиях?</summary>
+						<div class="rst-faq-answer">
+							Да! Одно из преимуществ центра «Росточек» — регулярное проведение открытых занятий для родителей. Это даёт мамам и папам возможность лично увидеть успехи своего ребёнка, познакомиться с атмосферой уроков и получить полезные рекомендации педагогов.
+						</div>
+					</details>
+
+					<details class="rst-faq-item">
+						<summary class="rst-faq-question">Нужно ли ребёнку уже уметь читать или считать до начала занятий?</summary>
+						<div class="rst-faq-answer">
+							Нет, предварительной специальной подготовки не требуется. Программы построены так, чтобы плавно и бережно познакомить малыша с миром звуков, букв, счета и творческих навыков с самых азов, развивая интерес к учебе через игру.
+						</div>
+					</details>
+
+					<details class="rst-faq-item">
+						<summary class="rst-faq-question">Как получить консультацию по вопросам воспитания ребёнка?</summary>
+						<div class="rst-faq-answer">
+							В центре «Росточек» предусмотрены бесплатные консультации для родителей. Вы всегда можете обсудить с руководителем центра и педагогами вопросы готовности ребёнка к школе, особенности его адаптации и получить профессиональные советы.
+						</div>
+					</details>
+
+					<details class="rst-faq-item">
+						<summary class="rst-faq-question">Где уточнить актуальное расписание, стоимость и даты встреч?</summary>
+						<div class="rst-faq-answer">
+							Актуальная информация о расписании групп, условиях набора и ближайших родительских собраниях предоставляется руководителем центра Оксаной Александровной Борисенко по телефону <strong>8-904-957-75-51</strong> или при подтверждении онлайн-заявки.
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+
+		<!-- ====================================================================
+		     БЛОК 7: КОНТАКТЫ
+		     ==================================================================== -->
+		<section class="rst-section rst-section--alt" id="contacts" aria-labelledby="rst-contacts-title">
+			<div class="rst-container">
+				<div class="rst-section-header">
+					<span class="rst-section-tag">Контакты и адрес</span>
+					<h2 class="rst-section-title" id="rst-contacts-title">Ждём вас в центре «Росточек»</h2>
+					<p class="rst-section-desc">
+						Занятия центра проходят на базе Православной гимназии г. Коврова.
+					</p>
+				</div>
+
+				<div class="rst-contacts-grid">
+					<!-- Информация о контактах -->
+					<div class="rst-contact-card">
+						<div class="rst-contact-header">
+							<h3>Центр развития «Росточек»</h3>
+							<p>ЧОУ «Православная гимназия г. Коврова»</p>
+						</div>
+
+						<ul class="rst-contact-list">
+							<li class="rst-contact-item">
+								<div class="rst-contact-item-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+									</svg>
+								</div>
+								<div class="rst-contact-item-info">
+									<small>Телефон центра «Росточек»</small>
+									<a href="tel:+79049577551">8-904-957-75-51</a>
+									<span style="display:block; font-size:13px; color:var(--rst-text-muted); margin-top:2px;">
+										Руководитель — Оксана Александровна Борисенко
+									</span>
+								</div>
+							</li>
+
+							<li class="rst-contact-item">
+								<div class="rst-contact-item-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+										<circle cx="12" cy="10" r="3"></circle>
+									</svg>
+								</div>
+								<div class="rst-contact-item-info">
+									<small>Адрес гимназии</small>
+									<strong>601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</strong>
+								</div>
+							</li>
+
+							<li class="rst-contact-item">
+								<div class="rst-contact-item-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+									</svg>
+								</div>
+								<div class="rst-contact-item-info">
+									<small>Телефон приёмной гимназии</small>
+									<div>
+										<a href="tel:+74923240195">+7 (49232) 4-01-95</a>,
+										<a href="tel:+74923242272">4-22-72</a>
+									</div>
+								</div>
+							</li>
+
+							<li class="rst-contact-item">
+								<div class="rst-contact-item-icon" aria-hidden="true">
+									<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+										<polyline points="22,6 12,13 2,6"></polyline>
+									</svg>
+								</div>
+								<div class="rst-contact-item-info">
+									<small>Электронная почта гимназии</small>
+									<a href="mailto:sretenskajgimn@yandex.ru">sretenskajgimn@yandex.ru</a>
+								</div>
+							</li>
+						</ul>
+
+						<div style="margin-top:auto;">
+							<a href="#enroll-form" class="rst-btn rst-btn--primary rst-btn--block">
+								Записаться в центр онлайн
+							</a>
+						</div>
+					</div>
+
+					<!-- Интерактивная карта -->
+					<div class="rst-map-frame">
+						<iframe src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=17" allowfullscreen="true" title="Расположение Православной гимназии г. Коврова на Яндекс.Картах"></iframe>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- ПОДВАЛ САЙТА (СТАНДАРТНЫЙ ПОДВАЛ ГИМНАЗИИ) -->
+	<footer>
+		<div class="footer-bottom">
+			<div class="footer-container">
+				<div class="footer-top-row">
+					<a href="index.html" class="brand__footer">
+						<img src="assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer" width="48" height="48">
+						<div class="brand__info__footer">
+							<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+							<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+						</div>
+					</a>
+
+					<div class="btn_media">
+						<ul class="btn_media__list">
+							<li class="media__list-vk">
+								<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+									<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
+								</a>
+							</li>
+							<li class="media__list-max">
+								<a href="#" aria-label="Мессенджер">
+									<img src="assets/icons/images-Photoroom.png" alt="Мессенджер" width="20" height="20">
+								</a>
+							</li>
+							<li class="media__list-whp">
+								<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+									<img src="assets/icons/whatsap_icon.svg" alt="WhatsApp" width="20" height="20">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="footer-divider"></div>
+
+				<div class="footer-nav-grid">
+					<div class="footer-col">
+						<h3 class="footer-col__title">О гимназии</h3>
+						<ul class="footer-col__list">
+							<li><a href="story_school.html">История гимназии</a></li>
+							<li><a href="sveden/index.html">Сведения об организации</a></li>
+							<li><a href="teachers.html">Учителя</a></li>
+							<li><a href="contact.html">Контакты</a></li>
+						</ul>
+					</div>
+
+					<div class="footer-col">
+						<h3 class="footer-col__title">Учеба</h3>
+						<ul class="footer-col__list">
+							<li><a href="class_schedule.html">Расписание уроков</a></li>
+							<li><a href="food.html">Школьное питание</a></li>
+							<li><a href="documents.html">Документы</a></li>
+						</ul>
+					</div>
+
+					<div class="footer-col">
+						<h3 class="footer-col__title">Родителям</h3>
+						<ul class="footer-col__list">
+							<li><a href="diary.html">Электронный дневник</a></li>
+							<li><a href="rostochek.html">Центр «Росточек»</a></li>
+							<li><a href="index.html#faq">Частые вопросы</a></li>
+						</ul>
+					</div>
+
+					<div class="footer-col">
+						<h3 class="footer-col__title">Информация</h3>
+						<ul class="footer-col__list">
+							<li><a href="news.html">Новости</a></li>
+							<li><a href="life.html">Жизнь гимназии</a></li>
+							<li><a href="index.html#faq">Частые вопросы (FAQ)</a></li>
+							<li><a href="apply.html">Поступающим</a></li>
+							<li><a href="rostochek.html">Центр «Росточек»</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="footer-divider"></div>
+
+				<div class="footer-contacts-bar">
+					<div class="footer-contact-item">
+						<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+							<circle cx="12" cy="10" r="3"></circle>
+						</svg>
+						<div class="footer-contact-item__content">
+							<span class="footer-contact-item__label">Адрес</span>
+							<span class="footer-contact-item__text">601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</span>
+						</div>
+					</div>
+
+					<div class="footer-contact-item">
+						<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+						</svg>
+						<div class="footer-contact-item__content">
+							<span class="footer-contact-item__label">Телефон</span>
+							<div class="footer-contact-item__phones">
+								<a href="tel:+74923240195" class="footer-contact-item__link">+7 (49232) 4-01-95</a>,
+								<a href="tel:+74923242272" class="footer-contact-item__link">4-22-72</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="footer-contact-item">
+						<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+							<polyline points="22,6 12,13 2,6"></polyline>
+						</svg>
+						<div class="footer-contact-item__content">
+							<span class="footer-contact-item__label">Электронная почта</span>
+							<a href="mailto:sretenskajgimn@yandex.ru" class="footer-contact-item__link">sretenskajgimn@yandex.ru</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="footer-divider"></div>
+
+				<div class="footer-copyright">
+					<span class="footer-copyright__text">© 2026 Православная гимназия г. Коврова. Все права защищены.</span>
+					<a href="policy.html" class="footer-copyright__policy">Политика конфиденциальности</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- СКРИПТЫ -->
+	<script src="js/window.scrollY.js"></script>
+	<script src="js/navigation.js"></script>
+	<script src="js/search.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/bvi.js"></script>
+	<script src="js/rostochek.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Предпросмотр новых иконок для раздела Сведений (sveden)</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/sveden.css">
+	<style>
+		body {
+			background: #f1f5f9;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+			padding: 40px 20px;
+			color: #0f172a;
+		}
+		.preview-wrap {
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		.preview-header {
+			background: #ffffff;
+			border-radius: 16px;
+			padding: 28px 36px;
+			margin-bottom: 32px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+			border: 1px solid #e2e8f0;
+		}
+		.preview-header h1 {
+			margin: 0 0 10px;
+			font-size: 26px;
+			color: #1e40af;
+		}
+		.preview-header p {
+			margin: 0;
+			color: #64748b;
+			font-size: 15px;
+			line-height: 1.5;
+		}
+		.preview-table {
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 0 16px;
+		}
+		.preview-row {
+			background: #ffffff;
+			box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+			border-radius: 12px;
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+		}
+		.preview-row:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 20px rgba(2, 132, 199, 0.08);
+		}
+		.preview-row td {
+			padding: 20px 24px;
+			vertical-align: middle;
+			border-top: 1px solid #e2e8f0;
+			border-bottom: 1px solid #e2e8f0;
+		}
+		.preview-row td:first-child {
+			border-left: 1px solid #e2e8f0;
+			border-top-left-radius: 12px;
+			border-bottom-left-radius: 12px;
+			width: 60px;
+			font-weight: 700;
+			color: #0284c7;
+			font-size: 18px;
+		}
+		.preview-row td:last-child {
+			border-right: 1px solid #e2e8f0;
+			border-top-right-radius: 12px;
+			border-bottom-right-radius: 12px;
+		}
+		.icon-box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 8px;
+			padding: 12px 16px;
+			border-radius: 10px;
+			min-width: 110px;
+		}
+		.icon-box--old {
+			background: #fef2f2;
+			border: 1px dashed #fca5a5;
+		}
+		.icon-box--new {
+			background: #f0fdf4;
+			border: 1px solid #86efac;
+		}
+		.icon-box__label {
+			font-size: 11px;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+		.icon-box--old .icon-box__label { color: #dc2626; }
+		.icon-box--new .icon-box__label { color: #16a34a; }
+		.icon-box__img {
+			width: 36px;
+			height: 36px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #ffffff;
+			border-radius: 8px;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+		}
+		.icon-box__img img {
+			width: 22px;
+			height: 22px;
+		}
+		.info-col h3 {
+			margin: 0 0 6px;
+			font-size: 16px;
+			color: #0f172a;
+		}
+		.info-col p {
+			margin: 0;
+			font-size: 13px;
+			color: #64748b;
+			line-height: 1.45;
+		}
+		.reason-tag {
+			display: inline-block;
+			margin-top: 6px;
+			font-size: 12px;
+			padding: 3px 8px;
+			border-radius: 6px;
+			background: #e0f2fe;
+			color: #0369a1;
+			font-weight: 500;
+		}
+		.card-preview-cell {
+			width: 340px;
+		}
+		.card-preview-cell .sveden-card {
+			padding: 16px;
+			border-radius: 10px;
+		}
+		.card-preview-cell .sveden-card__title {
+			font-size: 14px;
+		}
+		.card-preview-cell .sveden-card__desc {
+			font-size: 12px;
+			margin-bottom: 8px;
+		}
+		.section-badge {
+			display: inline-block;
+			padding: 6px 14px;
+			background: #dbeafe;
+			color: #1d4ed8;
+			border-radius: 20px;
+			font-weight: 600;
+			font-size: 13px;
+			margin: 28px 0 14px;
+		}
+	</style>
+</head>
+<body>
+	<div class="preview-wrap">
+		<div class="preview-header">
+			<h1>Сравнение иконок для раздела «Сведения об образовательной организации»</h1>
+			<p>В этой таблице наглядно показано, какие иконки предлагаются к замене, в чем заключалась проблема старой иконки («Было») и как новая иконка («Стало») выглядит непосредственно в карточке раздела.</p>
+		</div>
+
+		<span class="section-badge">10 иконок, требующих обновления</span>
+
+		<table class="preview-table">
+			<tbody>
+				<!-- 02. Структура -->
+				<tr class="preview-row">
+					<td>02</td>
+					<td style="width: 130px;">
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/02_struct.svg" alt="Было">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Дерево (природа)</span>
+						</div>
+					</td>
+					<td style="width: 130px;">
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/02_struct.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Органограмма</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Структура и органы управления</h3>
+						<p>Директор, Педсовет, Общее собрание, Попечительский совет.</p>
+						<span class="reason-tag">Новая метафора: иерархическая блок-схема управления (sitemap/org chart)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">02</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden_new_preview/02_struct.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Структура и органы управления...</h4>
+							<p class="sveden-card__desc">Органы управления гимназией (Директор, Педсовет, Общее собрание)...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 05. Стандарты -->
+				<tr class="preview-row">
+					<td>05</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/05_standarts.svg" alt="Было" style="opacity:0.3;">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Медаль за спорт</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/05_standarts.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Планшет с галочкой</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Образовательные стандарты и требования</h3>
+						<p>Федеральные государственные образовательные стандарты (ФГОС) и православный компонент.</p>
+						<span class="reason-tag">Новая метафора: планшет проверки соответствия стандартам (линия убрана)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">05</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden/05_standarts.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Образовательные стандарты...</h4>
+							<p class="sveden-card__desc">Федеральные государственные стандарты (ФГОС)...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 07. Педагогический состав -->
+				<tr class="preview-row">
+					<td>07</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/07_employees.svg" alt="Было" style="opacity:0.3;">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Один профиль</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/07_employees.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Три педагога</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Педагогический состав</h3>
+						<p>Персональный состав педагогических работников, квалификация и стаж.</p>
+						<span class="reason-tag">Новая метафора: коллектив из трех педагогов (по твоему образцу)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">07</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden/07_employees.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Педагогический состав</h4>
+							<p class="sveden-card__desc">Персональный состав педагогических работников...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 08. Мат-тех обеспечение -->
+				<tr class="preview-row">
+					<td>08</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/08_objects.svg" alt="Было" style="opacity:0.3;">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Микрочип / плата</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/08_objects.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Книги на полке</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Материально-техническое обеспечение</h3>
+						<p>Учебные кабинеты, библиотека, спортзал, ИКТ, доступная среда.</p>
+						<span class="reason-tag">Новая метафора: библиотека и учебный фонд (по твоему образцу)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">08</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden/08_objects.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Материально-техническое...</h4>
+							<p class="sveden-card__desc">Учебные кабинеты, библиотека, спортзал, ИКТ...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 09. Платные услуги -->
+				<tr class="preview-row">
+					<td>09</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/09_paid_edu.svg" alt="Было">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Код &lt;/&gt;</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/09_paid_edu.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Банковская карта</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Платные образовательные услуги</h3>
+						<p>Порядок оказания платных услуг, договоры и стоимость обучения.</p>
+						<span class="reason-tag">Новая метафора: безналичная оплата и договоры (credit-card)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">09</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden_new_preview/09_paid_edu.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Платные услуги</h4>
+							<p class="sveden-card__desc">Порядок оказания платных услуг, стоимость...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 10. Бюджет -->
+				<tr class="preview-row">
+					<td>10</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/10_budget.svg" alt="Было">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Биржевой график</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/10_budget.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Диаграмма ФХД</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Финансово-хозяйственная деятельность</h3>
+						<p>План ФХД, объем образовательной деятельности, поступления и расходы.</p>
+						<span class="reason-tag">Новая метафора: круговая диаграмма распределения бюджета (pie-chart)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">10</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden_new_preview/10_budget.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Финансово-хозяйственная...</h4>
+							<p class="sveden-card__desc">План ФХД, поступления и расходы средств...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 11. Вакантные места -->
+				<tr class="preview-row">
+					<td>11</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/11_vacant.svg" alt="Было">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Галочка "Успех"</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/11_vacant.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Прием ученика (+)</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Вакантные места для приема (перевода)</h3>
+						<p>Количество вакантных мест для приема и перевода обучающихся по классам.</p>
+						<span class="reason-tag">Новая метафора: силуэт ученика со знаком добавления (user-plus)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">11</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden_new_preview/11_vacant.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Вакантные места</h4>
+							<p class="sveden-card__desc">Количество мест для приема по классам...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 12. Стипендии -->
+				<tr class="preview-row">
+					<td>12</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/12_grants.svg" alt="Было">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Щит (охрана)</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/12_grants.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Забота / поддержка</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Стипендии и меры поддержки обучающихся</h3>
+						<p>Стипендии, меры социальной поддержки учащихся, общежитие и интернат.</p>
+						<span class="reason-tag">Новая метафора: ладонь поддержки с сердцем (hand-heart)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">12</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden_new_preview/12_grants.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Стипендии и меры поддержки</h4>
+							<p class="sveden-card__desc">Меры социальной поддержки учащихся...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 13. Международное сотрудничество -->
+				<tr class="preview-row">
+					<td>13</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/13_inter.svg" alt="Было">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Церковь / храм</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/13_inter.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Земной шар</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Международное сотрудничество</h3>
+						<p>Договоры с иностранными организациями и международная аккредитация.</p>
+						<span class="reason-tag">Новая метафора: глобус с меридианами (globe)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">13</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden_new_preview/13_inter.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Международное сотрудничество</h4>
+							<p class="sveden-card__desc">Договоры с иностранными организациями...</p>
+						</div>
+					</td>
+				</tr>
+
+				<!-- 14. Питание -->
+				<tr class="preview-row">
+					<td>14</td>
+					<td>
+						<div class="icon-box icon-box--old">
+							<span class="icon-box__label">Было</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden_new_preview/14_catering.svg" alt="Было" style="opacity:0.3;">
+							</div>
+							<span style="font-size: 10px; color:#ef4444;">Яблоко (фрукт)</span>
+						</div>
+					</td>
+					<td>
+						<div class="icon-box icon-box--new">
+							<span class="icon-box__label">Стало</span>
+							<div class="icon-box__img">
+								<img src="assets/icons/sveden/14_catering.svg" alt="Стало">
+							</div>
+							<span style="font-size: 10px; color:#16a34a;">Вилка и нож</span>
+						</div>
+					</td>
+					<td class="info-col">
+						<h3>Организация питания</h3>
+						<p>Меню горячего питания, диетическое меню, поставщики продуктов, контроль.</p>
+						<span class="reason-tag">Новая метафора: столовые приборы вилка и нож (по твоему образцу)</span>
+					</td>
+					<td class="card-preview-cell">
+						<div class="sveden-card">
+							<div class="sveden-card__top">
+								<span class="sveden-card__num">14</span>
+								<span class="sveden-card__icon">
+									<img src="assets/icons/sveden/14_catering.svg" alt="" width="20" height="20">
+								</span>
+							</div>
+							<h4 class="sveden-card__title">Организация питания</h4>
+							<p class="sveden-card__desc">Меню горячего питания, столовая...</p>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
