@@ -263,11 +263,16 @@ function createHomeNewsCard(news) {
 
 	article.className = "news";
 
-	const image = news.image
-		? (/^(https?:\/\/|assets\/|\.?\/)/.test(news.image)
-			? news.image
-			: `${window.API_BASE_URL}${news.image}`)
-		: "assets/icons/news1.png";
+	let image = news.image || "";
+	if (image) {
+		if (image.startsWith("/uploads")) {
+			image = image.replace(/^\//, "");
+		} else if (!/^(https?:\/\/|assets\/|\.?\/)/.test(image)) {
+			image = `${window.API_BASE_URL || ""}${image.startsWith("/") ? "" : "/"}${image}`;
+		}
+	} else {
+		image = "assets/images/news1.webp";
+	}
 
 	article.innerHTML = `
         <div class="news__image">

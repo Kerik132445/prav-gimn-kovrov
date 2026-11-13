@@ -116,10 +116,22 @@
 	function initProgramEnrollButtons() {
 		const enrollButtons = document.querySelectorAll(".rst-program-enroll-btn");
 		const courseSelect = document.getElementById("enroll-course");
+		const ageSelect = document.getElementById("enroll-child-age");
 		const parentNameInput = document.getElementById("enroll-parent-name");
 		const enrollSection = document.getElementById("enroll-form");
 
 		if (!enrollButtons.length || !courseSelect) return;
+
+		// Карта соответствия рекомендуемого возраста для направлений
+		const courseAgeMap = {
+			"Подготовка к школе «Учусь, играя»": "5 лет",
+			"Подготовка к школе «Год до школы»": "6 лет",
+			"«Английский для дошколят»": "6 лет",
+			"«Английский для школьников»": "7 лет (первоклассник)",
+			"«Школа мяча»": "5 лет",
+			"«Золотые ручки»": "5 лет",
+			"«Умные математики»": "7 лет (первоклассник)"
+		};
 
 		enrollButtons.forEach(btn => {
 			btn.addEventListener("click", (e) => {
@@ -154,6 +166,32 @@
 					if (matchedIndex !== -1) {
 						courseSelect.selectedIndex = matchedIndex;
 						clearFieldError(courseSelect);
+						courseSelect.dispatchEvent(new Event("change", { bubbles: true }));
+
+						// Визуальная подсветка поля, чтобы пользователь сразу заметил автовыбор
+						courseSelect.classList.remove("rst-select--highlight");
+						void courseSelect.offsetWidth; // перезапуск CSS-анимации
+						courseSelect.classList.add("rst-select--highlight");
+						setTimeout(() => {
+							courseSelect.classList.remove("rst-select--highlight");
+						}, 2000);
+					}
+
+					// Автоподстановка подходящего возраста ребенка, если он еще не выбран
+					if (ageSelect && (!ageSelect.value || ageSelect.selectedIndex === 0)) {
+						for (const [key, ageVal] of Object.entries(courseAgeMap)) {
+							if (courseName.includes(key)) {
+								for (let j = 0; j < ageSelect.options.length; j++) {
+									if (ageSelect.options[j].value === ageVal) {
+										ageSelect.selectedIndex = j;
+										clearFieldError(ageSelect);
+										ageSelect.dispatchEvent(new Event("change", { bubbles: true }));
+										break;
+									}
+								}
+								break;
+							}
+						}
 					}
 				}
 
