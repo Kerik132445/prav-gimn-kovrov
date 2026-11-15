@@ -329,23 +329,15 @@ function renderNews() {
 // ========================================
 
 function getCategoryName(category) {
-
 	const categories = {
-
-		education:
-			"Учебная жизнь",
-
-		holidays:
-			"Праздники",
-
-		pilgrimage:
-			"Паломничество",
-
-		sport:
-			"Спорт и ВПК"
-
+		education: "Учебная жизнь",
+		spiritual: "Духовная жизнь",
+		creativity: "Творчество и театр",
+		holidays: "Традиции и праздники",
+		pilgrimage: "Паломничество и экскурсии",
+		sport: "Спорт и ВПК",
+		camp: "Лагерь и практика"
 	};
-
 
 	return categories[category] || category;
 }
@@ -1314,7 +1306,8 @@ async function apiFetch(
 
 
 const ADMIN_TABS = {
-	news: { sectionId: "news-section", siteHref: "../life.html" },
+	news: { sectionId: "news-section", siteHref: "../life.html#news" },
+	gym_life: { sectionId: "gym-life-section", siteHref: "../life.html" },
 	teachers: { sectionId: "teachers-section", siteHref: "../teachers.html" },
 	schedule: { sectionId: "schedule-section", siteHref: "../class_schedule.html" },
 	menu: { sectionId: "menu-section", siteHref: "../food.html" },

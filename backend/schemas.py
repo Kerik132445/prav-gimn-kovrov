@@ -701,3 +701,88 @@ class FeedbackOut(BaseModel):
     source_page: str | None = None
     created_at: datetime
 
+
+# =========================================================
+# ЖИЗНЬ ГИМНАЗИИ: ГАЗЕТЫ, ТЕАТР, ЛЕТНИЙ ЛАГЕРЬ
+# =========================================================
+
+class NewspaperOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    year: str
+    number: str
+    title: str
+    subtitle: str | None = None
+    description: str | None = None
+    file_url: str
+    file_size: str | None = None
+    is_special: bool = False
+    sort_order: int = 0
+    created_at: datetime
+
+
+class NewspaperPayload(BaseModel):
+    year: str
+    number: str
+    title: str
+    subtitle: str | None = None
+    description: str | None = None
+    file_url: str | None = None
+    file_size: str | None = None
+    is_special: bool = False
+    sort_order: int = 0
+
+
+class TheatrePlayOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    title: str
+    author_or_director: str | None = None
+    year: str | None = None
+    awards: str | None = None
+    description: str | None = None
+    video_url: str | None = None
+    photo_url: str | None = None
+    sort_order: int = 0
+    created_at: datetime
+
+
+class TheatrePlayPayload(BaseModel):
+    title: str
+    author_or_director: str | None = None
+    year: str | None = None
+    awards: str | None = None
+    description: str | None = None
+    video_url: str | None = None
+    photo_url: str | None = None
+    sort_order: int = 0
+
+
+class CampShiftOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    year: int
+    title: str
+    dates: str | None = None
+    vk_album_url: str | None = None
+    description: str | None = None
+    photo_url: str | None = None
+    status: str = "completed"
+    sort_order: int = 0
+    created_at: datetime
+
+
+class CampShiftPayload(BaseModel):
+    year: int
+    title: str
+    dates: str | None = None
+    vk_album_url: str | None = None
+    description: str | None = None
+    photo_url: str | None = None
+    status: str = "completed"
+    sort_order: int = 0
+
+

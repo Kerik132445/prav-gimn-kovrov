@@ -64,7 +64,7 @@
 				{
 					title: "Частые вопросы",
 					description: "Ответы на популярные вопросы",
-					icon: "assets/icons/parants.svg",
+					icon: "assets/icons/parents.svg",
 					link: "#faq"
 				},
 				{
@@ -72,6 +72,12 @@
 					description: "Педагогический состав гимназии",
 					icon: "assets/icons/teacher-outline-regular.svg",
 					link: "teachers.html"
+				},
+				{
+					title: "Помощь гимназии",
+					description: "Благотворительность и попечительство",
+					icon: "assets/icons/feature-icon1.svg",
+					link: "index.html#donation"
 				}
 			]
 		},
@@ -288,7 +294,7 @@
 			mobileDrawer.innerHTML = `
 				<div class="mobile-drawer__header">
 					<a href="${resolvePath('index.html')}" class="mobile-drawer__brand">
-						<img src="${resolvePath('assets/icons/logo_star.png')}" alt="" class="mobile-drawer__logo" width="36" height="36">
+						<img src="${resolvePath('assets/icons/logo_star.png')}" alt="Логотип гимназии" class="mobile-drawer__logo" width="36" height="36">
 						<div class="mobile-drawer__brand-info">
 							<span class="mobile-drawer__brand-title">Гимназия г. Коврова</span>
 							<span class="mobile-drawer__brand-sub">Официальный сайт</span>

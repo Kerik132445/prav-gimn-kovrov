@@ -33,7 +33,7 @@
 	}
 
 	function resolvePhotoUrl(photo) {
-		if (!photo) return "";
+		if (!photo) return "assets/images/teachers/teacher-placeholder.svg";
 		if (photo.startsWith("http")) return photo;
 		if (photo.startsWith("/uploads")) {
 			return window.API_BASE_URL ? `${window.API_BASE_URL}${photo}` : photo.replace(/^\//, "");
@@ -95,7 +95,7 @@
 		return `
 			<article class="teacher-card">
 				<div class="teacher-card__photo-container">
-					<img loading="lazy" decoding="async" src="${photoUrl}" alt="${fullName}" class="teacher-card__photo">
+					<img loading="lazy" decoding="async" src="${photoUrl}" alt="${fullName}" class="teacher-card__photo" onerror="this.onerror=null;this.src='assets/images/teachers/teacher-placeholder.svg';">
 					${guidanceHtml}
 				</div>
 				<div class="teacher-card__body">

@@ -9,12 +9,23 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOADS_DIR = os.path.join(BASE_DIR, "uploads")
 
 MAX_IMAGE_SIZE = 10 * 1024 * 1024  # 10 МБ
+MAX_DOCUMENT_SIZE = 150 * 1024 * 1024  # 150 МБ (для объемных архивных PDF)
 
 ALLOWED_IMAGE_FORMATS = {
     "JPEG": ".jpg",
     "PNG": ".png",
     "WEBP": ".webp",
 }
+
+
+def format_file_size(size_in_bytes: int) -> str:
+    """Format file size into human-readable Russian string."""
+    if size_in_bytes < 1024:
+        return f"{size_in_bytes} Б"
+    elif size_in_bytes < 1024 * 1024:
+        return f"{size_in_bytes / 1024:.1f} КБ"
+    else:
+        return f"{size_in_bytes / (1024 * 1024):.1f} МБ"
 
 
 def ensure_upload_subdir(subdir: str) -> str:
@@ -65,6 +76,42 @@ async def save_validated_image(file: UploadFile, subdir: str) -> str:
         buffer.write(file_data)
 
     return f"/uploads/{subdir}/{filename}"
+
+
+async def save_validated_document(file: UploadFile, subdir: str = "newspapers") -> tuple[str, str]:
+    """Validate uploaded PDF document size/content and save under UUID filename.
+    Returns (public_url, human_readable_size).
+    """
+    file_data = await file.read(MAX_DOCUMENT_SIZE + 1)
+
+    if len(file_data) > MAX_DOCUMENT_SIZE:
+        raise HTTPException(
+            status_code=400,
+            detail="Размер документа не должен превышать 150 МБ",
+        )
+
+    if not file_data:
+        raise HTTPException(
+            status_code=400,
+            detail="Файл пустой",
+        )
+
+    # Check PDF magic bytes (%PDF-)
+    if not file_data.startswith(b"%PDF-"):
+        raise HTTPException(
+            status_code=400,
+            detail="Разрешены только документы в формате PDF",
+        )
+
+    target_dir = ensure_upload_subdir(subdir)
+    filename = f"{uuid.uuid4()}.pdf"
+    file_path = os.path.join(target_dir, filename)
+
+    with open(file_path, "wb") as buffer:
+        buffer.write(file_data)
+
+    formatted_size = format_file_size(len(file_data))
+    return f"/uploads/{subdir}/{filename}", formatted_size
 
 
 def resolve_managed_upload_path(public_url: str | None, subdir: str | None = None) -> str | None:

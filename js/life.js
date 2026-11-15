@@ -311,7 +311,7 @@ const FALLBACK_NEWS = [
     "title": "Встреча друзей на Сретенском бульваре",
     "description": "Традиционная творческая гостиная под названием «Встреча друзей на Сретенском бульваре»",
     "content": "<p>4 октября в гимназии прошла традиционная творческая гостиная под названием «Встреча друзей на Сретенском бульваре». Тёплая, уютная обстановка, караоке и песни под гитару, осенние мультики и вкусный травяной чай, приобретённый на благотворительной ярмарке и теперь согревший друзей - в актовом зале собрались не просто ученики и педагоги, а большая дружная семья.<br>Неожиданным подарком для всех стало потрясающее исполнение романса духовником нашей гимназии о. Иоанном под аккомпанемент матушки Анны.<br>Творческий вечер стал не просто мероприятием, а настоящим праздником общения, тепла и взаимной благодарности.</p><p>\"Дорогие ребята!</p><div>Зрители и гости до сих пор под огромным впечатлением от вчерашней Творческой гостиной! Прошёл уже целый день, а эмоции не утихают — этот вечер по-прежнему живёт в сердце.&nbsp;</div><div>Вы не просто выступили — вы создали настоящее чудо. Было видно, сколько души, сил и старания вы вложили в каждую минуту. Каждый жест, каждое слово, каждая пауза — всё было наполнено смыслом и искренностью.</div><div>Спасибо вам за ваш талант, за смелость и за те глубокие эмоции, которые вы подарили нам. Именно благодаря таким моментам по-настоящему понимаешь, что значит слово «любовь».&nbsp;</div><div>От всей души благодарим всех участников и организаторов!\"</div><div><br></div><a href=\"https://vkvideo.ru/video-178231686_456239712\">ПОСТ В ВК</a>",
-    "category": "education",
+    "category": "creativity",
     "date": "4 октября 2026",
     "image": "/uploads/news/0cc93002-c759-4b36-bdd4-9db6f2b7c881.jpg",
     "images": [
@@ -324,7 +324,7 @@ const FALLBACK_NEWS = [
     "title": "Память прп. Сергия Радонежского",
     "description": "Небесный покровитель третьеклассников",
     "content": "<p>Небесный покровитель третьеклассников</p><div>8 сентября, в день памяти преподобного Сергия Радонежского, в гимназическом храме для учащихся 3 класса прошла Божественная литургия.</div><div>Этот день для ребят особенный: преподобный Сергий Радонежский — их небесный покровитель. Именно ему они доверяют свои молитвы, у него просят помощи в учёбе и добрых делах.</div><div>К сожалению, не все третьеклассники смогли прийти в храм: у ребят каникулы, и многие уехали из города. Но, несмотря на это, праздник состоялся — тёплый, светлый и по-настоящему объединяющий.</div><div>Такие моменты напоминают: даже в разгар каникул есть место для главного — для молитвы, встречи с Богом и памяти о своём небесном заступнике.</div>",
-    "category": "pilgrimage",
+    "category": "spiritual",
     "date": "8 сентября 2026 год",
     "image": "/uploads/news/4cdfebd5-ddb0-4132-80db-9eb6f6af56e5.jpg",
     "images": [
@@ -349,15 +349,60 @@ const FALLBACK_NEWS = [
     "title": "Наши спортивные перемены",
     "description": "На переменах гимназисты любят размяться и поиграть в веселые игры.",
     "content": "На уроках ребята устают сидеть за партой. Поэтому на переменках гимназисты любят размяться и поиграть в спортивные веселые игры. А учителя и руководство всячески это поддерживают.",
-    "category": "education",
+    "category": "sport",
     "date": "19 сентября",
     "image": "/uploads/news/75c060d9-c29e-4055-992d-02ca360c8897.jpg",
     "images": [
       "/uploads/news/420541f1-a844-457a-bd95-854b5c9dc784.jpg",
       "/uploads/news/75c060d9-c29e-4055-992d-02ca360c8897.jpg"
     ]
+  },
+  {
+    "id": 2,
+    "title": "Летний лагерь в Троицко-Никольском",
+    "description": "8 июня стартовал летний лагерь «Оркестр» при Свято-Никольском храме.",
+    "content": "<p>Летний лагерь — это время радости, открытий и крепкой дружбы. Ребята участвуют в творческих мастерских, походах, спортивных играх и совместных молитвах на свежем воздухе.</p>",
+    "category": "camp",
+    "date": "8 июня 2026",
+    "image": "assets/images/news/troickoe-camp.webp",
+    "images": [
+      "assets/images/news/troickoe-camp.webp"
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Награждение победителей фестиваля «Шатёр Андрея Боголюбского»",
+    "description": "В гимназии состоялось торжественное награждение победителей и участников творческого фестиваля.",
+    "content": "<p>В гимназии состоялось торжественное награждение победителей и призёров фестиваля «Шатёр Андрея Боголюбского». Гимназисты представили сценические зарисовки, хоровые композиции и художественные работы.</p>",
+    "category": "creativity",
+    "date": "15 мая 2026",
+    "image": "assets/images/news/award-festival.webp",
+    "images": [
+      "assets/images/news/award-festival.webp"
+    ]
   }
 ];
+
+function normalizeNewsCategory(item) {
+	if (!item) return "education";
+	const id = Number(item.id);
+	const title = String(item.title || "").toLowerCase();
+	const cat = String(item.category || "").toLowerCase();
+
+	if (id === 11 || id === 5 || title.includes("духовник") || title.includes("литурги") || title.includes("сергия радонежского") || title.includes("храм") || title.includes("чин прощения") || title.includes("память святит") || title.includes("молебен")) {
+		return "spiritual";
+	}
+	if (id === 6 || id === 1 || title.includes("сретенском бульваре") || title.includes("театр") || title.includes("хор") || title.includes("фестивал") || title.includes("чтецов") || title.includes("гостиная")) {
+		return "creativity";
+	}
+	if (id === 2 || title.includes("лагерь") || title.includes("практика") || title.includes("субботник")) {
+		return "camp";
+	}
+	if (cat && ["education", "spiritual", "creativity", "holidays", "pilgrimage", "sport", "camp"].includes(cat)) {
+		return cat;
+	}
+	return "education";
+}
 
 async function loadNews() {
 	try {
@@ -366,15 +411,23 @@ async function loadNews() {
 			throw new Error(`Ошибка сервера: ${response.status}`);
 		}
 		news = await response.json();
+		news.forEach(item => {
+			item.category = normalizeNewsCategory(item);
+		});
 		console.log("Новости загружены:", news);
 		updateNews();
 		animateInitialNews();
+		handleNewsScrollReturn();
 	} catch (error) {
 		console.warn("Backend API недоступен, загружаем новости из встроенной базы данных:", error);
 		useLocalAssets = true;
 		news = FALLBACK_NEWS;
+		news.forEach(item => {
+			item.category = normalizeNewsCategory(item);
+		});
 		updateNews();
 		animateInitialNews();
+		handleNewsScrollReturn();
 	}
 }
 
@@ -389,6 +442,7 @@ function createNewsCard(item) {
 	return `
 		<article
 			class="sub-news-card"
+			id="news-${item.id}"
 			data-category="${item.category}"
 			data-id="${item.id}"
 		>
@@ -462,14 +516,23 @@ function getCategoryName(category) {
 		education:
 			"Учебная жизнь",
 
+		spiritual:
+			"Духовная жизнь",
+
+		creativity:
+			"Творчество и театр",
+
 		holidays:
-			"Праздники",
+			"Традиции и праздники",
 
 		pilgrimage:
-			"Паломничество",
+			"Паломничество и экскурсии",
 
 		sport:
-			"Спорт и ВПК"
+			"Спорт и ВПК",
+
+		camp:
+			"Лагерь и практика"
 
 	};
 
@@ -495,6 +558,9 @@ function updateFeaturedNews(item) {
 
 	featuredNews.style.display =
 		"";
+
+	featuredNews.id = `news-${item.id}`;
+	featuredNews.dataset.id = String(item.id);
 
 
 	featuredImage.src =
@@ -866,11 +932,23 @@ function animateFilteredNews() {
 // Переход к новости по клику на любую область карточки
 // ========================================
 
+// Фиксируем ID просматриваемой новости при любом клике на карточку или ссылку внутри неё
+document.addEventListener("click", (e) => {
+	const card = e.target.closest(".sub-news-card, .featured-news");
+	if (card && card.dataset.id) {
+		sessionStorage.setItem("return_to_news_id", String(card.dataset.id));
+	}
+}, { capture: true });
+
 function handleCardNavigation(card, e) {
 	// Если пользователь выделяет текст — не переходим (чтобы можно было скопировать текст)
 	const selection = window.getSelection();
 	if (selection && selection.toString().trim().length > 0) {
 		return;
+	}
+
+	if (card.dataset.id) {
+		sessionStorage.setItem("return_to_news_id", String(card.dataset.id));
 	}
 
 	// Если клик пришёлся непосредственно по ссылке <a>, браузер перейдёт нативно
@@ -947,8 +1025,393 @@ if (featuredNews) {
 
 
 // ========================================
+// Возврат к новости при переходе со страницы новостей
+// ========================================
+
+function handleNewsScrollReturn() {
+	let returnId = sessionStorage.getItem("return_to_news_id");
+	const hash = window.location.hash;
+
+	if (!returnId && hash && hash.startsWith("#news-")) {
+		returnId = hash.replace("#news-", "");
+	}
+
+	sessionStorage.removeItem("return_to_news_id");
+
+	let targetElement = null;
+
+	if (returnId) {
+		const targetId = Number(returnId);
+		if (!isNaN(targetId)) {
+			// Если новость находится дальше visibleCards, разворачиваем список
+			const filteredNews = news.filter(item => selectedCategory === "all" || item.category === selectedCategory);
+			const itemIndex = filteredNews.findIndex(item => item.id === targetId);
+			if (itemIndex > 0 && itemIndex >= visibleCards) {
+				visibleCards = Math.ceil((itemIndex + 1) / 3) * 3;
+				updateNews();
+			}
+			targetElement = document.getElementById(`news-${targetId}`);
+		}
+	}
+
+	if (!targetElement && hash) {
+		try {
+			targetElement = document.querySelector(hash);
+		} catch (e) {
+			targetElement = null;
+		}
+	}
+
+	if (targetElement) {
+		setTimeout(() => {
+			targetElement.scrollIntoView({
+				behavior: "smooth",
+				block: "center"
+			});
+
+			targetElement.classList.add("news-card--highlighted");
+			setTimeout(() => {
+				targetElement.classList.remove("news-card--highlighted");
+			}, 2200);
+		}, 180);
+	}
+}
+
+// Восстановление позиции при возврате через bfcache браузера
+window.addEventListener("pageshow", (event) => {
+	const returnId = sessionStorage.getItem("return_to_news_id");
+	if (returnId) {
+		sessionStorage.removeItem("return_to_news_id");
+		const targetElement = document.getElementById(`news-${returnId}`);
+		if (targetElement) {
+			setTimeout(() => {
+				targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
+				targetElement.classList.add("news-card--highlighted");
+				setTimeout(() => targetElement.classList.remove("news-card--highlighted"), 2200);
+			}, 100);
+		}
+	}
+});
+
+// ========================================
 // Запуск
 // ========================================
 
 loadNews();
+
+// ========================================
+// Интерактивная галерея студии «Встреча»
+// ========================================
+function initTheatreGallery() {
+	const thumbs = document.querySelectorAll(".theatre-gallery__thumb");
+	const mainImg = document.getElementById("theatre-main-img");
+	const caption = document.getElementById("theatre-main-caption");
+	if (!thumbs.length || !mainImg || !caption) return;
+
+	thumbs.forEach((thumb) => {
+		thumb.addEventListener("click", () => {
+			if (thumb.classList.contains("active")) return;
+			thumbs.forEach((t) => t.classList.remove("active"));
+			thumb.classList.add("active");
+
+			const nextSrc = thumb.getAttribute("data-src");
+			const nextCaption = thumb.getAttribute("data-caption");
+
+			mainImg.style.opacity = "0.4";
+			setTimeout(() => {
+				mainImg.src = nextSrc;
+				mainImg.alt = nextCaption || "";
+				caption.textContent = nextCaption || "";
+				mainImg.style.opacity = "1";
+			}, 130);
+		});
+	});
+}
+
+initTheatreGallery();
+
+
+// ========================================
+// Медиа-архив газеты «Доброе слово» и просмотрщик PDF
+// ========================================
+function initNewspaperArchive() {
+	const tabs = document.querySelectorAll(".newspaper-tab");
+	const cards = Array.from(document.querySelectorAll(".newspaper-card"));
+	const countIndicator = document.getElementById("newspaper-visible-count");
+	const loadMoreWrap = document.getElementById("newspaper-load-more-wrap");
+	const loadMoreBtn = document.getElementById("newspaper-load-more-btn");
+	const loadMoreText = document.getElementById("newspaper-load-more-text");
+
+	const modal = document.getElementById("newspaper-modal");
+	const backdrop = document.getElementById("newspaper-modal-backdrop");
+	const closeBtn = document.getElementById("newspaper-modal-close");
+	const iframe = document.getElementById("newspaper-modal-iframe");
+	const titleEl = document.getElementById("newspaper-modal-title");
+	const openNewBtn = document.getElementById("newspaper-modal-open-new");
+	const downloadBtn = document.getElementById("newspaper-modal-download");
+
+	const BATCH_SIZE = 4;
+	let currentLimit = BATCH_SIZE;
+	let activeYear = "all";
+
+	// Функция обновления отображения карточек по активному фильтру и лимиту
+	function updateDisplay(isLoadMoreClick) {
+		const matchingCards = cards.filter((card) => {
+			const cardYear = card.getAttribute("data-year");
+			return activeYear === "all" || cardYear === activeYear;
+		});
+
+		const totalMatching = matchingCards.length;
+
+		// Скрываем все карточки, не относящиеся к текущему году
+		cards.forEach((card) => {
+			const cardYear = card.getAttribute("data-year");
+			if (activeYear !== "all" && cardYear !== activeYear) {
+				card.style.display = "none";
+				card.classList.add("newspaper-card--hidden");
+				card.classList.remove("newspaper-card--revealed");
+			}
+		});
+
+		// Отображаем подходящие карточки порциями
+		matchingCards.forEach((card, index) => {
+			if (index < currentLimit) {
+				const wasHidden = card.classList.contains("newspaper-card--hidden") || card.style.display === "none";
+				card.style.display = "";
+				card.classList.remove("newspaper-card--hidden");
+				if (wasHidden && isLoadMoreClick) {
+					card.classList.add("newspaper-card--revealed");
+				}
+			} else {
+				card.style.display = "none";
+				card.classList.add("newspaper-card--hidden");
+				card.classList.remove("newspaper-card--revealed");
+			}
+		});
+
+		const currentlyVisible = Math.min(currentLimit, totalMatching);
+
+		// Обновляем счетчик
+		if (countIndicator) {
+			countIndicator.textContent = `${currentlyVisible} из ${totalMatching}`;
+		}
+
+		// Управление кнопкой «Показать ещё»
+		if (loadMoreWrap && loadMoreBtn) {
+			if (currentLimit < totalMatching) {
+				loadMoreWrap.style.display = "flex";
+				loadMoreBtn.style.display = "inline-flex";
+				const remaining = totalMatching - currentLimit;
+				const nextBatch = Math.min(BATCH_SIZE, remaining);
+				if (loadMoreText) {
+					loadMoreText.textContent = `Показать ещё выпуски (+${nextBatch})`;
+				}
+			} else {
+				loadMoreWrap.style.display = "none";
+			}
+		}
+	}
+
+	// 1. Фильтрация архива по вкладкам-годам
+	if (tabs.length) {
+		tabs.forEach((tab) => {
+			tab.addEventListener("click", () => {
+				activeYear = tab.getAttribute("data-year") || "all";
+				tabs.forEach((t) => t.classList.remove("active"));
+				tab.classList.add("active");
+
+				// Сбрасываем лимит к начальным 4 выпускам при смене года
+				currentLimit = BATCH_SIZE;
+				updateDisplay(false);
+			});
+		});
+	}
+
+	// 2. Клик по кнопке «Показать ещё (+4)»
+	if (loadMoreBtn) {
+		loadMoreBtn.addEventListener("click", () => {
+			currentLimit += BATCH_SIZE;
+			updateDisplay(true);
+		});
+	}
+
+	// Инициализируем стартовое состояние (показываем ровно первые 4 выпуска)
+	updateDisplay(false);
+
+	// 3. Открытие просмотрщика PDF
+	function openPdf(pdfUrl, title) {
+		if (!pdfUrl) return;
+
+		// Проверяем протокол: если сайт открыт напрямую через file://
+		// современные браузеры блокируют локальные PDF во фрейме iframe.
+		// В этом случае открываем PDF напрямую в новой вкладке встроенного ридера:
+		const isFileProtocol = window.location.protocol === "file:";
+
+		if (isFileProtocol || !modal || !iframe) {
+			window.open(pdfUrl, "_blank");
+			return;
+		}
+
+		// На веб-сервере (http / https) открываем интерактивный модальный просмотрщик
+		if (titleEl) titleEl.textContent = title || "Просмотр газеты";
+		if (openNewBtn) openNewBtn.href = pdfUrl;
+		if (downloadBtn) {
+			downloadBtn.href = pdfUrl;
+			const fname = pdfUrl.split("/").pop();
+			if (fname) downloadBtn.setAttribute("download", decodeURIComponent(fname));
+		}
+
+		iframe.src = pdfUrl;
+		modal.style.display = "flex";
+		modal.setAttribute("aria-hidden", "false");
+		document.body.style.overflow = "hidden";
+	}
+
+	function closePdfModal() {
+		if (!modal) return;
+		modal.style.display = "none";
+		modal.setAttribute("aria-hidden", "true");
+		if (iframe) iframe.src = "";
+		document.body.style.overflow = "";
+	}
+
+	// Делегирование кликов по кнопкам чтения
+	document.addEventListener("click", (e) => {
+		const readBtn = e.target.closest(".btn-read-pdf, .btn-read-issue");
+		if (readBtn) {
+			const pdfUrl = readBtn.getAttribute("data-pdf") || readBtn.getAttribute("href");
+			const title = readBtn.getAttribute("data-title");
+			if (pdfUrl) {
+				if (window.location.protocol !== "file:") {
+					e.preventDefault();
+					openPdf(pdfUrl, title);
+				}
+			}
+		}
+	});
+
+	if (closeBtn) closeBtn.addEventListener("click", closePdfModal);
+	if (backdrop) backdrop.addEventListener("click", closePdfModal);
+
+	// Закрытие по Escape
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && modal && modal.style.display === "flex") {
+			closePdfModal();
+		}
+	});
+}
+
+initNewspaperArchive();
+
+
+// ========================================
+// Интерактивные смены пришкольного лагеря
+// ========================================
+async function initCampShifts() {
+	const pillsContainer = document.getElementById("camp-shifts-pills");
+	const activeDetails = document.getElementById("camp-active-details");
+	const activeTitle = document.getElementById("camp-active-title");
+	const activeDates = document.getElementById("camp-active-dates");
+	const activeDesc = document.getElementById("camp-active-desc");
+	const albumBtn = document.getElementById("camp-active-album-btn");
+	const albumBtnText = document.getElementById("camp-album-btn-text");
+	const mediaImg = document.getElementById("camp-media-img");
+	const mediaCaption = document.getElementById("camp-media-caption");
+
+	if (!pillsContainer) return;
+
+	try {
+		const res = await fetch(`${window.API_BASE_URL || ""}/api/life/camp-shifts`);
+		if (!res.ok) return;
+		const shifts = await res.json();
+		if (!Array.isArray(shifts) || !shifts.length) return;
+
+		pillsContainer.innerHTML = "";
+
+		shifts.forEach((shift, index) => {
+			const btn = document.createElement("button");
+			btn.type = "button";
+			btn.className = `camp-shift-pill ${index === 0 ? "active" : ""}`;
+			btn.setAttribute("data-year", shift.year);
+
+			let badgeText = "";
+			if (shift.status === "upcoming") badgeText = "Запись";
+			else if (shift.vk_album_url) badgeText = "Альбом";
+
+			btn.innerHTML = `<span>${shift.year} год</span>${badgeText ? `<span class="camp-shift-pill__badge">${badgeText}</span>` : ""}`;
+
+			btn.addEventListener("click", () => {
+				pillsContainer.querySelectorAll(".camp-shift-pill").forEach((p) => p.classList.remove("active"));
+				btn.classList.add("active");
+				renderShiftDetails(shift);
+			});
+
+			pillsContainer.appendChild(btn);
+		});
+
+		function renderShiftDetails(shift) {
+			if (activeDetails) {
+				activeDetails.style.display = "block";
+				if (activeTitle) activeTitle.textContent = shift.title || `Летняя смена ${shift.year} года`;
+				if (activeDates) activeDates.textContent = shift.dates ? `📅 Сроки проведения: ${shift.dates}` : "";
+				if (activeDesc) activeDesc.textContent = shift.description || "";
+			}
+			if (albumBtn) {
+				if (shift.vk_album_url) {
+					albumBtn.href = shift.vk_album_url;
+					albumBtn.style.display = "inline-flex";
+					if (albumBtnText) albumBtnText.textContent = `Фотоальбом смены ${shift.year} года в VK`;
+				} else {
+					albumBtn.href = "https://vk.com/album-178231686_295083175";
+					if (albumBtnText) albumBtnText.textContent = `Фотоальбом лагеря в VK (${shift.year} г.)`;
+				}
+			}
+			if (mediaImg && shift.photo_url) {
+				mediaImg.src = shift.photo_url;
+			}
+			if (mediaCaption) {
+				mediaCaption.textContent = shift.title || `Летний отдых воспитанников гимназии (${shift.year} г.)`;
+			}
+		}
+
+		// Выбираем первую (самую актуальную) смену
+		renderShiftDetails(shifts[0]);
+	} catch (e) {
+		// Оффлайн фоллбэк: оставляем статическую разметку
+	}
+}
+
+initCampShifts();
+
+
+// ========================================
+// Динамическая подгрузка репертуара театра
+// ========================================
+async function initTheatreRepertoire() {
+	const list = document.getElementById("theatre-plays-list");
+	if (!list) return;
+
+	try {
+		const res = await fetch(`${window.API_BASE_URL || ""}/api/life/theatre-plays`);
+		if (!res.ok) return;
+		const plays = await res.json();
+		if (!Array.isArray(plays) || !plays.length) return;
+
+		list.innerHTML = "";
+		plays.forEach((play) => {
+			const span = document.createElement("span");
+			span.className = "theatre-play-pill";
+			span.textContent = `🎭 ${play.title}${play.year ? ` (${play.year})` : ""}`;
+			if (play.awards) {
+				span.title = play.awards;
+			}
+			list.appendChild(span);
+		});
+	} catch (e) {
+		// Оффлайн фоллбэк: остаются статические постановки
+	}
+}
+
+initTheatreRepertoire();
+
 })();

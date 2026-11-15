@@ -9,7 +9,7 @@
 
 	<title>Админ-панель | Православная гимназия</title>
 
-	<link rel="stylesheet" href="admin.css">
+	<link rel="stylesheet" href="admin.css?v=1.2">
 
 </head>
 
@@ -55,6 +55,11 @@
 
 			<button type="button" class="admin-tab admin-tab--active" data-admin-tab="news">
 				Новости
+			</button>
+
+			<button type="button" class="admin-tab" data-admin-tab="gym_life">
+				Жизнь гимназии
+				<span class="admin-tab__count" id="gym-life-tab-count">0</span>
 			</button>
 
 			<button type="button" class="admin-tab" data-admin-tab="teachers">
@@ -399,6 +404,81 @@
 
 		</section>
 
+
+		<!-- ========================================
+		     РАЗДЕЛ: ЖИЗНЬ ГИМНАЗИИ (ГАЗЕТА, ТЕАТР, ЛАГЕРЬ)
+		     ======================================== -->
+		<section class="admin-section" id="gym-life-section" hidden>
+
+			<section class="admin-toolbar">
+				<div>
+					<h2>Жизнь гимназии</h2>
+					<p>Управление школьной газетой «Доброе слово», театром «Встреча» и сменами пришкольного лагеря</p>
+				</div>
+			</section>
+
+			<!-- Навигация по подвкладкам раздела -->
+			<div class="gym-life-tabs" role="tablist" aria-label="Вкладки жизни гимназии">
+				<button type="button" class="gym-life-tab gym-life-tab--active" data-life-subtab="newspapers">
+					📰 Школьная газета (<span id="life-newspapers-count">0</span>)
+				</button>
+				<button type="button" class="gym-life-tab" data-life-subtab="theatre">
+					🎭 Театр «Встреча» (<span id="life-theatre-count">0</span>)
+				</button>
+				<button type="button" class="gym-life-tab" data-life-subtab="camp">
+					☀️ Летний лагерь (<span id="life-camp-count">0</span>)
+				</button>
+			</div>
+
+			<!-- 1. Подсекция: Газета «Доброе слово» -->
+			<div class="gym-life-subtab-pane" id="life-subtab-newspapers">
+				<div class="admin-toolbar-sub">
+					<div class="gym-life-filter-bar">
+						<label class="gym-life-filter-label" for="admin-newspaper-year-filter">Год выпуска:</label>
+						<select id="admin-newspaper-year-filter" class="admin-select admin-select--compact">
+							<option value="all">Все годы</option>
+						</select>
+					</div>
+					<button type="button" class="admin-button admin-button--primary" id="create-newspaper-button">
+						+ Добавить выпуск газеты
+					</button>
+				</div>
+
+				<div class="admin-cards-container" id="admin-newspapers-list">
+					<div class="admin-loading">Загрузка архива газет...</div>
+				</div>
+			</div>
+
+			<!-- 2. Подсекция: Театральная студия «Встреча» -->
+			<div class="gym-life-subtab-pane" id="life-subtab-theatre" hidden>
+				<div class="admin-toolbar-sub">
+					<p class="gym-life-sub-desc">Репертуар спектаклей, награды и видеозаписи постановок студии</p>
+					<button type="button" class="admin-button admin-button--primary" id="create-theatre-button">
+						+ Добавить постановку
+					</button>
+				</div>
+
+				<div class="admin-cards-container" id="admin-theatre-list">
+					<div class="admin-loading">Загрузка спектаклей...</div>
+				</div>
+			</div>
+
+			<!-- 3. Подсекция: Летний пришкольный лагерь -->
+			<div class="gym-life-subtab-pane" id="life-subtab-camp" hidden>
+				<div class="admin-toolbar-sub">
+					<p class="gym-life-sub-desc">Ежегодные оздоровительные смены, даты проведения и ссылки на фотоальбомы</p>
+					<button type="button" class="admin-button admin-button--primary" id="create-camp-button">
+						+ Добавить смену лагеря
+					</button>
+				</div>
+
+				<div class="admin-cards-container" id="admin-camp-list">
+					<div class="admin-loading">Загрузка смен лагеря...</div>
+				</div>
+			</div>
+
+		</section>
+
 	</main>
 
 
@@ -472,23 +552,13 @@
 						</span>
 
 						<select id="news-category" required>
-
-							<option value="education">
-								Учебная жизнь
-							</option>
-
-							<option value="holidays">
-								Праздники
-							</option>
-
-							<option value="pilgrimage">
-								Паломничество
-							</option>
-
-							<option value="sport">
-								Спорт и ВПК
-							</option>
-
+							<option value="education">Учебная жизнь</option>
+							<option value="spiritual">Духовная жизнь</option>
+							<option value="creativity">Творчество и театр</option>
+							<option value="holidays">Традиции и праздники</option>
+							<option value="pilgrimage">Паломничество и экскурсии</option>
+							<option value="sport">Спорт и ВПК</option>
+							<option value="camp">Лагерь и практика</option>
 						</select>
 
 					</label>
@@ -1433,12 +1503,231 @@
 		</div>
 	</div>
 
+	<!-- МОДАЛЬНОЕ ОКНО: ВЫПУСК ГАЗЕТЫ -->
+	<div class="modal" id="admin-newspaper-modal">
+		<div class="modal__overlay"></div>
+		<div class="modal__window">
+			<div class="modal__header">
+				<div>
+					<p class="modal__label">Школьная газета «Доброе слово»</p>
+					<h2 id="admin-newspaper-modal-title">Добавление выпуска газеты</h2>
+				</div>
+				<button class="modal__close" data-close-modal="admin-newspaper-modal" type="button">×</button>
+			</div>
+
+			<form id="admin-newspaper-form">
+				<input type="hidden" id="admin-newspaper-id">
+
+				<div class="form-row">
+					<label class="form-field">
+						<span>Год выпуска *</span>
+						<input type="text" id="admin-newspaper-year" placeholder="2024" required>
+					</label>
+					<label class="form-field">
+						<span>Номер выпуска *</span>
+						<input type="text" id="admin-newspaper-number" placeholder="№ 1 (2024) или Спецвыпуск" required>
+					</label>
+				</div>
+
+				<label class="form-field">
+					<span>Заголовок выпуска *</span>
+					<input type="text" id="admin-newspaper-title" placeholder="«Доброе слово» № 1 (2024)" required>
+				</label>
+
+				<label class="form-field">
+					<span>Тема / Подзаголовок номера</span>
+					<input type="text" id="admin-newspaper-subtitle" placeholder="Например: Рождественский номер, Пасхальный выпуск...">
+				</label>
+
+				<label class="form-field">
+					<span>Краткое описание материалов выпуска</span>
+					<textarea id="admin-newspaper-desc" rows="3" placeholder="О чем выпуск: праздничные молебны, репортажи, стихи воспитанников..."></textarea>
+				</label>
+
+				<div class="form-row">
+					<label class="form-field form-field--checkbox">
+						<input type="checkbox" id="admin-newspaper-special">
+						<span>🌟 Специальный выпуск (альманах / юбилейный)</span>
+					</label>
+					<label class="form-field">
+						<span>Размер файла (необязательно)</span>
+						<input type="text" id="admin-newspaper-filesize" placeholder="Рассчитается автоматически или 2.5 МБ">
+					</label>
+				</div>
+
+				<div class="form-field">
+					<span>Прикрепить PDF файл выпуска</span>
+					<input type="file" id="admin-newspaper-file" accept=".pdf">
+					<small style="color:#666; margin-top:4px; display:block;">Поддерживаются файлы PDF до 150 МБ. При выборе файла он автоматически загрузится на сервер.</small>
+				</div>
+
+				<div class="form-field" id="admin-newspaper-current-file" style="display:none;">
+					<span style="font-size:12px; color:#555;">Текущий файл:</span>
+					<a href="#" target="_blank" id="admin-newspaper-current-link" style="color:#2563eb; font-size:13px; word-break:break-all;"></a>
+				</div>
+
+				<label class="form-field">
+					<span>Или укажите путь к существующему файлу</span>
+					<input type="text" id="admin-newspaper-fileurl" placeholder="documents/newspaper/№1-2024.pdf">
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" data-close-modal="admin-newspaper-modal">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary">Сохранить выпуск</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- МОДАЛЬНОЕ ОКНО: ПОСТАНОВКА ТЕАТРА -->
+	<div class="modal" id="admin-theatre-modal">
+		<div class="modal__overlay"></div>
+		<div class="modal__window">
+			<div class="modal__header">
+				<div>
+					<p class="modal__label">Театральная студия «Встреча»</p>
+					<h2 id="admin-theatre-modal-title">Добавление постановки театра</h2>
+				</div>
+				<button class="modal__close" data-close-modal="admin-theatre-modal" type="button">×</button>
+			</div>
+
+			<form id="admin-theatre-form">
+				<input type="hidden" id="admin-theatre-id">
+
+				<label class="form-field">
+					<span>Название спектакля / постановки *</span>
+					<input type="text" id="admin-theatre-title" placeholder="«Принцесса Кру», «Белый Ангел Москвы»..." required>
+				</label>
+
+				<div class="form-row">
+					<label class="form-field">
+						<span>Режиссер / Руководитель</span>
+						<input type="text" id="admin-theatre-director" value="Андреева М. В.">
+					</label>
+					<label class="form-field">
+						<span>Год премьеры или сезон</span>
+						<input type="text" id="admin-theatre-year" placeholder="2023">
+					</label>
+				</div>
+
+				<label class="form-field">
+					<span>Награды, звания, дипломы</span>
+					<input type="text" id="admin-theatre-awards" placeholder="Лауреат городского конкурса, Гран-при фестиваля...">
+				</label>
+
+				<label class="form-field">
+					<span>Ссылка на видеозапись спектакля</span>
+					<input type="url" id="admin-theatre-videourl" placeholder="https://vk.com/video-178231686_...">
+				</label>
+
+				<label class="form-field">
+					<span>Описание сюжета и постановки</span>
+					<textarea id="admin-theatre-desc" rows="3" placeholder="Краткое содержание пьесы, роли учащихся, смысл постановки..."></textarea>
+				</label>
+
+				<div class="form-field">
+					<span>Фотография / Афиша спектакля</span>
+					<input type="file" id="admin-theatre-photo-file" accept="image/jpeg,image/png,image/webp">
+				</div>
+
+				<div class="form-field" id="admin-theatre-current-photo" style="display:none;">
+					<span style="font-size:12px; color:#555;">Текущее фото:</span>
+					<img src="" id="admin-theatre-current-img" alt="" style="max-height:80px; border-radius:6px; display:block; margin-top:4px;">
+				</div>
+
+				<label class="form-field">
+					<span>Или прямой путь к изображению</span>
+					<input type="text" id="admin-theatre-photourl" placeholder="assets/images/clubs/theater/theater-1.webp">
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" data-close-modal="admin-theatre-modal">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary">Сохранить постановку</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- МОДАЛЬНОЕ ОКНО: СМЕНА ЛЕТНЕГО ЛАГЕРЯ -->
+	<div class="modal" id="admin-camp-modal">
+		<div class="modal__overlay"></div>
+		<div class="modal__window">
+			<div class="modal__header">
+				<div>
+					<p class="modal__label">Летний пришкольный лагерь</p>
+					<h2 id="admin-camp-modal-title">Добавление смены летнего лагеря</h2>
+				</div>
+				<button class="modal__close" data-close-modal="admin-camp-modal" type="button">×</button>
+			</div>
+
+			<form id="admin-camp-form">
+				<input type="hidden" id="admin-camp-id">
+
+				<div class="form-row">
+					<label class="form-field">
+						<span>Год смены *</span>
+						<input type="number" id="admin-camp-year" placeholder="2026" required min="2010" max="2050">
+					</label>
+					<label class="form-field">
+						<span>Статус смены</span>
+						<select id="admin-camp-status">
+							<option value="upcoming">🟢 Предстоящая смена (открыта запись)</option>
+							<option value="active">🔵 Смена идет сейчас</option>
+							<option value="completed">⚪ Смена завершена (архив)</option>
+						</select>
+					</label>
+				</div>
+
+				<label class="form-field">
+					<span>Название смены или девиз *</span>
+					<input type="text" id="admin-camp-title" placeholder="Летняя смена 2026: «Солнечный город»" required>
+				</label>
+
+				<label class="form-field">
+					<span>Сроки проведения</span>
+					<input type="text" id="admin-camp-dates" placeholder="Например: 1 июня — 21 июня 2026 г.">
+				</label>
+
+				<label class="form-field">
+					<span>Ссылка на фотоальбом в VK</span>
+					<input type="url" id="admin-camp-vkurl" placeholder="https://vk.com/album-178231686_295083175">
+				</label>
+
+				<label class="form-field">
+					<span>Описание программы и мероприятий</span>
+					<textarea id="admin-camp-desc" rows="3" placeholder="Распорядок дня, экскурсии, игры на свежем воздухе, питание..."></textarea>
+				</label>
+
+				<div class="form-field">
+					<span>Фотография / Обложка смены</span>
+					<input type="file" id="admin-camp-photo-file" accept="image/jpeg,image/png,image/webp">
+				</div>
+
+				<div class="form-field" id="admin-camp-current-photo" style="display:none;">
+					<span style="font-size:12px; color:#555;">Текущее фото:</span>
+					<img src="" id="admin-camp-current-img" alt="" style="max-height:80px; border-radius:6px; display:block; margin-top:4px;">
+				</div>
+
+				<label class="form-field">
+					<span>Или прямой путь к изображению</span>
+					<input type="text" id="admin-camp-photourl" placeholder="assets/images/clubs/camp-kids.webp">
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" data-close-modal="admin-camp-modal">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary">Сохранить смену</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
 	<script src="../js/config.js"></script>
 	<script src="admin.js"></script>
 	<script src="teachers.js"></script>
 	<script src="schedule.js"></script>
 	<script src="menu.js"></script>
 	<script src="feedback.js?v=2.2"></script>
+	<script src="gym_life.js?v=1.2"></script>
 
 </body>
 

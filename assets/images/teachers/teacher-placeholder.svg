@@ -1,0 +1,32 @@
+<svg width="300" height="360" viewBox="0 0 300 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="avatarBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="avatarSilhouette" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8"/>
+      <stop offset="100%" stop-color="#64748B"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Фон портрета -->
+  <rect width="300" height="360" fill="url(#avatarBg)"/>
+  
+  <!-- Деликатный внутренний контур -->
+  <rect x="12" y="12" width="276" height="336" rx="8" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 4"/>
+  
+  <!-- Голова -->
+  <circle cx="150" cy="130" r="52" fill="url(#avatarSilhouette)"/>
+  
+  <!-- Плечи и корпус в академическом костюме -->
+  <path d="M70 320 C70 235 105 200 150 200 C195 200 230 235 230 320 Z" fill="url(#avatarSilhouette)"/>
+  
+  <!-- Воротничок рубашки (белый акцент) -->
+  <polygon points="150,232 136,202 164,202" fill="#FFFFFF"/>
+  <polygon points="150,240 144,202 156,202" fill="#E2E8F0"/>
+  
+  <!-- Лаконичная академическая эмблема внизу -->
+  <circle cx="150" cy="300" r="16" fill="#FFFFFF" fill-opacity="0.8" stroke="#94A3B8" stroke-width="1.5"/>
+  <path d="M144 300 H156 M150 294 V306" stroke="#2563EB" stroke-width="2" stroke-linecap="round"/>
+</svg>

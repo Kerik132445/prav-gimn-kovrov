@@ -1,5 +1,5 @@
 from datetime import datetime, timezone, timedelta
-from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, DateTime, UniqueConstraint, Boolean
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -324,4 +324,94 @@ class FeedbackMessage(Base):
         default=lambda: datetime.now(MSK_TIMEZONE).replace(tzinfo=None),
         index=True,
     )
+
+
+class NewspaperIssue(Base):
+
+    __tablename__ = "newspaper_issues"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    year = Column(String(16), nullable=False, index=True)
+
+    number = Column(String(64), nullable=False)
+
+    title = Column(String(255), nullable=False)
+
+    subtitle = Column(String(255), nullable=True)
+
+    description = Column(Text, nullable=True)
+
+    file_url = Column(String(255), nullable=False)
+
+    file_size = Column(String(64), nullable=True)
+
+    is_special = Column(Boolean, nullable=False, default=False, index=True)
+
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
+
+class TheatrePlay(Base):
+
+    __tablename__ = "theatre_plays"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    title = Column(String(255), nullable=False)
+
+    author_or_director = Column(String(255), nullable=True)
+
+    year = Column(String(64), nullable=True)
+
+    awards = Column(String(255), nullable=True)
+
+    description = Column(Text, nullable=True)
+
+    video_url = Column(String(255), nullable=True)
+
+    photo_url = Column(String(255), nullable=True)
+
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
+
+class CampShift(Base):
+
+    __tablename__ = "camp_shifts"
+
+    id = Column(Integer, primary_key=True, index=True)
+
+    year = Column(Integer, nullable=False, index=True)
+
+    title = Column(String(255), nullable=False)
+
+    dates = Column(String(100), nullable=True)
+
+    vk_album_url = Column(String(255), nullable=True)
+
+    description = Column(Text, nullable=True)
+
+    photo_url = Column(String(255), nullable=True)
+
+    status = Column(String(32), nullable=False, default="completed", index=True)
+
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
 

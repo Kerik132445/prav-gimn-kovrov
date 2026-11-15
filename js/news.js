@@ -105,11 +105,17 @@ function getCategoryName(category) {
 
 		education: "Учебная жизнь",
 
-		holidays: "Праздники",
+		spiritual: "Духовная жизнь",
 
-		pilgrimage: "Паломничество",
+		creativity: "Творчество и театр",
 
-		sport: "Спорт и ВПК"
+		holidays: "Традиции и праздники",
+
+		pilgrimage: "Паломничество и экскурсии",
+
+		sport: "Спорт и ВПК",
+
+		camp: "Лагерь и практика"
 
 	};
 
@@ -166,7 +172,7 @@ const FALLBACK_NEWS = [
     "title": "Встреча друзей на Сретенском бульваре",
     "description": "Традиционная творческая гостиная под названием «Встреча друзей на Сретенском бульваре»",
     "content": "<p>4 октября в гимназии прошла традиционная творческая гостиная под названием «Встреча друзей на Сретенском бульваре». Тёплая, уютная обстановка, караоке и песни под гитару, осенние мультики и вкусный травяной чай, приобретённый на благотворительной ярмарке и теперь согревший друзей - в актовом зале собрались не просто ученики и педагоги, а большая дружная семья.<br>Неожиданным подарком для всех стало потрясающее исполнение романса духовником нашей гимназии о. Иоанном под аккомпанемент матушки Анны.<br>Творческий вечер стал не просто мероприятием, а настоящим праздником общения, тепла и взаимной благодарности.</p><p>\"Дорогие ребята!</p><div>Зрители и гости до сих пор под огромным впечатлением от вчерашней Творческой гостиной! Прошёл уже целый день, а эмоции не утихают — этот вечер по-прежнему живёт в сердце.&nbsp;</div><div>Вы не просто выступили — вы создали настоящее чудо. Было видно, сколько души, сил и старания вы вложили в каждую минуту. Каждый жест, каждое слово, каждая пауза — всё было наполнено смыслом и искренностью.</div><div>Спасибо вам за ваш талант, за смелость и за те глубокие эмоции, которые вы подарили нам. Именно благодаря таким моментам по-настоящему понимаешь, что значит слово «любовь».&nbsp;</div><div>От всей души благодарим всех участников и организаторов!\"</div><div><br></div><a href=\"https://vkvideo.ru/video-178231686_456239712\">ПОСТ В ВК</a>",
-    "category": "education",
+    "category": "creativity",
     "date": "4 октября 2026",
     "image": "/uploads/news/0cc93002-c759-4b36-bdd4-9db6f2b7c881.jpg",
     "images": [
@@ -179,7 +185,7 @@ const FALLBACK_NEWS = [
     "title": "Память прп. Сергия Радонежского",
     "description": "Небесный покровитель третьеклассников",
     "content": "<p>Небесный покровитель третьеклассников</p><div>8 сентября, в день памяти преподобного Сергия Радонежского, в гимназическом храме для учащихся 3 класса прошла Божественная литургия.</div><div>Этот день для ребят особенный: преподобный Сергий Радонежский — их небесный покровитель. Именно ему они доверяют свои молитвы, у него просят помощи в учёбе и добрых делах.</div><div>К сожалению, не все третьеклассники смогли прийти в храм: у ребят каникулы, и многие уехали из города. Но, несмотря на это, праздник состоялся — тёплый, светлый и по-настоящему объединяющий.</div><div>Такие моменты напоминают: даже в разгар каникул есть место для главного — для молитвы, встречи с Богом и памяти о своём небесном заступнике.</div>",
-    "category": "pilgrimage",
+    "category": "spiritual",
     "date": "8 сентября 2026 год",
     "image": "/uploads/news/4cdfebd5-ddb0-4132-80db-9eb6f6af56e5.jpg",
     "images": [
@@ -204,12 +210,36 @@ const FALLBACK_NEWS = [
     "title": "Наши спортивные перемены",
     "description": "На переменах гимназисты любят размяться и поиграть в веселые игры.",
     "content": "На уроках ребята устают сидеть за партой. Поэтому на переменках гимназисты любят размяться и поиграть в спортивные веселые игры. А учителя и руководство всячески это поддерживают.",
-    "category": "education",
+    "category": "sport",
     "date": "19 сентября",
     "image": "/uploads/news/75c060d9-c29e-4055-992d-02ca360c8897.jpg",
     "images": [
       "/uploads/news/420541f1-a844-457a-bd95-854b5c9dc784.jpg",
       "/uploads/news/75c060d9-c29e-4055-992d-02ca360c8897.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Летний лагерь в Троицко-Никольском",
+    "description": "8 июня стартовал летний лагерь «Оркестр» при Свято-Никольском храме.",
+    "content": "<p>Летний лагерь — это время радости, открытий и крепкой дружбы. Ребята участвуют в творческих мастерских, походах, спортивных играх и совместных молитвах на свежем воздухе.</p>",
+    "category": "camp",
+    "date": "8 июня 2026",
+    "image": "assets/images/news/troickoe-camp.webp",
+    "images": [
+      "assets/images/news/troickoe-camp.webp"
+    ]
+  },
+  {
+    "id": 1,
+    "title": "Награждение победителей фестиваля «Шатёр Андрея Боголюбского»",
+    "description": "В гимназии состоялось торжественное награждение победителей и участников творческого фестиваля.",
+    "content": "<p>В гимназии состоялось торжественное награждение победителей и призёров фестиваля «Шатёр Андрея Боголюбского». Гимназисты представили сценические зарисовки, хоровые композиции и художественные работы.</p>",
+    "category": "creativity",
+    "date": "15 мая 2026",
+    "image": "assets/images/news/award-festival.webp",
+    "images": [
+      "assets/images/news/award-festival.webp"
     ]
   }
 ];
@@ -322,10 +352,35 @@ function showNewsNotFound() {
 // Отображение новости
 // ========================================
 
+function normalizeNewsCategory(item) {
+	if (!item) return "education";
+	const id = Number(item.id);
+	const title = String(item.title || "").toLowerCase();
+	const cat = String(item.category || "").toLowerCase();
+
+	if (id === 11 || id === 5 || title.includes("духовник") || title.includes("литурги") || title.includes("сергия радонежского") || title.includes("храм") || title.includes("чин прощения") || title.includes("память святит") || title.includes("молебен")) {
+		return "spiritual";
+	}
+	if (id === 6 || id === 1 || title.includes("сретенском бульваре") || title.includes("театр") || title.includes("хор") || title.includes("фестивал") || title.includes("чтецов") || title.includes("гостиная")) {
+		return "creativity";
+	}
+	if (id === 2 || title.includes("лагерь") || title.includes("практика") || title.includes("субботник")) {
+		return "camp";
+	}
+	if (cat && ["education", "spiritual", "creativity", "holidays", "pilgrimage", "sport", "camp"].includes(cat)) {
+		return cat;
+	}
+	return "education";
+}
+
 function displayNews(currentNews) {
+
+	currentNews.category = normalizeNewsCategory(currentNews);
 
 	document.title =
 		`${currentNews.title} | Православная гимназия г. Коврова`;
+
+	setupBackNavigation(currentNews.id);
 
 
 	// ----------------------------------------
@@ -795,6 +850,41 @@ function displayNews(currentNews) {
 
 }
 
+
+// ========================================
+// Навигация назад к списку новостей
+// ========================================
+
+function setupBackNavigation(currentId) {
+	const activeId = currentId || newsId;
+	const backLinks = document.querySelectorAll(".news-page__back, .breadcrumbs a[href*='life.html']");
+	const targetHash = activeId ? `#news-${activeId}` : "#news";
+	const targetHref = `life.html${targetHash}`;
+
+	backLinks.forEach(link => {
+		link.setAttribute("href", targetHref);
+
+		if (link.dataset.backHandlerInit) {
+			return;
+		}
+		link.dataset.backHandlerInit = "1";
+
+		link.addEventListener("click", (e) => {
+			if (activeId) {
+				sessionStorage.setItem("return_to_news_id", String(activeId));
+			}
+
+			// Если пользователь пришёл с life.html — history.back() сохранит точный скролл и фильтры
+			if (document.referrer && document.referrer.includes("life.html")) {
+				e.preventDefault();
+				window.history.back();
+			}
+		});
+	});
+}
+
+// Первичная инициализация ссылок возврата
+setupBackNavigation(newsId);
 
 // ========================================
 // Запускаем загрузку
