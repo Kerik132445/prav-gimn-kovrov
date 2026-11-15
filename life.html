@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="ru">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Жизнь Гимназии</title>
-<link href="./css/style.css" rel="stylesheet"/>
+<link href="./css/style.css?v=2.4" rel="stylesheet"/>
 	<link rel="stylesheet" href="css/bvi.css">
 </head>
 <body>
@@ -162,14 +162,16 @@
 <!-- Главная новость -->
 <article class="news-grid__featured featured-news">
 <div class="featured-news__img-wrap">
+<a href="#" id="featured-news-img-link" class="featured-news__img-link" tabindex="-1" aria-hidden="true">
 <img alt="" class="featured-news__img" id="featured-news-image" src=""/>
+</a>
 </div>
 <div class="featured-news__content">
 <div class="featured-news__meta meta-group">
 <span class="meta-group__tag" id="featured-news-category"></span>
 <time class="featured-news__date" id="featured-news-date"></time>
 </div>
-<h2 class="featured-news__title" id="featured-news-title"></h2>
+<h2 class="featured-news__title"><a href="#" id="featured-news-title"></a></h2>
 <p class="featured-news__excerpt" id="featured-news-description"></p>
 <a class="featured-news__more-link link-with-arrow" href="#" id="featured-news-link">
 							Читать далее
@@ -440,7 +442,7 @@
 			</div>
 		</footer>
 <script src="js/config.js"></script>
-<script src="js/feedback.js?v=2.2"></script>
+<script src="js/feedback.js?v=2.3"></script>
 <script src="js/window.scrollY.js"></script>
 <script src="./js/life.js"></script>
 <script src="js/navigation.js"></script>

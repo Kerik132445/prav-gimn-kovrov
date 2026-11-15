@@ -384,14 +384,16 @@ async function loadNews() {
 // ========================================
 
 function createNewsCard(item) {
+	const newsUrl = `news.html?id=${item.id}`;
 
 	return `
 		<article
 			class="sub-news-card"
 			data-category="${item.category}"
+			data-id="${item.id}"
 		>
 
-			<div class="sub-news-card__img-wrap">
+			<a href="${newsUrl}" class="sub-news-card__img-wrap" tabindex="-1" aria-hidden="true">
 
 				<img
 					src="${getImageUrl(item.image)}"
@@ -401,7 +403,7 @@ function createNewsCard(item) {
 					decoding="async"
 				>
 
-			</div>
+			</a>
 
 
 			<div class="sub-news-card__content">
@@ -423,7 +425,7 @@ function createNewsCard(item) {
 
 				<h3 class="sub-news-card__title">
 
-					<a href="news.html?id=${item.id}">
+					<a href="${newsUrl}">
 						${item.title}
 					</a>
 
@@ -436,7 +438,7 @@ function createNewsCard(item) {
 
 
 				<a
-					href="news.html?id=${item.id}"
+					href="${newsUrl}"
 					class="sub-news-card__more-link link-with-arrow"
 				>
 					Читать далее
@@ -516,6 +518,10 @@ function updateFeaturedNews(item) {
 	featuredTitle.textContent =
 		item.title;
 
+	if (featuredTitle.tagName === "A") {
+		featuredTitle.href = `news.html?id=${item.id}`;
+	}
+
 
 	featuredDescription.textContent =
 		item.description;
@@ -523,6 +529,12 @@ function updateFeaturedNews(item) {
 
 	featuredLink.href =
 		`news.html?id=${item.id}`;
+
+	const featuredImgLink =
+		document.getElementById("featured-news-img-link");
+	if (featuredImgLink) {
+		featuredImgLink.href = `news.html?id=${item.id}`;
+	}
 
 
 	animateFeaturedNews();
@@ -847,6 +859,90 @@ function animateFilteredNews() {
 
 		}
 	);
+}
+
+
+// ========================================
+// Переход к новости по клику на любую область карточки
+// ========================================
+
+function handleCardNavigation(card, e) {
+	// Если пользователь выделяет текст — не переходим (чтобы можно было скопировать текст)
+	const selection = window.getSelection();
+	if (selection && selection.toString().trim().length > 0) {
+		return;
+	}
+
+	// Если клик пришёлся непосредственно по ссылке <a>, браузер перейдёт нативно
+	if (e.target.closest("a")) {
+		return;
+	}
+
+	const link = card.querySelector(".sub-news-card__more-link") || card.querySelector("a");
+	const url = link ? link.getAttribute("href") : (card.dataset.id ? `news.html?id=${card.dataset.id}` : null);
+
+	if (url && url !== "#") {
+		if (e.ctrlKey || e.metaKey || e.button === 1) {
+			window.open(url, "_blank");
+		} else {
+			window.location.href = url;
+		}
+	}
+}
+
+if (newsList) {
+	newsList.addEventListener("click", (e) => {
+		const card = e.target.closest(".sub-news-card");
+		if (card) {
+			handleCardNavigation(card, e);
+		}
+	});
+
+	newsList.addEventListener("auxclick", (e) => {
+		if (e.button !== 1) return; // Средняя кнопка мыши (колесико)
+		if (e.target.closest("a")) return;
+
+		const card = e.target.closest(".sub-news-card");
+		if (card) {
+			const link = card.querySelector(".sub-news-card__more-link") || card.querySelector("a");
+			const url = link ? link.getAttribute("href") : (card.dataset.id ? `news.html?id=${card.dataset.id}` : null);
+			if (url && url !== "#") {
+				window.open(url, "_blank");
+			}
+		}
+	});
+}
+
+if (featuredNews) {
+	featuredNews.addEventListener("click", (e) => {
+		const selection = window.getSelection();
+		if (selection && selection.toString().trim().length > 0) {
+			return;
+		}
+
+		if (e.target.closest("a")) {
+			return;
+		}
+
+		const url = featuredLink ? featuredLink.getAttribute("href") : null;
+		if (url && url !== "#") {
+			if (e.ctrlKey || e.metaKey || e.button === 1) {
+				window.open(url, "_blank");
+			} else {
+				window.location.href = url;
+			}
+		}
+	});
+
+	featuredNews.addEventListener("auxclick", (e) => {
+		if (e.button !== 1) return;
+		if (e.target.closest("a")) return;
+
+		const url = featuredLink ? featuredLink.getAttribute("href") : null;
+		if (url && url !== "#") {
+			window.open(url, "_blank");
+		}
+	});
 }
 
 

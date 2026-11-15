@@ -299,6 +299,8 @@
 		function showFieldError(input, message) {
 			if (!input) return;
 			input.classList.add("form-input--error");
+			const customTrigger = input.closest(".feedback-custom-select")?.querySelector(".feedback-custom-select__trigger");
+			if (customTrigger) customTrigger.classList.add("form-input--error");
 			const span = getErrorSpan(input);
 			if (span) {
 				span.textContent = message;
@@ -309,6 +311,8 @@
 		function clearFieldError(input) {
 			if (!input) return;
 			input.classList.remove("form-input--error");
+			const customTrigger = input.closest(".feedback-custom-select")?.querySelector(".feedback-custom-select__trigger");
+			if (customTrigger) customTrigger.classList.remove("form-input--error");
 			const span = getErrorSpan(input);
 			if (span) {
 				span.textContent = "";
@@ -338,6 +342,15 @@
 				if (span) span.style.display = "none";
 			});
 		}
+
+		form.addEventListener("reset", () => {
+			setTimeout(() => {
+				if (themeSelect) {
+					themeSelect.value = "";
+					themeSelect.dispatchEvent(new Event("change", { bubbles: true }));
+				}
+			}, 30);
+		});
 
 		function showStatus(type, message) {
 			if (!statusContainer) return;
@@ -499,6 +512,7 @@
 					if (themeSelect) {
 						themeSelect.value = "";
 						themeSelect.classList.add("select--unselected");
+						themeSelect.dispatchEvent(new Event("change", { bubbles: true }));
 					}
 					if (msgInput) msgInput.value = "";
 					if (consentCheckbox) consentCheckbox.checked = false;
@@ -574,7 +588,183 @@
 
 		updateSelectStyle();
 		selectEl.addEventListener("change", updateSelectStyle);
+
+		// Создаем или обновляем кастомный выпадающий список в синем стиле гимназии
+		setupCustomThemeSelect(selectEl);
 	}
+
+	/**
+	 * Оборачивает нативный select темы в элегантный кастомный выпадающий список
+	 * в едином синем стиле сайта гимназии.
+	 */
+	function setupCustomThemeSelect(selectEl) {
+		if (!selectEl) return;
+
+		let wrapper = selectEl.closest(".feedback-custom-select");
+		if (!wrapper) {
+			wrapper = document.createElement("div");
+			wrapper.className = "feedback-custom-select";
+			selectEl.parentNode.insertBefore(wrapper, selectEl);
+			wrapper.appendChild(selectEl);
+		}
+
+		selectEl.classList.add("feedback-select-native-hidden");
+		selectEl.tabIndex = -1;
+		selectEl.setAttribute("aria-hidden", "true");
+
+		let trigger = wrapper.querySelector(".feedback-custom-select__trigger");
+		let dropdown = wrapper.querySelector(".feedback-custom-select__dropdown");
+		if (!trigger) {
+			trigger = document.createElement("button");
+			trigger.type = "button";
+			trigger.className = "feedback-custom-select__trigger";
+			trigger.setAttribute("aria-haspopup", "listbox");
+			trigger.setAttribute("aria-expanded", "false");
+			wrapper.insertBefore(trigger, selectEl);
+		}
+		if (!dropdown) {
+			dropdown = document.createElement("div");
+			dropdown.className = "feedback-custom-select__dropdown";
+			dropdown.setAttribute("role", "listbox");
+			dropdown.tabIndex = -1;
+			wrapper.appendChild(dropdown);
+		}
+
+		function updateTriggerText() {
+			const selectedOpt = selectEl.options[selectEl.selectedIndex] || selectEl.options[0];
+			const text = selectedOpt ? selectedOpt.textContent : "Не выбрана — задам свой вопрос";
+			const valEl = trigger.querySelector(".feedback-custom-select__val");
+			if (valEl) {
+				valEl.textContent = text;
+			}
+			if (selectEl.value) {
+				trigger.classList.add("has-value");
+			} else {
+				trigger.classList.remove("has-value");
+			}
+		}
+
+		trigger.innerHTML = `
+			<span class="feedback-custom-select__val">Не выбрана — задам свой вопрос</span>
+			<span class="feedback-custom-select__arrow" aria-hidden="true">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</span>
+		`;
+
+		dropdown.innerHTML = "";
+		Array.from(selectEl.options).forEach(opt => {
+			const item = document.createElement("div");
+			item.className = "feedback-custom-select__option";
+			item.setAttribute("role", "option");
+			item.dataset.value = opt.value;
+			const isSelected = opt.value === selectEl.value;
+			item.setAttribute("aria-selected", isSelected ? "true" : "false");
+			if (isSelected) {
+				item.classList.add("feedback-custom-select__option--selected");
+			}
+			item.innerHTML = `
+				<span>${opt.textContent}</span>
+				<span class="feedback-custom-select__check" aria-hidden="true">
+					<svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</span>
+			`;
+
+			item.addEventListener("click", (e) => {
+				e.stopPropagation();
+				selectEl.value = opt.value;
+				selectEl.dispatchEvent(new Event("change", { bubbles: true }));
+				selectEl.dispatchEvent(new Event("input", { bubbles: true }));
+				closeDropdown();
+				trigger.focus();
+			});
+
+			dropdown.appendChild(item);
+		});
+
+		updateTriggerText();
+
+		function closeDropdown() {
+			wrapper.classList.remove("feedback-custom-select--open");
+			trigger.setAttribute("aria-expanded", "false");
+		}
+
+		function openDropdown() {
+			document.querySelectorAll(".feedback-custom-select--open, .rst-custom-select--open").forEach(el => {
+				if (el !== wrapper) {
+					el.classList.remove("feedback-custom-select--open", "rst-custom-select--open");
+					const b = el.querySelector(".feedback-custom-select__trigger, .rst-custom-select__trigger");
+					if (b) b.setAttribute("aria-expanded", "false");
+				}
+			});
+			wrapper.classList.add("feedback-custom-select--open");
+			trigger.setAttribute("aria-expanded", "true");
+			const sel = dropdown.querySelector(".feedback-custom-select__option--selected");
+			if (sel) sel.scrollIntoView({ block: "nearest" });
+		}
+
+		trigger.onclick = (e) => {
+			e.stopPropagation();
+			if (wrapper.classList.contains("feedback-custom-select--open")) {
+				closeDropdown();
+			} else {
+				openDropdown();
+			}
+		};
+
+		// Клавиатурная навигация
+		trigger.onkeydown = (e) => {
+			const isOpen = wrapper.classList.contains("feedback-custom-select--open");
+			const items = Array.from(dropdown.querySelectorAll(".feedback-custom-select__option"));
+			if (e.key === "ArrowDown") {
+				e.preventDefault();
+				if (!isOpen) {
+					openDropdown();
+				} else {
+					const curr = items.findIndex(i => i.classList.contains("feedback-custom-select__option--selected"));
+					const next = (curr + 1) % items.length;
+					items[next].click();
+				}
+			} else if (e.key === "ArrowUp") {
+				e.preventDefault();
+				if (isOpen) {
+					const curr = items.findIndex(i => i.classList.contains("feedback-custom-select__option--selected"));
+					const prev = curr <= 0 ? items.length - 1 : curr - 1;
+					items[prev].click();
+				}
+			} else if (e.key === "Enter" || e.key === " ") {
+				e.preventDefault();
+				trigger.click();
+			} else if (e.key === "Escape") {
+				if (isOpen) {
+					e.preventDefault();
+					closeDropdown();
+				}
+			}
+		};
+
+		selectEl.addEventListener("change", () => {
+			updateTriggerText();
+			dropdown.querySelectorAll(".feedback-custom-select__option").forEach(item => {
+				if (item.dataset.value === selectEl.value) {
+					item.classList.add("feedback-custom-select__option--selected");
+					item.setAttribute("aria-selected", "true");
+				} else {
+					item.classList.remove("feedback-custom-select__option--selected");
+					item.setAttribute("aria-selected", "false");
+				}
+			});
+			trigger.classList.remove("form-input--error");
+		});
+	}
+
+	// Глобальное закрытие кастомных селектов при клике снаружи
+	document.addEventListener("click", () => {
+		document.querySelectorAll(".feedback-custom-select--open").forEach(el => {
+			el.classList.remove("feedback-custom-select--open");
+			const b = el.querySelector(".feedback-custom-select__trigger");
+			if (b) b.setAttribute("aria-expanded", "false");
+		});
+	});
 
 	// Инициализация при готовности DOM
 	if (document.readyState === "loading") {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -16,7 +16,7 @@
 	<meta property="og:image" content="./assets/icons/logo_star.png" />
 
 	<!-- Стили проекта -->
-	<link href="./css/style.css?v=2.2" rel="stylesheet" />
+	<link href="./css/style.css?v=2.4" rel="stylesheet" />
 	<link href="./css/bvi.css" rel="stylesheet" />
 	<link href="./css/rostochek.css?v=1.2" rel="stylesheet" />
 </head>
@@ -848,35 +848,107 @@
 
 							<!-- 3. Возраст ребёнка -->
 							<div class="rst-form-group">
-								<label for="enroll-child-age" class="rst-label">
+								<label for="enroll-child-age-trigger" class="rst-label" id="enroll-child-age-label">
 									Возраст ребёнка <span class="rst-label-req" aria-hidden="true">*</span>
 								</label>
-								<select id="enroll-child-age" name="child_age" class="rst-select" required>
-									<option value="" disabled selected hidden>Выберите возраст</option>
-									<option value="5 лет">5 лет</option>
-									<option value="6 лет">6 лет</option>
-									<option value="7 лет">7 лет (первоклассник)</option>
-									<option value="8 лет">8 лет</option>
-									<option value="Другой возраст">Другой возраст</option>
-								</select>
+								<div class="rst-custom-select" data-select="enroll-child-age">
+									<button type="button" class="rst-custom-select__trigger" id="enroll-child-age-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="enroll-child-age-label enroll-child-age-val">
+										<span class="rst-custom-select__val" id="enroll-child-age-val">Выберите возраст</span>
+										<span class="rst-custom-select__arrow" aria-hidden="true">
+											<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+										</span>
+									</button>
+									<div class="rst-custom-select__dropdown" role="listbox" aria-labelledby="enroll-child-age-label" tabindex="-1">
+										<div class="rst-custom-select__option" role="option" data-value="5 лет" aria-selected="false">
+											<span>5 лет</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="6 лет" aria-selected="false">
+											<span>6 лет</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="7 лет (первоклассник)" aria-selected="false">
+											<span>7 лет (первоклассник)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="8 лет" aria-selected="false">
+											<span>8 лет</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="Другой возраст" aria-selected="false">
+											<span>Другой возраст</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+									</div>
+									<select id="enroll-child-age" name="child_age" class="rst-select rst-select-native-hidden" tabindex="-1" aria-hidden="true" required>
+										<option value="" disabled selected hidden>Выберите возраст</option>
+										<option value="5 лет">5 лет</option>
+										<option value="6 лет">6 лет</option>
+										<option value="7 лет (первоклассник)">7 лет (первоклассник)</option>
+										<option value="8 лет">8 лет</option>
+										<option value="Другой возраст">Другой возраст</option>
+									</select>
+								</div>
 							</div>
 
 							<!-- 4. Направление занятий -->
 							<div class="rst-form-group">
-								<label for="enroll-course" class="rst-label">
+								<label for="enroll-course-trigger" class="rst-label" id="enroll-course-label">
 									Интересующее направление <span class="rst-label-req" aria-hidden="true">*</span>
 								</label>
-								<select id="enroll-course" name="course" class="rst-select" required>
-									<option value="" disabled selected hidden>Выберите программу</option>
-									<option value="Подготовка к школе «Учусь, играя» (от 5 лет, двухгодичная)">Подготовка к школе «Учусь, играя» (от 5 лет)</option>
-									<option value="Подготовка к школе «Год до школы» (от 6 лет)">Подготовка к школе «Год до школы» (от 6 лет)</option>
-									<option value="«Английский для дошколят» (от 6 лет)">«Английский для дошколят» (от 6 лет)</option>
-									<option value="«Английский для школьников» (от 7 лет)">«Английский для школьников» (от 7 лет)</option>
-									<option value="«Школа мяча» (5–6 лет)">«Школа мяча» (5–6 лет)</option>
-									<option value="Творческая мастерская «Золотые ручки» (5–6 лет)">Творческая мастерская «Золотые ручки» (5–6 лет)</option>
-									<option value="«Умные математики» (курс повышенной сложности для 1 класса)">«Умные математики» (для 1 класса)</option>
-									<option value="Помогите подобрать подходящую программу">Помогите подобрать программу (консультация)</option>
-								</select>
+								<div class="rst-custom-select" data-select="enroll-course">
+									<button type="button" class="rst-custom-select__trigger" id="enroll-course-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="enroll-course-label enroll-course-val">
+										<span class="rst-custom-select__val" id="enroll-course-val">Выберите программу</span>
+										<span class="rst-custom-select__arrow" aria-hidden="true">
+											<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+										</span>
+									</button>
+									<div class="rst-custom-select__dropdown" role="listbox" aria-labelledby="enroll-course-label" tabindex="-1">
+										<div class="rst-custom-select__option" role="option" data-value="Подготовка к школе «Учусь, играя» (от 5 лет, двухгодичная)" aria-selected="false">
+											<span>Подготовка к школе «Учусь, играя» (от 5 лет)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="Подготовка к школе «Год до школы» (от 6 лет)" aria-selected="false">
+											<span>Подготовка к школе «Год до школы» (от 6 лет)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="«Английский для дошколят» (от 6 лет)" aria-selected="false">
+											<span>«Английский для дошколят» (от 6 лет)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="«Английский для школьников» (от 7 лет)" aria-selected="false">
+											<span>«Английский для школьников» (от 7 лет)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="«Школа мяча» (5–6 лет)" aria-selected="false">
+											<span>«Школа мяча» (5–6 лет)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="Творческая мастерская «Золотые ручки» (5–6 лет)" aria-selected="false">
+											<span>Творческая мастерская «Золотые ручки» (5–6 лет)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="«Умные математики» (курс повышенной сложности для 1 класса)" aria-selected="false">
+											<span>«Умные математики» (для 1 класса)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+										<div class="rst-custom-select__option" role="option" data-value="Помогите подобрать подходящую программу" aria-selected="false">
+											<span>Помогите подобрать программу (консультация)</span>
+											<span class="rst-custom-select__check" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M16.6 5L7.5 14.1L3.3 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+										</div>
+									</div>
+									<select id="enroll-course" name="course" class="rst-select rst-select-native-hidden" tabindex="-1" aria-hidden="true" required>
+										<option value="" disabled selected hidden>Выберите программу</option>
+										<option value="Подготовка к школе «Учусь, играя» (от 5 лет, двухгодичная)">Подготовка к школе «Учусь, играя» (от 5 лет)</option>
+										<option value="Подготовка к школе «Год до школы» (от 6 лет)">Подготовка к школе «Год до школы» (от 6 лет)</option>
+										<option value="«Английский для дошколят» (от 6 лет)">«Английский для дошколят» (от 6 лет)</option>
+										<option value="«Английский для школьников» (от 7 лет)">«Английский для школьников» (от 7 лет)</option>
+										<option value="«Школа мяча» (5–6 лет)">«Школа мяча» (5–6 лет)</option>
+										<option value="Творческая мастерская «Золотые ручки» (5–6 лет)">Творческая мастерская «Золотые ручки» (5–6 лет)</option>
+										<option value="«Умные математики» (курс повышенной сложности для 1 класса)">«Умные математики» (для 1 класса)</option>
+										<option value="Помогите подобрать подходящую программу">Помогите подобрать программу (консультация)</option>
+									</select>
+								</div>
 							</div>
 
 							<!-- 5. Номер телефона или Email -->

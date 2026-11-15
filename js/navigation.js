@@ -52,7 +52,7 @@
 				{
 					title: "Центр «Росточек»",
 					description: "Раннее развитие и подготовка к школе",
-					icon: "assets/icons/kid.svg",
+					icon: "assets/icons/rostochek-kid.svg",
 					link: "rostochek.html"
 				},
 				{

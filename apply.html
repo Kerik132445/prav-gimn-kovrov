@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="ru">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Подать заявление</title>
-<link href="./css/style.css?v=2.2" rel="stylesheet"/>
+<link href="./css/style.css?v=2.4" rel="stylesheet"/>
 	<link rel="stylesheet" href="css/bvi.css">
 </head>
 <body>
@@ -228,65 +228,140 @@
 </div>
 </section>
 <section class="course-enroll">
-<div class="course-enroll__grid">
-<div class="course-info">
-<span class="course-badge">Для детей 5–6 лет</span>
-<h2 class="course-info__title">Подготовка к школе в центре «Росточек»</h2>
-<p class="course-info__description">Помогаем мягко адаптироваться к школьной среде, освоить базовые
-						навыки и подготовиться к 1 классу.</p>
-<ul class="course-features">
-<li class="course-features__item">
-<img alt="Группа людей" class="feature-icon" src="assets/icons/feature-icon1.svg"/><span class="feature-text">Занятия в
-								малых группах</span>
-</li>
-<li class="course-features__item">
-<img alt="Студенческая шапка" class="feature-icon" src="assets/icons/feature-icon2.svg"/><span class="feature-text">Плавная адаптация к школьной
-								атмосфере</span>
-</li>
-<li class="course-features__item">
-<img alt="Творчесво и развитие" class="feature-icon" src="assets/icons/feature-icon3.svg"/><span class="feature-text">Творческие кружки и развитие
-								речи</span>
-</li>
-</ul>
-<div style="margin-top: 24px;">
-	<a href="rostochek.html" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg, #15803D 0%, #16A34A 100%); color:#ffffff; padding:12px 22px; border-radius:10px; font-weight:600; text-decoration:none; box-shadow:0 4px 14px rgba(22, 163, 74, 0.25); transition:transform 0.2s ease, box-shadow 0.2s ease;">
-		<span>Все 7 программ центра «Росточек»</span>
-		<span aria-hidden="true">→</span>
-	</a>
-</div>
-</div>
-<form class="course-enroll__form">
-<h2>Записаться на курс</h2>
-<div class="form-group">
-<label for="course-user-name">Ваше имя</label>
-<input id="course-user-name" placeholder="Иван Иванов" type="text"/>
-</div>
-<div class="form-group">
-<label for="course-user-contact">Номер телефона или Email</label>
-<input id="course-user-contact" placeholder="+7 (999) 123-45-67 или email@mail.ru" type="text"/>
-</div>
-<div class="form-group">
-<label for="course-user-theme">Направление</label>
-<select class="form-select" id="course-user-theme">
-<option disabled="" hidden="" selected="" value="">Выберите направление</option>
-<option value="pre-pre-school">Подготовка к школе</option>
-<option value="pre-school">Подготовка к школе</option>
-<option value="pre-pre-eng">Английский для дошколят</option>
-<option value="pre-eng">Английский для школьников</option>
-<option value="activities">Школа мяча</option>
-<option value="gold-hands">Творческая мастерская «Золотые ручки»</option>
-<option value="smart-matem">Умные математики</option>
-</select>
-</div>
-<div class="form-footer">
-<label class="policy-checkbox-label" style="display:flex; align-items:center; gap:8px; font-size:13px; color:#475569; cursor:pointer;">
-<input type="checkbox" required style="accent-color:#2563eb; width:16px; height:16px;">
-<span>Согласен на <a href="policy.html" target="_blank" style="color:#0284c7; text-decoration:underline;">обработку персональных данных</a> (152-ФЗ)</span>
-</label>
-<button class="btn-orange" type="submit">Отправить заявку</button>
-</div>
-</form>
-</div>
+	<div class="container">
+		<div class="course-banner-card course-info">
+			<!-- Левая колонка: Описание, бейдж, фичи и кнопка -->
+			<div class="course-banner-card__main">
+				<div class="course-banner-card__badges">
+					<span class="course-badge">Для детей 5–6 лет</span>
+					<span class="course-badge-sub">7 программ развития</span>
+				</div>
+				<h2 class="course-banner-card__title">Подготовка к школе в центре «Росточек»</h2>
+				<p class="course-banner-card__desc">
+					Бережный старт в школьную жизнь. Помогаем детям мягко адаптироваться к обстановке гимназии, освоить чтение, письмо и счет, раскрыть таланты и с радостью пойти в первый класс.
+				</p>
+				<ul class="course-banner-card__features">
+					<li class="course-features__item">
+						<img alt="Группа людей" class="feature-icon" src="assets/icons/feature-icon1.svg"/>
+						<span class="feature-text">Занятия в малых группах с заботливыми педагогами</span>
+					</li>
+					<li class="course-features__item">
+						<img alt="Студенческая шапка" class="feature-icon" src="assets/icons/feature-icon2.svg"/>
+						<span class="feature-text">Плавная адаптация к школьной атмосфере без стресса</span>
+					</li>
+					<li class="course-features__item">
+						<img alt="Творчество и развитие" class="feature-icon" src="assets/icons/feature-icon3.svg"/>
+						<span class="feature-text">Гармония интеллекта, творчества, языков и спорта</span>
+					</li>
+				</ul>
+				<div class="course-banner-card__action">
+					<a href="rostochek.html" class="course-banner-card__btn">
+						<span>Все 7 программ центра «Росточек»</span>
+						<span class="btn-arrow" aria-hidden="true">→</span>
+					</a>
+				</div>
+			</div>
+
+			<!-- Правая колонка: Компактная выжимка из новой страницы «Росточек» -->
+			<div class="course-banner-card__side">
+				<div class="course-banner-card__side-header">
+					<span class="course-side-kicker">Направления занятий</span>
+					<span class="course-side-note">Дошкольники и 1 класс</span>
+				</div>
+
+				<div class="course-programs-grid">
+					<!-- Направление 1: Подготовка к школе -->
+					<div class="course-mini-card">
+						<div class="course-mini-card__icon course-mini-card__icon--amber" aria-hidden="true">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+								<circle cx="12" cy="11" r="3"></circle>
+							</svg>
+						</div>
+						<div class="course-mini-card__body">
+							<div class="course-mini-card__top">
+								<h3 class="course-mini-card__title">Подготовка к школе</h3>
+								<span class="course-mini-card__tag">5–6 лет</span>
+							</div>
+							<p class="course-mini-card__text">Курсы «Учусь, играя» и «Год до школы»: чтение, письмо, счёт и логика.</p>
+						</div>
+					</div>
+
+					<!-- Направление 2: Английский язык -->
+					<div class="course-mini-card">
+						<div class="course-mini-card__icon course-mini-card__icon--blue" aria-hidden="true">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="10"></circle>
+								<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+								<path d="M2 12h20"></path>
+							</svg>
+						</div>
+						<div class="course-mini-card__body">
+							<div class="course-mini-card__top">
+								<h3 class="course-mini-card__title">Английский язык</h3>
+								<span class="course-mini-card__tag">от 6 лет / 1 кл</span>
+							</div>
+							<p class="course-mini-card__text">Игровой курс для дошколят и углубленные уроки для школьников.</p>
+						</div>
+					</div>
+
+					<!-- Направление 3: Творчество -->
+					<div class="course-mini-card">
+						<div class="course-mini-card__icon course-mini-card__icon--rose" aria-hidden="true">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle>
+								<circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle>
+								<circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>
+								<circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle>
+								<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.563-2.512 5.563-5.563C22 6.5 17.5 2 12 2z"></path>
+							</svg>
+						</div>
+						<div class="course-mini-card__body">
+							<div class="course-mini-card__top">
+								<h3 class="course-mini-card__title">Творческая студия</h3>
+								<span class="course-mini-card__tag">5–6 лет</span>
+							</div>
+							<p class="course-mini-card__text">Мастерская «Золотые ручки»: рисование, лепка, оригами и мелкая моторика.</p>
+						</div>
+					</div>
+
+					<!-- Направление 4: Спорт и олимпиадная логика -->
+					<div class="course-mini-card">
+						<div class="course-mini-card__icon course-mini-card__icon--emerald" aria-hidden="true">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<circle cx="12" cy="12" r="10"></circle>
+								<path d="M12 2a14.5 14.5 0 0 0 0 20"></path>
+								<path d="M2 12h20"></path>
+							</svg>
+						</div>
+						<div class="course-mini-card__body">
+							<div class="course-mini-card__top">
+								<h3 class="course-mini-card__title">Спорт и логика</h3>
+								<span class="course-mini-card__tag">5–7 лет</span>
+							</div>
+							<p class="course-mini-card__text">«Школа мяча» для ловкости и осанки + клуб «Умные математики».</p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Нижняя сводка с преимуществами -->
+				<div class="course-banner-card__pills">
+					<div class="course-pill">
+						<span class="course-pill__icon" aria-hidden="true">✓</span>
+						<span>Малые группы</span>
+					</div>
+					<div class="course-pill">
+						<span class="course-pill__icon" aria-hidden="true">✓</span>
+						<span>Удобный график</span>
+					</div>
+					<div class="course-pill">
+						<span class="course-pill__icon" aria-hidden="true">✓</span>
+						<span>Консультации для родителей</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 		<!-- FAQ / ОБРАТНАЯ СВЯЗЬ -->
@@ -543,7 +618,7 @@
 <script src="js/navigation.js"></script>
 <script src="js/search.js"></script>
 	<script src="js/config.js"></script>
-	<script src="js/feedback.js?v=2.2"></script>
+	<script src="js/feedback.js?v=2.3"></script>
 	<script src="js/bvi.js"></script>
 </body>
 </html>

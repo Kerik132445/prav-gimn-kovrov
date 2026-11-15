@@ -965,6 +965,185 @@
 	margin-top: 2px;
 }
 
+/* ==========================================================================
+   КАСТОМНЫЙ СЕЛЕКТ (ВЫПАДАЮЩИЙ СПИСОК В СТИЛЕ «РОСТОЧКА»)
+   ========================================================================== */
+
+.rst-select-native-hidden {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
+
+.rst-custom-select {
+	position: relative;
+	width: 100%;
+}
+
+.rst-custom-select__trigger {
+	width: 100%;
+	min-height: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	background: #FFFFFF;
+	border: 1.5px solid var(--rst-border);
+	border-radius: var(--rst-radius-md);
+	padding: 12px 14px;
+	box-sizing: border-box;
+	font-family: inherit;
+	font-size: 15px;
+	color: #94A3B8;
+	text-align: left;
+	cursor: pointer;
+	outline: none;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.rst-custom-select__val {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.rst-custom-select__trigger.has-value {
+	color: var(--rst-text-main);
+	font-weight: 500;
+}
+
+.rst-custom-select__trigger:hover {
+	border-color: #CBD5E1;
+	background-color: #FAFCF9;
+}
+
+.rst-custom-select__trigger:focus,
+.rst-custom-select--open .rst-custom-select__trigger {
+	border-color: var(--rst-green);
+	box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+	background-color: #FFFFFF;
+}
+
+.rst-custom-select__arrow {
+	flex-shrink: 0;
+	color: #64748B;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.rst-custom-select--open .rst-custom-select__arrow {
+	transform: rotate(180deg);
+	color: var(--rst-green);
+}
+
+@keyframes rstSelectDropFade {
+	from {
+		opacity: 0;
+		transform: translateY(-6px) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.rst-custom-select__dropdown {
+	position: absolute;
+	top: calc(100% + 6px);
+	left: 0;
+	right: 0;
+	z-index: 70;
+	background: #FFFFFF;
+	border: 1.5px solid #E2E8F0;
+	border-radius: 14px;
+	box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.14), 0 6px 16px -4px rgba(15, 23, 42, 0.08);
+	padding: 6px;
+	max-height: 280px;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	display: none;
+	scrollbar-width: thin;
+	scrollbar-color: #CBD5E1 transparent;
+}
+
+.rst-custom-select__dropdown::-webkit-scrollbar {
+	width: 6px;
+}
+.rst-custom-select__dropdown::-webkit-scrollbar-thumb {
+	background: #CBD5E1;
+	border-radius: 6px;
+}
+.rst-custom-select__dropdown::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.rst-custom-select--open .rst-custom-select__dropdown {
+	display: block;
+	animation: rstSelectDropFade 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.rst-custom-select__option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 10px 14px;
+	border-radius: 10px;
+	font-size: 14.5px;
+	color: #334155;
+	line-height: 1.35;
+	cursor: pointer;
+	transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.rst-custom-select__option:hover,
+.rst-custom-select__option.is-focused {
+	background-color: #F0FDF4;
+	color: #166534;
+}
+
+.rst-custom-select__option--selected {
+	background-color: #DCFCE7 !important;
+	color: #15803D !important;
+	font-weight: 600;
+}
+
+.rst-custom-select__check {
+	display: none;
+	color: #15803D;
+	flex-shrink: 0;
+}
+
+.rst-custom-select__option--selected .rst-custom-select__check {
+	display: flex;
+	align-items: center;
+}
+
+/* Ошибка и анимация подсветки */
+.rst-custom-select__trigger.rst-input--error {
+	border-color: #DC2626 !important;
+	background-color: #FEF2F2 !important;
+	box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+
+.rst-custom-select__trigger.rst-select--highlight {
+	border-color: var(--rst-green) !important;
+	background-color: var(--rst-green-soft) !important;
+	box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.22) !important;
+	transition: all 0.35s ease;
+}
+
 .rst-textarea {
 	resize: vertical;
 	min-height: 90px;

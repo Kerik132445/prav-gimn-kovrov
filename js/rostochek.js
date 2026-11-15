@@ -20,6 +20,11 @@
 		input.setAttribute("aria-invalid", "true");
 		const group = input.closest(".rst-form-group");
 		if (group) {
+			const trigger = group.querySelector(".rst-custom-select__trigger");
+			if (trigger) {
+				trigger.classList.add("rst-input--error");
+				trigger.setAttribute("aria-invalid", "true");
+			}
 			let err = group.querySelector(".rst-field-error");
 			if (!err) {
 				err = document.createElement("span");
@@ -38,6 +43,11 @@
 		input.removeAttribute("aria-invalid");
 		const group = input.closest(".rst-form-group");
 		if (group) {
+			const trigger = group.querySelector(".rst-custom-select__trigger");
+			if (trigger) {
+				trigger.classList.remove("rst-input--error");
+				trigger.removeAttribute("aria-invalid");
+			}
 			const err = group.querySelector(".rst-field-error");
 			if (err) {
 				err.textContent = "";
@@ -73,6 +83,7 @@
 	}
 
 	document.addEventListener("DOMContentLoaded", () => {
+		initCustomSelects();
 		initProgramFilters();
 		initProgramEnrollButtons();
 		initEnrollForm();
@@ -169,11 +180,13 @@
 						courseSelect.dispatchEvent(new Event("change", { bubbles: true }));
 
 						// Визуальная подсветка поля, чтобы пользователь сразу заметил автовыбор
-						courseSelect.classList.remove("rst-select--highlight");
-						void courseSelect.offsetWidth; // перезапуск CSS-анимации
-						courseSelect.classList.add("rst-select--highlight");
+						const customTrigger = courseSelect.closest(".rst-form-group")?.querySelector(".rst-custom-select__trigger");
+						const highlightTarget = customTrigger || courseSelect;
+						highlightTarget.classList.remove("rst-select--highlight");
+						void highlightTarget.offsetWidth; // перезапуск CSS-анимации
+						highlightTarget.classList.add("rst-select--highlight");
 						setTimeout(() => {
-							courseSelect.classList.remove("rst-select--highlight");
+							highlightTarget.classList.remove("rst-select--highlight");
 						}, 2000);
 					}
 
@@ -336,8 +349,13 @@
 
 			if (!isValid) {
 				showStatus("error", "Пожалуйста, проверьте правильность заполнения обязательных полей.");
-				if (firstInvalid && typeof firstInvalid.focus === "function") {
-					firstInvalid.focus();
+				if (firstInvalid) {
+					const trigger = firstInvalid.closest(".rst-form-group")?.querySelector(".rst-custom-select__trigger");
+					if (trigger) {
+						trigger.focus();
+					} else if (typeof firstInvalid.focus === "function") {
+						firstInvalid.focus();
+					}
 				}
 				return;
 			}
@@ -457,19 +475,162 @@
 	}
 
 	/* --------------------------------------------------------------------------
-	   5. ПЛАВНЫЙ СКРОЛЛ К ЯКОРЯМ
+	   6. КАСТОМНЫЕ ВЫПАДАЮЩИЕ СПИСКИ (CUSTOM SELECT)
 	   -------------------------------------------------------------------------- */
-	function initSmoothAnchors() {
-		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-			anchor.addEventListener("click", function (e) {
-				const targetId = this.getAttribute("href");
-				if (targetId === "#" || targetId.length <= 1) return;
-				const target = document.querySelector(targetId);
-				if (target) {
+	function initCustomSelects() {
+		const customSelects = document.querySelectorAll(".rst-custom-select");
+		if (!customSelects.length) return;
+
+		function closeAllSelects(except) {
+			customSelects.forEach(cs => {
+				if (cs !== except && cs.classList.contains("rst-custom-select--open")) {
+					cs.classList.remove("rst-custom-select--open");
+					const btn = cs.querySelector(".rst-custom-select__trigger");
+					if (btn) btn.setAttribute("aria-expanded", "false");
+				}
+			});
+		}
+
+		customSelects.forEach(cs => {
+			const trigger = cs.querySelector(".rst-custom-select__trigger");
+			const valSpan = cs.querySelector(".rst-custom-select__val");
+			const dropdown = cs.querySelector(".rst-custom-select__dropdown");
+			const options = cs.querySelectorAll(".rst-custom-select__option");
+			const nativeSelect = cs.querySelector("select.rst-select");
+			const defaultPlaceholder = valSpan ? valSpan.textContent : "Выберите...";
+
+			if (!trigger || !dropdown || !nativeSelect) return;
+
+			function syncFromNative() {
+				const currentVal = nativeSelect.value;
+				let matchedText = "";
+				options.forEach(opt => {
+					if (opt.dataset.value === currentVal) {
+						opt.classList.add("rst-custom-select__option--selected");
+						opt.setAttribute("aria-selected", "true");
+						const span = opt.querySelector("span");
+						matchedText = span ? span.textContent : opt.dataset.value;
+					} else {
+						opt.classList.remove("rst-custom-select__option--selected");
+						opt.setAttribute("aria-selected", "false");
+					}
+				});
+
+				if (currentVal && matchedText) {
+					valSpan.textContent = matchedText;
+					trigger.classList.add("has-value");
+				} else {
+					valSpan.textContent = defaultPlaceholder;
+					trigger.classList.remove("has-value");
+				}
+			}
+
+			// Инициализация текущего значения
+			syncFromNative();
+
+			// Слушаем событие change на нативном select (включая автовыбор из карточек)
+			nativeSelect.addEventListener("change", () => {
+				syncFromNative();
+				clearFieldError(nativeSelect);
+			});
+
+			// Клик по триггеру (открыть / закрыть)
+			trigger.addEventListener("click", (e) => {
+				e.stopPropagation();
+				const isOpen = cs.classList.contains("rst-custom-select--open");
+				closeAllSelects(cs);
+				if (!isOpen) {
+					cs.classList.add("rst-custom-select--open");
+					trigger.setAttribute("aria-expanded", "true");
+					const selected = dropdown.querySelector(".rst-custom-select__option--selected");
+					if (selected) {
+						selected.scrollIntoView({ block: "nearest" });
+					}
+				} else {
+					cs.classList.remove("rst-custom-select--open");
+					trigger.setAttribute("aria-expanded", "false");
+				}
+			});
+
+			// Клик по варианту
+			options.forEach(opt => {
+				opt.addEventListener("click", (e) => {
+					e.stopPropagation();
+					const val = opt.dataset.value;
+					nativeSelect.value = val;
+					nativeSelect.dispatchEvent(new Event("change", { bubbles: true }));
+					nativeSelect.dispatchEvent(new Event("input", { bubbles: true }));
+					closeAllSelects();
+					trigger.focus();
+				});
+			});
+
+			// Клавиатурная навигация
+			trigger.addEventListener("keydown", (e) => {
+				const isOpen = cs.classList.contains("rst-custom-select--open");
+				const optsArray = Array.from(options);
+				if (e.key === "ArrowDown") {
 					e.preventDefault();
-					target.scrollIntoView({ behavior: "smooth", block: "start" });
+					if (!isOpen) {
+						closeAllSelects(cs);
+						cs.classList.add("rst-custom-select--open");
+						trigger.setAttribute("aria-expanded", "true");
+					} else {
+						const currIdx = optsArray.findIndex(o => o.classList.contains("rst-custom-select__option--selected"));
+						const nextIdx = (currIdx + 1) % optsArray.length;
+						optsArray[nextIdx].click();
+					}
+				} else if (e.key === "ArrowUp") {
+					e.preventDefault();
+					if (isOpen) {
+						const currIdx = optsArray.findIndex(o => o.classList.contains("rst-custom-select__option--selected"));
+						const prevIdx = currIdx <= 0 ? optsArray.length - 1 : currIdx - 1;
+						optsArray[prevIdx].click();
+					}
+				} else if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					trigger.click();
+				} else if (e.key === "Escape") {
+					if (isOpen) {
+						e.preventDefault();
+						cs.classList.remove("rst-custom-select--open");
+						trigger.setAttribute("aria-expanded", "false");
+					}
 				}
 			});
 		});
+
+		// Закрытие при клике снаружи
+		document.addEventListener("click", () => {
+			closeAllSelects();
+		});
+
+		// Закрытие по Esc
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") closeAllSelects();
+		});
+
+		// Сброс формы
+		const form = document.getElementById("rst-enroll-form");
+		if (form) {
+			form.addEventListener("reset", () => {
+				setTimeout(() => {
+					customSelects.forEach(cs => {
+						const valSpan = cs.querySelector(".rst-custom-select__val");
+						const trigger = cs.querySelector(".rst-custom-select__trigger");
+						const options = cs.querySelectorAll(".rst-custom-select__option");
+						if (valSpan && trigger) {
+							const defaultText = cs.dataset.select === "enroll-child-age" ? "Выберите возраст" : "Выберите программу";
+							valSpan.textContent = defaultText;
+							trigger.classList.remove("has-value", "rst-input--error", "rst-select--highlight");
+						}
+						options.forEach(o => {
+							o.classList.remove("rst-custom-select__option--selected");
+							o.setAttribute("aria-selected", "false");
+						});
+					});
+				}, 30);
+			});
+		}
 	}
 })();
