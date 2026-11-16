@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Dumbbell Comparison</title>
+  <style>
+    body { font-family: sans-serif; background: #0f172a; color: #fff; padding: 40px; }
+    .row { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; background: #1e293b; padding: 16px 24px; border-radius: 12px; }
+    .tab { background: #fff; color: #2563eb; padding: 10px 14px; border-radius: 12px; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+    .tab-dark { background: #f8fafc; color: #334155; padding: 10px 14px; border-radius: 12px; font-size: 13.5px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+    .zoom { background: #fff; padding: 10px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <h1>Сравнение вариантов гантели (Спортзал)</h1>
+
+  <!-- Вариант 1: Rounded rect capsules (hollow) exactly as user's icon -->
+  <div class="row">
+    <div>
+      <h3>Вариант 1: Четыре округлых диска-капсулы с просветом + гриф по центру (как в PNG)</h3>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <span class="tab">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="0.9" y="8" width="3.6" height="8" rx="1.8" />
+            <rect x="5.5" y="6" width="3" height="12" rx="1.5" />
+            <line x1="8.5" y1="12" x2="15.5" y2="12" stroke-width="2.2" />
+            <rect x="15.5" y="6" width="3" height="12" rx="1.5" />
+            <rect x="19.5" y="8" width="3.6" height="8" rx="1.8" />
+          </svg>
+          Спортзал (Active 14px)
+        </span>
+        <span class="tab-dark">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="0.9" y="8" width="3.6" height="8" rx="1.8" />
+            <rect x="5.5" y="6" width="3" height="12" rx="1.5" />
+            <line x1="8.5" y1="12" x2="15.5" y2="12" stroke-width="2.2" />
+            <rect x="15.5" y="6" width="3" height="12" rx="1.5" />
+            <rect x="19.5" y="8" width="3.6" height="8" rx="1.8" />
+          </svg>
+          Спортзал (Inactive 14px)
+        </span>
+        <div class="zoom">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="0.9" y="8" width="3.6" height="8" rx="1.8" />
+            <rect x="5.5" y="6" width="3" height="12" rx="1.5" />
+            <line x1="8.5" y1="12" x2="15.5" y2="12" stroke-width="2.2" />
+            <rect x="15.5" y="6" width="3" height="12" rx="1.5" />
+            <rect x="19.5" y="8" width="3.6" height="8" rx="1.8" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Вариант 2: Прямой PNG файл пользователя -->
+  <div class="row">
+    <div>
+      <h3>Вариант 2: Исходный PNG пользователя через &lt;img&gt; (с адаптивным фильтром цвета)</h3>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <span class="tab">
+          <img src="../assets/icons/sports-dumbbell.png" width="14" height="14" style="filter: invert(32%) sepia(98%) saturate(1831%) hue-rotate(212deg) brightness(98%) contrast(92%);" alt="Спортзал">
+          Спортзал (Active 14px)
+        </span>
+        <span class="tab-dark">
+          <img src="../assets/icons/sports-dumbbell.png" width="14" height="14" style="filter: opacity(0.8);" alt="Спортзал">
+          Спортзал (Inactive 14px)
+        </span>
+        <div class="zoom">
+          <img src="../assets/icons/sports-dumbbell.png" width="48" height="48" style="image-rendering: pixelated;" alt="Спортзал">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Вариант 3: Залитые плотные диски (bold filled) -->
+  <div class="row">
+    <div>
+      <h3>Вариант 3: Плотные диски (solid rounded rects)</h3>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <span class="tab">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="0.5" y="8" width="4" height="8" rx="1.5" />
+            <rect x="5.5" y="6" width="3.5" height="12" rx="1.5" />
+            <rect x="8.5" y="11" width="7" height="2" rx="0.5" />
+            <rect x="15" y="6" width="3.5" height="12" rx="1.5" />
+            <rect x="19.5" y="8" width="4" height="8" rx="1.5" />
+          </svg>
+          Спортзал (Active 14px)
+        </span>
+        <span class="tab-dark">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="0.5" y="8" width="4" height="8" rx="1.5" />
+            <rect x="5.5" y="6" width="3.5" height="12" rx="1.5" />
+            <rect x="8.5" y="11" width="7" height="2" rx="0.5" />
+            <rect x="15" y="6" width="3.5" height="12" rx="1.5" />
+            <rect x="19.5" y="8" width="4" height="8" rx="1.5" />
+          </svg>
+          Спортзал (Inactive 14px)
+        </span>
+        <div class="zoom">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="#2563eb">
+            <rect x="0.5" y="8" width="4" height="8" rx="1.5" />
+            <rect x="5.5" y="6" width="3.5" height="12" rx="1.5" />
+            <rect x="8.5" y="11" width="7" height="2" rx="0.5" />
+            <rect x="15" y="6" width="3.5" height="12" rx="1.5" />
+            <rect x="19.5" y="8" width="4" height="8" rx="1.5" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

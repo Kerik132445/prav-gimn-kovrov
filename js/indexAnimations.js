@@ -257,22 +257,38 @@ async function loadHomeNews() {
 // СОЗДАНИЕ КАРТОЧКИ НОВОСТИ
 // ========================================
 
+function getHomeImageUrl(rawImage) {
+	if (!rawImage) return "assets/images/news1.webp";
+	let image = typeof rawImage === "object" && rawImage ? (rawImage.image || "") : rawImage;
+	if (!image) return "assets/images/news1.webp";
+
+	if (image.startsWith("http://") || image.startsWith("https://")) {
+		return image;
+	}
+
+	if (image.startsWith("/uploads")) {
+		if (window.location.protocol === "file:" || !window.API_BASE_URL) {
+			return image.replace(/^\//, "");
+		}
+		return `${window.API_BASE_URL}${image}`;
+	}
+
+	if (!/^(assets\/|\.?\/)/.test(image)) {
+		return `${window.API_BASE_URL || ""}${image.startsWith("/") ? "" : "/"}${image}`;
+	}
+
+	return image;
+}
+
 function createHomeNewsCard(news) {
 
 	const article = document.createElement("article");
 
 	article.className = "news";
 
-	let image = news.image || "";
-	if (image) {
-		if (image.startsWith("/uploads")) {
-			image = image.replace(/^\//, "");
-		} else if (!/^(https?:\/\/|assets\/|\.?\/)/.test(image)) {
-			image = `${window.API_BASE_URL || ""}${image.startsWith("/") ? "" : "/"}${image}`;
-		}
-	} else {
-		image = "assets/images/news1.webp";
-	}
+	const rawImg = typeof news.image === "object" && news.image ? news.image.image : news.image;
+	const image = getHomeImageUrl(rawImg);
+	const localFallback = (rawImg && typeof rawImg === "string") ? rawImg.replace(/^\//, "") : "assets/images/news1.webp";
 
 	article.innerHTML = `
         <div class="news__image">
@@ -280,6 +296,8 @@ function createHomeNewsCard(news) {
                 src="${image}"
                 alt="${escapeHTML(news.title)}"
                 loading="lazy"
+                decoding="async"
+                onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='${escapeHTML(localFallback)}';}else{this.onerror=null;this.src='assets/images/news1.webp';}"
             >
         </div>
 

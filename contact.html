@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<title>Контакты</title>
-	<link href="./css/style.css?v=2.4" rel="stylesheet" />
+	<link href="./css/style.css?v=3.3" rel="stylesheet" />
 	<link rel="stylesheet" href="css/bvi.css">
 </head>
 
@@ -148,44 +148,183 @@
 			</div>
 		</div>
 	</section>
-	<!-- Секция: Карта + Основная информация -->
+	<!-- Секция: Интерактивная карта и корпуса гимназии -->
 	<section class="contacts-main">
 		<!-- Левая колонка: Карта -->
 		<div class="contacts-main__map">
-			<a href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&amp;utm_source=maps"
-				style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-				href="https://yandex.ru/maps/10664/kovrov/house/podlesnaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&amp;utm_medium=mapframe&amp;utm_source=maps&amp;z=18.16"
-				style="color:#eee;font-size:12px;position:absolute;top:14px;">Подлесная улица, 10 —
-				Яндекс Карты
-			</a>
-			<iframe frameborder="0" height="100%"
-				src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=41.328614%2C56.362985&amp;whatshere%5Bzoom%5D=17&amp;z=18.16"
-				title="Карта проезда к гимназии" width="100%">
-			</iframe>
+			<div class="contacts-map-box__header">
+				<div class="contacts-map-box__meta">
+					<div class="contacts-map-box__icon">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+							<circle cx="12" cy="10" r="3"></circle>
+						</svg>
+					</div>
+					<div>
+						<h3 class="contacts-map-box__title" id="map-target-title">Спасский корпус гимназии (1–4 классы)</h3>
+						<p class="contacts-map-box__subtitle" id="map-target-address">ул. Подлесная, 10 • Центральный вход со стороны Подлесной</p>
+					</div>
+				</div>
+				<a href="https://yandex.ru/maps/?rtext=~56.362333,41.329367&amp;rtt=auto" target="_blank" rel="noopener noreferrer" class="contacts-map-box__route-btn" id="map-route-btn" title="Построить маршрут на Яндекс.Картах">
+					<span>Маршрут</span>
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+						<line x1="7" y1="17" x2="17" y2="7"></line>
+						<polyline points="7 7 17 7 17 17"></polyline>
+					</svg>
+				</a>
+			</div>
+			<div class="contacts-map-box__frame-wrap">
+				<iframe
+					id="contacts-map-iframe"
+					src="https://yandex.ru/map-widget/v1/?ll=41.329367%2C56.362333&amp;z=18&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=41.329367%2C56.362333&amp;whatshere%5Bzoom%5D=18"
+					title="Интерактивная карта гимназии">
+				</iframe>
+			</div>
 		</div>
-		<!-- Правая колонка: Адрес и часы работы -->
+
+		<!-- Правая колонка: Корпуса гимназии с табами -->
 		<div class="contacts-main__info">
-			<h2 class="contacts-main__title">Главный корпус</h2>
-			<div class="contacts-info-item">
-				<img alt="Адрес" class="contacts-info-item__icon" src="assets/icons/location.svg" />
-				<div>
-					<strong>Адрес:</strong>
-					<p>601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</p>
+			<!-- Табы выбора корпуса -->
+			<div class="campus-tabs-bar" role="tablist">
+				<button class="campus-tab-item active" id="tab-btn-spassky" role="tab" aria-selected="true">
+					<span class="campus-tab-item__title">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+							<polyline points="9 22 9 12 15 12 15 22"></polyline>
+						</svg>
+						Спасский корпус
+					</span>
+					<span class="campus-tab-item__badge">1–4 классы • Приёмная</span>
+				</button>
+				<button class="campus-tab-item" id="tab-btn-pokrovsky" role="tab" aria-selected="false">
+					<span class="campus-tab-item__title">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M2 20h20"></path>
+							<path d="M5 4h14"></path>
+							<path d="M7 4v16"></path>
+							<path d="M17 4v16"></path>
+							<path d="M3 20V9h4"></path>
+							<path d="M21 20V9h-4"></path>
+							<path d="M10 20v-4h4v4"></path>
+							<line x1="10" y1="8" x2="10" y2="8.01"></line>
+							<line x1="14" y1="8" x2="14" y2="8.01"></line>
+							<line x1="10" y1="12" x2="10" y2="12.01"></line>
+							<line x1="14" y1="12" x2="14" y2="12.01"></line>
+						</svg>
+						Покровский корпус
+					</span>
+					<span class="campus-tab-item__badge">5–11 классы • Учительская</span>
+				</button>
+				<button class="campus-tab-item" id="tab-btn-sports" role="tab" aria-selected="false">
+					<span class="campus-tab-item__title">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="0.9" y="8" width="3.6" height="8" rx="1.8"></rect>
+							<rect x="5.5" y="6" width="3" height="12" rx="1.5"></rect>
+							<line x1="8.5" y1="12" x2="15.5" y2="12" stroke-width="2.2"></line>
+							<rect x="15.5" y="6" width="3" height="12" rx="1.5"></rect>
+							<rect x="19.5" y="8" width="3.6" height="8" rx="1.8"></rect>
+						</svg>
+						Спортзал
+					</span>
+					<span class="campus-tab-item__badge">Спорткомплекс</span>
+				</button>
+			</div>
+
+			<!-- Шапка карточки с реальной фотографией -->
+			<div class="campus-card-hero">
+				<img src="assets/images/spassky-real.webp" alt="Спасский корпус гимназии" class="campus-card-hero__img" id="campus-hero-img">
+				<div class="campus-card-hero__gradient"></div>
+				<div class="campus-card-hero__badges">
+					<span class="campus-badge-role" id="campus-badge-role">НАЧАЛЬНАЯ ШКОЛА (1–4 КЛАССЫ)</span>
+					<span class="campus-badge-status">
+						<span class="campus-status-dot"></span>
+						<span id="campus-status-text">Открыто • До 16:30</span>
+					</span>
+				</div>
+				<div class="campus-card-hero__caption">
+					<h3 class="campus-card-hero__title" id="campus-hero-title">Спасский корпус (Главное здание)</h3>
+					<p class="campus-card-hero__desc" id="campus-hero-desc">Здесь занимаются 1–4 классы, расположены приёмная директора и общая канцелярия</p>
 				</div>
 			</div>
-			<div class="contacts-info-item">
-				<img alt="Время работы" class="contacts-info-item__icon" src="assets/icons/clock-contact.svg" />
-				<div>
-					<strong>Режим работы:</strong>
-					<p>Ежедневно с 08:00 до 16:00</p>
-					<p class="contacts-info-item__note">Директор: протоиерей Михаил Бунтилов (тел. 8-920-622-56-76)</p>
+
+			<!-- Информационные ряды -->
+			<div class="campus-card-body">
+				<div class="campus-info-row">
+					<div class="campus-info-row__icon">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+							<circle cx="12" cy="10" r="3"></circle>
+						</svg>
+					</div>
+					<div class="campus-info-row__content">
+						<span class="campus-info-row__label">Адрес корпуса</span>
+						<p class="campus-info-row__val" id="campus-addr-val">601909, г. Ковров, ул. Подлесная, д. 10</p>
+						<div class="campus-info-row__sub" id="campus-addr-sub">Центральный вход на территорию, пост охраны №1</div>
+					</div>
+					<button type="button" class="campus-copy-btn" id="campus-copy-address-btn" title="Скопировать адрес">
+						<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+							<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+						</svg>
+						<span>Копировать</span>
+					</button>
 				</div>
-			</div>
-			<div class="contacts-info-item">
-				<img alt="Email" class="contacts-info-item__icon" src="assets/icons/mail.svg" />
-				<div>
-					<strong>Электронная почта:</strong>
-					<p><a href="mailto:sretenskajgimn@yandex.ru">sretenskajgimn@yandex.ru</a></p>
+
+				<div class="campus-info-row">
+					<div class="campus-info-row__icon">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<circle cx="12" cy="12" r="10"></circle>
+							<polyline points="12 6 12 12 16 14"></polyline>
+						</svg>
+					</div>
+					<div class="campus-info-row__content">
+						<span class="campus-info-row__label">Режим работы</span>
+						<p class="campus-info-row__val" id="campus-hours-val">Понедельник – Пятница: 08:00 – 16:30</p>
+						<div class="campus-info-row__sub" id="campus-hours-sub">Учебные занятия: 08:20 – 14:00 • ГПД до 16:30</div>
+					</div>
+				</div>
+
+				<div class="campus-info-row">
+					<div class="campus-info-row__icon">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+						</svg>
+					</div>
+					<div class="campus-info-row__content">
+						<span class="campus-info-row__label" id="campus-phone-label">Приемная / Секретарь</span>
+						<p class="campus-info-row__val"><a href="tel:+74923240195" id="campus-phone-link" style="color:#2563eb; text-decoration:none;">+7 (49232) 4-01-95</a></p>
+						<div class="campus-info-row__sub" id="campus-phone-sub">Директор: прот. Михаил Бунтилов (тел. 8-920-622-56-76)</div>
+					</div>
+				</div>
+
+				<div class="campus-info-row">
+					<div class="campus-info-row__icon">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+							<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+						</svg>
+					</div>
+					<div class="campus-info-row__content">
+						<span class="campus-info-row__label">Вход и пропускной режим</span>
+						<p class="campus-info-row__val" id="campus-entry-val">Вход через центральные ворота с ул. Подлесной</p>
+						<div class="campus-info-row__sub" id="campus-entry-sub">Посещение родителей по предварительной записи или звонку</div>
+					</div>
+				</div>
+
+				<!-- Нижние кнопки действий -->
+				<div class="campus-actions-bar">
+					<a href="https://yandex.ru/maps/?rtext=~56.362333,41.329367&amp;rtt=auto" target="_blank" rel="noopener noreferrer" class="campus-action-btn campus-action-btn--primary" id="btn-route-action">
+						<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+							<polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+						</svg>
+						<span>Построить маршрут</span>
+					</a>
+					<a href="tel:+74923240195" class="campus-action-btn campus-action-btn--secondary" id="btn-call-action">
+						<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+						</svg>
+						<span>Позвонить</span>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -428,12 +567,16 @@
 				</div>
 			</div>
 		</footer>
+	<!-- Всплывающее уведомление скопированного адреса -->
+	<div class="contact-toast" id="contact-toast">Адрес скопирован в буфер обмена!</div>
+
 	<script src="js/window.scrollY.js"></script>
 	<script src="js/contactAnimations.js"></script>
 	<script src="js/navigation.js"></script>
 	<script src="js/search.js"></script>
 	<script src="js/bvi.js"></script>
 	<script src="js/config.js"></script>
+	<script src="js/contact.js"></script>
 	<script src="js/feedback.js?v=2.3"></script>
 </body>
 

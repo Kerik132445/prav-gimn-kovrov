@@ -76,7 +76,7 @@
 				{
 					title: "Помощь гимназии",
 					description: "Благотворительность и попечительство",
-					icon: "assets/icons/feature-icon1.svg",
+					icon: "assets/icons/donation.svg",
 					link: "index.html#donation"
 				}
 			]

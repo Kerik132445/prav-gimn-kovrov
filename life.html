@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<title>Жизнь Гимназии</title>
-	<link href="./css/style.css?v=3.1" rel="stylesheet" />
+	<link href="./css/style.css?v=3.2" rel="stylesheet" />
 	<link rel="stylesheet" href="css/bvi.css">
 </head>
 
@@ -186,7 +186,7 @@
 
 							<div class="theatre-plays">
 								<span class="theatre-plays__label">Репертуар и известные постановки студии:</span>
-								<div class="theatre-plays__list">
+								<div class="theatre-plays__list" id="theatre-plays-list">
 									<span class="theatre-play-pill">🎭 «Принцесса Кру»</span>
 									<span class="theatre-play-pill">🕊️ «Белый Ангел Москвы»</span>
 									<span class="theatre-play-pill">📜 «Можно спросить Нину?»</span>
@@ -230,7 +230,7 @@
 								</div>
 
 								<!-- Миниатюры для интерактивного переключения -->
-								<div class="theatre-gallery__thumbs" role="tablist" aria-label="Фотографии спектаклей">
+								<div class="theatre-gallery__thumbs" id="theatre-gallery-thumbs" role="tablist" aria-label="Фотографии спектаклей">
 									<button type="button" class="theatre-gallery__thumb active"
 										data-src="assets/images/clubs/theater/theater-1.webp"
 										data-caption="Спектакль «Белый Ангел Москвы» (о великой княгине Елисавете Феодоровне)"
@@ -281,7 +281,7 @@
 								</div>
 
 								<a href="https://vkvideo.ru/video-178231686_456239608?t=16m" target="_blank"
-									rel="noopener noreferrer" class="theatre-video-link">
+									rel="noopener noreferrer" class="theatre-video-link" id="theatre-video-link">
 									<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 										stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 										aria-hidden="true">
@@ -593,7 +593,7 @@
 						</div>
 
 						<div class="newspaper-badges">
-							<span class="newspaper-stat-badge">📑 31 оцифрованный выпуск</span>
+							<span class="newspaper-stat-badge" id="newspaper-stat-count">📑 31 оцифрованный выпуск</span>
 							<span class="newspaper-stat-badge">🕊️ Полный архив с 2011 года</span>
 							<span class="newspaper-stat-badge">📖 Чтение онлайн без скачивания</span>
 						</div>
@@ -659,7 +659,7 @@
 
 				<!-- Фильтры архива -->
 				<div class="newspaper-archive-controls">
-					<div class="newspaper-tabs" role="tablist" aria-label="Фильтр архива газеты по годам">
+					<div class="newspaper-tabs" id="newspaper-tabs" role="tablist" aria-label="Фильтр архива газеты по годам">
 						<button type="button" class="newspaper-tab active" data-year="all">Все выпуски (31)</button>
 						<button type="button" class="newspaper-tab" data-year="2023">2023 (Спецвыпуск)</button>
 						<button type="button" class="newspaper-tab" data-year="2015">2015 год (3)</button>
@@ -2689,7 +2689,11 @@
 				<!-- Кнопка -->
 				<div class="news-grid__load-more">
 					<button class="load-more-btn" type="button">
-						Показать ещё
+						<span>Показать ещё</span>
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<polyline points="6 9 12 15 18 9"></polyline>
+						</svg>
 					</button>
 				</div>
 			</section>
@@ -2983,7 +2987,7 @@
 	<script src="js/config.js"></script>
 	<script src="js/feedback.js?v=2.3"></script>
 	<script src="js/window.scrollY.js"></script>
-	<script src="./js/life.js?v=3.1"></script>
+	<script src="./js/life.js?v=4.1"></script>
 	<script src="js/navigation.js"></script>
 	<script src="js/search.js"></script>
 	<script src="js/bvi.js"></script>

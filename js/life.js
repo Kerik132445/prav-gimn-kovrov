@@ -669,7 +669,7 @@ function updateNews() {
 	} else {
 
 		loadMoreButton.style.display =
-			"block";
+			"inline-flex";
 	}
 }
 
@@ -1100,9 +1100,143 @@ window.addEventListener("pageshow", (event) => {
 loadNews();
 
 // ========================================
-// Интерактивная галерея студии «Встреча»
+// Утилиты медиа и экранирования
 // ========================================
-function initTheatreGallery() {
+function resolvePublicMediaUrl(url) {
+	if (!url) return "";
+	if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("data:") || url.startsWith("blob:")) {
+		return url;
+	}
+	if (url.startsWith("/uploads") || url.startsWith("uploads/")) {
+		const clean = url.startsWith("/") ? url : `/${url}`;
+		const base = window.API_BASE_URL || "";
+		return `${base}${clean}`;
+	}
+	return url;
+}
+
+function escapeHtml(str) {
+	if (str === null || str === undefined) return "";
+	return String(str)
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;")
+		.replace(/'/g, "&#039;");
+}
+
+// ========================================
+// Интерактивная студия и репертуар театра «Встреча»
+// ========================================
+async function initTheatreRepertoire() {
+	const list = document.getElementById("theatre-plays-list") || document.querySelector(".theatre-plays__list");
+	const thumbsContainer = document.getElementById("theatre-gallery-thumbs") || document.querySelector(".theatre-gallery__thumbs");
+	const mainImg = document.getElementById("theatre-main-img");
+	const mainCaption = document.getElementById("theatre-main-caption");
+	const videoLink = document.getElementById("theatre-video-link") || document.querySelector(".theatre-video-link");
+
+	if (!list) return;
+
+	try {
+		const res = await fetch(`${window.API_BASE_URL || ""}/api/life/theatre-plays`);
+		if (!res.ok) throw new Error("HTTP " + res.status);
+		const plays = await res.json();
+		if (!Array.isArray(plays) || !plays.length) throw new Error("Empty plays");
+
+		// 1. Выводим плашки репертуара из базы данных
+		list.innerHTML = "";
+		plays.forEach((play, index) => {
+			const span = document.createElement("span");
+			span.className = `theatre-play-pill ${index === 0 ? "active" : ""}`;
+			span.textContent = `🎭 «${play.title}»${play.year ? ` (${play.year})` : ""}`;
+			if (play.awards) {
+				span.title = `Награда: ${play.awards}`;
+			}
+			span.style.cursor = "pointer";
+
+			span.addEventListener("click", () => {
+				list.querySelectorAll(".theatre-play-pill").forEach((p) => p.classList.remove("active"));
+				span.classList.add("active");
+				selectTheatrePlay(play);
+				if (thumbsContainer) {
+					thumbsContainer.querySelectorAll(".theatre-gallery__thumb").forEach((t) => {
+						const match = t.getAttribute("data-play-id") == play.id;
+						t.classList.toggle("active", match);
+					});
+				}
+			});
+
+			list.appendChild(span);
+		});
+
+		// 2. Если у спектаклей есть фото, динамически обновляем миниатюры галереи
+		const playsWithPhotos = plays.filter((p) => Boolean(p.photo_url));
+		if (thumbsContainer && playsWithPhotos.length > 0) {
+			thumbsContainer.innerHTML = "";
+			playsWithPhotos.forEach((play, index) => {
+				const resolvedPhoto = resolvePublicMediaUrl(play.photo_url);
+				const btn = document.createElement("button");
+				btn.type = "button";
+				btn.className = `theatre-gallery__thumb ${index === 0 ? "active" : ""}`;
+				btn.setAttribute("data-src", resolvedPhoto);
+				btn.setAttribute("data-play-id", play.id);
+				let cap = `Спектакль «${play.title}»`;
+				if (play.year) cap += ` (${play.year} г.)`;
+				if (play.awards) cap += ` — 🏆 ${play.awards}`;
+				btn.setAttribute("data-caption", cap);
+				btn.setAttribute("aria-label", `Спектакль «${play.title}»`);
+
+				btn.innerHTML = `<img src="${resolvedPhoto}" alt="${escapeHtml(play.title)}" loading="lazy">`;
+
+				btn.addEventListener("click", () => {
+					thumbsContainer.querySelectorAll(".theatre-gallery__thumb").forEach((t) => t.classList.remove("active"));
+					btn.classList.add("active");
+					selectTheatrePlay(play);
+					list.querySelectorAll(".theatre-play-pill").forEach((p, pIdx) => {
+						p.classList.toggle("active", plays[pIdx] && plays[pIdx].id === play.id);
+					});
+				});
+
+				thumbsContainer.appendChild(btn);
+			});
+		}
+
+		function selectTheatrePlay(play) {
+			const photoUrl = resolvePublicMediaUrl(play.photo_url);
+			if (mainImg && photoUrl) {
+				mainImg.style.opacity = "0.4";
+				setTimeout(() => {
+					mainImg.src = photoUrl;
+					mainImg.alt = `Спектакль «${play.title}»`;
+					mainImg.style.opacity = "1";
+				}, 130);
+			}
+			if (mainCaption) {
+				let cap = `Спектакль «${play.title}»`;
+				if (play.year) cap += ` (${play.year} г.)`;
+				if (play.awards) cap += ` — 🏆 ${play.awards}`;
+				mainCaption.textContent = cap;
+			}
+			if (videoLink) {
+				if (play.video_url) {
+					videoLink.href = play.video_url;
+					videoLink.style.display = "inline-flex";
+				} else {
+					videoLink.href = "https://vkvideo.ru/video-178231686_456239608?t=16m";
+				}
+			}
+		}
+
+		if (plays.length > 0) {
+			selectTheatrePlay(plays[0]);
+		}
+	} catch (e) {
+		// Оффлайн фоллбэк: сохраняем интерактивность статических миниатюр
+		initStaticTheatreGallery();
+	}
+}
+
+function initStaticTheatreGallery() {
 	const thumbs = document.querySelectorAll(".theatre-gallery__thumb");
 	const mainImg = document.getElementById("theatre-main-img");
 	const caption = document.getElementById("theatre-main-caption");
@@ -1128,19 +1262,20 @@ function initTheatreGallery() {
 	});
 }
 
-initTheatreGallery();
+initTheatreRepertoire();
 
 
 // ========================================
 // Медиа-архив газеты «Доброе слово» и просмотрщик PDF
 // ========================================
-function initNewspaperArchive() {
-	const tabs = document.querySelectorAll(".newspaper-tab");
-	const cards = Array.from(document.querySelectorAll(".newspaper-card"));
+async function initNewspaperArchive() {
+	const grid = document.getElementById("newspaper-grid");
+	const tabsContainer = document.getElementById("newspaper-tabs") || document.querySelector(".newspaper-tabs");
 	const countIndicator = document.getElementById("newspaper-visible-count");
 	const loadMoreWrap = document.getElementById("newspaper-load-more-wrap");
 	const loadMoreBtn = document.getElementById("newspaper-load-more-btn");
 	const loadMoreText = document.getElementById("newspaper-load-more-text");
+	const statCountEl = document.getElementById("newspaper-stat-count") || document.querySelector(".newspaper-stat-badge");
 
 	const modal = document.getElementById("newspaper-modal");
 	const backdrop = document.getElementById("newspaper-modal-backdrop");
@@ -1150,11 +1285,127 @@ function initNewspaperArchive() {
 	const openNewBtn = document.getElementById("newspaper-modal-open-new");
 	const downloadBtn = document.getElementById("newspaper-modal-download");
 
+	if (!grid) return;
+
 	const BATCH_SIZE = 4;
 	let currentLimit = BATCH_SIZE;
 	let activeYear = "all";
+	let allIssues = [];
 
-	// Функция обновления отображения карточек по активному фильтру и лимиту
+	// Пробуем загрузить свежие выпуски из API базы данных
+	try {
+		const res = await fetch(`${window.API_BASE_URL || ""}/api/life/newspapers`);
+		if (res.ok) {
+			const data = await res.json();
+			if (Array.isArray(data) && data.length > 0) {
+				allIssues = data;
+			}
+		}
+	} catch (e) {
+		console.warn("Оффлайн-режим: используем статический архив газеты");
+	}
+
+	// Если получены данные из API — пересоздаем карточки и вкладки по годам
+	if (allIssues.length > 0) {
+		if (statCountEl) {
+			statCountEl.textContent = `📑 ${allIssues.length} оцифрованных выпусков`;
+		}
+
+		// Считаем выпуски по годам
+		const yearCounts = {};
+		allIssues.forEach((issue) => {
+			const y = String(issue.year || "").trim();
+			if (!y) return;
+			yearCounts[y] = (yearCounts[y] || 0) + 1;
+		});
+
+		const sortedYears = Object.keys(yearCounts).sort((a, b) => {
+			const na = parseInt(a, 10) || 0;
+			const nb = parseInt(b, 10) || 0;
+			return nb - na;
+		});
+
+		if (tabsContainer) {
+			let tabsHtml = `<button type="button" class="newspaper-tab active" data-year="all">Все выпуски (${allIssues.length})</button>`;
+			sortedYears.forEach((y) => {
+				const count = yearCounts[y];
+				const isSpecial = allIssues.some((i) => String(i.year) === y && i.is_special);
+				const label = isSpecial ? `${y} (Спецвыпуск)` : `${y} год (${count})`;
+				tabsHtml += `<button type="button" class="newspaper-tab" data-year="${y}">${escapeHtml(label)}</button>`;
+			});
+			tabsContainer.innerHTML = tabsHtml;
+		}
+
+		let gridHtml = "";
+		allIssues.forEach((issue) => {
+			const isSpec = Boolean(issue.is_special);
+			const specClass = isSpec ? "newspaper-card--special" : "";
+			const badgeText = isSpec ? "Спецвыпуск" : `${escapeHtml(String(issue.year))} год`;
+			const fileSizeText = issue.file_size ? `${escapeHtml(issue.file_size)} • PDF` : "PDF документ";
+			const fileUrl = resolvePublicMediaUrl(issue.file_url);
+			const downloadFilename = issue.file_url ? issue.file_url.split("/").pop() : "gazeta.pdf";
+			const subText = issue.subtitle ? escapeHtml(issue.subtitle) : "";
+			const descText = issue.description ? escapeHtml(issue.description) : "";
+
+			gridHtml += `
+				<article class="newspaper-card ${specClass}" data-year="${escapeHtml(String(issue.year))}" data-issue-id="${issue.id}">
+					<a href="${escapeHtml(fileUrl)}" target="_blank" class="newspaper-card__cover" title="Открыть выпуск ${escapeHtml(issue.title)}">
+						<div class="cover-masthead">
+							<span class="cover-school">Православная гимназия</span>
+							<span class="cover-name">ДОБРОЕ СЛОВО</span>
+							<div class="cover-rule"></div>
+						</div>
+						<div class="cover-meta">
+							<span class="cover-num">${escapeHtml(issue.number)}</span>
+							${subText ? `<span class="cover-badge-tag">${subText}</span>` : ""}
+						</div>
+						<div class="cover-preview-lines">
+							<div class="cover-line"></div>
+							<div class="cover-line short"></div>
+							<div class="cover-line"></div>
+						</div>
+					</a>
+
+					<div class="newspaper-card__body">
+						<div class="newspaper-card__header">
+							<span class="newspaper-card__year-badge">${badgeText}</span>
+							<span class="newspaper-card__filesize">${fileSizeText}</span>
+						</div>
+						<h4 class="newspaper-card__title">
+							<a href="${escapeHtml(fileUrl)}" target="_blank" style="color:inherit; text-decoration:none;">${escapeHtml(issue.title)}</a>
+						</h4>
+						${descText ? `<p class="newspaper-card__desc">${descText}</p>` : ""}
+						<div class="newspaper-card__actions">
+							<a href="${escapeHtml(fileUrl)}" target="_blank" class="btn-read-issue"
+								data-pdf="${escapeHtml(fileUrl)}"
+								data-title="Газета «Доброе слово» — ${escapeHtml(issue.title)}">
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+									<circle cx="12" cy="12" r="3"></circle>
+								</svg>
+								Читать онлайн
+							</a>
+							<a href="${escapeHtml(fileUrl)}" download="${escapeHtml(downloadFilename)}" target="_blank"
+								class="btn-download-icon" title="Скачать PDF (${fileSizeText})" aria-label="Скачать PDF">
+								<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+									<polyline points="7 10 12 15 17 10"></polyline>
+									<line x1="12" y1="15" x2="12" y2="3"></line>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</article>
+			`;
+		});
+		grid.innerHTML = gridHtml;
+	}
+
+	const cards = Array.from(grid.querySelectorAll(".newspaper-card"));
+	const tabs = tabsContainer ? Array.from(tabsContainer.querySelectorAll(".newspaper-tab")) : [];
+
 	function updateDisplay(isLoadMoreClick) {
 		const matchingCards = cards.filter((card) => {
 			const cardYear = card.getAttribute("data-year");
@@ -1163,7 +1414,6 @@ function initNewspaperArchive() {
 
 		const totalMatching = matchingCards.length;
 
-		// Скрываем все карточки, не относящиеся к текущему году
 		cards.forEach((card) => {
 			const cardYear = card.getAttribute("data-year");
 			if (activeYear !== "all" && cardYear !== activeYear) {
@@ -1173,7 +1423,6 @@ function initNewspaperArchive() {
 			}
 		});
 
-		// Отображаем подходящие карточки порциями
 		matchingCards.forEach((card, index) => {
 			if (index < currentLimit) {
 				const wasHidden = card.classList.contains("newspaper-card--hidden") || card.style.display === "none";
@@ -1191,12 +1440,10 @@ function initNewspaperArchive() {
 
 		const currentlyVisible = Math.min(currentLimit, totalMatching);
 
-		// Обновляем счетчик
 		if (countIndicator) {
 			countIndicator.textContent = `${currentlyVisible} из ${totalMatching}`;
 		}
 
-		// Управление кнопкой «Показать ещё»
 		if (loadMoreWrap && loadMoreBtn) {
 			if (currentLimit < totalMatching) {
 				loadMoreWrap.style.display = "flex";
@@ -1212,39 +1459,25 @@ function initNewspaperArchive() {
 		}
 	}
 
-	// 1. Фильтрация архива по вкладкам-годам
-	if (tabs.length) {
-		tabs.forEach((tab) => {
-			tab.addEventListener("click", () => {
-				activeYear = tab.getAttribute("data-year") || "all";
-				tabs.forEach((t) => t.classList.remove("active"));
-				tab.classList.add("active");
-
-				// Сбрасываем лимит к начальным 4 выпускам при смене года
-				currentLimit = BATCH_SIZE;
-				updateDisplay(false);
-			});
+	tabs.forEach((tab) => {
+		tab.addEventListener("click", () => {
+			activeYear = tab.getAttribute("data-year") || "all";
+			tabs.forEach((t) => t.classList.remove("active"));
+			tab.classList.add("active");
+			currentLimit = BATCH_SIZE;
+			updateDisplay(false);
 		});
-	}
+	});
 
-	// 2. Клик по кнопке «Показать ещё (+4)»
 	if (loadMoreBtn) {
-		loadMoreBtn.addEventListener("click", () => {
+		loadMoreBtn.onclick = () => {
 			currentLimit += BATCH_SIZE;
 			updateDisplay(true);
-		});
+		};
 	}
 
-	// Инициализируем стартовое состояние (показываем ровно первые 4 выпуска)
-	updateDisplay(false);
-
-	// 3. Открытие просмотрщика PDF
 	function openPdf(pdfUrl, title) {
 		if (!pdfUrl) return;
-
-		// Проверяем протокол: если сайт открыт напрямую через file://
-		// современные браузеры блокируют локальные PDF во фрейме iframe.
-		// В этом случае открываем PDF напрямую в новой вкладке встроенного ридера:
 		const isFileProtocol = window.location.protocol === "file:";
 
 		if (isFileProtocol || !modal || !iframe) {
@@ -1252,7 +1485,6 @@ function initNewspaperArchive() {
 			return;
 		}
 
-		// На веб-сервере (http / https) открываем интерактивный модальный просмотрщик
 		if (titleEl) titleEl.textContent = title || "Просмотр газеты";
 		if (openNewBtn) openNewBtn.href = pdfUrl;
 		if (downloadBtn) {
@@ -1275,30 +1507,28 @@ function initNewspaperArchive() {
 		document.body.style.overflow = "";
 	}
 
-	// Делегирование кликов по кнопкам чтения
-	document.addEventListener("click", (e) => {
-		const readBtn = e.target.closest(".btn-read-pdf, .btn-read-issue");
+	grid.onclick = (e) => {
+		const readBtn = e.target.closest(".btn-read-issue, .btn-read-pdf");
 		if (readBtn) {
 			const pdfUrl = readBtn.getAttribute("data-pdf") || readBtn.getAttribute("href");
 			const title = readBtn.getAttribute("data-title");
-			if (pdfUrl) {
-				if (window.location.protocol !== "file:") {
-					e.preventDefault();
-					openPdf(pdfUrl, title);
-				}
+			if (pdfUrl && window.location.protocol !== "file:") {
+				e.preventDefault();
+				openPdf(pdfUrl, title);
 			}
 		}
-	});
+	};
 
-	if (closeBtn) closeBtn.addEventListener("click", closePdfModal);
-	if (backdrop) backdrop.addEventListener("click", closePdfModal);
+	if (closeBtn) closeBtn.onclick = closePdfModal;
+	if (backdrop) backdrop.onclick = closePdfModal;
 
-	// Закрытие по Escape
 	document.addEventListener("keydown", (e) => {
 		if (e.key === "Escape" && modal && modal.style.display === "flex") {
 			closePdfModal();
 		}
 	});
+
+	updateDisplay(false);
 }
 
 initNewspaperArchive();
@@ -1366,15 +1596,15 @@ async function initCampShifts() {
 					if (albumBtnText) albumBtnText.textContent = `Фотоальбом лагеря в VK (${shift.year} г.)`;
 				}
 			}
-			if (mediaImg && shift.photo_url) {
-				mediaImg.src = shift.photo_url;
+			const photoUrl = resolvePublicMediaUrl(shift.photo_url);
+			if (mediaImg && photoUrl) {
+				mediaImg.src = photoUrl;
 			}
 			if (mediaCaption) {
 				mediaCaption.textContent = shift.title || `Летний отдых воспитанников гимназии (${shift.year} г.)`;
 			}
 		}
 
-		// Выбираем первую (самую актуальную) смену
 		renderShiftDetails(shifts[0]);
 	} catch (e) {
 		// Оффлайн фоллбэк: оставляем статическую разметку
@@ -1382,36 +1612,5 @@ async function initCampShifts() {
 }
 
 initCampShifts();
-
-
-// ========================================
-// Динамическая подгрузка репертуара театра
-// ========================================
-async function initTheatreRepertoire() {
-	const list = document.getElementById("theatre-plays-list");
-	if (!list) return;
-
-	try {
-		const res = await fetch(`${window.API_BASE_URL || ""}/api/life/theatre-plays`);
-		if (!res.ok) return;
-		const plays = await res.json();
-		if (!Array.isArray(plays) || !plays.length) return;
-
-		list.innerHTML = "";
-		plays.forEach((play) => {
-			const span = document.createElement("span");
-			span.className = "theatre-play-pill";
-			span.textContent = `🎭 ${play.title}${play.year ? ` (${play.year})` : ""}`;
-			if (play.awards) {
-				span.title = play.awards;
-			}
-			list.appendChild(span);
-		});
-	} catch (e) {
-		// Оффлайн фоллбэк: остаются статические постановки
-	}
-}
-
-initTheatreRepertoire();
 
 })();
