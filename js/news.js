@@ -255,7 +255,6 @@ async function loadNews() {
 				if (Array.isArray(allNews) && allNews.length > 0) {
 					// На бэкенде новости отсортированы по id.desc(), то есть allNews[0] — самая свежая
 					const latestNews = allNews[0];
-					console.log("Динамически получена последняя новость на данный момент:", latestNews);
 
 					if (window.history && window.history.replaceState) {
 						window.history.replaceState({ id: latestNews.id }, "", `news.html?id=${latestNews.id}`);
@@ -298,7 +297,6 @@ async function loadNews() {
 		}
 
 		const currentNews = await response.json();
-		console.log("Новость загружена:", currentNews);
 		displayNews(currentNews);
 
 	} catch (error) {

@@ -1,6 +1,4 @@
 (() => {
-console.log("SEARCH JS ЗАПУЩЕН");
-
 const API_URL = `${window.API_BASE_URL}/api/news/`;
 
 const searchForm = document.getElementById("site-search-form");

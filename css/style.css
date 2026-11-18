@@ -4430,13 +4430,14 @@ body.header-is-hidden {
 }
 
 .about__link span {
-	display: inline-block;
-	transition: transform 0.3s ease;
+	display: inline-flex;
+	align-items: center;
+	transition: transform 0.25s ease;
 	text-decoration: none;
 }
 
 .about__link:hover span {
-	transform: translateX(7px);
+	transform: translateX(4px);
 	text-decoration: none;
 }
 

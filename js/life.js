@@ -414,7 +414,6 @@ async function loadNews() {
 		news.forEach(item => {
 			item.category = normalizeNewsCategory(item);
 		});
-		console.log("Новости загружены:", news);
 		updateNews();
 		animateInitialNews();
 		handleNewsScrollReturn();
