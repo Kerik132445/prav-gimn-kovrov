@@ -137,13 +137,23 @@ body {
 	background-color: #d66f17;
 }
 
+/* ==========================================================================
+   HERO: СОВРЕМЕННЫЙ ДВУХКОЛОНОЧНЫЙ ЭКРАН
+   ========================================================================== */
 .hero {
-	background-image: url("../assets/images/hero-bg.webp");
-	background-size: cover;
-	background-position: center;
-	padding: 90px 0 80px;
-	color: #ffffff;
-	height: 500px;
+	position: relative;
+	background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+	border-bottom: 1px solid #E2E8F0;
+	padding: 44px 0 56px;
+	color: #0F172A;
+	height: auto;
+}
+
+.hero__grid {
+	display: grid;
+	grid-template-columns: 1.15fr 0.95fr;
+	align-items: center;
+	gap: 48px;
 }
 
 .hero__content {
@@ -153,25 +163,250 @@ body {
 	text-align: left;
 }
 
-.hero__content h1 {
-	font-size: 48px;
-	font-weight: 700;
-	color: #ffffff;
+.hero__badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 14px;
+	background: #EFF6FF;
+	border: 1px solid #BFDBFE;
+	border-radius: 9999px;
+	color: #1D4ED8;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	margin-bottom: 16px;
+	transition: all 0.2s ease;
 }
 
-.hero__content p {
-	font-size: 19px;
-	opacity: 0.9;
-	margin-bottom: 50px;
-	color: #bfc7d5;
+.hero__badge:hover {
+	background: #DBEAFE;
+	border-color: #93C5FD;
+	transform: translateY(-1px);
+	text-decoration: none;
+}
+
+.hero__badge-dot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #2563EB;
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+.hero__badge svg {
+	transition: transform 0.2s ease;
+}
+
+.hero__badge:hover svg {
+	transform: translateX(2px);
+}
+
+.hero__content h1,
+.hero__title {
+	font-size: clamp(30px, 3.2vw, 42px);
+	font-weight: 800;
+	color: #0F172A;
+	line-height: 1.18;
+	letter-spacing: -0.02em;
+	margin: 0 0 16px;
+}
+
+.hero__content p,
+.hero__desc {
+	font-size: 17px;
+	line-height: 1.6;
+	color: #475569;
+	margin: 0 0 26px;
+	max-width: 580px;
+	opacity: 1;
 }
 
 .hero__buttons {
 	display: flex;
-	gap: 64px;
-	max-width: 600px;
-	max-height: 600px;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 26px;
+	flex-wrap: wrap;
+	width: auto;
+	max-width: none;
+	max-height: none;
+}
 
+.hero__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	min-height: 48px;
+	padding: 13px 26px;
+	border-radius: 10px;
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	box-sizing: border-box;
+	transition: all 0.2s ease;
+}
+
+.hero__btn--primary {
+	background: #1D4ED8;
+	color: #FFFFFF;
+	border: 1.5px solid transparent;
+	box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+}
+
+.hero__btn--primary:hover {
+	background: #1E40AF;
+	color: #FFFFFF;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(29, 78, 216, 0.35);
+	text-decoration: none;
+}
+
+.hero__btn--secondary {
+	background: #FFFFFF;
+	color: #1E293B;
+	border: 1.5px solid #CBD5E1;
+	box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.hero__btn--secondary:hover {
+	background: #F8FAFC;
+	border-color: #94A3B8;
+	color: #0F172A;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+	text-decoration: none;
+}
+
+/* Метрики доверия (строгая типографика вместо эмодзи) */
+.hero__stats {
+	display: flex;
+	align-items: center;
+	gap: 28px;
+	padding-top: 22px;
+	border-top: 1px solid #E2E8F0;
+	width: 100%;
+}
+
+.hero__stat-item {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.hero__stat-value {
+	font-size: 22px;
+	font-weight: 800;
+	color: #1E40AF;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+}
+
+.hero__stat-label {
+	font-size: 13px;
+	font-weight: 500;
+	color: #64748B;
+	white-space: nowrap;
+}
+
+.hero__stat-divider {
+	width: 1px;
+	height: 32px;
+	background: #E2E8F0;
+	flex-shrink: 0;
+}
+
+/* Правая колонка: Фото в карточке */
+.hero__visual {
+	position: relative;
+}
+
+.hero__photo-card {
+	position: relative;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(15, 23, 42, 0.06);
+	background: #FFFFFF;
+}
+
+.hero__photo {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.5s ease;
+}
+
+.hero__photo-card:hover .hero__photo {
+	transform: scale(1.02);
+}
+
+.hero__photo-badge {
+	position: absolute;
+	bottom: 16px;
+	left: 16px;
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(8px);
+	padding: 7px 14px;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+	font-size: 12px;
+	font-weight: 600;
+	color: #1E293B;
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.hero__photo-badge-icon {
+	color: #2563EB;
+	flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+	.hero__grid {
+		grid-template-columns: 1fr;
+		gap: 36px;
+	}
+	.hero__visual {
+		max-width: 600px;
+		margin: 0 auto;
+		width: 100%;
+	}
+}
+
+@media (max-width: 640px) {
+	.hero {
+		padding: 28px 0 44px;
+	}
+	.hero__buttons {
+		flex-direction: column;
+		width: 100%;
+		gap: 12px;
+	}
+	.hero__btn {
+		width: 100%;
+		text-align: center;
+	}
+	.hero__stats {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		padding-top: 18px;
+	}
+	.hero__stat-divider {
+		display: none;
+	}
+	.hero__stat-value {
+		font-size: 18px;
+	}
+	.hero__stat-label {
+		font-size: 11px;
+	}
 }
 
 .btn {
@@ -1174,86 +1409,396 @@ h2 {
 	}
 }
 
-.teachers {
-	display: flex;
+/* ========================================
+   БЛОК: ПЕДАГОГИ И НАСТАВНИКИ (ГЛАВНАЯ СТРАНИЦА)
+======================================== */
+
+.teachers-section {
+	margin: 64px 0 80px;
+	position: relative;
+}
+
+.teachers-card {
+	background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+	border: 1px solid #E2E8F0;
+	border-radius: 28px;
+	padding: 52px 56px;
+	display: grid;
+	grid-template-columns: 1.15fr 0.95fr;
 	align-items: center;
-	justify-content: space-between;
-	gap: 64px;
-	background-color: #ffffff;
-	padding: 48px 64px;
-	border-radius: 24px;
-	margin-top: 64px;
+	gap: 56px;
+	box-shadow: 0 12px 36px -4px rgba(15, 23, 42, 0.05),
+		0 2px 10px rgba(15, 23, 42, 0.02);
+	position: relative;
+	overflow: hidden;
+}
+
+/* Декоративный мягкий световой блик в углу карточки */
+.teachers-card::before {
+	content: "";
+	position: absolute;
+	top: -120px;
+	right: -120px;
+	width: 320px;
+	height: 320px;
+	background: radial-gradient(circle, rgba(2, 132, 199, 0.08) 0%, rgba(2, 132, 199, 0) 70%);
+	border-radius: 50%;
+	pointer-events: none;
 }
 
 .teachers__info {
 	display: flex;
-	width: 50%;
 	flex-direction: column;
-	gap: 12px;
 	align-items: flex-start;
+	width: 100%;
 }
 
-.info-beige {
-	display: inline-block;
-	background-color: #DBEAFE;
-	border-radius: 12px;
-	color: #2563EB;
-	font-size: 12px;
-	padding: 4px 12px;
-	align-self: flex-start;
-	font-weight: 600;
-}
-
-.info-title {
-	color: #0F172A;
-	font-size: 32px;
-	font-weight: 600;
-	margin: 0;
-}
-
-.info-sub-title {
-	color: #475569;
-	font-size: 15px;
-	line-height: 160%;
-	margin: 0;
-}
-
-.btn-teachers {
-	background-color: #EFF6FF;
-	border: 1px solid #2563EB;
-	border-radius: 10px;
+.teachers__info .section-tag {
 	display: inline-flex;
 	align-items: center;
 	gap: 8px;
-	align-self: flex-start;
-	padding: 12px 24px;
-	text-decoration: none;
-	color: #000000;
-}
-
-.teachers__media img {
-	width: 540px;
-	height: 400px;
-	object-fit: cover;
-	border-radius: 20px;
-	overflow: visible;
-}
-
-.teachers__media {
-	display: flex;
-	flex-shrink: 0;
-	overflow: visible;
+	padding: 6px 16px;
+	border-radius: 999px;
+	background-color: #E0F2FE;
+	color: #0284C7;
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	margin-bottom: 16px;
 }
 
 .teachers__header {
 	display: flex;
-	align-self: flex-start;
 	flex-direction: column;
-	text-align: left;
-	gap: 10px;
-	align-items: flex-start;
+	gap: 12px;
+	margin-bottom: 28px;
 	width: 100%;
-	margin-bottom: 24px;
+	text-align: left;
+}
+
+.teachers__title {
+	font-size: 34px;
+	font-weight: 800;
+	color: #0F172A;
+	line-height: 1.25;
+	letter-spacing: -0.02em;
+	margin: 0;
+	text-align: left !important;
+}
+
+.teachers__subtitle {
+	font-size: 16px;
+	color: #475569;
+	line-height: 1.6;
+	margin: 0;
+	text-align: left;
+}
+
+/* 3 показателя в ряд */
+.teachers__stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	width: 100%;
+	padding: 24px 0;
+	margin-bottom: 32px;
+	border-top: 1px solid #E2E8F0;
+	border-bottom: 1px solid #E2E8F0;
+}
+
+.teachers__stat-item {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.teachers__stat-val {
+	font-size: 26px;
+	font-weight: 800;
+	color: #0A195A;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+}
+
+.teachers__stat-lbl {
+	font-size: 12.5px;
+	color: #64748B;
+	line-height: 1.35;
+	font-weight: 500;
+}
+
+/* Фирменная кнопка перехода */
+.teachers__btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 28px;
+	background: #0284C7;
+	color: #FFFFFF !important;
+	border-radius: 12px;
+	font-size: 15px;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
+	transition: background-color 0.25s ease,
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
+}
+
+.teachers__btn:hover {
+	background: #0369A1;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 22px rgba(2, 132, 199, 0.38);
+}
+
+.teachers__btn svg {
+	transition: transform 0.25s ease;
+}
+
+.teachers__btn:hover svg {
+	transform: translateX(4px);
+}
+
+/* Правая медиа-колонка */
+.teachers__media {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+
+.teachers__photo-wrap {
+	position: relative;
+	width: 100%;
+	max-width: 480px;
+	height: 440px;
+	border-radius: 24px;
+	overflow: hidden;
+	box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12),
+		0 4px 12px rgba(15, 23, 42, 0.05);
+	background: #E2E8F0;
+	border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.teachers__photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 15%;
+	display: block;
+	transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.teachers__photo-wrap:hover .teachers__photo {
+	transform: scale(1.03);
+}
+
+/* Деликатный градиент на фото для лучшего контраста плашки команды */
+.teachers__photo-wrap::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(15, 23, 42, 0) 55%, rgba(15, 23, 42, 0.35) 100%);
+	pointer-events: none;
+}
+
+/* Верхний бейдж категории */
+.teachers__badge-top {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.92);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	padding: 7px 14px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 700;
+	color: #0F172A;
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.teachers__badge-dot {
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: #10B981;
+	box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+/* Нижняя стеклянная карточка команды с аватарами */
+.teachers__team-card {
+	position: absolute;
+	bottom: 16px;
+	left: 16px;
+	right: 16px;
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.92);
+	backdrop-filter: blur(14px);
+	-webkit-backdrop-filter: blur(14px);
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	border-radius: 18px;
+	padding: 12px 16px;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.teachers__photo-wrap:hover .teachers__team-card {
+	background: rgba(255, 255, 255, 0.97);
+	transform: translateY(-2px);
+}
+
+.teachers__avatars {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.teachers__avatar {
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	border: 2px solid #FFFFFF;
+	object-fit: cover;
+	object-position: center;
+	margin-left: -9px;
+	box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+	transition: transform 0.25s ease, z-index 0.25s ease;
+	cursor: pointer;
+	position: relative;
+}
+
+.teachers__avatar:first-child {
+	margin-left: 0;
+}
+
+.teachers__avatar:hover {
+	transform: translateY(-4px) scale(1.15);
+	z-index: 10;
+}
+
+.teachers__avatar-more {
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	border: 2px solid #FFFFFF;
+	background: #0284C7;
+	color: #FFFFFF;
+	font-size: 11.5px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: -9px;
+	box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+	flex-shrink: 0;
+}
+
+.teachers__team-text {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+
+.teachers__team-title {
+	font-size: 13.5px;
+	font-weight: 700;
+	color: #0F172A;
+	line-height: 1.25;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.teachers__team-desc {
+	font-size: 11.5px;
+	color: #64748B;
+	line-height: 1.25;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Адаптивность промо-блока педагогов */
+@media (max-width: 992px) {
+	.teachers-section {
+		margin: 48px 0 64px;
+	}
+
+	.teachers-card {
+		grid-template-columns: 1fr;
+		gap: 40px;
+		padding: 40px 32px;
+	}
+
+	.teachers__title {
+		font-size: 28px;
+	}
+}
+
+@media (max-width: 640px) {
+	.teachers-section {
+		margin: 36px 0 48px;
+	}
+
+	.teachers-card {
+		padding: 28px 20px;
+		border-radius: 20px;
+		gap: 32px;
+	}
+
+	.teachers__title {
+		font-size: 24px;
+	}
+
+	.teachers__subtitle {
+		font-size: 14.5px;
+	}
+
+	.teachers__stats {
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+
+	.teachers__stat-item {
+		padding: 12px 14px;
+	}
+
+	.teachers__stat-val {
+		font-size: 22px;
+	}
+
+	.teachers__btn {
+		width: 100%;
+		justify-content: center;
+	}
+
+	.teachers__photo-wrap {
+		height: 360px;
+	}
+
+	.teachers__team-card {
+		left: 12px;
+		right: 12px;
+		bottom: 12px;
+		padding: 10px 14px;
+	}
+
+	.teachers__badge-top {
+		top: 12px;
+		right: 12px;
+		padding: 6px 12px;
+		font-size: 11.5px;
+	}
 }
 
 .faq-feedback {
@@ -5394,23 +5939,7 @@ body.header-is-hidden {
 	transform: scale(0.94);
 }
 
-.teachers__media {
-	overflow: hidden;
-	overflow: visible;
-}
 
-.teachers__media img {
-	transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.teachers__media:hover img {
-	transform: scale(1.04);
-	overflow: visible;
-}
-
-.btn-teachers {
-	display: inline-block;
-}
 
 .faq__item {
 	transition: box-shadow 0.3s ease,
@@ -13632,18 +14161,7 @@ p {
 		width: 100%;
 	}
 
-	.teachers__media {
-		width: 100%;
-		min-width: 0;
-	}
 
-	.teachers__media img {
-		width: 100%;
-		height: auto;
-		max-height: 360px;
-		object-fit: cover;
-		border-radius: 14px;
-	}
 
 	.teachers-grid {
 		grid-template-columns: minmax(0, 1fr);
@@ -14838,23 +15356,7 @@ p {
 		min-width: 0;
 	}
 
-	.teachers__media {
-		width: 100%;
-		max-width: 540px;
-		margin: 0 auto;
-		min-width: 0;
-		overflow: hidden;
-		border-radius: 14px;
-	}
 
-	.teachers__media img {
-		width: 100%;
-		height: auto;
-		max-height: none;
-		object-fit: cover;
-		border-radius: 14px;
-		overflow: hidden !important;
-	}
 
 	/* Предсказуемое появление секций без сдвига и наложений при прокрутке */
 	.js-reveal,
