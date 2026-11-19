@@ -327,8 +327,15 @@ document.addEventListener("DOMContentLoaded", () => {
 			const data = await response.json();
 			lessonsCache.set(classId, Array.isArray(data) ? data : []);
 		} catch (error) {
-			console.error(error);
-			state.errorMessage = "Не удалось загрузить расписание уроков. Попробуйте обновить страницу.";
+			console.warn("Backend API недоступен, загружаем уроки класса из локального резерва:", error);
+			const fallbackLessons = window.FALLBACK_LESSONS_BY_CLASS?.[classId]
+				|| window.FALLBACK_LESSONS_BY_CLASS?.[String(classId)];
+			if (Array.isArray(fallbackLessons)) {
+				lessonsCache.set(classId, fallbackLessons);
+			} else {
+				console.error(error);
+				state.errorMessage = "Не удалось загрузить расписание уроков. Попробуйте обновить страницу.";
+			}
 		} finally {
 			state.loadingLessons = false;
 		}
@@ -355,9 +362,19 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 			renderCampusCardsState();
 		} catch (error) {
-			console.error(error);
-			allClasses = [];
-			state.errorMessage = "Не удалось загрузить список классов и расписание.";
+			console.warn("Backend API недоступен, загружаем классы из локального резерва:", error);
+			allClasses = Array.isArray(window.FALLBACK_CLASSES) ? window.FALLBACK_CLASSES : [];
+			if (allClasses.length > 0) {
+				const currentBuildingClasses = getClassesForBuilding(state.building);
+				if (!currentBuildingClasses.length && allClasses.length) {
+					state.building = allClasses[0].building;
+				}
+				renderCampusCardsState();
+			} else {
+				console.error(error);
+				allClasses = [];
+				state.errorMessage = "Не удалось загрузить список классов и расписание.";
+			}
 		} finally {
 			state.loadingClasses = false;
 		}

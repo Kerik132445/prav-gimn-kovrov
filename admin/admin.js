@@ -1311,7 +1311,8 @@ const ADMIN_TABS = {
 	teachers: { sectionId: "teachers-section", siteHref: "../teachers.html" },
 	schedule: { sectionId: "schedule-section", siteHref: "../class_schedule.html" },
 	menu: { sectionId: "menu-section", siteHref: "../food.html" },
-	feedback: { sectionId: "feedback-section", siteHref: "../contact.html" }
+	feedback: { sectionId: "feedback-section", siteHref: "../contact.html" },
+	documents: { sectionId: "documents-section", siteHref: "../documents.html" }
 };
 
 function switchAdminTab(tabName) {

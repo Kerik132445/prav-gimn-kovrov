@@ -415,3 +415,28 @@ class CampShift(Base):
     )
 
 
+class Document(Base):
+    __tablename__ = "documents"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String(500), nullable=False)
+    category_key = Column(String(100), nullable=False, index=True)
+    category_title = Column(String(255), nullable=False)
+    file_url = Column(String(500), nullable=False)
+    file_size = Column(String(50), nullable=True)
+    file_type = Column(String(20), nullable=False, default="pdf")
+    download_name = Column(String(255), nullable=True)
+    sort_order = Column(Integer, nullable=False, default=0, index=True)
+    created_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+    updated_at = Column(
+        DateTime,
+        nullable=False,
+        default=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+        onupdate=lambda: datetime.now(timezone.utc).replace(tzinfo=None),
+    )
+
+

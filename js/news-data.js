@@ -91,3 +91,8 @@ const news = [
     ]
   }
 ];
+
+if (typeof window !== "undefined") {
+  window.news = news;
+  window.FALLBACK_NEWS = news;
+}

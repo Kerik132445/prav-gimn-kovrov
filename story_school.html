@@ -146,34 +146,71 @@
 </section>
 </main>
 <!-- GYMNASIUM TODAY SECTION -->
-<section class="today-stats reveal">
-<div class="containers">
-<div class="today-stats__header">
-<h2 class="today-stats__title">
-<span class="today-stats__icon">
-<img alt="" src="assets/icons/boxicons_school.svg"/>
-</span> Гимназия сегодня
-				</h2>
-</div>
-<div class="today-stats__grid">
-<div class="metric-card metric-card--area-1 reveal" style="background-image: url('assets/images/stat_mg1.webp');">
-<div class="metric-card__value">1 Га</div>
-<div class="metric-card__label">Площадь территории с храмом</div>
-</div>
-<div class="metric-card metric-card--area-2 reveal" style="background-image:url('assets/images/stat_mg2.webp');">
-<div class="metric-card__value">45 × 18 м</div>
-<div class="metric-card__label">Спортивный корпус с актовым залом</div>
-</div>
-<div class="metric-card metric-card--area-3 reveal" style="background-image: url('assets/images/stat_mg3.webp');">
-<div class="metric-card__value">1 600+ м²</div>
-<div class="metric-card__label">Общая площадь учебных корпусов</div>
-</div>
-<div class="metric-card metric-card--area-4 reveal" style="background-image: url('assets/images/stat_mg4.webp');">
-<div class="metric-card__value">5 770+</div>
-<div class="metric-card__label">Учебников и художественных книг</div>
-</div>
-</div>
-</div>
+<section class="today-stats reveal" id="today-stats">
+	<div class="container container--wide">
+		<div class="today-stats__header">
+			<span class="section-tag">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+					<path d="M3 21h18"></path>
+					<path d="M5 21V7l8-4v18"></path>
+					<path d="M19 21V11l-6-4"></path>
+				</svg>
+				СОВРЕМЕННЫЙ КОМПЛЕКС
+			</span>
+			<h2 class="today-stats__title">Гимназия сегодня</h2>
+			<p class="today-stats__subtitle">
+				Масштабное образовательное пространство: современные учебные корпуса, собственный храм, спортивный комплекс и богатая библиотека
+			</p>
+		</div>
+
+		<div class="today-stats__grid">
+
+			<!-- Главная доминанта (1 Га с храмом) - высокая карточка слева -->
+			<article class="today-card today-card--main reveal">
+				<div class="today-card__media">
+					<img src="assets/images/campus_contact.webp" alt="Территория гимназии с храмом" loading="lazy" decoding="async" class="today-card__img today-card__img--campus">
+				</div>
+				<div class="today-card__glass">
+					<span class="today-card__value">1 Га</span>
+					<p class="today-card__label">Площадь территории с храмом</p>
+				</div>
+			</article>
+
+			<!-- Широкая верхняя карточка (Спортзал) -->
+			<article class="today-card today-card--wide reveal">
+				<div class="today-card__media">
+					<img src="assets/images/today_sports.webp" alt="Спортивный корпус гимназии" loading="lazy" decoding="async" class="today-card__img today-card__img--sports">
+				</div>
+				<div class="today-card__glass">
+					<span class="today-card__value">45 × 18 м</span>
+					<p class="today-card__label">Спортивный корпус с залом</p>
+				</div>
+			</article>
+
+			<!-- Нижняя левая карточка (Учебные корпуса) -->
+			<article class="today-card today-card--building reveal">
+				<div class="today-card__media">
+					<img src="assets/images/pokrovsky-real.webp" alt="Покровский учебный корпус" loading="lazy" decoding="async" class="today-card__img today-card__img--building">
+				</div>
+				<div class="today-card__glass">
+					<span class="today-card__value">1 600+ м²</span>
+					<p class="today-card__label">Общая площадь учебных корпусов</p>
+				</div>
+			</article>
+
+			<!-- Нижняя правая карточка (Библиотека) -->
+			<article class="today-card today-card--library reveal">
+				<div class="today-card__media">
+					<img src="assets/images/today_library.webp" alt="Школьная библиотека с книгами" loading="lazy" decoding="async" class="today-card__img today-card__img--library">
+				</div>
+				<div class="today-card__glass">
+					<span class="today-card__value">5 770+</span>
+					<p class="today-card__label">Учебников и художественных книг</p>
+				</div>
+			</article>
+
+		</div>
+	</div>
 </section>
 <!-- TIMELINE SECTION -->
 <section class="timeline-section reveal">

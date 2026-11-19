@@ -404,6 +404,30 @@ function normalizeNewsCategory(item) {
 	return "education";
 }
 
+function initInitialCategory() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const catFromUrl = urlParams.get("category");
+	const catFromStorage = sessionStorage.getItem("active_news_category");
+
+	if (catFromStorage) {
+		sessionStorage.removeItem("active_news_category");
+	}
+
+	const rawCat = catFromUrl || catFromStorage;
+	const validCats = ["all", "education", "spiritual", "creativity", "holidays", "pilgrimage", "sport", "camp"];
+
+	if (rawCat && validCats.includes(rawCat)) {
+		selectedCategory = rawCat;
+	} else {
+		selectedCategory = "all";
+	}
+
+	filterButtons.forEach(btn => {
+		const isActive = (btn.dataset.filter === selectedCategory);
+		btn.classList.toggle("filters-block__btn--active", isActive);
+	});
+}
+
 async function loadNews() {
 	try {
 		const response = await fetch(API_URL);
@@ -414,6 +438,7 @@ async function loadNews() {
 		news.forEach(item => {
 			item.category = normalizeNewsCategory(item);
 		});
+		initInitialCategory();
 		updateNews();
 		animateInitialNews();
 		handleNewsScrollReturn();
@@ -424,6 +449,7 @@ async function loadNews() {
 		news.forEach(item => {
 			item.category = normalizeNewsCategory(item);
 		});
+		initInitialCategory();
 		updateNews();
 		animateInitialNews();
 		handleNewsScrollReturn();
@@ -622,6 +648,43 @@ function updateNews() {
 
 		});
 
+	// Обработка случая, когда новостей в категории нет
+	if (!filteredNews.length) {
+		if (featuredNews) {
+			featuredNews.style.display = "none";
+		}
+		if (loadMoreButton) {
+			loadMoreButton.style.display = "none";
+		}
+		if (newsList) {
+			newsList.innerHTML = `
+				<div class="news-grid__empty-state">
+					<div class="news-grid__empty-icon">
+						<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+							<path d="M6 6h10"></path>
+							<path d="M6 10h10"></path>
+						</svg>
+					</div>
+					<h3 class="news-grid__empty-title">В этой рубрике пока нет опубликованных событий</h3>
+					<p class="news-grid__empty-desc">Мы регулярно публикуем новости школьной жизни. Вы можете ознакомиться с событиями в других рубриках гимназии.</p>
+					<button type="button" class="news-grid__empty-reset-btn" id="news-empty-reset-btn">
+						Показать все события
+					</button>
+				</div>
+			`;
+			const resetBtn = document.getElementById("news-empty-reset-btn");
+			if (resetBtn) {
+				resetBtn.addEventListener("click", () => {
+					const allBtn = document.querySelector('.filters-block__btn[data-filter="all"]');
+					if (allBtn) {
+						allBtn.click();
+					}
+				});
+			}
+		}
+		return;
+	}
 
 	// Первая новость становится главной
 
@@ -758,7 +821,7 @@ filterButtons.forEach(button => {
 		() => {
 
 			selectedCategory =
-				button.dataset.filter;
+				button.dataset.filter || "all";
 
 
 			visibleCards =
@@ -778,6 +841,20 @@ filterButtons.forEach(button => {
 				"filters-block__btn--active"
 			);
 
+			// Синхронизируем URL без перезагрузки страницы
+			try {
+				const url = new URL(window.location.href);
+				if (selectedCategory === "all") {
+					url.searchParams.delete("category");
+				} else {
+					url.searchParams.set("category", selectedCategory);
+				}
+				url.hash = "news";
+				window.history.replaceState({ category: selectedCategory }, "", url.toString());
+			} catch (e) {
+				// Окружение без window.history
+			}
+
 
 			updateNews();
 
@@ -786,6 +863,24 @@ filterButtons.forEach(button => {
 		}
 	);
 
+});
+
+// Поддержка кнопок "Назад" и "Вперед" в браузере
+window.addEventListener("popstate", () => {
+	const urlParams = new URLSearchParams(window.location.search);
+	const catFromUrl = urlParams.get("category") || "all";
+	const validCats = ["all", "education", "spiritual", "creativity", "holidays", "pilgrimage", "sport", "camp"];
+	const cat = validCats.includes(catFromUrl) ? catFromUrl : "all";
+
+	if (cat !== selectedCategory) {
+		selectedCategory = cat;
+		visibleCards = 6;
+		filterButtons.forEach(btn => {
+			btn.classList.toggle("filters-block__btn--active", btn.dataset.filter === selectedCategory);
+		});
+		updateNews();
+		animateFilteredNews();
+	}
 });
 
 
@@ -1053,7 +1148,9 @@ function handleNewsScrollReturn() {
 		}
 	}
 
-	if (!targetElement && hash) {
+	if (!targetElement && (hash === "#news" || (selectedCategory && selectedCategory !== "all"))) {
+		targetElement = document.getElementById("news");
+	} else if (!targetElement && hash) {
 		try {
 			targetElement = document.querySelector(hash);
 		} catch (e) {
@@ -1063,15 +1160,18 @@ function handleNewsScrollReturn() {
 
 	if (targetElement) {
 		setTimeout(() => {
+			const isSectionHeader = targetElement.id === "news";
 			targetElement.scrollIntoView({
 				behavior: "smooth",
-				block: "center"
+				block: isSectionHeader ? "start" : "center"
 			});
 
+			if (returnId) {
 			targetElement.classList.add("news-card--highlighted");
 			setTimeout(() => {
 				targetElement.classList.remove("news-card--highlighted");
 			}, 2200);
+			}
 		}, 180);
 	}
 }

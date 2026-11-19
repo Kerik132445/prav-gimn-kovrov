@@ -174,9 +174,45 @@
 							<h4 class="building-card__title">Покровский корпус</h4>
 							<p class="building-card__address">ул. Подлесная, д. 10/1</p>
 						</div>
-						<a class="pdf-download" href="#">
-							<img alt="Скачать" src="assets/icons/download-logo.svg" />
-							<span class="pdf-download__text">Скачать меню на 10 дней (PDF, 1.2 МБ)</span></a>
+						<!-- Карточка утвержденного 10-дневного меню -->
+						<div class="canteen-doc-card">
+							<div class="canteen-doc-card__body">
+								<span class="canteen-doc-card__badge">Цикличное меню</span>
+								<div class="canteen-doc-card__main">
+									<div class="canteen-doc-card__icon-box" aria-hidden="true">
+										<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+											<polyline points="14 2 14 8 20 8"></polyline>
+											<line x1="16" y1="13" x2="8" y2="13"></line>
+											<line x1="16" y1="17" x2="8" y2="17"></line>
+											<polyline points="10 9 9 9 8 9"></polyline>
+										</svg>
+										<span class="canteen-doc-card__fmt">PDF</span>
+									</div>
+									<div class="canteen-doc-card__info">
+										<h4 class="canteen-doc-card__title">Меню на 10 дней</h4>
+										<p class="canteen-doc-card__meta">1–11 классы • Рацион по СанПиН • 360 КБ</p>
+									</div>
+								</div>
+							</div>
+							<div class="canteen-doc-card__actions">
+								<a href="documents/menu_10_days.pdf" target="_blank" rel="noopener noreferrer" class="canteen-doc-btn canteen-doc-btn--view" title="Открыть меню в новой вкладке браузера">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+										<circle cx="12" cy="12" r="3"></circle>
+									</svg>
+									<span>Просмотреть</span>
+								</a>
+								<a href="documents/menu_10_days.pdf" download="menu_10_days_pravgimn.pdf" class="canteen-doc-btn canteen-doc-btn--download" title="Скачать PDF-файл меню на устройство">
+									<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+										<polyline points="7 10 12 15 17 10"></polyline>
+										<line x1="12" y1="15" x2="12" y2="3"></line>
+									</svg>
+									<span>Скачать</span>
+								</a>
+							</div>
+						</div>
 					</div>
 				</aside>
 				<div class="canteen-board">
@@ -648,6 +684,7 @@
 			</div>
 		</footer>
 	<script src="js/config.js"></script>
+	<script src="js/menu-data.js"></script>
 	<script src="js/script.js"></script>
 	<script src="js/window.scrollY.js"></script>
 	<script src="js/foodAnimations.js"></script>

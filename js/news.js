@@ -244,77 +244,396 @@ const FALLBACK_NEWS = [
   }
 ];
 
-async function loadNews() {
-	// Сценарий 1: Пользователь перешёл на news.html без ID (например, из футера или меню)
-	// В этом случае динамически запрашиваем самую свежую новость на текущий момент времени
-	if (!newsId) {
-		try {
-			const listResponse = await fetch(API_URL);
-			if (listResponse.ok) {
-				const allNews = await listResponse.json();
-				if (Array.isArray(allNews) && allNews.length > 0) {
-					// На бэкенде новости отсортированы по id.desc(), то есть allNews[0] — самая свежая
-					const latestNews = allNews[0];
+let allNewsCache = [];
 
-					if (window.history && window.history.replaceState) {
-						window.history.replaceState({ id: latestNews.id }, "", `news.html?id=${latestNews.id}`);
-					}
+function escapeHtml(str) {
+	if (str === null || str === undefined) return "";
+	return String(str)
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;")
+		.replace(/'/g, "&#039;");
+}
 
-					displayNews(latestNews);
-					return;
-				}
-			}
-			throw new Error("Не удалось получить список новостей с сервера");
-		} catch (error) {
-			console.warn("Backend API недоступен, загружаем последнюю новость из встроенного резерва:", error);
-			useLocalAssets = true;
-			const fallbackLatest = FALLBACK_NEWS[0];
-			if (window.history && window.history.replaceState) {
-				window.history.replaceState({ id: fallbackLatest.id }, "", `news.html?id=${fallbackLatest.id}`);
-			}
-			displayNews(fallbackLatest);
-			return;
+function calculateReadTime(text) {
+	const words = (text || "").replace(/<[^>]*>/g, " ").trim().split(/\s+/).filter(Boolean).length;
+	const minutes = Math.max(1, Math.ceil(words / 160));
+	return `${minutes} мин чтения`;
+}
+
+const VK_ICONS = {
+	clip: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3" ry="3"></rect><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon></svg>`,
+	video: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>`,
+	wall: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>`,
+	album: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+	photo: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+	article: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
+	poll: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+	doc: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>`,
+	audio: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
+	live: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="2"></circle><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path></svg>`,
+	group: `<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.05-1.714-1.037-1.01-1.498-1.143-1.753-1.143-.356 0-.457.102-.457.593v1.657c0 .423-.135.677-1.252.677-1.846 0-3.896-1.118-5.334-3.199-2.167-3.073-2.76-5.394-2.76-5.867 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.779.677.847 2.472 2.27 4.64 2.862 4.64.22 0 .322-.102.322-.66v-2.59c-.068-1.185-.694-1.286-.694-1.71 0-.203.169-.406.44-.406h2.743c.373 0 .508.203.508.643v3.504c0 .373.169.508.288.508.237 0 .44-.135.88-.576 1.355-1.524 2.32-3.894 2.32-3.894.135-.271.356-.474.796-.474h1.744c.525 0 .643.271.525.643-.22 1.016-2.353 4.047-2.455 4.2-.17.271-.237.39 0 .711.17.237.745.728 1.135 1.168.711.813 1.253 1.49 1.405 1.964.153.474-.085.711-.56.711z"/></svg>`
+};
+
+function getVkMeta(url) {
+	const cleanUrl = String(url || "").toLowerCase();
+
+	if (cleanUrl.includes("clip") || cleanUrl.includes("/clips")) {
+		return {
+			type: "clip",
+			subtitle: "VK Клип",
+			defaultTitle: "Смотреть короткое видео (Клип)",
+			numberedTitle: "VK Клип",
+			action: "Смотреть клип →"
+		};
+	}
+	if (cleanUrl.includes("video") || cleanUrl.includes("vkvideo.ru")) {
+		return {
+			type: "video",
+			subtitle: "Видео ВКонтакте",
+			defaultTitle: "Смотреть видеозапись в высоком качестве",
+			numberedTitle: "Видеозапись",
+			action: "Смотреть видео →"
+		};
+	}
+	if (cleanUrl.includes("/wall")) {
+		return {
+			type: "wall",
+			subtitle: "Запись ВКонтакте",
+			defaultTitle: "Читать публикацию на стене сообщества",
+			numberedTitle: "Запись на стене",
+			action: "Читать пост →"
+		};
+	}
+	if (cleanUrl.includes("/album")) {
+		return {
+			type: "album",
+			subtitle: "Фотоальбом ВКонтакте",
+			defaultTitle: "Смотреть полный фотоальбом с мероприятия",
+			numberedTitle: "Фотоальбом",
+			action: "Открыть альбом →"
+		};
+	}
+	if (cleanUrl.includes("/photo")) {
+		return {
+			type: "photo",
+			subtitle: "Фотография ВКонтакте",
+			defaultTitle: "Смотреть фотографию в высоком качестве",
+			numberedTitle: "Фотография",
+			action: "Открыть фото →"
+		};
+	}
+	if (cleanUrl.includes("/@") || cleanUrl.includes("/article") || cleanUrl.includes("vk.com/article") || cleanUrl.includes("vk.ru/article")) {
+		return {
+			type: "article",
+			subtitle: "Статья ВКонтакте",
+			defaultTitle: "Читать иллюстрированную статью",
+			numberedTitle: "Статья",
+			action: "Читать статью →"
+		};
+	}
+	if (cleanUrl.includes("/poll")) {
+		return {
+			type: "poll",
+			subtitle: "Опрос ВКонтакте",
+			defaultTitle: "Принять участие в голосовании",
+			numberedTitle: "Опрос",
+			action: "Голосовать →"
+		};
+	}
+	if (cleanUrl.includes("/doc")) {
+		return {
+			type: "doc",
+			subtitle: "Документ ВКонтакте",
+			defaultTitle: "Открыть прикреплённый документ",
+			numberedTitle: "Документ",
+			action: "Открыть файл →"
+		};
+	}
+	if (cleanUrl.includes("/audio") || cleanUrl.includes("/playlist") || cleanUrl.includes("/music")) {
+		return {
+			type: "audio",
+			subtitle: "Аудиозапись ВКонтакте",
+			defaultTitle: "Слушать аудио / плейлист",
+			numberedTitle: "Аудиозапись",
+			action: "Слушать запись →"
+		};
+	}
+	if (cleanUrl.includes("/live") || cleanUrl.includes("/call")) {
+		return {
+			type: "live",
+			subtitle: "Трансляция ВКонтакте",
+			defaultTitle: "Смотреть прямой эфир / запись",
+			numberedTitle: "Трансляция",
+			action: "Смотреть эфир →"
+		};
+	}
+	return {
+		type: "group",
+		subtitle: "Сообщество ВКонтакте",
+		defaultTitle: "Официальная страница гимназии",
+		numberedTitle: "Страница сообщества",
+		action: "Перейти →"
+	};
+}
+
+function cleanVkUrl(rawUrl) {
+	if (!rawUrl) return "";
+	let url = rawUrl.trim();
+	url = url.replace(/[.,!?;:)>]+$/, "");
+	if (!/^https?:\/\//i.test(url)) {
+		url = "https://" + url;
+	}
+	return url;
+}
+
+function transformContent(rawHtml) {
+	if (!rawHtml) return "";
+	let html = rawHtml;
+
+	const DOMAIN_RE = `(?:(?:m\\.)?(?:vk\\.com|vk\\.ru|vk\\.me|vk\\.link)|vkvideo\\.ru)`;
+
+	// Шаг 1: Предварительный подсчет ссылок каждого типа без кастомного текста
+	const typeCounts = {};
+	const scanRegex = new RegExp(`(?:<a\\s+[^>]*href=["']((?:https?:\\/\\/)?${DOMAIN_RE}\\/[^"']+)["'][^>]*>(.*?)<\\/a>)|(?:(?:https?:\\/\\/)?${DOMAIN_RE}\\/[^\\s<"']+)`, "gi");
+	let match;
+	while ((match = scanRegex.exec(html)) !== null) {
+		const fullUrl = cleanVkUrl(match[1] || match[0]);
+		const text = match[2];
+		const hasCustomLabel = Boolean(text && !text.trim().startsWith("http") && !text.trim().includes("vk."));
+		if (!hasCustomLabel && fullUrl) {
+			const meta = getVkMeta(fullUrl);
+			typeCounts[meta.type] = (typeCounts[meta.type] || 0) + 1;
 		}
 	}
 
-	// Сценарий 2: Запрошена конкретная новость по ID
-	const fallbackItem = FALLBACK_NEWS.find(item => item.id === newsId);
+	const currentIndices = {};
 
+	function makeVkCard(rawUrl, customLabel) {
+		const url = cleanVkUrl(rawUrl);
+		const meta = getVkMeta(url);
+		const iconSvg = VK_ICONS[meta.type] || VK_ICONS.group;
+
+		let label = customLabel;
+		if (!label || label.trim().startsWith("http") || label.trim().includes("vk.")) {
+			const totalForType = typeCounts[meta.type] || 0;
+			if (totalForType > 1) {
+				currentIndices[meta.type] = (currentIndices[meta.type] || 0) + 1;
+				label = `${meta.numberedTitle} #${currentIndices[meta.type]}`;
+			} else {
+				label = meta.defaultTitle;
+			}
+		}
+
+		return `
+			<a href="${url}" target="_blank" rel="noopener noreferrer" class="vk-post-card vk-post-card--${meta.type}">
+				<div class="vk-post-card__badge">
+					${iconSvg}
+				</div>
+				<div class="vk-post-card__content">
+					<span class="vk-post-card__subtitle">${meta.subtitle}</span>
+					<span class="vk-post-card__title">${label}</span>
+				</div>
+				<span class="vk-post-card__action">
+					${meta.action}
+				</span>
+			</a>
+		`;
+	}
+
+	// 1. Заменяем теги <p> или <div>, содержащие ТОЛЬКО ссылку <a> на VK
+	const blockWithLinkRegex = new RegExp(`<(?:p|div)[^>]*>\\s*<a\\s+[^>]*href=["']((?:https?:\\/\\/)?${DOMAIN_RE}\\/[^"']+)["'][^>]*>(.*?)<\\/a>\\s*<\\/(?:p|div)>`, "gi");
+	html = html.replace(blockWithLinkRegex, (match, url, text) => {
+		const label = text && !text.startsWith("http") && !text.includes("vk.") ? text.trim() : null;
+		return makeVkCard(url, label);
+	});
+
+	// 2. Заменяем теги <p> или <div>, содержащие ТОЛЬКО голый URL VK
+	const blockWithBareRegex = new RegExp(`<(?:p|div)[^>]*>\\s*((?:https?:\\/\\/)?${DOMAIN_RE}\\/[^\\s<"']+)\\s*<\\/(?:p|div)>`, "gi");
+	html = html.replace(blockWithBareRegex, (match, url) => {
+		return makeVkCard(url);
+	});
+
+	// 3. Заменяем любые оставшиеся ссылки <a> на VK внутри текста
+	const inlineLinkRegex = new RegExp(`<a\\s+[^>]*href=["']((?:https?:\\/\\/)?${DOMAIN_RE}\\/[^"']+)["'][^>]*>(.*?)<\\/a>`, "gi");
+	html = html.replace(inlineLinkRegex, (match, url, text) => {
+		const label = text && !text.startsWith("http") && !text.includes("vk.") ? text.trim() : null;
+		return makeVkCard(url, label);
+	});
+
+	// 4. Заменяем любые оставшиеся голые URL VK в тексте
+	const inlineBareRegex = new RegExp(`(^|[\\s>])((?:https?:\\/\\/)?${DOMAIN_RE}\\/[^\\s<"']+)`, "gi");
+	html = html.replace(inlineBareRegex, (match, prefix, url) => {
+		return prefix + makeVkCard(url);
+	});
+
+	return html;
+}
+
+function setupShareButtons(title) {
+	const shareVk = document.getElementById("share-vk");
+	const shareTg = document.getElementById("share-tg");
+	const shareCopy = document.getElementById("share-copy");
+	const copyText = document.getElementById("share-copy-text");
+
+	const currentUrl = window.location.href;
+
+	if (shareVk) {
+		shareVk.onclick = () => {
+			const vkShareUrl = `https://vk.com/share.php?url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(title || document.title)}`;
+			window.open(vkShareUrl, "_blank", "width=640,height=480");
+		};
+	}
+
+	if (shareTg) {
+		shareTg.onclick = () => {
+			const tgShareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(title || document.title)}`;
+			window.open(tgShareUrl, "_blank", "width=640,height=480");
+		};
+	}
+
+	if (shareCopy) {
+		shareCopy.onclick = async () => {
+			try {
+				await navigator.clipboard.writeText(currentUrl);
+				if (copyText) {
+					const orig = copyText.textContent;
+					copyText.textContent = "Скопировано! ✓";
+					copyText.style.color = "#15803d";
+					setTimeout(() => {
+						copyText.textContent = orig;
+						copyText.style.color = "";
+					}, 2000);
+				}
+			} catch (e) {
+				prompt("Скопируйте ссылку:", currentUrl);
+			}
+		};
+	}
+}
+
+function setupPrevNextNav(currentId, allNews) {
+	const prevLink = document.getElementById("news-prev-link");
+	const prevTitle = document.getElementById("news-prev-title");
+	const nextLink = document.getElementById("news-next-link");
+	const nextTitle = document.getElementById("news-next-title");
+
+	if (!allNews || !allNews.length) return;
+
+	const numId = Number(currentId);
+	const idx = allNews.findIndex(n => Number(n.id) === numId);
+	if (idx === -1) return;
+
+	// В списке новостей по убыванию ID:
+	// idx + 1 — более ранняя (Предыдущая)
+	// idx - 1 — более свежая (Следующая)
+	if (idx + 1 < allNews.length) {
+		const prev = allNews[idx + 1];
+		if (prevLink && prevTitle) {
+			prevLink.style.display = "flex";
+			prevLink.href = `news.html?id=${prev.id}`;
+			prevTitle.textContent = prev.title;
+		}
+	} else if (prevLink) {
+		prevLink.style.display = "none";
+	}
+
+	if (idx - 1 >= 0) {
+		const next = allNews[idx - 1];
+		if (nextLink && nextTitle) {
+			nextLink.style.display = "flex";
+			nextLink.href = `news.html?id=${next.id}`;
+			nextTitle.textContent = next.title;
+		}
+	} else if (nextLink) {
+		nextLink.style.display = "none";
+	}
+}
+
+function renderSidebarRecent(currentId, allNews) {
+	const container = document.getElementById("sidebar-recent-list");
+	if (!container || !allNews || !allNews.length) return;
+
+	const numId = Number(currentId);
+	const filtered = allNews.filter(n => Number(n.id) !== numId).slice(0, 4);
+
+	if (!filtered.length) {
+		container.innerHTML = `<p style="font-size:13px; color:#94a3b8; margin:0;">Пока нет других событий.</p>`;
+		return;
+	}
+
+	container.innerHTML = filtered.map(item => {
+		const rawImg = item.image || (item.images && item.images[0]) || "assets/images/og-preview.jpg";
+		const imgSrc = getImageUrl(rawImg);
+		const dateStr = item.date || "";
+		return `
+			<a href="news.html?id=${item.id}" class="recent-news-item">
+				<img src="${imgSrc}" alt="" class="recent-news-item__thumb" loading="lazy" decoding="async" onerror="this.src='assets/images/og-preview.jpg'">
+				<div class="recent-news-item__body">
+					<span class="recent-news-item__date">${escapeHtml(dateStr)}</span>
+					<h4 class="recent-news-item__title">${escapeHtml(item.title)}</h4>
+				</div>
+			</a>
+		`;
+	}).join("");
+}
+
+async function loadNews() {
+	// 1. Предзагрузка общего списка новостей для сайдбара и навигации Предыдущая/Следующая
+	try {
+		const listRes = await fetch(API_URL);
+		if (listRes.ok) {
+			const data = await listRes.json();
+			if (Array.isArray(data) && data.length > 0) {
+				allNewsCache = data;
+			}
+		}
+	} catch (e) {
+		console.warn("Не удалось загрузить общий список новостей с API:", e);
+	}
+
+	if (!allNewsCache || !allNewsCache.length) {
+		allNewsCache = FALLBACK_NEWS;
+	}
+
+	// Сценарий 1: Пользователь перешёл на news.html без ID (берем самую свежую новость)
+	if (!newsId) {
+		const latestNews = allNewsCache[0];
+		if (window.history && window.history.replaceState && latestNews) {
+			window.history.replaceState({ id: latestNews.id }, "", `news.html?id=${latestNews.id}`);
+		}
+		if (latestNews) {
+			displayNews(latestNews);
+		} else {
+			showNewsNotFound();
+		}
+		return;
+	}
+
+	// Сценарий 2: Запрошена конкретная новость по ID
+	const cachedItem = allNewsCache.find(item => Number(item.id) === Number(newsId));
+	if (cachedItem) {
+		displayNews(cachedItem);
+		return;
+	}
+
+	// Если новость не нашлась в кеше, пробуем точечный запрос к API
 	try {
 		const response = await fetch(`${API_URL}${newsId}`);
-
-		if (!response.ok) {
-			if (response.status === 404) {
-				if (fallbackItem) {
-					useLocalAssets = true;
-					displayNews(fallbackItem);
-					return;
-				}
-				showNewsNotFound();
-				return;
-			}
-			throw new Error(`Ошибка сервера: ${response.status}`);
+		if (response.ok) {
+			const currentNews = await response.json();
+			displayNews(currentNews);
+			return;
 		}
+	} catch (e) {}
 
-		const currentNews = await response.json();
-		displayNews(currentNews);
-
-	} catch (error) {
-		console.warn("Backend API недоступен, загружаем новость из встроенной базы данных:", error);
-
-		if (fallbackItem) {
-			useLocalAssets = true;
-			displayNews(fallbackItem);
-		} else {
-			titleElement.textContent = "Не удалось загрузить новость";
-			categoryElement.textContent = "";
-			dateElement.textContent = "";
-			contentElement.innerHTML = `
-				<p>
-					Произошла ошибка при загрузке новости.
-				</p>
-			`;
-		}
+	const fallbackItem = FALLBACK_NEWS.find(item => Number(item.id) === Number(newsId));
+	if (fallbackItem) {
+		useLocalAssets = true;
+		displayNews(fallbackItem);
+	} else {
+		showNewsNotFound();
 	}
 }
 
@@ -385,38 +704,74 @@ function displayNews(currentNews) {
 	// Основная информация
 	// ----------------------------------------
 
-	titleElement.textContent =
-		currentNews.title;
-
-
-	titleElement.textContent =
-		currentNews.title;
-
-	if (newsBreadcrumbTitle) {
-		newsBreadcrumbTitle.textContent =
-			currentNews.title;
+	if (titleElement) {
+		titleElement.textContent = currentNews.title;
 	}
 
 	if (newsBreadcrumbTitle) {
-		newsBreadcrumbTitle.textContent =
-			currentNews.title;
+		newsBreadcrumbTitle.textContent = currentNews.title;
 	}
 
+	if (categoryElement) {
+		categoryElement.textContent = getCategoryName(currentNews.category);
+		if (categoryElement.tagName === "A") {
+			const cat = currentNews.category || "education";
+			categoryElement.href = `life.html?category=${cat}#news`;
+			categoryElement.onclick = () => {
+				sessionStorage.setItem("active_news_category", cat);
+			};
+		}
+	}
 
-	categoryElement.textContent =
-		getCategoryName(currentNews.category);
-
-
-	dateElement.textContent =
-		currentNews.date;
-
+	if (dateElement) {
+		dateElement.textContent = currentNews.date;
+	}
 
 	// ----------------------------------------
-	// Текст новости
+	// Время чтения
+	// ----------------------------------------
+	const readTimeEl = document.getElementById("read-time-text");
+	if (readTimeEl) {
+		readTimeEl.textContent = calculateReadTime(currentNews.content);
+	}
+
+	// ----------------------------------------
+	// Текст новости с VK-карточками
 	// ----------------------------------------
 
-	contentElement.innerHTML =
-		currentNews.content;
+	if (contentElement) {
+		contentElement.innerHTML = transformContent(currentNews.content);
+	}
+
+	// ----------------------------------------
+	// Кнопки "Поделиться"
+	// ----------------------------------------
+	setupShareButtons(currentNews.title);
+
+	// ----------------------------------------
+	// Навигация Предыдущая / Следующая новость
+	// ----------------------------------------
+	setupPrevNextNav(currentNews.id, allNewsCache);
+
+	// ----------------------------------------
+	// Сайдбар: Свежие новости
+	// ----------------------------------------
+	renderSidebarRecent(currentNews.id, allNewsCache);
+
+	// ----------------------------------------
+	// Рубрики в сайдбаре: подсветка активной и сохранение фильтра
+	// ----------------------------------------
+	document.querySelectorAll(".news-cat-chip").forEach(chip => {
+		const cat = chip.dataset.cat;
+		chip.classList.toggle("news-cat-chip--active", cat === currentNews.category);
+		if (chip.dataset.boundClick) return;
+		chip.dataset.boundClick = "1";
+		chip.addEventListener("click", () => {
+			if (cat) {
+				sessionStorage.setItem("active_news_category", cat);
+			}
+		});
+	});
 
 
 	// ----------------------------------------
@@ -433,16 +788,31 @@ function displayNews(currentNews) {
 
 	let currentImageIndex = 0;
 
+	const zoomBadge = document.getElementById("news-zoom-badge");
+	if (zoomBadge) {
+		zoomBadge.onclick = (e) => {
+			e.stopPropagation();
+			openLightbox();
+		};
+	}
 
 	// Если фотографий нет
 
 	if (!images.length) {
 
-		imageElement.style.display = "none";
-
-		thumbnailsElement.style.display = "none";
+		if (imageElement) imageElement.style.display = "none";
+		if (thumbnailsElement) thumbnailsElement.style.display = "none";
+		if (zoomBadge) zoomBadge.style.display = "none";
 
 		return;
+	} else {
+		if (imageElement) imageElement.style.display = "block";
+		if (zoomBadge) zoomBadge.style.display = "inline-flex";
+	}
+
+	if (thumbnailsElement) {
+		thumbnailsElement.innerHTML = "";
+		thumbnailsElement.style.display = images.length > 1 ? "flex" : "none";
 	}
 
 

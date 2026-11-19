@@ -211,6 +211,14 @@
 			if (reqId !== activeRequestId) return;
 			renderCurrentDay(data);
 		} catch (error) {
+			console.warn("Backend API недоступен, загружаем меню из локального резерва:", error);
+			const fallbackWeek = window.FALLBACK_MENU_DATA?.[cacheKey];
+			if (fallbackWeek) {
+				weekCache.set(cacheKey, fallbackWeek);
+				if (reqId !== activeRequestId) return;
+				renderCurrentDay(fallbackWeek);
+				return;
+			}
 			console.error(error);
 			if (reqId !== activeRequestId) return;
 			renderStatus("Не удалось загрузить меню питания. Проверьте подключение или попробуйте снова.", { isError: true });

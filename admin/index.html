@@ -82,6 +82,11 @@
 				<span class="admin-tab__count admin-tab__count--badge" id="feedback-tab-count">0</span>
 			</button>
 
+			<button type="button" class="admin-tab" data-admin-tab="documents">
+				Документы
+				<span class="admin-tab__count" id="documents-tab-count">0</span>
+			</button>
+
 		</nav>
 
 
@@ -475,6 +480,50 @@
 				<div class="admin-cards-container" id="admin-camp-list">
 					<div class="admin-loading">Загрузка смен лагеря...</div>
 				</div>
+			</div>
+
+		</section>
+
+		<!-- ====================================================================
+		     РАЗДЕЛ: ДОКУМЕНТЫ (documents-section)
+		     ==================================================================== -->
+		<section class="admin-section" id="documents-section" hidden>
+
+			<section class="admin-toolbar">
+				<div>
+					<h2>Документы</h2>
+					<p>Управление официальными документами, локальными актами и разделами гимназии</p>
+				</div>
+
+				<button class="admin-button admin-button--primary" id="create-document-button" type="button">
+					+ Добавить документ
+				</button>
+			</section>
+
+			<div class="documents-admin-toolbar">
+				<div class="documents-admin-filters">
+					<input
+						type="search"
+						id="documents-admin-search"
+						class="documents-admin-filters__search"
+						placeholder="Поиск по названию документа..."
+					>
+
+					<select id="documents-admin-category-filter" class="documents-admin-filters__select">
+						<option value="all">Все разделы</option>
+						<option value="legal">Правоустанавливающие документы</option>
+						<option value="relations">Образовательные отношения</option>
+						<option value="students">Обучающимся</option>
+						<option value="teachers">Работникам</option>
+						<option value="educational_environment">ЭИОС</option>
+						<option value="acts">Локальные акты</option>
+						<option value="Charity">Пожертвования</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="documents-admin-accordions" id="documents-admin-list">
+				<div class="admin-loading">Загрузка документов...</div>
 			</div>
 
 		</section>
@@ -1721,6 +1770,115 @@
 		</div>
 	</div>
 
+	<!-- МОДАЛЬНОЕ ОКНО ДОКУМЕНТА -->
+	<div class="modal" id="document-modal" hidden>
+		<div class="modal__overlay" data-close-modal="document-modal"></div>
+		<div class="modal__window modal__content">
+			<div class="modal__header">
+				<h3 id="document-modal-title">Добавить документ</h3>
+				<button type="button" class="modal__close" data-close-modal="document-modal">×</button>
+			</div>
+			<form id="document-form" class="admin-form">
+				<input type="hidden" id="document-id">
+
+				<label class="form-field">
+					<span>Раздел (категория) документа *</span>
+					<select id="document-category-select" required>
+						<option value="legal">Правоустанавливающие документы</option>
+						<option value="relations">Образовательные отношения</option>
+						<option value="students">Участники образовательных отношений: Обучающиеся</option>
+						<option value="teachers">Участники образовательных отношений: Работники</option>
+						<option value="educational_environment">Информационная образовательная среда (ЭИОС)</option>
+						<option value="acts">Локальные акты</option>
+						<option value="Charity">Благотворительные средства и добровольные пожертвования</option>
+						<option value="__custom__">+ Создать новый раздел...</option>
+					</select>
+				</label>
+
+				<label class="form-field" id="document-new-category-wrapper" style="display:none;">
+					<span>Название нового раздела *</span>
+					<input type="text" id="document-new-category-title" placeholder="Например: Воспитательная работа">
+				</label>
+
+				<label class="form-field">
+					<span>Название документа *</span>
+					<input type="text" id="document-title" placeholder="Например: Положение о режиме занятий обучающихся" required>
+				</label>
+
+				<div class="form-field">
+					<span>Файл документа (PDF, DOCX, DOC, XLSX, XLS, ZIP до 150 МБ)</span>
+					<div class="doc-upload-dropzone" id="document-dropzone">
+						<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+							<polyline points="17 8 12 3 7 8"></polyline>
+							<line x1="12" y1="3" x2="12" y2="15"></line>
+						</svg>
+						<p class="dropzone-text">Перетащите файл сюда или <span class="dropzone-link">выберите на компьютере</span></p>
+						<input type="file" id="document-file-input" accept=".pdf,.docx,.doc,.xlsx,.xls,.zip" style="display:none;">
+					</div>
+					<div id="document-file-selected" class="doc-file-selected" style="display:none;">
+						<span class="doc-file-name" id="selected-file-name"></span>
+						<button type="button" class="doc-file-clear" id="clear-selected-file" title="Убрать файл">×</button>
+					</div>
+				</div>
+
+				<div class="form-field" id="document-current-file-box" style="display:none;">
+					<span style="font-size:12px; color:#64748b;">Текущий прикреплённый файл:</span>
+					<div class="doc-current-badge">
+						<span id="document-current-link-text"></span>
+						<a href="#" target="_blank" id="document-current-link-view" class="doc-btn doc-btn--view" style="margin-left:auto;">Открыть</a>
+					</div>
+				</div>
+
+				<label class="form-field">
+					<span>Или прямой путь / ссылка к файлу</span>
+					<input type="text" id="document-file-url" placeholder="documents/nazvanie.pdf или https://...">
+				</label>
+
+				<div class="form-grid-2">
+					<label class="form-field">
+						<span>Бейдж / размер (автоопределение при загрузке)</span>
+						<input type="text" id="document-file-size" placeholder="PDF • 1.2 МБ">
+					</label>
+
+					<label class="form-field">
+						<span>Порядковый номер</span>
+						<input type="number" id="document-sort-order" value="1" min="0">
+					</label>
+				</div>
+
+				<label class="form-field">
+					<span>Имя скачиваемого файла (download attribute)</span>
+					<input type="text" id="document-download-name" placeholder="Pologenie_o_rezhime.pdf">
+				</label>
+
+				<div class="modal__actions">
+					<button type="button" class="admin-button" data-close-modal="document-modal">Отмена</button>
+					<button type="submit" class="admin-button admin-button--primary" id="document-submit-button">Сохранить документ</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- МОДАЛЬНОЕ ОКНО УДАЛЕНИЯ ДОКУМЕНТА -->
+	<div class="modal" id="delete-document-modal" hidden>
+		<div class="modal__overlay" data-close-modal="delete-document-modal"></div>
+		<div class="modal__window modal__content modal__content--small">
+			<div class="modal__header">
+				<h3>Удалить документ</h3>
+				<button type="button" class="modal__close" data-close-modal="delete-document-modal">×</button>
+			</div>
+			<div class="modal__body">
+				<p>Вы действительно хотите удалить документ <strong id="delete-document-title"></strong>?</p>
+				<p class="modal__warning">Если файл был загружен в систему, он будет удалён с сервера.</p>
+			</div>
+			<div class="modal__actions">
+				<button type="button" class="admin-button" data-close-modal="delete-document-modal">Отмена</button>
+				<button type="button" class="admin-button news-card__delete" id="confirm-delete-document-button">Удалить</button>
+			</div>
+		</div>
+	</div>
+
 	<script src="../js/config.js"></script>
 	<script src="admin.js"></script>
 	<script src="teachers.js"></script>
@@ -1728,6 +1886,7 @@
 	<script src="menu.js"></script>
 	<script src="feedback.js?v=2.2"></script>
 	<script src="gym_life.js?v=1.2"></script>
+	<script src="documents.js?v=1.0"></script>
 
 </body>
 

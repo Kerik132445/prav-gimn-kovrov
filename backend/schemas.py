@@ -786,3 +786,40 @@ class CampShiftPayload(BaseModel):
     sort_order: int = 0
 
 
+class DocumentOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    title: str
+    category_key: str
+    category_title: str
+    file_url: str
+    file_size: str | None = None
+    file_type: str = "pdf"
+    download_name: str | None = None
+    sort_order: int = 0
+    created_at: datetime
+    updated_at: datetime
+
+
+class DocumentPayload(BaseModel):
+    title: str
+    category_key: str
+    category_title: str
+    file_url: str
+    file_size: str | None = None
+    file_type: str = "pdf"
+    download_name: str | None = None
+    sort_order: int = 0
+
+
+class DocumentReorderItem(BaseModel):
+    id: int
+    sort_order: int
+
+
+class DocumentReorderRequest(BaseModel):
+    items: list[DocumentReorderItem]
+
+
+

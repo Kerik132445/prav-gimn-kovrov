@@ -490,11 +490,12 @@ async function searchPageContent(page, searchQuery) {
 
 async function searchNews(searchQuery) {
 
+	let newsList = [];
+
 	try {
 
 		const response =
 			await fetch(API_URL);
-
 
 		if (!response.ok) {
 
@@ -504,19 +505,33 @@ async function searchNews(searchQuery) {
 
 		}
 
-
-		const news =
+		newsList =
 			await response.json();
 
+	} catch (error) {
 
-		const normalizedQuery =
-			normalizeText(searchQuery);
+		console.warn("Поиск: Backend API недоступен, переключаемся на локальную базу новостей");
 
+		if (typeof window !== "undefined" && Array.isArray(window.FALLBACK_NEWS)) {
+			newsList = window.FALLBACK_NEWS;
+		} else if (typeof news !== "undefined" && Array.isArray(news)) {
+			newsList = news;
+		} else {
+			return [];
+		}
 
-		const results = [];
+	}
 
+	if (!Array.isArray(newsList) || !newsList.length) {
+		return [];
+	}
 
-		for (const item of news) {
+	const normalizedQuery =
+		normalizeText(searchQuery);
+
+	const results = [];
+
+	for (const item of newsList) {
 
 			const title =
 				normalizeText(

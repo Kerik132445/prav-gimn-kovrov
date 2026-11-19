@@ -11,6 +11,7 @@ from routes.schedule import router as schedule_router
 from routes.menu import router as menu_router
 from routes.feedback import router as feedback_router
 from routes.gym_life import router as gym_life_router
+from routes.documents import router as documents_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -73,6 +74,7 @@ app.include_router(schedule_router)
 app.include_router(menu_router)
 app.include_router(feedback_router)
 app.include_router(gym_life_router)
+app.include_router(documents_router)
 
 
 @app.get("/")

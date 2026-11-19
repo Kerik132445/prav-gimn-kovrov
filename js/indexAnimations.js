@@ -230,9 +230,10 @@ async function loadHomeNews() {
 		renderHomeNews();
 
 	} catch (error) {
-
-		if (typeof news !== "undefined" && Array.isArray(news) && news.length > 0) {
-			homeNews = news.map(item => ({
+		console.warn("Backend API недоступен, загружаем новости из встроенного резерва:", error);
+		const rawFallback = (typeof news !== "undefined" && Array.isArray(news)) ? news : (Array.isArray(window.FALLBACK_NEWS) ? window.FALLBACK_NEWS : []);
+		if (rawFallback.length > 0) {
+			homeNews = rawFallback.map(item => ({
 				id: item.id,
 				title: item.title,
 				date: item.date,

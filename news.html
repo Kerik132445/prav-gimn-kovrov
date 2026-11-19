@@ -181,110 +181,172 @@
 
 		<div class="container container--wide">
 
-			<nav class="breadcrumbs" aria-label="Хлебные крошки" id="news-breadcrumbs">
+			<div class="news-top-bar">
+				<nav class="breadcrumbs" aria-label="Хлебные крошки" id="news-breadcrumbs">
+					<a href="index.html" class="breadcrumbs__home">
+						<img src="assets/icons/home.svg" alt="">
+						Главная
+					</a>
+					<span class="breadcrumbs__separator" aria-hidden="true">›</span>
+					<a href="life.html#news">Жизнь гимназии</a>
+					<span class="breadcrumbs__separator" aria-hidden="true">›</span>
+					<span class="breadcrumbs__current" id="news-breadcrumb-title">Новость</span>
+				</nav>
 
-				<a href="index.html" class="breadcrumbs__home">
-					<img src="assets/icons/home.svg" alt="">
-					Главная
+				<a href="life.html#news" class="news-page__back">
+					<span class="news-back-arrow">←</span> Все новости
 				</a>
+			</div>
 
-				<span class="breadcrumbs__separator" aria-hidden="true">
-					›
-				</span>
+			<div class="news-layout">
 
-				<a href="life.html#news">
-					Жизнь гимназии
-				</a>
+				<!-- Левая колонка: сама статья -->
+				<div class="news-layout__main">
+					<article class="news-article news-card-wrapper">
 
-				<span class="breadcrumbs__separator" aria-hidden="true">
-					›
-				</span>
+						<div class="news-article__header">
+							<div class="news-article__meta">
+								<a href="life.html#news" class="news-article__category" id="news-category" title="Смотреть все события этой рубрики"></a>
+								<span class="news-meta-divider">•</span>
+								<time class="news-article__date" id="news-date"></time>
+								<span class="news-meta-divider">•</span>
+								<span class="news-article__read-time" id="news-read-time" title="Примерное время чтения">
+									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+									<span id="read-time-text">1 мин чтения</span>
+								</span>
+							</div>
 
-				<span class="breadcrumbs__current" id="news-breadcrumb-title">
-					Новость
-				</span>
+							<h1 class="news-article__title" id="news-title"></h1>
+						</div>
 
-			</nav>
+						<!-- Медиа-галерея статьи -->
+						<div class="news-gallery" id="news-gallery">
+							<div class="news-gallery__main">
+								<button class="news-gallery__arrow news-gallery__arrow--prev" type="button" aria-label="Предыдущая фотография">
+									‹
+								</button>
 
-			<a href="life.html#news" class="news-page__back">
-				← Все новости
-			</a>
+								<div class="news-gallery__img-wrapper">
+									<img id="news-image" class="news-gallery__image" src="" alt="">
+									<button class="news-gallery__zoom-badge" id="news-zoom-badge" type="button" title="Открыть фотографию в полном размере">
+										<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+										<span>Увеличить</span>
+									</button>
+								</div>
 
+								<button class="news-gallery__arrow news-gallery__arrow--next" type="button" aria-label="Следующая фотография">
+									›
+								</button>
+							</div>
 
-			<article class="news-article">
+							<div id="news-thumbnails" class="news-gallery__thumbnails"></div>
+						</div>
 
-				<div class="news-article__meta">
+						<!-- Текст статьи (с трансформацией ссылок VK в фирменные карточки) -->
+						<div class="news-article__content" id="news-content"></div>
 
-					<span class="news-article__category" id="news-category">
-					</span>
+						<!-- Поделиться в соцсетях -->
+						<div class="news-article__footer">
+							<div class="news-share">
+								<span class="news-share__title">Поделиться новостью:</span>
+								<div class="news-share__list">
+									<button type="button" class="news-share-btn news-share-btn--vk" id="share-vk" title="Поделиться во ВКонтакте">
+										<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.05-1.714-1.037-1.01-1.498-1.143-1.753-1.143-.356 0-.457.102-.457.593v1.657c0 .423-.135.677-1.252.677-1.846 0-3.896-1.118-5.334-3.199-2.167-3.073-2.76-5.394-2.76-5.867 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.779.677.847 2.472 2.27 4.64 2.862 4.64.22 0 .322-.102.322-.66v-2.59c-.068-1.185-.694-1.286-.694-1.71 0-.203.169-.406.44-.406h2.743c.373 0 .508.203.508.643v3.504c0 .373.169.508.288.508.237 0 .44-.135.88-.576 1.355-1.524 2.32-3.894 2.32-3.894.135-.271.356-.474.796-.474h1.744c.525 0 .643.271.525.643-.22 1.016-2.353 4.047-2.455 4.2-.17.271-.237.39 0 .711.17.237.745.728 1.135 1.168.711.813 1.253 1.49 1.405 1.964.153.474-.085.711-.56.711z"/></svg>
+										<span>ВКонтакте</span>
+									</button>
+									<button type="button" class="news-share-btn news-share-btn--tg" id="share-tg" title="Отправить в Telegram">
+										<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.46c.536-.196 1.006.128.832.92z"/></svg>
+										<span>Telegram</span>
+									</button>
+									<button type="button" class="news-share-btn news-share-btn--copy" id="share-copy" title="Скопировать ссылку в буфер обмена">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+										<span id="share-copy-text">Скопировать</span>
+									</button>
+								</div>
+							</div>
+						</div>
 
-					<time class="news-article__date" id="news-date">
-					</time>
+						<!-- Навигация: Предыдущая / Следующая новость -->
+						<nav class="news-nav-strip" id="news-navigation" aria-label="Другие новости">
+							<a href="#" class="news-nav-link news-nav-link--prev" id="news-prev-link" style="display:none;">
+								<span class="news-nav-link__sub">‹ Предыдущая новость</span>
+								<span class="news-nav-link__title" id="news-prev-title"></span>
+							</a>
+							<a href="#" class="news-nav-link news-nav-link--next" id="news-next-link" style="display:none;">
+								<span class="news-nav-link__sub">Следующая новость ›</span>
+								<span class="news-nav-link__title" id="news-next-title"></span>
+							</a>
+						</nav>
 
+					</article>
 				</div>
 
+				<!-- Правая колонка: Сайдбар -->
+				<aside class="news-layout__sidebar">
+					<div class="news-sidebar-sticky">
 
-				<h1 class="news-article__title" id="news-title">
-				</h1>
+						<!-- Виджет 1: Свежие события -->
+						<div class="news-widget">
+							<div class="news-widget__header">
+								<h3 class="news-widget__title">Свежие события</h3>
+								<a href="life.html#news" class="news-widget__more-link">Все новости →</a>
+							</div>
+							<div class="news-widget__recent-list" id="sidebar-recent-list">
+								<!-- Заполняется динамически через js/news.js -->
+							</div>
+						</div>
 
+						<!-- Виджет 2: Рубрики -->
+						<div class="news-widget">
+							<h3 class="news-widget__title">Рубрики</h3>
+							<div class="news-widget__cats">
+								<a href="life.html#news" data-cat="all" class="news-cat-chip">Все новости</a>
+								<a href="life.html?category=education#news" data-cat="education" class="news-cat-chip">Учебная жизнь</a>
+								<a href="life.html?category=spiritual#news" data-cat="spiritual" class="news-cat-chip">Духовная жизнь</a>
+								<a href="life.html?category=creativity#news" data-cat="creativity" class="news-cat-chip">Творчество и театр</a>
+								<a href="life.html?category=sport#news" data-cat="sport" class="news-cat-chip">Спорт и ВПК</a>
+								<a href="life.html?category=camp#news" data-cat="camp" class="news-cat-chip">Лагерь и практика</a>
+								<a href="life.html?category=holidays#news" data-cat="holidays" class="news-cat-chip">Традиции и праздники</a>
+								<a href="life.html?category=pilgrimage#news" data-cat="pilgrimage" class="news-cat-chip">Паломничество</a>
+							</div>
+						</div>
 
-				<div class="news-gallery">
-
-					<div class="news-gallery__main">
-
-						<button class="news-gallery__arrow news-gallery__arrow--prev" type="button"
-							aria-label="Предыдущая фотография">
-							←
-						</button>
-
-						<img id="news-image" class="news-gallery__image" src="" alt="">
-
-						<button class="news-gallery__arrow news-gallery__arrow--next" type="button"
-							aria-label="Следующая фотография">
-							→
-						</button>
-
-					</div>
-
-					<div id="news-thumbnails" class="news-gallery__thumbnails">
-					</div>
-
-				</div>
-
-				<div class="news-lightbox" id="news-lightbox">
-
-					<button class="news-lightbox__close" id="news-lightbox-close" type="button" aria-label="Закрыть">
-						×
-					</button>
-
-					<button class="news-lightbox__arrow news-lightbox__arrow--prev" id="news-lightbox-prev"
-						type="button" aria-label="Предыдущая фотография">
-						←
-					</button>
-
-					<div class="news-lightbox__content">
-
-						<img id="news-lightbox-image" class="news-lightbox__image" src="" alt="">
-
-						<div class="news-lightbox__counter" id="news-lightbox-counter">
-							1 / 1
+						<!-- Виджет 3: Карточка сообщества ВКонтакте -->
+						<div class="news-widget news-widget--vk">
+							<div class="vk-card">
+								<div class="vk-card__head">
+									<div class="vk-card__logo-wrap">
+										<img src="./assets/icons/logo_star.png" alt="" class="vk-card__logo">
+									</div>
+									<div class="vk-card__info">
+										<span class="vk-card__name">Православная гимназия</span>
+										<span class="vk-card__sub">г. Ковров • Официальная группа</span>
+									</div>
+								</div>
+								<p class="vk-card__desc">Свежие фоторепортажи, праздники, расписание и важные события школьной жизни в нашей группе.</p>
+								<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" class="vk-card__btn">
+									<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.05-1.714-1.037-1.01-1.498-1.143-1.753-1.143-.356 0-.457.102-.457.593v1.657c0 .423-.135.677-1.252.677-1.846 0-3.896-1.118-5.334-3.199-2.167-3.073-2.76-5.394-2.76-5.867 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.779.677.847 2.472 2.27 4.64 2.862 4.64.22 0 .322-.102.322-.66v-2.59c-.068-1.185-.694-1.286-.694-1.71 0-.203.169-.406.44-.406h2.743c.373 0 .508.203.508.643v3.504c0 .373.169.508.288.508.237 0 .44-.135.88-.576 1.355-1.524 2.32-3.894 2.32-3.894.135-.271.356-.474.796-.474h1.744c.525 0 .643.271.525.643-.22 1.016-2.353 4.047-2.455 4.2-.17.271-.237.39 0 .711.17.237.745.728 1.135 1.168.711.813 1.253 1.49 1.405 1.964.153.474-.085.711-.56.711z"/></svg>
+									<span>Мы ВКонтакте</span>
+								</a>
+							</div>
 						</div>
 
 					</div>
+				</aside>
 
-					<button class="news-lightbox__arrow news-lightbox__arrow--next" id="news-lightbox-next"
-						type="button" aria-label="Следующая фотография">
-						→
-					</button>
+			</div>
 
-				</div>
+		</div>
 
-
-				<div class="news-article__content" id="news-content">
-				</div>
-
-			</article>
-
+		<!-- Полноэкранный Lightbox для просмотра фото -->
+		<div class="news-lightbox" id="news-lightbox">
+			<button class="news-lightbox__close" id="news-lightbox-close" type="button" aria-label="Закрыть">×</button>
+			<button class="news-lightbox__arrow news-lightbox__arrow--prev" id="news-lightbox-prev" type="button" aria-label="Предыдущая фотография">←</button>
+			<div class="news-lightbox__content">
+				<img id="news-lightbox-image" class="news-lightbox__image" src="" alt="">
+				<div class="news-lightbox__counter" id="news-lightbox-counter">1 / 1</div>
+			</div>
+			<button class="news-lightbox__arrow news-lightbox__arrow--next" id="news-lightbox-next" type="button" aria-label="Следующая фотография">→</button>
 		</div>
 
 	</main>

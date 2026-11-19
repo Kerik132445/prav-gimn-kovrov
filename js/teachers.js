@@ -36,7 +36,10 @@
 		if (!photo) return "assets/images/teachers/teacher-placeholder.svg";
 		if (photo.startsWith("http")) return photo;
 		if (photo.startsWith("/uploads")) {
-			return window.API_BASE_URL ? `${window.API_BASE_URL}${photo}` : photo.replace(/^\//, "");
+			if (window.location.protocol === "file:" || !window.API_BASE_URL) {
+				return photo.replace(/^\//, "");
+			}
+			return `${window.API_BASE_URL}${photo}`;
 		}
 		return photo.startsWith("/") ? photo.slice(1) : photo;
 	}
@@ -95,7 +98,7 @@
 		return `
 			<article class="teacher-card">
 				<div class="teacher-card__photo-container">
-					<img loading="lazy" decoding="async" src="${photoUrl}" alt="${fullName}" class="teacher-card__photo" onerror="this.onerror=null;this.src='assets/images/teachers/teacher-placeholder.svg';">
+					<img loading="lazy" decoding="async" src="${photoUrl}" alt="${fullName}" class="teacher-card__photo" onerror="if(this.src.includes(':8000/uploads/')){this.src=this.src.replace(/^http:\/\/[^\/]+/, '');}else{this.onerror=null;this.src='assets/images/teachers/teacher-placeholder.svg';}">
 					${guidanceHtml}
 				</div>
 				<div class="teacher-card__body">
@@ -432,6 +435,16 @@
 					applySearchFilter(searchInput.value.toLowerCase().trim());
 				}
 			} catch (error) {
+				console.warn("Backend API недоступен, загружаем преподавателей из локального резерва:", error);
+				const fallbackList = Array.isArray(window.FALLBACK_TEACHERS) ? window.FALLBACK_TEACHERS : [];
+				if (fallbackList.length > 0) {
+					const sections = renderTeachers(container, fallbackList);
+					observeTeacherSections(sections);
+					if (searchInput && searchInput.value.trim()) {
+						applySearchFilter(searchInput.value.toLowerCase().trim());
+					}
+					return;
+				}
 				console.error("Ошибка загрузки учителей:", error);
 				container.innerHTML = `
 					<div class="teachers-status-message teachers-status-message--error">
