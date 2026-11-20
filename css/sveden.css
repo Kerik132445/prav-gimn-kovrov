@@ -806,3 +806,18 @@ body.header-is-hidden .sveden-sidebar {
 		padding: 14px 16px;
 	}
 }
+
+
+/* Улучшение областей нажатия (Tap Targets) на мобильных */
+@media (max-width: 640px) {
+	.sveden-doc-btn {
+		min-height: 42px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.sveden-sidebar__link {
+		min-height: 44px;
+	}
+}

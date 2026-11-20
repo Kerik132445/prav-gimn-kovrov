@@ -1606,17 +1606,17 @@ async function initNewspaperArchive() {
 		document.body.style.overflow = "";
 	}
 
-	grid.onclick = (e) => {
+	document.addEventListener("click", (e) => {
 		const readBtn = e.target.closest(".btn-read-issue, .btn-read-pdf");
 		if (readBtn) {
 			const pdfUrl = readBtn.getAttribute("data-pdf") || readBtn.getAttribute("href");
-			const title = readBtn.getAttribute("data-title");
+			const title = readBtn.getAttribute("data-title") || "Просмотр газеты";
 			if (pdfUrl && window.location.protocol !== "file:") {
 				e.preventDefault();
 				openPdf(pdfUrl, title);
 			}
 		}
-	};
+	});
 
 	if (closeBtn) closeBtn.onclick = closePdfModal;
 	if (backdrop) backdrop.onclick = closePdfModal;
