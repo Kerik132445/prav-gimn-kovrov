@@ -22,6 +22,12 @@
 	<link rel="icon" href="../favicon.ico" sizes="any">
 	<link rel="icon" href="../assets/icons/favicon-32x32.png" type="image/png">
 	<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+	<!-- PWA Manifest & App Configuration -->
+	<link rel="manifest" href="../manifest.json">
+	<meta name="theme-color" content="#1E3A8A">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-title" content="Гимназия Ковров">
 	<link rel="stylesheet" href="../css/style.css">
 	<link rel="stylesheet" href="../css/sveden.css">
 	<link rel="stylesheet" href="../css/bvi.css">
@@ -626,7 +632,16 @@
 							</div>
 						</a>
 
-						<div class="btn_media">
+						<div class="footer-top-actions">
+							<button type="button" class="footer-app-btn js-pwa-install" aria-label="Установить приложение гимназии" title="Установить приложение на телефон или компьютер">
+								<svg class="footer-app-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+									<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+									<line x1="12" y1="18" x2="12.01" y2="18"></line>
+								</svg>
+								<span>Приложение гимназии</span>
+							</button>
+
+							<div class="btn_media">
 							<ul class="btn_media__list">
 								<li class="media__list-vk">
 									<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
@@ -644,6 +659,7 @@
 									</a>
 								</li>
 							</ul>
+						</div>
 						</div>
 					</div>
 
@@ -743,6 +759,7 @@
 	</script>
 	<script src="../js/bvi.js"></script>
 	<script src="../js/footer-contacts.js"></script>
+	<script src="../js/pwa.js" defer></script>
 </body>
 
 </html>

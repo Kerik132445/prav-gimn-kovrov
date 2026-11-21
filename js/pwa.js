@@ -12,10 +12,14 @@
   let deferredPrompt = null;
   let guideModalElement = null;
 
+  // Определение относительного пути к корню (для страниц в подпапках, например /sveden/)
+  const isSubdir = window.location.pathname.includes('/sveden/') || window.location.pathname.includes('\\sveden\\');
+  const rootPrefix = isSubdir ? '../' : './';
+
   // 1. Регистрация Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js', { scope: './' })
+      navigator.serviceWorker.register(rootPrefix + 'sw.js', { scope: rootPrefix })
         .then((registration) => {
           console.log('[PWA] Service Worker успешно зарегистрирован:', registration.scope);
         })
@@ -41,7 +45,7 @@
     banner.innerHTML = `
       <div class="pwa-install-banner__content">
         <div class="pwa-install-banner__icon">
-          <img src="assets/icons/pwa/icon-192.png" alt="Гимназия Ковров" width="40" height="40">
+          <img src="${rootPrefix}assets/icons/pwa/icon-192.png" alt="Гимназия Ковров" width="40" height="40">
         </div>
         <div class="pwa-install-banner__text">
           <div class="pwa-install-banner__title">Приложение гимназии</div>
@@ -177,7 +181,7 @@
 
         <div class="pwa-modal__header">
           <div class="pwa-modal__icon">
-            <img src="assets/icons/pwa/icon-192.png" alt="Логотип гимназии" width="48" height="48">
+            <img src="${rootPrefix}assets/icons/pwa/icon-192.png" alt="Логотип гимназии" width="48" height="48">
           </div>
           <div class="pwa-modal__header-text">
             <h3 class="pwa-modal__title" id="pwa-modal-title">Приложение гимназии</h3>
