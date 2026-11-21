@@ -208,6 +208,11 @@
 
 				<div class="schedule-toolbar-actions">
 
+					<button class="admin-button" id="import-schedule-button" type="button" style="display: inline-flex; align-items: center; gap: 6px;">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+						<span>Импорт Word / Excel</span>
+					</button>
+
 					<button class="admin-button" id="create-class-button" type="button">
 						+ Добавить класс
 					</button>
@@ -1034,6 +1039,11 @@
 
 				</div>
 
+				<label class="schedule-checkbox" id="lesson-combined-field" style="margin: 4px 0 16px; cursor: pointer;">
+					<input type="checkbox" id="lesson-allow-combined">
+					<span>👥 Разрешить совмещение (совмещённый урок с другим классом)</span>
+				</label>
+
 				<div class="modal__actions">
 					<button type="button" class="admin-button" id="lesson-cancel-button">Отмена</button>
 					<button type="button" class="admin-button" id="lesson-save-next-button">Сохранить и добавить ещё</button>
@@ -1116,6 +1126,11 @@
 					<span>Перенести также назначенных преподавателей</span>
 				</label>
 
+				<label class="schedule-checkbox" style="margin-left: 20px;">
+					<input type="checkbox" id="copy-day-allow-combined">
+					<span>👥 Разрешить совмещение (если учитель уже занят в другом классе)</span>
+				</label>
+
 				<label class="schedule-checkbox">
 					<input type="checkbox" id="copy-day-overwrite">
 					<span>Перезаписать существующие уроки в целевом дне</span>
@@ -1171,7 +1186,12 @@
 
 				<label class="schedule-checkbox">
 					<input type="checkbox" id="copy-class-include-teachers">
-					<span>Перенести также преподавателей (вызовет конфликт, если учитель уже занят в эти же часы)</span>
+					<span>Перенести также преподавателей</span>
+				</label>
+
+				<label class="schedule-checkbox" style="margin-left: 20px;">
+					<input type="checkbox" id="copy-class-allow-combined">
+					<span>👥 Разрешить совмещение (если учитель уже занят в другом классе)</span>
 				</label>
 
 				<label class="schedule-checkbox">
@@ -1185,6 +1205,121 @@
 				</div>
 
 			</form>
+
+		</div>
+
+	</div>
+
+
+	<!-- Модалка импорта расписания из Word / Excel -->
+	<div class="modal" id="schedule-import-modal">
+
+		<div class="modal__overlay" id="schedule-import-modal-overlay"></div>
+
+		<div class="modal__window modal__window--large">
+
+			<div class="modal__header">
+				<div>
+					<p class="modal__label">Автоматизация</p>
+					<h2>Импорт расписания из Word / Excel</h2>
+				</div>
+				<button class="modal__close" id="schedule-import-modal-close" type="button">×</button>
+			</div>
+
+			<div class="schedule-import-content">
+				<!-- Шаг 1: Загрузка файла -->
+				<div id="schedule-import-upload-step">
+					<div class="schedule-import-dropzone" id="schedule-import-dropzone">
+						<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="color: #2563eb; margin: 0 auto 12px; display: block;">
+							<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+							<polyline points="14 2 14 8 20 8"></polyline>
+							<line x1="12" y1="18" x2="12" y2="12"></line>
+							<polyline points="9 15 12 12 15 15"></polyline>
+						</svg>
+						<h3 style="margin: 0 0 6px;">Перетащите сюда файл расписания</h3>
+						<p style="color: #64748b; font-size: 14px; margin: 0 0 16px;">
+							Поддерживаются документы <strong>.docx (Word)</strong> и таблицы <strong>.xlsx (Excel)</strong>
+						</p>
+						<label class="admin-button admin-button--primary" style="cursor: pointer; display: inline-block;">
+							<span>Выбрать файл на компьютере</span>
+							<input type="file" id="schedule-import-file-input" accept=".docx,.xlsx" style="display: none;">
+						</label>
+					</div>
+
+					<div class="schedule-import-hint" style="margin-top: 20px; padding: 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 13px; color: #475569; line-height: 1.5;">
+						<strong>💡 Возможности модуля импорта:</strong>
+						<ul style="margin: 6px 0 0 18px; padding: 0;">
+							<li>Автоматически считывает классы (1–11), дни недели, номера уроков и официальные звонки гимназии.</li>
+							<li>Распознает предмет, фамилию учителя и кабинет (например, <em>«Русский язык (Кузнецова С.И.) №6»</em>).</li>
+							<li>Поддерживает сложные ячейки: подгруппы (<em>№2/№11</em>), классные часы и общешкольные концерты.</li>
+							<li>Перед записью покажет полный предпросмотр: вы сможете выбрать, заменить ли <strong>всю неделю</strong> или <strong>только выбранные дни</strong>.</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Шаг 2: Предпросмотр и выбор режима -->
+				<div id="schedule-import-preview-step" hidden>
+					<div class="schedule-import-summary" id="schedule-import-summary" style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px;">
+						<!-- Заполняется динамически -->
+					</div>
+
+					<div style="background: #f1f5f9; padding: 14px; border-radius: 8px; margin-bottom: 16px;">
+						<strong style="display: block; margin-bottom: 8px; font-size: 14px; color: #1e293b;">Режим применения:</strong>
+						<div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+							<label class="schedule-checkbox" style="margin: 0; cursor: pointer;">
+								<input type="radio" name="import-mode" value="all" id="import-mode-all" checked>
+								<span>Заменить всю неделю (для классов из файла)</span>
+							</label>
+							<label class="schedule-checkbox" style="margin: 0; cursor: pointer;">
+								<input type="radio" name="import-mode" value="days" id="import-mode-days">
+								<span>Заменить только выбранные дни недели</span>
+							</label>
+						</div>
+
+						<div id="import-days-checkboxes" style="margin-top: 12px; display: none; gap: 12px; flex-wrap: wrap; padding-top: 10px; border-top: 1px solid #cbd5e1;">
+							<!-- Заполняется динамически -->
+						</div>
+					</div>
+
+					<div id="schedule-import-warnings" hidden style="margin-bottom: 14px; padding: 10px 14px; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; font-size: 13px; color: #92400e;"></div>
+
+					<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 12px; flex-wrap: wrap;">
+						<strong style="font-size: 14px; color: #1e293b;">Таблица распознанных уроков:</strong>
+						<input type="text" id="schedule-import-filter" placeholder="Поиск по предмету, учителю, кабинету..." style="padding: 6px 12px; font-size: 13px; border: 1px solid #cbd5e1; border-radius: 6px; width: 280px;">
+					</div>
+
+					<div class="schedule-import-table-container" style="max-height: 380px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px;">
+						<table class="schedule-import-table" style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+							<thead style="position: sticky; top: 0; background: #f8fafc; border-bottom: 1px solid #e2e8f0; z-index: 1;">
+								<tr>
+									<th style="padding: 8px 10px;">Класс</th>
+									<th style="padding: 8px 10px;">День</th>
+									<th style="padding: 8px 10px;">№</th>
+									<th style="padding: 8px 10px;">Время</th>
+									<th style="padding: 8px 10px;">Предмет</th>
+									<th style="padding: 8px 10px;">Преподаватель</th>
+									<th style="padding: 8px 10px;">Кабинет</th>
+								</tr>
+							</thead>
+							<tbody id="schedule-import-table-body">
+								<!-- Заполняется динамически -->
+							</tbody>
+						</table>
+					</div>
+
+					<div class="modal__actions" style="margin-top: 20px;">
+						<button type="button" class="admin-button" id="schedule-import-back-button">← Другой файл</button>
+						<button type="button" class="admin-button admin-button--primary" id="schedule-import-apply-button">Применить в расписание</button>
+					</div>
+				</div>
+
+				<!-- Индикатор загрузки -->
+				<div id="schedule-import-loading" hidden style="text-align: center; padding: 40px 20px;">
+					<div class="admin-spinner" style="margin: 0 auto 16px;"></div>
+					<h3 id="schedule-import-loading-text" style="margin: 0 0 6px;">Считывание документа...</h3>
+					<p style="color: #64748b; font-size: 14px; margin: 0;">Распознаём таблицу, сопоставляем классы и учителей</p>
+				</div>
+			</div>
 
 		</div>
 

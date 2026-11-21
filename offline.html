@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Нет подключения к сети | Православная гимназия г. Коврова</title>
+  <link rel="icon" href="assets/icons/favicon-32x32.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #FAF8F5;
+      color: #1E1A17;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .offline-card {
+      width: 100%;
+      max-width: 520px;
+      background: #FFFFFF;
+      border: 1px solid #EAE3D6;
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 0 20px 50px -10px rgba(28, 25, 23, 0.1), 0 2px 6px rgba(28, 25, 23, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .offline-icon-box {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      background: #FEF3C7;
+      border: 2px solid #F59E0B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.15);
+    }
+
+    .offline-icon-box svg {
+      width: 36px;
+      height: 36px;
+      color: #92400E;
+    }
+
+    .offline-badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9A7B4F;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .offline-title {
+      font-family: Georgia, 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1E1A17;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .offline-desc {
+      font-size: 14px;
+      color: #6E6255;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 420px;
+    }
+
+    /* Доступные офлайн разделы */
+    .offline-nav-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #8C7D6F;
+      margin-bottom: 12px;
+      align-self: flex-start;
+      width: 100%;
+      text-align: left;
+    }
+
+    .offline-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 28px;
+    }
+
+    .offline-link-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #FAF8F5;
+      border: 1px solid #EAE3D6;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #2C2621;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      transition: all 0.18s ease;
+    }
+
+    .offline-link-item:hover {
+      background: #F0EAE1;
+      border-color: #D8CEBE;
+      color: #1E1A17;
+      transform: translateY(-1px);
+    }
+
+    .offline-link-item span.emoji {
+      font-size: 16px;
+    }
+
+    /* Кнопка повторить */
+    .offline-btn-retry {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 24px;
+      background: #1E3A8A;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .offline-btn-retry:hover {
+      background: #172554;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(30, 58, 138, 0.35);
+    }
+
+    @media (max-width: 480px) {
+      .offline-links {
+        grid-template-columns: 1fr;
+      }
+      .offline-card {
+        padding: 28px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="offline-card">
+    <div class="offline-icon-box" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="1" y1="1" x2="23" y2="23"></line>
+        <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"></path>
+        <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"></path>
+        <path d="M10.71 5.05A16 16 0 0 1 22.58 9"></path>
+        <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"></path>
+        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+        <line x1="12" y1="20" x2="12.01" y2="20"></line>
+      </svg>
+    </div>
+
+    <span class="offline-badge">Офлайн-режим приложения</span>
+    <h1 class="offline-title">Нет связи с интернетом</h1>
+    <p class="offline-desc">
+      Сайт работает в автономном режиме. Вы можете просматривать ранее открытые и сохранённые разделы гимназии:
+    </p>
+
+    <div class="offline-nav-title">Доступно в офлайн:</div>
+    <div class="offline-links">
+      <a href="index.html" class="offline-link-item">
+        <span class="emoji">⛪</span>
+        <span>Главная страница</span>
+      </a>
+      <a href="class_schedule.html" class="offline-link-item">
+        <span class="emoji">🔔</span>
+        <span>Расписание уроков</span>
+      </a>
+      <a href="food.html" class="offline-link-item">
+        <span class="emoji">🍲</span>
+        <span>Школьное меню</span>
+      </a>
+      <a href="contact.html" class="offline-link-item">
+        <span class="emoji">📞</span>
+        <span>Контакты</span>
+      </a>
+    </div>
+
+    <button type="button" class="offline-btn-retry" onclick="location.reload()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="23 4 23 10 17 10"></polyline>
+        <polyline points="1 20 1 14 7 14"></polyline>
+        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+      </svg>
+      <span>Повторить попытку подключения</span>
+    </button>
+  </div>
+
+  <script>
+    // Автоматически перезагружаем страницу при появлении сети
+    window.addEventListener('online', function() {
+      location.reload();
+    });
+  </script>
+</body>
+</html>

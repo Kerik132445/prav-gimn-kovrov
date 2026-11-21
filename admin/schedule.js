@@ -90,6 +90,7 @@
 	const lessonEndInput = document.getElementById("lesson-end-time");
 	const lessonRoomInput = document.getElementById("lesson-room-input");
 	const lessonTeacherSelect = document.getElementById("lesson-teacher-select");
+	const lessonAllowCombined = document.getElementById("lesson-allow-combined");
 	const lessonFormError = document.getElementById("lesson-form-error");
 	const lessonSaveButton = document.getElementById("lesson-save-button");
 	const lessonSaveNextButton = document.getElementById("lesson-save-next-button");
@@ -106,6 +107,7 @@
 	const copyDayTargetDay = document.getElementById("copy-day-target-day");
 	const copyDayIncludeTeachers = document.getElementById("copy-day-include-teachers");
 	const copyDayOverwrite = document.getElementById("copy-day-overwrite");
+	const copyDayAllowCombined = document.getElementById("copy-day-allow-combined");
 	const copyDayError = document.getElementById("copy-day-error");
 	const copyDaySubmitButton = document.getElementById("copy-day-submit-button");
 
@@ -119,6 +121,7 @@
 	const copyClassTarget = document.getElementById("copy-class-target");
 	const copyClassIncludeTeachers = document.getElementById("copy-class-include-teachers");
 	const copyClassOverwrite = document.getElementById("copy-class-overwrite");
+	const copyClassAllowCombined = document.getElementById("copy-class-allow-combined");
 	const copyClassError = document.getElementById("copy-class-error");
 	const copyClassSubmitButton = document.getElementById("copy-class-submit-button");
 
@@ -267,6 +270,9 @@
 		const metaParts = [];
 		if (lesson.room) metaParts.push(`Кабинет: ${escapeText(lesson.room)}`);
 		if (lesson.teacher_name) metaParts.push(`Преподаватель: ${escapeText(lesson.teacher_name)}`);
+		if (lesson.is_combined) {
+			metaParts.push(`<span class="teacher-badge" style="background: #e0f2fe; color: #0369a1; border-color: #bae6fd; font-size: 11px;">👥 Совмещение</span>`);
+		}
 		const metaHtml = metaParts.length
 			? `<p class="schedule-admin-card__meta">${metaParts.join(" · ")}</p>`
 			: `<p class="schedule-admin-card__meta schedule-admin-card__meta--muted">Кабинет и преподаватель не указаны</p>`;
@@ -417,6 +423,7 @@
 		if (!selectedClassId) return;
 		lessonForm.reset();
 		lessonIdInput.value = "";
+		if (lessonAllowCombined) lessonAllowCombined.checked = false;
 		showBannerError(lessonFormError, "");
 
 		const initialDay = selectedDay === "all" ? "mon" : selectedDay;
@@ -451,6 +458,7 @@
 		lessonEndInput.value = lesson.end_time;
 		lessonRoomInput.value = lesson.room || "";
 		lessonTeacherSelect.value = lesson.teacher_id ? String(lesson.teacher_id) : "";
+		if (lessonAllowCombined) lessonAllowCombined.checked = Boolean(lesson.is_combined);
 		isTimeManuallyEdited = true;
 
 		lessonModalTitle.textContent = "Редактирование урока";
@@ -476,6 +484,7 @@
 		copyDayTargetDay.value = DAY_ORDER[nextDayIdx];
 		copyDayIncludeTeachers.checked = true;
 		copyDayOverwrite.checked = false;
+		if (copyDayAllowCombined) copyDayAllowCombined.checked = false;
 
 		openModal(copyDayModal);
 	}
@@ -492,6 +501,7 @@
 
 		copyClassIncludeTeachers.checked = false;
 		copyClassOverwrite.checked = false;
+		if (copyClassAllowCombined) copyClassAllowCombined.checked = false;
 		openModal(copyClassModal);
 	}
 
@@ -507,6 +517,7 @@
 		const endTime = lessonEndInput.value.trim();
 		const room = lessonRoomInput.value.trim();
 		const teacherRaw = lessonTeacherSelect.value;
+		const allowCombined = Boolean(lessonAllowCombined?.checked);
 
 		if (!classId || !dayOfWeek || !subject || !startTime || !endTime) {
 			showBannerError(lessonFormError, "Заполните обязательные поля: класс, день, номер урока, предмет и время.");
@@ -531,7 +542,8 @@
 			room: room || null,
 			teacher_id: teacherRaw ? Number(teacherRaw) : null,
 			period: "main",
-			sort_order: lessonNumber
+			sort_order: lessonNumber,
+			allow_combined: allowCombined
 		};
 
 		lessonSaveButton.disabled = true;
@@ -542,15 +554,42 @@
 				? `${SCHEDULE_API_URL}/lessons/${editId}`
 				: `${SCHEDULE_API_URL}/lessons`;
 
-			const response = await window.AdminApp.apiFetch(url, {
+			let response = await window.AdminApp.apiFetch(url, {
 				method: editId ? "PUT" : "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(payload)
 			});
 
-			const data = await response.json().catch(() => null);
+			let data = await response.json().catch(() => null);
+
+			// Если сервер вернул 409 с возможностью совмещения — выдаем уведомление и дополнительное подтверждение
+			if (response.status === 409 && data?.detail) {
+				const conflictDetail = typeof data.detail === "object" ? data.detail : null;
+				if (conflictDetail && conflictDetail.can_combine) {
+					const confirmMsg =
+						`⚠️ Внимание! Обнаружен конфликт расписания преподавателя:\n\n` +
+						`${conflictDetail.message}\n\n` +
+						`Хотите создать совмещённый урок (совмещёнку) для нескольких классов одновременно?`;
+
+					if (window.confirm(confirmMsg)) {
+						if (lessonAllowCombined) lessonAllowCombined.checked = true;
+						payload.allow_combined = true;
+
+						response = await window.AdminApp.apiFetch(url, {
+							method: editId ? "PUT" : "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify(payload)
+						});
+						data = await response.json().catch(() => null);
+					}
+				}
+			}
+
 			if (!response.ok) {
-				throw new Error(data?.detail || `Ошибка сервера: ${response.status}`);
+				const errorMsg = (typeof data?.detail === "object" && data?.detail?.message)
+					? data.detail.message
+					: (typeof data?.detail === "string" ? data.detail : `Ошибка сервера: ${response.status}`);
+				throw new Error(errorMsg);
 			}
 
 			selectedClassId = classId;
@@ -567,6 +606,7 @@
 				lessonSubjectInput.value = "";
 				lessonRoomInput.value = "";
 				lessonTeacherSelect.value = "";
+				if (lessonAllowCombined) lessonAllowCombined.checked = false;
 				prepareCreateLessonDefaults(classId, dayOfWeek);
 				lessonSubjectInput.focus();
 			} else {
@@ -819,18 +859,46 @@
 			target_day: copyDayTargetDay.value,
 			include_teachers: Boolean(copyDayIncludeTeachers.checked),
 			overwrite: Boolean(copyDayOverwrite.checked),
+			allow_combined: Boolean(copyDayAllowCombined?.checked),
 			period: "main"
 		};
 
 		try {
-			const response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/copy-day`, {
+			let response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/copy-day`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(payload)
 			});
-			const data = await response.json().catch(() => null);
+			let data = await response.json().catch(() => null);
+
+			// Если сервер вернул 409 с возможностью совмещения
+			if (response.status === 409 && data?.detail) {
+				const conflictDetail = typeof data.detail === "object" ? data.detail : null;
+				if (conflictDetail && conflictDetail.can_combine) {
+					const confirmMsg =
+						`⚠️ Внимание! При копировании обнаружен конфликт расписания преподавателя:\n\n` +
+						`${conflictDetail.message}\n\n` +
+						`Разрешить совмещение (совмещённые уроки) для конфликтующих классов?`;
+
+					if (window.confirm(confirmMsg)) {
+						if (copyDayAllowCombined) copyDayAllowCombined.checked = true;
+						payload.allow_combined = true;
+
+						response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/copy-day`, {
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify(payload)
+						});
+						data = await response.json().catch(() => null);
+					}
+				}
+			}
+
 			if (!response.ok) {
-				throw new Error(data?.detail || `Ошибка сервера: ${response.status}`);
+				const errorMsg = (typeof data?.detail === "object" && data?.detail?.message)
+					? data.detail.message
+					: (typeof data?.detail === "string" ? data.detail : `Ошибка сервера: ${response.status}`);
+				throw new Error(errorMsg);
 			}
 			selectedClassId = payload.target_class_id;
 			selectedDay = payload.target_day;
@@ -861,18 +929,46 @@
 			target_class_id: Number(copyClassTarget.value),
 			include_teachers: Boolean(copyClassIncludeTeachers.checked),
 			overwrite: Boolean(copyClassOverwrite.checked),
+			allow_combined: Boolean(copyClassAllowCombined?.checked),
 			period: "main"
 		};
 
 		try {
-			const response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/copy-class`, {
+			let response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/copy-class`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(payload)
 			});
-			const data = await response.json().catch(() => null);
+			let data = await response.json().catch(() => null);
+
+			// Если сервер вернул 409 с возможностью совмещения
+			if (response.status === 409 && data?.detail) {
+				const conflictDetail = typeof data.detail === "object" ? data.detail : null;
+				if (conflictDetail && conflictDetail.can_combine) {
+					const confirmMsg =
+						`⚠️ Внимание! При копировании обнаружен конфликт расписания преподавателя:\n\n` +
+						`${conflictDetail.message}\n\n` +
+						`Разрешить совмещение (совмещённые уроки) для конфликтующих классов?`;
+
+					if (window.confirm(confirmMsg)) {
+						if (copyClassAllowCombined) copyClassAllowCombined.checked = true;
+						payload.allow_combined = true;
+
+						response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/copy-class`, {
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify(payload)
+						});
+						data = await response.json().catch(() => null);
+					}
+				}
+			}
+
 			if (!response.ok) {
-				throw new Error(data?.detail || `Ошибка сервера: ${response.status}`);
+				const errorMsg = (typeof data?.detail === "object" && data?.detail?.message)
+					? data.detail.message
+					: (typeof data?.detail === "string" ? data.detail : `Ошибка сервера: ${response.status}`);
+				throw new Error(errorMsg);
 			}
 			selectedClassId = payload.target_class_id;
 			await refreshAll({ preserveSelection: true });
@@ -888,9 +984,303 @@
 	clearClassButton?.addEventListener("click", () => handleClear(false));
 	deleteClassButton?.addEventListener("click", handleDeleteClass);
 
+	// ---------------------------------------------------------
+	// ИМПОРТ РАСПИСАНИЯ ИЗ WORD / EXCEL
+	// ---------------------------------------------------------
+	const importScheduleButton = document.getElementById("import-schedule-button");
+	const scheduleImportModal = document.getElementById("schedule-import-modal");
+	const scheduleImportModalOverlay = document.getElementById("schedule-import-modal-overlay");
+	const scheduleImportModalClose = document.getElementById("schedule-import-modal-close");
+	const scheduleImportDropzone = document.getElementById("schedule-import-dropzone");
+	const scheduleImportFileInput = document.getElementById("schedule-import-file-input");
+	const scheduleImportUploadStep = document.getElementById("schedule-import-upload-step");
+	const scheduleImportPreviewStep = document.getElementById("schedule-import-preview-step");
+	const scheduleImportLoading = document.getElementById("schedule-import-loading");
+	const scheduleImportSummary = document.getElementById("schedule-import-summary");
+	const scheduleImportTableBody = document.getElementById("schedule-import-table-body");
+	const scheduleImportWarnings = document.getElementById("schedule-import-warnings");
+	const scheduleImportFilter = document.getElementById("schedule-import-filter");
+	const scheduleImportBackButton = document.getElementById("schedule-import-back-button");
+	const scheduleImportApplyButton = document.getElementById("schedule-import-apply-button");
+	const importModeAll = document.getElementById("import-mode-all");
+	const importModeDays = document.getElementById("import-mode-days");
+	const importDaysCheckboxes = document.getElementById("import-days-checkboxes");
+
+	let currentImportData = null;
+
+	function openImportModal() {
+		currentImportData = null;
+		if (scheduleImportFileInput) scheduleImportFileInput.value = "";
+		if (scheduleImportFilter) scheduleImportFilter.value = "";
+		if (scheduleImportWarnings) {
+			scheduleImportWarnings.hidden = true;
+			scheduleImportWarnings.innerHTML = "";
+		}
+		if (scheduleImportUploadStep) scheduleImportUploadStep.hidden = false;
+		if (scheduleImportPreviewStep) scheduleImportPreviewStep.hidden = true;
+		if (scheduleImportLoading) scheduleImportLoading.hidden = true;
+		if (importModeAll) importModeAll.checked = true;
+		if (importDaysCheckboxes) {
+			importDaysCheckboxes.style.display = "none";
+			importDaysCheckboxes.innerHTML = "";
+		}
+		openModal(scheduleImportModal);
+	}
+
+	function closeImportModal() {
+		closeModal(scheduleImportModal);
+	}
+
+	importScheduleButton?.addEventListener("click", openImportModal);
+	scheduleImportModalClose?.addEventListener("click", closeImportModal);
+	scheduleImportModalOverlay?.addEventListener("click", closeImportModal);
+	scheduleImportBackButton?.addEventListener("click", () => {
+		if (scheduleImportUploadStep) scheduleImportUploadStep.hidden = false;
+		if (scheduleImportPreviewStep) scheduleImportPreviewStep.hidden = true;
+		if (scheduleImportLoading) scheduleImportLoading.hidden = true;
+		if (scheduleImportFileInput) scheduleImportFileInput.value = "";
+	});
+
+	if (scheduleImportDropzone) {
+		["dragenter", "dragover"].forEach(eventName => {
+			scheduleImportDropzone.addEventListener(eventName, (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				scheduleImportDropzone.classList.add("schedule-import-dropzone--dragover");
+			});
+		});
+
+		["dragleave", "drop"].forEach(eventName => {
+			scheduleImportDropzone.addEventListener(eventName, (e) => {
+				e.preventDefault();
+				e.stopPropagation();
+				scheduleImportDropzone.classList.remove("schedule-import-dropzone--dragover");
+			});
+		});
+
+		scheduleImportDropzone.addEventListener("drop", (e) => {
+			const files = e.dataTransfer?.files;
+			if (files && files.length) {
+				handleImportFile(files[0]);
+			}
+		});
+	}
+
+	scheduleImportFileInput?.addEventListener("change", (e) => {
+		const files = e.target.files;
+		if (files && files.length) {
+			handleImportFile(files[0]);
+		}
+	});
+
+	async function handleImportFile(file) {
+		const ext = file.name.split(".").pop().toLowerCase();
+		if (ext !== "docx" && ext !== "xlsx") {
+			alert("Пожалуйста, выберите файл документа .docx (Word) или таблицы .xlsx (Excel).");
+			return;
+		}
+
+		if (scheduleImportUploadStep) scheduleImportUploadStep.hidden = true;
+		if (scheduleImportPreviewStep) scheduleImportPreviewStep.hidden = true;
+		if (scheduleImportLoading) scheduleImportLoading.hidden = false;
+
+		const formData = new FormData();
+		formData.append("file", file);
+
+		try {
+			const response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/import/preview`, {
+				method: "POST",
+				body: formData
+			});
+
+			const data = await response.json();
+			if (!response.ok) {
+				throw new Error(data?.detail || "Ошибка при считывании файла");
+			}
+
+			currentImportData = data;
+			renderImportPreview(data);
+
+			if (scheduleImportLoading) scheduleImportLoading.hidden = true;
+			if (scheduleImportPreviewStep) scheduleImportPreviewStep.hidden = false;
+		} catch (err) {
+			alert(err.message || "Не удалось обработать файл.");
+			if (scheduleImportLoading) scheduleImportLoading.hidden = true;
+			if (scheduleImportUploadStep) scheduleImportUploadStep.hidden = false;
+		}
+	}
+
+	function renderImportPreview(data) {
+		if (scheduleImportSummary) {
+			scheduleImportSummary.innerHTML = `
+				<div class="schedule-import-badge schedule-import-badge--primary">
+					📄 Файл: ${escapeText(data.filename)}
+				</div>
+				<div class="schedule-import-badge schedule-import-badge--success">
+					📚 Уроков: ${data.total_lessons}
+				</div>
+				<div class="schedule-import-badge">
+					👥 Классы: ${escapeText(data.classes_found.map(c => c + " кл").join(", "))}
+				</div>
+				<div class="schedule-import-badge">
+					📅 Дней: ${data.days_found.length} (${escapeText(data.days_found.map(d => d.label).join(", "))})
+				</div>
+			`;
+		}
+
+		if (importDaysCheckboxes) {
+			importDaysCheckboxes.innerHTML = data.days_found.map(d => `
+				<label class="schedule-checkbox" style="margin: 0; cursor: pointer; font-size: 13px;">
+					<input type="checkbox" class="import-day-check" value="${d.id}" checked>
+					<span>${escapeText(d.label)}</span>
+				</label>
+			`).join("");
+		}
+
+		if (scheduleImportWarnings) {
+			if (data.warnings && data.warnings.length) {
+				scheduleImportWarnings.hidden = false;
+				scheduleImportWarnings.innerHTML = `
+					<strong>Внимание (${data.warnings.length}):</strong>
+					<ul style="margin: 4px 0 0 16px; padding: 0;">
+						${data.warnings.slice(0, 10).map(w => `<li>${escapeText(w)}</li>`).join("")}
+						${data.warnings.length > 10 ? `<li>... и ещё ${data.warnings.length - 10} заметок</li>` : ""}
+					</ul>
+				`;
+			} else {
+				scheduleImportWarnings.hidden = true;
+				scheduleImportWarnings.innerHTML = "";
+			}
+		}
+
+		renderImportTableRows(data.lessons);
+	}
+
+	function renderImportTableRows(lessonsList) {
+		if (!scheduleImportTableBody) return;
+		const query = (scheduleImportFilter?.value || "").trim().toLowerCase();
+
+		const filtered = lessonsList.filter(l => {
+			if (!query) return true;
+			const searchTarget = `${l.class_name} ${l.day_label} ${l.subject} ${l.teacher_name || ""} ${l.room || ""}`.toLowerCase();
+			return searchTarget.includes(query);
+		});
+
+		if (!filtered.length) {
+			scheduleImportTableBody.innerHTML = `
+				<tr>
+					<td colspan="7" style="text-align: center; padding: 24px; color: #94a3b8;">
+						${query ? "По данному поисковому запросу ничего не найдено" : "Нет уроков"}
+					</td>
+				</tr>
+			`;
+			return;
+		}
+
+		scheduleImportTableBody.innerHTML = filtered.map(l => {
+			const teacherBadge = l.teacher_id
+				? `<span style="display: inline-block; padding: 2px 6px; background: #dcfce7; color: #166534; border-radius: 4px; font-size: 11px; margin-left: 4px;" title="Связан со справочником учителей">✓ в базе</span>`
+				: (l.teacher_name ? `<span style="display: inline-block; padding: 2px 6px; background: #fef3c7; color: #92400e; border-radius: 4px; font-size: 11px; margin-left: 4px;" title="Текстовое имя (нет в справочнике)">текст</span>` : "");
+
+			return `
+				<tr>
+					<td style="padding: 8px 10px; font-weight: 600;">${escapeText(l.class_name)} класс</td>
+					<td style="padding: 8px 10px; color: #475569;">${escapeText(l.day_label)}</td>
+					<td style="padding: 8px 10px; font-weight: 500;">№${l.lesson_number}</td>
+					<td style="padding: 8px 10px; font-size: 12px; color: #64748b;">${l.start_time}–${l.end_time}</td>
+					<td style="padding: 8px 10px; font-weight: 500; color: #1e293b;">${escapeText(l.subject)}</td>
+					<td style="padding: 8px 10px;">
+						${l.teacher_name ? escapeText(l.teacher_name) : "<span style='color: #94a3b8;'>—</span>"}
+						${teacherBadge}
+					</td>
+					<td style="padding: 8px 10px; color: #475569;">${l.room ? escapeText(l.room) : "<span style='color: #94a3b8;'>—</span>"}</td>
+				</tr>
+			`;
+		}).join("");
+	}
+
+	scheduleImportFilter?.addEventListener("input", () => {
+		if (currentImportData) {
+			renderImportTableRows(currentImportData.lessons);
+		}
+	});
+
+	importModeAll?.addEventListener("change", () => {
+		if (importDaysCheckboxes) importDaysCheckboxes.style.display = "none";
+	});
+
+	importModeDays?.addEventListener("change", () => {
+		if (importDaysCheckboxes) importDaysCheckboxes.style.display = "flex";
+	});
+
+	scheduleImportApplyButton?.addEventListener("click", async () => {
+		if (!currentImportData || !currentImportData.lessons.length) return;
+
+		const isDaysMode = importModeDays?.checked;
+		let selectedDays = [];
+
+		if (isDaysMode) {
+			const checkedBoxes = Array.from(document.querySelectorAll(".import-day-check:checked"));
+			selectedDays = checkedBoxes.map(cb => cb.value);
+			if (!selectedDays.length) {
+				alert("Пожалуйста, отметьте галочками хотя бы один день недели для замены.");
+				return;
+			}
+		}
+
+		const confirmMsg = isDaysMode
+			? `Заменить расписание для классов (${currentImportData.classes_found.join(", ")}) только на выбранные дни (${selectedDays.map(d => DAY_LABELS[d] || d).join(", ")})?`
+			: `Полностью заменить всё недельное расписание для найденных классов (${currentImportData.classes_found.join(", ")})?`;
+
+		if (!confirm(confirmMsg)) return;
+
+		scheduleImportApplyButton.disabled = true;
+		scheduleImportApplyButton.textContent = "Сохранение...";
+
+		try {
+			const payload = {
+				lessons: currentImportData.lessons.map(l => ({
+					class_id: l.class_id,
+					day_of_week: l.day_of_week,
+					lesson_number: l.lesson_number,
+					start_time: l.start_time,
+					end_time: l.end_time,
+					subject: l.subject,
+					room: l.room,
+					teacher_id: l.teacher_id,
+					period: "main"
+				})),
+				mode: isDaysMode ? "days" : "all",
+				selected_days: selectedDays,
+				class_ids: Array.from(new Set(currentImportData.lessons.map(l => l.class_id))),
+				period: "main"
+			};
+
+			const response = await window.AdminApp.apiFetch(`${SCHEDULE_API_URL}/import/apply`, {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(payload)
+			});
+
+			const result = await response.json();
+			if (!response.ok) {
+				throw new Error(result?.detail || "Ошибка при сохранении расписания");
+			}
+
+			alert(result.message || "Расписание успешно импортировано!");
+			closeImportModal();
+			await refreshAll({ preserveSelection: true });
+		} catch (err) {
+			alert(err.message || "Не удалось сохранить расписание.");
+		} finally {
+			scheduleImportApplyButton.disabled = false;
+			scheduleImportApplyButton.textContent = "Применить в расписание";
+		}
+	});
+
 	document.addEventListener("keydown", (event) => {
 		if (event.key !== "Escape") return;
-		[classModal, lessonModal, copyDayModal, copyClassModal].forEach(m => {
+		[classModal, lessonModal, copyDayModal, copyClassModal, scheduleImportModal].forEach(m => {
 			if (m?.classList.contains("modal--active")) closeModal(m);
 		});
 	});

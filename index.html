@@ -25,8 +25,16 @@
 	<link rel="icon" href="./assets/icons/favicon-32x32.png" type="image/png">
 	<link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
 
+	<!-- PWA Manifest & App Configuration -->
+	<link rel="manifest" href="./manifest.json">
+	<meta name="theme-color" content="#1E3A8A">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-title" content="Гимназия Ковров">
+
 	<link rel="stylesheet" href="./css/style.css?v=3.5">
 	<link rel="stylesheet" href="css/bvi.css?v=2.2">
+	<link rel="stylesheet" href="css/calendar.css">
 </head>
 
 <body>
@@ -551,6 +559,74 @@
 					</a>
 				</div>
 
+				<!-- ЦЕРКОВНЫЙ КАЛЕНДАРЬ -->
+				<div class="church-calendar" id="church-calendar-banner">
+					<div class="church-calendar__inner">
+						<div class="church-calendar__main">
+							<div class="church-calendar__icon-wrap" id="calendar-icon-card" title="Нажмите, чтобы открыть икону и житие">
+								<div class="church-calendar__icon-box">
+									<img id="calendar-icon-img" src="assets/images/calendar/melitinskie.jpg" alt="Икона дня" width="72" height="72" loading="lazy" referrerpolicy="no-referrer">
+								</div>
+								<div class="church-calendar__zoom-badge" aria-hidden="true">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<circle cx="11" cy="11" r="8"></circle>
+										<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+										<line x1="11" y1="8" x2="11" y2="14"></line>
+										<line x1="8" y1="11" x2="14" y2="11"></line>
+									</svg>
+								</div>
+							</div>
+
+							<div class="church-calendar__content">
+								<div class="church-calendar__meta">
+									<span class="church-calendar__tag">
+										<svg viewBox="0 0 24 24" fill="currentColor">
+											<path d="M11 2v4H7v2h4v14h2V8h4V6h-4V2h-2z"/>
+										</svg>
+										Церковный календарь
+									</span>
+									<span class="church-calendar__date" id="calendar-date-text">Загрузка даты...</span>
+									<span class="church-calendar__week" id="calendar-week-text">Седмица</span>
+									<span class="church-calendar__fasting-badge" id="calendar-fasting-badge">Поста нет</span>
+								</div>
+
+								<h3 class="church-calendar__title" id="calendar-feast-title" title="Нажмите для просмотра жития">
+									Загрузка святых дня...
+								</h3>
+
+								<p class="church-calendar__desc" id="calendar-feast-desc">
+									Православный месяцеслов гимназии
+								</p>
+							</div>
+						</div>
+
+						<div class="church-calendar__actions">
+							<button type="button" class="church-calendar__btn-details" id="calendar-details-btn">
+								<span>Икона и житие</span>
+								<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+									<polyline points="9 18 15 12 9 6"></polyline>
+								</svg>
+							</button>
+
+							<div class="church-calendar__nav">
+								<button type="button" class="church-calendar__nav-btn" id="calendar-prev-btn" title="Предыдущий день" aria-label="Предыдущий день">
+									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<polyline points="15 18 9 12 15 6"></polyline>
+									</svg>
+								</button>
+								<button type="button" class="church-calendar__today-btn" id="calendar-today-btn" title="Вернуться на сегодня">
+									Сегодня
+								</button>
+								<button type="button" class="church-calendar__nav-btn" id="calendar-next-btn" title="Следующий день" aria-label="Следующий день">
+									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+										<polyline points="9 18 15 12 9 6"></polyline>
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="all-news" id="home-news-list">
 					<!-- Новости загружаются через JS -->
 				</div>
@@ -1067,84 +1143,160 @@
 
 		<footer>
 
-			<div class="footer-contacts">
+			<div class="footer-contacts footer-contacts--modern">
 
 				<div class="contacts__info">
 
-					<h2>
-						Контакты
-					</h2>
-
+					<div class="contacts__header-group">
+						<span class="contacts__badge">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							Связь с нами
+						</span>
+						<h2 class="contacts__title">Контакты и приёмная</h2>
+						<p class="contacts__subtitle">Ответим на любые ваши вопросы или подскажем, как добраться</p>
+					</div>
 
 					<ul class="contacts__info-list">
 
-						<li class="list-adress">
-
-							<img src="assets/icons/adres.svg" alt="Адрес">
-
-							г. Ковров, ул. Подлесная,
-							д. 10
-
+						<li class="contact-item contact-item--address">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+									<circle cx="12" cy="10" r="3"></circle>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Адрес гимназии</span>
+								<span class="contact-item__value" id="footer-contact-address">г. Ковров, ул. Подлесная, д. 10</span>
+								<span class="contact-item__note" id="footer-contact-note">Спасский корпус (приёмная, 1–4 классы)</span>
+							</div>
 						</li>
 
-
-						<li class="list-phone">
-
-							<img src="assets/icons/phone.svg" alt="Телефон">
-
-							+7 (49232) 4-01-95,
-							4-22-72
-
+						<li class="contact-item contact-item--phone">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Телефоны</span>
+								<div class="contact-item__links">
+									<a href="tel:+74923240195" class="contact-item__link" title="Приёмная директора (Спасский корпус)">+7 (49232) 4-01-95</a>
+									<span class="contact-item__separator">•</span>
+									<a href="tel:+74923242272" class="contact-item__link" title="Учительская / Завуч (Покровский корпус)">4-22-72</a>
+								</div>
+							</div>
 						</li>
 
-
-						<li class="list-email">
-
-							<img src="assets/icons/email.svg" alt="Почта">
-
-							sretenskajgimn@yandex.ru
-
+						<li class="contact-item contact-item--email">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<rect x="2" y="4" width="20" height="16" rx="2"></rect>
+									<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Электронная почта</span>
+								<a href="mailto:sretenskajgimn@yandex.ru" class="contact-item__link">sretenskajgimn@yandex.ru</a>
+							</div>
 						</li>
 
-
-						<li class="list-time_work">
-
-							<img src="assets/icons/clock2.svg" alt="Часы">
-
-							Пн–Пт: 8:00 – 19:00
-
+						<li class="contact-item contact-item--hours">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<circle cx="12" cy="12" r="10"></circle>
+									<polyline points="12 6 12 12 16 14"></polyline>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<div class="contact-item__label-row">
+									<span class="contact-item__label">Время работы</span>
+									<span class="contact-status-chip">
+										<span class="status-dot"></span>
+										Пн–Пт
+									</span>
+								</div>
+								<span class="contact-item__value">Понедельник – Пятница: 8:00 – 19:00</span>
+							</div>
 						</li>
 
 					</ul>
 
-
 					<div class="contacts__buttons">
-
-						<a href="#">
-							<img src="assets/icons/max_vector.svg" alt="MAX вектор">
-							Написать в MAX
+						<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" class="btn-messenger btn-messenger--whatsapp">
+							<img src="assets/icons/wtp_vector.svg" alt="" aria-hidden="true" width="19" height="19">
+							<span>Написать в WhatsApp</span>
+							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
 						</a>
 
-						<a href="#">
-							<img src="assets/icons/wtp_vector.svg" alt="Вацап вектор">
-							Написать в WhatsApp
+						<a href="#" class="btn-messenger btn-messenger--max">
+							<img src="assets/icons/max_vector.svg" alt="" aria-hidden="true" width="19" height="19">
+							<span>Написать в MAX</span>
+							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
 						</a>
-
 					</div>
 
 				</div>
 
-
 				<div class="contact-map">
-					<div style="position:relative;overflow:hidden;"><a
-							href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
-							style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-							href="https://yandex.ru/maps/10664/kovrov/house/podlesnaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
-							style="color:#eee;font-size:12px;position:absolute;top:14px;">Подлесная улица, 10 —
-							Яндекс Карты</a><iframe
-							src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
-							width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
-						</iframe></div>
+					<!-- Интерактивный выбор корпуса -->
+					<div class="contact-map__tabs" role="tablist" aria-label="Корпуса гимназии на карте">
+						<button type="button" class="campus-tab-btn active" id="campus-tab-spassky" role="tab" aria-selected="true" data-campus="spassky">
+							<span class="campus-tab-btn__icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+									<polyline points="9 22 9 12 15 12 15 22"></polyline>
+								</svg>
+							</span>
+							<span class="campus-tab-btn__text">
+								<span class="campus-tab-btn__title">Спасский корпус</span>
+								<span class="campus-tab-btn__desc">ул. Подлесная, 10 • Приёмная</span>
+							</span>
+						</button>
+
+						<button type="button" class="campus-tab-btn" id="campus-tab-pokrovsky" role="tab" aria-selected="false" data-campus="pokrovsky">
+							<span class="campus-tab-btn__icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+									<path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+								</svg>
+							</span>
+							<span class="campus-tab-btn__text">
+								<span class="campus-tab-btn__title">Покровский корпус</span>
+								<span class="campus-tab-btn__desc">ул. Сосновая, 10 • 5–11 кл.</span>
+							</span>
+						</button>
+					</div>
+
+					<div class="contact-map__wrapper">
+						<span class="contact-map__badge" id="footer-map-badge">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<span id="footer-map-badge-text">г. Ковров, ул. Подлесная, 10 (Спасский корпус)</span>
+						</span>
+
+						<iframe
+							id="footer-map-iframe"
+							src="https://yandex.ru/map-widget/v1/?ll=41.329367%2C56.362333&z=18&mode=whatshere&whatshere%5Bpoint%5D=41.329367%2C56.362333&whatshere%5Bzoom%5D=18"
+							width="100%" height="100%" frameborder="0" allowfullscreen="true"
+							title="Карта проезда к Православной гимназии" loading="lazy">
+						</iframe>
+
+						<a id="footer-map-route-btn"
+							href="https://yandex.ru/maps/?rtext=~56.362333%2C41.329367&rtt=auto"
+							target="_blank" rel="noopener noreferrer" class="contact-map__route-btn">
+							<span>Построить маршрут</span>
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<line x1="7" y1="17" x2="17" y2="7"></line>
+								<polyline points="7 7 17 7 17 17"></polyline>
+							</svg>
+						</a>
+					</div>
 				</div>
 
 			</div>
@@ -1162,7 +1314,16 @@
 							</div>
 						</a>
 
-						<div class="btn_media">
+						<div class="footer-top-actions">
+							<button type="button" class="footer-app-btn js-pwa-install" aria-label="Установить приложение гимназии" title="Установить приложение на телефон или компьютер">
+								<svg class="footer-app-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+									<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+									<line x1="12" y1="18" x2="12.01" y2="18"></line>
+								</svg>
+								<span>Приложение гимназии</span>
+							</button>
+
+							<div class="btn_media">
 							<ul class="btn_media__list">
 								<li class="media__list-vk">
 									<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer"
@@ -1182,6 +1343,7 @@
 									</a>
 								</li>
 							</ul>
+						</div>
 						</div>
 					</div>
 
@@ -1214,7 +1376,6 @@
 							<ul class="footer-col__list">
 								<li><a href="news.html">Новости</a></li>
 								<li><a href="life.html">Жизнь гимназии</a></li>
-								<li><a href="index.html#faq">Частые вопросы (FAQ)</a></li>
 								<li><a href="apply.html">Поступающим</a></li>
 								<li><a href="rostochek.html">Центр «Росточек»</a></li>
 							</ul>
@@ -1291,6 +1452,84 @@
 	<script src="js/bvi.js"></script>
 	<script src="js/feedback.js?v=2.3"></script>
 	<script src="js/donation.js"></script>
+	<script src="js/footer-contacts.js"></script>
+
+	<!-- МОДАЛЬНОЕ ОКНО ЦЕРКОВНОГО КАЛЕНДАРЯ -->
+	<div class="calendar-modal" id="calendar-modal" role="dialog" aria-modal="true" aria-hidden="true">
+		<div class="calendar-modal__dialog">
+			<!-- Шапка: легкая, современная, без тяжелой сплошной заливки -->
+			<div class="calendar-modal__header">
+				<div class="calendar-modal__header-top">
+					<span class="calendar-modal__badge">Православный месяцеслов</span>
+					<div class="calendar-modal__week-pill" id="modal-calendar-week">Седмица 25-я по Пятидесятнице</div>
+					<button type="button" class="calendar-modal__close-btn" id="calendar-modal-close" aria-label="Закрыть окно">
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="18" y1="6" x2="6" y2="18"></line>
+							<line x1="6" y1="6" x2="18" y2="18"></line>
+						</svg>
+					</button>
+				</div>
+
+				<div class="calendar-modal__date-group">
+					<h2 class="calendar-modal__title-date" id="modal-calendar-date">21 ноября 2026 г.</h2>
+					<div class="calendar-modal__date-meta">
+						<span class="calendar-modal__subtitle-date" id="modal-calendar-old-date">8 ноября по старому стилю • Суббота</span>
+						<span class="calendar-modal__meta-divider" aria-hidden="true">•</span>
+						<span class="calendar-modal__fasting-tag" id="modal-calendar-fasting">Поста нет</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Основное содержимое -->
+			<div class="calendar-modal__body">
+				<!-- Герой: Икона и название праздника -->
+				<div class="calendar-modal__hero">
+					<div class="calendar-modal__icon-wrap">
+						<img id="modal-calendar-icon" src="assets/images/calendar/2026-11-21.jpg" alt="Икона дня" width="125" height="165" referrerpolicy="no-referrer">
+					</div>
+					<div class="calendar-modal__hero-info">
+						<span class="calendar-modal__eyebrow">Праздник дня</span>
+						<h3 class="calendar-modal__feast-title" id="modal-calendar-title">Собор всех архангелов</h3>
+						<p class="calendar-modal__feast-subtitle" id="modal-calendar-feast-subtitle">Православный богослужебный месяцеслов гимназии</p>
+					</div>
+				</div>
+
+				<!-- Раздел: Празднуемые святые (без вложенных карточек) -->
+				<div class="calendar-modal__section calendar-modal__section--saints" id="modal-calendar-saints-section">
+					<h4 class="calendar-modal__section-heading">Память святых дня</h4>
+					<div class="calendar-modal__saints-content" id="modal-calendar-saints-html">
+						Загрузка списка святых...
+					</div>
+				</div>
+
+				<!-- Раздел: Богослужебные зачала (книжный спокойный стиль) -->
+				<div class="calendar-modal__section calendar-modal__section--readings" id="modal-calendar-readings-section">
+					<h4 class="calendar-modal__section-heading">Евангельские и апостольские зачала</h4>
+					<div class="calendar-modal__readings-content" id="modal-calendar-readings-html">
+						Загрузка чтений...
+					</div>
+				</div>
+			</div>
+
+			<!-- Подвал: естественное продолжение окна -->
+			<div class="calendar-modal__footer">
+				<a id="modal-calendar-pravoslavie-link" href="https://days.pravoslavie.ru/" target="_blank" rel="noopener noreferrer" class="calendar-modal__btn-external" title="Перейти на страницу дня на портале Православие.Ru">
+					<span>Открыть на Православие.Ru</span>
+					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+						<line x1="7" y1="17" x2="17" y2="7"></line>
+						<polyline points="7 7 17 7 17 17"></polyline>
+					</svg>
+				</a>
+				<button type="button" class="calendar-modal__btn-close" onclick="document.getElementById('calendar-modal').classList.remove('calendar-modal--active'); document.body.style.overflow='';">
+					Закрыть
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/calendar-data.js"></script>
+	<script src="js/calendar.js"></script>
+	<script src="js/pwa.js" defer></script>
 </body>
 
 </html>

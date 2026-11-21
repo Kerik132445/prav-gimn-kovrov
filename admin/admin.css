@@ -3176,3 +3176,63 @@ select {
 	}
 }
 
+/* --- ИМПОРТ РАСПИСАНИЯ --- */
+.modal__window--large {
+	width: min(980px, calc(100% - 30px));
+}
+
+.schedule-import-dropzone {
+	border: 2px dashed #cbd5e1;
+	border-radius: 12px;
+	padding: 40px 24px;
+	text-align: center;
+	background: #f8fafc;
+	transition: border-color 0.2s, background-color 0.2s;
+}
+
+.schedule-import-dropzone--dragover {
+	border-color: #2563eb;
+	background-color: #eff6ff;
+}
+
+.schedule-import-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 10px;
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 500;
+	background: #f1f5f9;
+	color: #334155;
+}
+
+.schedule-import-badge--primary {
+	background: #dbeafe;
+	color: #1e40af;
+}
+
+.schedule-import-badge--success {
+	background: #dcfce7;
+	color: #166534;
+}
+
+.schedule-import-badge--warning {
+	background: #fef3c7;
+	color: #92400e;
+}
+
+.schedule-import-table th {
+	font-weight: 600;
+	color: #475569;
+}
+
+.schedule-import-table tr:hover td {
+	background-color: #f8fafc;
+}
+
+.schedule-import-table td {
+	border-bottom: 1px solid #f1f5f9;
+}
+
+

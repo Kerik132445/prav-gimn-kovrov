@@ -62,12 +62,6 @@
 					link: "diary.html"
 				},
 				{
-					title: "Частые вопросы",
-					description: "Ответы на популярные вопросы",
-					icon: "assets/icons/parents.svg",
-					link: "#faq"
-				},
-				{
 					title: "Учителя",
 					description: "Педагогический состав гимназии",
 					icon: "assets/icons/teacher-outline-regular.svg",
@@ -407,6 +401,15 @@
 				</nav>
 
 				<div class="mobile-drawer__footer">
+					<!-- Кнопка установки приложения гимназии -->
+					<button type="button" class="mobile-drawer__pwa-btn js-pwa-install" aria-label="Установить приложение гимназии">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+							<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+							<line x1="12" y1="18" x2="12.01" y2="18"></line>
+						</svg>
+						<span>Установить приложение</span>
+					</button>
+
 					<!-- Кнопка версии для слабовидящих -->
 					<button type="button" class="mobile-drawer__bvi-btn" id="mobile-drawer-bvi-btn" aria-label="Версия для слабовидящих">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">

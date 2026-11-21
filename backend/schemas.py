@@ -208,6 +208,7 @@ class ScheduleLessonPayload(BaseModel):
     teacher_id: int | None = Field(default=None, gt=0)
     period: str = "main"
     sort_order: int = Field(default=0, ge=0, le=1_000_000)
+    allow_combined: bool = False
 
     @field_validator("day_of_week")
     @classmethod
@@ -268,6 +269,7 @@ class ScheduleLessonOut(BaseModel):
     teacher_short_name: str | None = None
     period: str = "main"
     sort_order: int = 0
+    is_combined: bool = False
 
 
 class ScheduleCopyDayRequest(BaseModel):
@@ -277,6 +279,7 @@ class ScheduleCopyDayRequest(BaseModel):
     target_day: str
     overwrite: bool = False
     include_teachers: bool = True
+    allow_combined: bool = False
     period: str = "main"
 
     @field_validator("source_day", "target_day")
@@ -298,6 +301,7 @@ class ScheduleCopyClassRequest(BaseModel):
     target_class_id: int = Field(gt=0)
     overwrite: bool = False
     include_teachers: bool = True
+    allow_combined: bool = False
     period: str = "main"
 
     @field_validator("period")
@@ -332,6 +336,26 @@ class ScheduleReorderItem(BaseModel):
 
 class ScheduleReorderRequest(BaseModel):
     items: list[ScheduleReorderItem] = Field(min_length=1)
+
+
+class ScheduleImportLessonItem(BaseModel):
+    class_id: int = Field(gt=0)
+    day_of_week: str
+    lesson_number: int = Field(ge=1, le=10)
+    start_time: str
+    end_time: str
+    subject: str
+    room: str | None = None
+    teacher_id: int | None = None
+    period: str = "main"
+
+
+class ScheduleImportApplyRequest(BaseModel):
+    lessons: list[ScheduleImportLessonItem]
+    mode: str = "all"
+    selected_days: list[str] = []
+    class_ids: list[int] = []
+    period: str = "main"
 
 
 # =========================================================

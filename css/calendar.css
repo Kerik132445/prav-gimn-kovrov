@@ -1,0 +1,836 @@
+/* ==========================================================================
+   Православный церковный календарь (Виджет и модальное окно)
+   Православная гимназия г. Коврова
+   ========================================================================== */
+
+/* ---------- Основной баннер-плашка над новостями ---------- */
+
+.church-calendar {
+	position: relative;
+	margin-bottom: 32px;
+	padding: 22px 26px;
+	background: linear-gradient(135deg, #FFFDF5 0%, #FFFFFF 55%, #FFF8E7 100%);
+	border: 1px solid #FDE68A;
+	border-radius: var(--radius-xl, 20px);
+	box-shadow: 0 4px 20px rgba(217, 119, 6, 0.07);
+	overflow: hidden;
+	transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.church-calendar:hover {
+	border-color: #FBBF24;
+	box-shadow: 0 8px 28px rgba(217, 119, 6, 0.12);
+}
+
+/* Декоративное фоновое свечение */
+.church-calendar::before {
+	content: "";
+	position: absolute;
+	right: -40px;
+	bottom: -40px;
+	width: 160px;
+	height: 160px;
+	background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0) 70%);
+	border-radius: 50%;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.church-calendar__inner {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+}
+
+/* ---------- Левая колонка: Икона и контент ---------- */
+
+.church-calendar__main {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	flex: 1;
+	min-width: 0;
+}
+
+/* Иконка святого дня */
+.church-calendar__icon-wrap {
+	position: relative;
+	flex-shrink: 0;
+	cursor: pointer;
+}
+
+.church-calendar__icon-box {
+	width: 72px;
+	height: 72px;
+	border-radius: 18px;
+	overflow: hidden;
+	border: 2px solid #F59E0B;
+	box-shadow: 0 4px 12px rgba(217, 119, 6, 0.18);
+	background: #FEF3C7;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.church-calendar__icon-box img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.3s ease;
+}
+
+.church-calendar__icon-wrap:hover .church-calendar__icon-box {
+	transform: scale(1.05);
+	box-shadow: 0 6px 16px rgba(217, 119, 6, 0.25);
+}
+
+.church-calendar__icon-wrap:hover img {
+	transform: scale(1.1);
+}
+
+.church-calendar__zoom-badge {
+	position: absolute;
+	right: -4px;
+	bottom: -4px;
+	width: 22px;
+	height: 22px;
+	background: #D97706;
+	color: #FFFFFF;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.church-calendar__zoom-badge svg {
+	width: 12px;
+	height: 12px;
+}
+
+/* Контент: дата, бейджи, название */
+.church-calendar__content {
+	flex: 1;
+	min-width: 0;
+}
+
+.church-calendar__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 6px;
+}
+
+.church-calendar__tag {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 3px 10px;
+	background: #FEF3C7;
+	color: #92400E;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	border-radius: 20px;
+}
+
+.church-calendar__tag svg {
+	width: 12px;
+	height: 12px;
+	color: #D97706;
+}
+
+.church-calendar__date {
+	font-size: 13px;
+	font-weight: 600;
+	color: #475569;
+}
+
+.church-calendar__week {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 8px;
+	font-size: 11px;
+	font-weight: 600;
+	color: #92400E;
+	background: #FEF3C7;
+	border-radius: 6px;
+}
+
+/* Бейджи степени поста */
+.church-calendar__fasting-badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 10px;
+	font-size: 11px;
+	font-weight: 700;
+	border-radius: 20px;
+}
+
+.church-calendar__fasting-badge--none {
+	background: #D1FAE5;
+	color: #065F46;
+}
+
+.church-calendar__fasting-badge--fish {
+	background: #DBEAFE;
+	color: #1E40AF;
+}
+
+.church-calendar__fasting-badge--strict {
+	background: #FEE2E2;
+	color: #991B1B;
+}
+
+/* Заголовок и описание */
+.church-calendar__title {
+	margin: 0 0 4px;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.3;
+	color: #0F172A;
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+.church-calendar__title:hover {
+	color: #B45309;
+}
+
+.church-calendar__desc {
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.5;
+	color: #64748B;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* ---------- Правая колонка: Кнопки и навигация ---------- */
+
+.church-calendar__actions {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 10px;
+	flex-shrink: 0;
+}
+
+.church-calendar__btn-details {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 9px 18px;
+	background: #FEF3C7;
+	color: #78350F;
+	border: 1px solid #FDE68A;
+	border-radius: 12px;
+	font-size: 13px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.church-calendar__btn-details:hover {
+	background: #FDE68A;
+	color: #451A03;
+	transform: translateY(-1px);
+}
+
+.church-calendar__nav {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.church-calendar__nav-btn {
+	width: 32px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #FFFFFF;
+	border: 1px solid #E2E8F0;
+	border-radius: 8px;
+	color: #64748B;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.church-calendar__nav-btn:hover {
+	background: #F8FAFC;
+	border-color: #CBD5E1;
+	color: #0F172A;
+}
+
+.church-calendar__today-btn {
+	padding: 0 10px;
+	height: 32px;
+	font-size: 11px;
+	font-weight: 600;
+	color: #64748B;
+	background: #FFFFFF;
+	border: 1px solid #E2E8F0;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.church-calendar__today-btn:hover {
+	background: #F8FAFC;
+	color: #0F172A;
+}
+
+
+/* ==========================================================================
+   МОДАЛЬНОЕ ОКНО: ЖИТИЕ, БОЛЬШАЯ ИКОНА И МОЛИТВА
+   ========================================================================== */
+
+.calendar-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 10000;
+	background: rgba(15, 23, 42, 0.65);
+	backdrop-filter: blur(5px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s ease;
+}
+
+.calendar-modal--active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.calendar-modal__dialog {
+	position: relative;
+	width: 100%;
+	max-width: 620px;
+	max-height: 90vh;
+	background: #FAF8F5;
+	border-radius: 20px;
+	border: 1px solid #EAE3D6;
+	box-shadow: 0 24px 60px -15px rgba(28, 25, 23, 0.22), 0 2px 6px rgba(28, 25, 23, 0.04);
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	transform: translateY(10px) scale(0.985);
+	transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calendar-modal--active .calendar-modal__dialog {
+	transform: translateY(0) scale(1);
+}
+
+/* ---------- 1. Шапка модального окна (легкая, бесшовная) ---------- */
+
+.calendar-modal__header {
+	padding: 28px 32px 20px;
+	background: #FAF8F5;
+	border-bottom: 1px solid #ECE5D8;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.calendar-modal__header-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.calendar-modal__badge {
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	color: #8C7D6F;
+}
+
+.calendar-modal__week-pill {
+	font-size: 11.5px;
+	font-weight: 600;
+	color: #6E6255;
+	background: #F0EAE1;
+	padding: 3px 12px;
+	border-radius: 20px;
+	border: 1px solid #E4DBD0;
+	white-space: nowrap;
+}
+
+.calendar-modal__close-btn {
+	width: 32px;
+	height: 32px;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	background: transparent;
+	color: #786C60;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	padding: 0;
+	margin-left: auto;
+	transition: all 0.18s ease;
+}
+
+.calendar-modal__close-btn:hover {
+	background: #EFE8DC;
+	color: #1E1A17;
+	border-color: #E2D7C5;
+}
+
+.calendar-modal__date-group {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.calendar-modal__title-date {
+	margin: 0;
+	font-family: Georgia, 'Times New Roman', serif;
+	font-size: 26px;
+	font-weight: 700;
+	line-height: 1.22;
+	color: #1E1A17;
+	letter-spacing: -0.01em;
+}
+
+.calendar-modal__date-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	color: #6E6255;
+}
+
+.calendar-modal__subtitle-date {
+	color: #6E6255;
+	font-weight: 500;
+}
+
+.calendar-modal__meta-divider {
+	color: #C5BBAF;
+	font-size: 10px;
+}
+
+/* Бейджи устава трапезы / поста (сдержанные тона) */
+.calendar-modal__fasting-tag {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 9px;
+	border-radius: 6px;
+	font-size: 11.5px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.calendar-modal__fasting-tag--none {
+	background: #EEF6F0;
+	color: #2F6F4F;
+	border: 1px solid #D1E7D7;
+}
+
+.calendar-modal__fasting-tag--fish {
+	background: #EEF4F9;
+	color: #1E4F7A;
+	border: 1px solid #D2E2F0;
+}
+
+.calendar-modal__fasting-tag--oil {
+	background: #F8F3EA;
+	color: #7A5722;
+	border: 1px solid #EADDC8;
+}
+
+.calendar-modal__fasting-tag--strict {
+	background: #FBF0F0;
+	color: #8C2E2E;
+	border: 1px solid #F3D2D2;
+}
+
+
+/* ---------- 2. Основное тело модалки (Hero & Разделы) ---------- */
+
+.calendar-modal__body {
+	padding: 24px 32px;
+	background: #FAF8F5;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+/* Герой: Икона и название праздника */
+.calendar-modal__hero {
+	display: flex;
+	gap: 22px;
+	align-items: flex-start;
+}
+
+.calendar-modal__icon-wrap {
+	width: 120px;
+	height: 165px;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #FFFFFF;
+	border: 1px solid #E2D7C5;
+	padding: 3px;
+	box-shadow: 0 4px 14px rgba(44, 38, 33, 0.07);
+	flex-shrink: 0;
+}
+
+.calendar-modal__icon-wrap img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 5px;
+	display: block;
+}
+
+.calendar-modal__hero-info {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	padding-top: 2px;
+}
+
+.calendar-modal__eyebrow {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #9A7B4F;
+	font-weight: 700;
+	margin-bottom: 4px;
+	display: block;
+}
+
+.calendar-modal__feast-title {
+	margin: 0 0 8px;
+	font-family: Georgia, 'Times New Roman', serif;
+	font-size: 21px;
+	font-weight: 700;
+	color: #1E1A17;
+	line-height: 1.3;
+}
+
+.calendar-modal__feast-subtitle {
+	font-size: 13.5px;
+	color: #5C5248;
+	line-height: 1.55;
+	margin: 0;
+}
+
+
+/* ---------- 3. Информационные разделы (без карточек в карточках!) ---------- */
+
+.calendar-modal__section {
+	border-top: 1px solid #ECE5D8;
+	padding-top: 18px;
+	margin: 0;
+}
+
+.calendar-modal__section-heading {
+	margin: 0 0 10px;
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.09em;
+	color: #8C7D6F;
+	display: block;
+}
+
+/* Раздел: Святые дня */
+.calendar-modal__saints-content {
+	font-size: 13.5px;
+	line-height: 1.65;
+	color: #2C2621;
+}
+
+.calendar-modal__saints-content a {
+	color: #8C4A26;
+	font-weight: 600;
+	text-decoration: none;
+	border-bottom: 1px solid rgba(140, 74, 38, 0.25);
+	transition: all 0.15s ease;
+}
+
+.calendar-modal__saints-content a:hover {
+	color: #5A2710;
+	border-bottom-color: #5A2710;
+}
+
+/* Раздел: Богослужебные зачала (книжный благородный стиль) */
+.calendar-modal__readings-content {
+	font-size: 13px;
+	line-height: 1.7;
+	color: #3D352E;
+}
+
+.calendar-reading-row {
+	margin-top: 6px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 8px;
+}
+
+.reading-badge {
+	font-size: 11px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: #6E6255;
+	background: #EFE8DC;
+	padding: 2px 7px;
+	border-radius: 4px;
+	flex-shrink: 0;
+}
+
+.calendar-modal__readings-content a {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 8px;
+	background: #EEF5F1;
+	color: #2F5D44;
+	border: 1px solid #D3E5DA;
+	border-radius: 5px;
+	text-decoration: none;
+	font-weight: 500;
+	font-size: 12px;
+	transition: all 0.15s ease;
+}
+
+.calendar-modal__readings-content a:hover {
+	background: #E0EFE6;
+	color: #1E4631;
+	border-color: #B5D7C2;
+}
+
+
+/* ---------- 4. Подвал модалки ---------- */
+
+.calendar-modal__footer {
+	padding: 16px 32px 22px;
+	background: #FAF8F5;
+	border-top: 1px solid #ECE5D8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 14px;
+}
+
+.calendar-modal__btn-external {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 20px;
+	background: #26211C;
+	color: #FFFFFF;
+	font-size: 13px;
+	font-weight: 600;
+	border-radius: 10px;
+	text-decoration: none;
+	border: 1px solid #26211C;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	transition: all 0.18s ease;
+}
+
+.calendar-modal__btn-external:hover {
+	background: #14110E;
+	border-color: #14110E;
+	transform: translateY(-1px);
+	box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+}
+
+.calendar-modal__btn-close {
+	padding: 10px 20px;
+	background: transparent;
+	color: #6E6255;
+	font-size: 13px;
+	font-weight: 600;
+	border: 1px solid #DCD4C7;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.18s ease;
+}
+
+.calendar-modal__btn-close:hover {
+	background: #EFE9DF;
+	color: #1E1A17;
+	border-color: #CBC2B3;
+}
+
+
+/* ==========================================================================
+   АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА
+   ========================================================================== */
+
+@media (max-width: 860px) {
+	.church-calendar__inner {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 16px;
+	}
+
+	.church-calendar__actions {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding-top: 12px;
+		border-top: 1px dashed #FDE68A;
+	}
+}
+
+@media (max-width: 600px) {
+	.church-calendar {
+		padding: 16px;
+		margin-bottom: 24px;
+	}
+
+	.church-calendar__main {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 14px;
+	}
+
+	.church-calendar__icon-wrap {
+		align-self: flex-start;
+	}
+
+	.church-calendar__icon-box {
+		width: 60px;
+		height: 60px;
+		border-radius: 14px;
+	}
+
+	.church-calendar__title {
+		font-size: 16px;
+	}
+
+	.church-calendar__desc {
+		font-size: 12px;
+	}
+
+	.calendar-modal__dialog {
+		max-width: 95%;
+		max-height: 92vh;
+		border-radius: 16px;
+	}
+
+	.calendar-modal__header {
+		padding: 20px 20px 14px;
+		gap: 8px;
+	}
+
+	.calendar-modal__title-date {
+		font-size: 22px;
+	}
+
+	.calendar-modal__body {
+		padding: 18px 20px;
+		gap: 16px;
+	}
+
+	.calendar-modal__hero {
+		flex-direction: row;
+		align-items: flex-start;
+		text-align: left;
+		gap: 14px;
+	}
+
+	.calendar-modal__icon-wrap {
+		width: 95px;
+		height: 130px;
+	}
+
+	.calendar-modal__feast-title {
+		font-size: 18px;
+	}
+
+	.calendar-modal__footer {
+		padding: 14px 20px 18px;
+		flex-direction: column-reverse;
+		gap: 10px;
+	}
+
+	.calendar-modal__btn-external,
+	.calendar-modal__btn-close {
+		width: 100%;
+		justify-content: center;
+		text-align: center;
+	}
+}
+
+
+/* ==========================================================================
+   BVI (ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ — ГОСТ)
+   ========================================================================== */
+
+body.bvi-theme-black .church-calendar,
+body.bvi-theme-black .calendar-modal__dialog {
+	background: #000000 !important;
+	border-color: #FFFFFF !important;
+	color: #FFFFFF !important;
+	box-shadow: none !important;
+}
+
+body.bvi-theme-black .church-calendar__title,
+body.bvi-theme-black .church-calendar__desc,
+body.bvi-theme-black .church-calendar__date,
+body.bvi-theme-black .calendar-modal__feast-title,
+body.bvi-theme-black .calendar-modal__text,
+body.bvi-theme-black .calendar-modal__troparion-text {
+	color: #FFFFFF !important;
+}
+
+body.bvi-theme-black .church-calendar__tag,
+body.bvi-theme-black .church-calendar__btn-details,
+body.bvi-theme-black .church-calendar__nav-btn,
+body.bvi-theme-black .church-calendar__today-btn {
+	background: #000000 !important;
+	border: 2px solid #FFFFFF !important;
+	color: #FFFFFF !important;
+}
+
+body.bvi-theme-white .church-calendar,
+body.bvi-theme-white .calendar-modal__dialog {
+	background: #FFFFFF !important;
+	border-color: #000000 !important;
+	color: #000000 !important;
+	box-shadow: none !important;
+}
+
+body.bvi-theme-white .church-calendar__title,
+body.bvi-theme-white .church-calendar__desc,
+body.bvi-theme-white .church-calendar__date,
+body.bvi-theme-white .calendar-modal__feast-title,
+body.bvi-theme-white .calendar-modal__text,
+body.bvi-theme-white .calendar-modal__troparion-text {
+	color: #000000 !important;
+}
+
+body.bvi-theme-white .church-calendar__tag,
+body.bvi-theme-white .church-calendar__btn-details,
+body.bvi-theme-white .church-calendar__nav-btn,
+body.bvi-theme-white .church-calendar__today-btn {
+	background: #FFFFFF !important;
+	border: 2px solid #000000 !important;
+	color: #000000 !important;
+}
+

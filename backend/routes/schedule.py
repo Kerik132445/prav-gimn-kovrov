@@ -1,14 +1,16 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
 from sqlalchemy import func
 from sqlalchemy.orm import Session, joinedload
 
 from database import SessionLocal
 from models import ScheduleLesson, SchoolClass, Teacher
 from routes.auth import require_admin, require_csrf
+from schedule_parser import parse_schedule_file
 from schemas import (
     SCHEDULE_DAYS,
     ScheduleCopyClassRequest,
     ScheduleCopyDayRequest,
+    ScheduleImportApplyRequest,
     ScheduleLessonOut,
     ScheduleLessonPayload,
     ScheduleReorderRequest,
@@ -67,9 +69,33 @@ def _format_teacher_short(teacher: Teacher | None) -> str | None:
     return f"{teacher.last_name} {initials}".strip()
 
 
-def _serialize_lesson(lesson: ScheduleLesson) -> ScheduleLessonOut:
+def _serialize_lesson(
+    lesson: ScheduleLesson,
+    combined_slots: set | None = None,
+    db: Session | None = None,
+) -> ScheduleLessonOut:
     school_class = lesson.school_class
     teacher = lesson.teacher
+    is_comb = False
+    if lesson.teacher_id:
+        if combined_slots is not None:
+            key = (lesson.teacher_id, lesson.day_of_week, lesson.start_time, lesson.end_time)
+            is_comb = key in combined_slots
+        elif db is not None:
+            is_comb = (
+                db.query(ScheduleLesson.id)
+                .filter(
+                    ScheduleLesson.id != lesson.id,
+                    ScheduleLesson.teacher_id == lesson.teacher_id,
+                    ScheduleLesson.day_of_week == lesson.day_of_week,
+                    ScheduleLesson.start_time == lesson.start_time,
+                    ScheduleLesson.end_time == lesson.end_time,
+                    ScheduleLesson.period == lesson.period,
+                )
+                .first()
+                is not None
+            )
+
     return ScheduleLessonOut(
         id=lesson.id,
         class_id=lesson.class_id,
@@ -86,6 +112,7 @@ def _serialize_lesson(lesson: ScheduleLesson) -> ScheduleLessonOut:
         teacher_short_name=_format_teacher_short(teacher),
         period=lesson.period,
         sort_order=lesson.sort_order,
+        is_combined=is_comb,
     )
 
 
@@ -105,6 +132,7 @@ def _check_lesson_conflicts(
     teacher: Teacher | None,
     period: str,
     exclude_lesson_ids: set[int] | None = None,
+    allow_combined: bool = False,
 ) -> None:
     excluded = exclude_lesson_ids or set()
     day_label = DAY_LABELS.get(day_of_week, day_of_week)
@@ -165,14 +193,24 @@ def _check_lesson_conflicts(
         for existing in teacher_query.all():
             if _times_overlap(start_time, end_time, existing.start_time, existing.end_time):
                 conflict_class = existing.school_class.name if existing.school_class else str(existing.class_id)
-                raise HTTPException(
-                    status_code=409,
-                    detail=(
-                        f"Преподаватель {teacher_full} уже занят в это время ({day_label}, "
-                        f"{existing.start_time}–{existing.end_time}): класс {conflict_class}, "
-                        f"предмет «{existing.subject}»."
-                    ),
+                msg = (
+                    f"Преподаватель {teacher_full} уже занят в это время ({day_label}, "
+                    f"{existing.start_time}–{existing.end_time}): класс {conflict_class}, "
+                    f"предмет «{existing.subject}»."
                 )
+                if not allow_combined:
+                    raise HTTPException(
+                        status_code=409,
+                        detail={
+                            "code": "TEACHER_CONFLICT",
+                            "can_combine": True,
+                            "message": msg,
+                            "conflict_class": conflict_class,
+                            "conflict_subject": existing.subject,
+                            "conflict_time": f"{existing.start_time}–{existing.end_time}",
+                            "teacher_name": teacher_full,
+                        },
+                    )
 
 
 def _get_school_class_or_404(db: Session, class_id: int) -> SchoolClass:
@@ -310,7 +348,26 @@ def get_schedule(
         ScheduleLesson.id.asc(),
     ).all()
 
-    return [_serialize_lesson(item) for item in lessons]
+    combined_rows = (
+        db.query(
+            ScheduleLesson.teacher_id,
+            ScheduleLesson.day_of_week,
+            ScheduleLesson.start_time,
+            ScheduleLesson.end_time,
+        )
+        .filter(ScheduleLesson.teacher_id.isnot(None), ScheduleLesson.period == period)
+        .group_by(
+            ScheduleLesson.teacher_id,
+            ScheduleLesson.day_of_week,
+            ScheduleLesson.start_time,
+            ScheduleLesson.end_time,
+        )
+        .having(func.count(ScheduleLesson.id) > 1)
+        .all()
+    )
+    combined_slots = set(combined_rows)
+
+    return [_serialize_lesson(item, combined_slots=combined_slots) for item in lessons]
 
 
 @router.post("/lessons", response_model=ScheduleLessonOut)
@@ -333,6 +390,7 @@ def create_lesson(
         end_time=data.end_time,
         teacher=teacher,
         period=data.period,
+        allow_combined=data.allow_combined,
     )
 
     lesson = ScheduleLesson(
@@ -359,7 +417,7 @@ def create_lesson(
         .filter(ScheduleLesson.id == lesson.id)
         .first()
     )
-    return _serialize_lesson(created)
+    return _serialize_lesson(created, db=db)
 
 
 @router.put("/lessons/{lesson_id}", response_model=ScheduleLessonOut)
@@ -388,6 +446,7 @@ def update_lesson(
         teacher=teacher,
         period=data.period,
         exclude_lesson_ids={lesson_id},
+        allow_combined=data.allow_combined,
     )
 
     lesson.class_id = school_class.id
@@ -412,7 +471,7 @@ def update_lesson(
         .filter(ScheduleLesson.id == lesson_id)
         .first()
     )
-    return _serialize_lesson(updated)
+    return _serialize_lesson(updated, db=db)
 
 
 @router.patch("/reorder")
@@ -550,6 +609,7 @@ def _copy_lessons_into_target(
     include_teachers: bool,
     period: str,
     clear_entire_target_class: bool,
+    allow_combined: bool = False,
 ) -> int:
     if not source_lessons:
         raise HTTPException(status_code=400, detail="В выбранном источнике нет уроков для копирования")
@@ -589,6 +649,7 @@ def _copy_lessons_into_target(
             teacher=teacher,
             period=period,
             exclude_lesson_ids=excluded_ids,
+            allow_combined=allow_combined,
         )
 
     if overwrite and existing_lessons:
@@ -653,6 +714,7 @@ def copy_day_schedule(
         include_teachers=data.include_teachers,
         period=data.period,
         clear_entire_target_class=False,
+        allow_combined=data.allow_combined,
     )
     return {
         "message": f"Скопировано уроков: {copied}",
@@ -693,8 +755,88 @@ def copy_class_schedule(
         include_teachers=data.include_teachers,
         period=data.period,
         clear_entire_target_class=True,
+        allow_combined=data.allow_combined,
     )
     return {
         "message": f"Скопировано уроков в класс «{target_class.name}»: {copied}",
         "copied_count": copied,
+    }
+
+
+@router.post("/import/preview")
+async def preview_schedule_import(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf),
+):
+    filename = file.filename or "schedule.docx"
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="Загружен пустой файл")
+
+    try:
+        preview_data = parse_schedule_file(content, filename, db)
+        return preview_data
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Ошибка обработки файла: {str(e)}")
+
+
+@router.post("/import/apply")
+def apply_schedule_import(
+    data: ScheduleImportApplyRequest,
+    db: Session = Depends(get_db),
+    admin_id: int = Depends(require_admin),
+    csrf: None = Depends(require_csrf),
+):
+    if not data.lessons:
+        raise HTTPException(status_code=400, detail="Нет уроков для сохранения")
+
+    class_ids = set(data.class_ids) if data.class_ids else {l.class_id for l in data.lessons}
+    if not class_ids:
+        raise HTTPException(status_code=400, detail="Не указаны классы для обновления")
+
+    # Mode: "all" clears all days for these classes; "days" clears only selected_days
+    delete_query = db.query(ScheduleLesson).filter(
+        ScheduleLesson.class_id.in_(class_ids),
+        ScheduleLesson.period == data.period,
+    )
+    if data.mode == "days" and data.selected_days:
+        delete_query = delete_query.filter(ScheduleLesson.day_of_week.in_(data.selected_days))
+
+    deleted_count = delete_query.delete(synchronize_session=False)
+
+    lessons_to_insert = data.lessons
+    if data.mode == "days" and data.selected_days:
+        selected_set = set(data.selected_days)
+        lessons_to_insert = [l for l in lessons_to_insert if l.day_of_week in selected_set]
+
+    new_objs = []
+    for l in lessons_to_insert:
+        new_objs.append(
+            ScheduleLesson(
+                class_id=l.class_id,
+                day_of_week=l.day_of_week,
+                lesson_number=l.lesson_number,
+                subject=l.subject,
+                start_time=l.start_time,
+                end_time=l.end_time,
+                room=l.room,
+                teacher_id=l.teacher_id,
+                period=l.period or data.period,
+                sort_order=l.lesson_number,
+            )
+        )
+
+    db.add_all(new_objs)
+    db.commit()
+
+    return {
+        "success": True,
+        "message": f"Успешно сохранено уроков: {len(new_objs)} (удалено старых: {deleted_count})",
+        "imported_count": len(new_objs),
+        "deleted_count": deleted_count,
+        "classes_count": len(class_ids),
     }

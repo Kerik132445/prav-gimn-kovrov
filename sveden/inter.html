@@ -335,87 +335,163 @@
 	</main>
 	<footer>
 
-		<div class="footer-contacts">
+			<div class="footer-contacts footer-contacts--modern">
 
-			<div class="contacts__info">
+				<div class="contacts__info">
 
-				<h2>
-					Контакты
-				</h2>
+					<div class="contacts__header-group">
+						<span class="contacts__badge">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							Связь с нами
+						</span>
+						<h2 class="contacts__title">Контакты и приёмная</h2>
+						<p class="contacts__subtitle">Ответим на любые ваши вопросы или подскажем, как добраться</p>
+					</div>
 
+					<ul class="contacts__info-list">
 
-				<ul class="contacts__info-list">
+						<li class="contact-item contact-item--address">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+									<circle cx="12" cy="10" r="3"></circle>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Адрес гимназии</span>
+								<span class="contact-item__value" id="footer-contact-address">г. Ковров, ул. Подлесная, д. 10</span>
+								<span class="contact-item__note" id="footer-contact-note">Спасский корпус (приёмная, 1–4 классы)</span>
+							</div>
+						</li>
 
-					<li class="list-adress">
+						<li class="contact-item contact-item--phone">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Телефоны</span>
+								<div class="contact-item__links">
+									<a href="tel:+74923240195" class="contact-item__link" title="Приёмная директора (Спасский корпус)">+7 (49232) 4-01-95</a>
+									<span class="contact-item__separator">•</span>
+									<a href="tel:+74923242272" class="contact-item__link" title="Учительская / Завуч (Покровский корпус)">4-22-72</a>
+								</div>
+							</div>
+						</li>
 
-						<img src="../assets/icons/adres.svg" alt="Адрес">
+						<li class="contact-item contact-item--email">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<rect x="2" y="4" width="20" height="16" rx="2"></rect>
+									<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Электронная почта</span>
+								<a href="mailto:sretenskajgimn@yandex.ru" class="contact-item__link">sretenskajgimn@yandex.ru</a>
+							</div>
+						</li>
 
-						г. Ковров, ул. Подлесная,
-						д. 10
+						<li class="contact-item contact-item--hours">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<circle cx="12" cy="12" r="10"></circle>
+									<polyline points="12 6 12 12 16 14"></polyline>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<div class="contact-item__label-row">
+									<span class="contact-item__label">Время работы</span>
+									<span class="contact-status-chip">
+										<span class="status-dot"></span>
+										Пн–Пт
+									</span>
+								</div>
+								<span class="contact-item__value">Понедельник – Пятница: 8:00 – 19:00</span>
+							</div>
+						</li>
 
-					</li>
+					</ul>
 
+					<div class="contacts__buttons">
+						<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" class="btn-messenger btn-messenger--whatsapp">
+							<img src="../assets/icons/wtp_vector.svg" alt="" aria-hidden="true" width="19" height="19">
+							<span>Написать в WhatsApp</span>
+							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
+						</a>
 
-					<li class="list-phone">
-
-						<img src="../assets/icons/phone.svg" alt="Телефон">
-
-						+7 (49232) 4-01-95,
-						4-22-72
-
-					</li>
-
-
-					<li class="list-email">
-
-						<img src="../assets/icons/email.svg" alt="Почта">
-
-						sretenskajgimn@yandex.ru
-
-					</li>
-
-
-					<li class="list-time_work">
-
-						<img src="../assets/icons/clock2.svg" alt="Часы">
-
-						Пн–Пт: 8:00 – 19:00
-
-					</li>
-
-				</ul>
-
-
-				<div class="contacts__buttons">
-
-					<a href="#">
-						<img src="../assets/icons/max_vector.svg" alt="MAX вектор">
-						Написать в MAX
-					</a>
-
-					<a href="#">
-						<img src="../assets/icons/wtp_vector.svg" alt="Вацап вектор">
-						Написать в WhatsApp
-					</a>
+						<a href="#" class="btn-messenger btn-messenger--max">
+							<img src="../assets/icons/max_vector.svg" alt="" aria-hidden="true" width="19" height="19">
+							<span>Написать в MAX</span>
+							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
+						</a>
+					</div>
 
 				</div>
 
+				<div class="contact-map">
+					<!-- Интерактивный выбор корпуса -->
+					<div class="contact-map__tabs" role="tablist" aria-label="Корпуса гимназии на карте">
+						<button type="button" class="campus-tab-btn active" id="campus-tab-spassky" role="tab" aria-selected="true" data-campus="spassky">
+							<span class="campus-tab-btn__icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+									<polyline points="9 22 9 12 15 12 15 22"></polyline>
+								</svg>
+							</span>
+							<span class="campus-tab-btn__text">
+								<span class="campus-tab-btn__title">Спасский корпус</span>
+								<span class="campus-tab-btn__desc">ул. Подлесная, 10 • Приёмная</span>
+							</span>
+						</button>
+
+						<button type="button" class="campus-tab-btn" id="campus-tab-pokrovsky" role="tab" aria-selected="false" data-campus="pokrovsky">
+							<span class="campus-tab-btn__icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+									<path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+								</svg>
+							</span>
+							<span class="campus-tab-btn__text">
+								<span class="campus-tab-btn__title">Покровский корпус</span>
+								<span class="campus-tab-btn__desc">ул. Сосновая, 10 • 5–11 кл.</span>
+							</span>
+						</button>
+					</div>
+
+					<div class="contact-map__wrapper">
+						<span class="contact-map__badge" id="footer-map-badge">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<span id="footer-map-badge-text">г. Ковров, ул. Подлесная, 10 (Спасский корпус)</span>
+						</span>
+
+						<iframe
+							id="footer-map-iframe"
+							src="https://yandex.ru/map-widget/v1/?ll=41.329367%2C56.362333&z=18&mode=whatshere&whatshere%5Bpoint%5D=41.329367%2C56.362333&whatshere%5Bzoom%5D=18"
+							width="100%" height="100%" frameborder="0" allowfullscreen="true"
+							title="Карта проезда к Православной гимназии" loading="lazy">
+						</iframe>
+
+						<a id="footer-map-route-btn"
+							href="https://yandex.ru/maps/?rtext=~56.362333%2C41.329367&rtt=auto"
+							target="_blank" rel="noopener noreferrer" class="contact-map__route-btn">
+							<span>Построить маршрут</span>
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<line x1="7" y1="17" x2="17" y2="7"></line>
+								<polyline points="7 7 17 7 17 17"></polyline>
+							</svg>
+						</a>
+					</div>
+				</div>
+
 			</div>
-
-
-			<div class="contact-map">
-				<div style="position:relative;overflow:hidden;"><a
-						href="https://yandex.ru/maps/10664/kovrov/?utm_medium=mapframe&utm_source=maps"
-						style="color:#eee;font-size:12px;position:absolute;top:0px;">Ковров</a><a
-						href="https://yandex.ru/maps/10664/kovrov/house/podlesnaya_ulitsa_10/YEgYdQVoS0wAQFtsfX93cn1iYQ==/?ll=41.329518%2C56.362605&utm_medium=mapframe&utm_source=maps&z=18.16"
-						style="color:#eee;font-size:12px;position:absolute;top:14px;">Подлесная улица, 10 —
-						Яндекс Карты</a><iframe
-						src="https://yandex.ru/map-widget/v1/?ll=41.329518%2C56.362605&mode=whatshere&whatshere%5Bpoint%5D=41.328614%2C56.362985&whatshere%5Bzoom%5D=17&z=18.16"
-						width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;">
-					</iframe></div>
-			</div>
-
-		</div>
 
 
 		<div class="footer-bottom">
@@ -478,7 +554,6 @@
 							<ul class="footer-col__list">
 								<li><a href="../news.html">Новости</a></li>
 								<li><a href="../life.html">Жизнь гимназии</a></li>
-								<li><a href="../index.html#faq">Частые вопросы (FAQ)</a></li>
 								<li><a href="../apply.html">Поступающим</a></li>
 								<li><a href="../rostochek.html">Центр «Росточек»</a></li>
 							</ul>
@@ -546,6 +621,7 @@
 		}
 	</script>
 	<script src="../js/bvi.js"></script>
+	<script src="../js/footer-contacts.js"></script>
 </body>
 
 </html>
