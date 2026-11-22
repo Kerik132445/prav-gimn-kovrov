@@ -310,6 +310,282 @@ document.addEventListener("DOMContentLoaded", () => {
 	function renderSchedule() {
 		renderBells();
 		renderLessons();
+		updateScheduleLiveWidget();
+	}
+
+	function formatLiveRemaining(totalSeconds) {
+		if (totalSeconds < 0) totalSeconds = 0;
+		const hours = Math.floor(totalSeconds / 3600);
+		const minutes = Math.floor((totalSeconds % 3600) / 60);
+		const seconds = totalSeconds % 60;
+		if (hours > 0) return `${hours} ч ${minutes} мин`;
+		if (minutes > 0) return `${minutes} мин ${seconds < 10 ? "0" : ""}${seconds} сек`;
+		return `${seconds} сек`;
+	}
+
+	function parseLiveTimeToSeconds(timeStr) {
+		const parts = timeStr.split(/[–—\-]/);
+		const parseOne = s => {
+			const [h, m] = s.trim().split(":").map(Number);
+			return h * 3600 + m * 60;
+		};
+		return {
+			startSec: parseOne(parts[0]),
+			endSec: parseOne(parts[1])
+		};
+	}
+
+	function updateScheduleLiveWidget() {
+		const widgetEl = document.getElementById("schedule-live-widget");
+		if (!widgetEl) return;
+
+		const now = new Date();
+		const dayIndex = now.getDay();
+		const dayKeys = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+		const todayKey = dayKeys[dayIndex];
+		const nowSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+
+		if (todayKey === "sun") {
+			widgetEl.className = "schedule-live-card schedule-live-card--done";
+			widgetEl.innerHTML = `
+				<div class="schedule-live-card__main">
+					<div class="schedule-live-card__header">
+						<span class="schedule-live-pill"><span class="schedule-live-pulser"></span>Выходной день</span>
+						<div class="schedule-live-timer"><span>Занятий нет 🌿</span></div>
+					</div>
+					<div class="schedule-live-title-row">
+						<h3 class="schedule-live-card__title">Сегодня воскресенье – гимназия отдыхает</h3>
+					</div>
+					<p class="schedule-live-card__desc">Проведите этот день с пользой и радостью в кругу семьи. Ждём вас завтра на занятиях!</p>
+				</div>
+				<div class="schedule-live-card__next">
+					<div class="schedule-live-card__next-label"><span>Следующий учебный день</span><span class="schedule-live-card__next-time" style="background:#ede9fe; color:#6d28d9;">Пн, 07:55</span></div>
+					<p class="schedule-live-card__next-title">Общая молитва и 1-й урок</p>
+					<p class="schedule-live-card__next-meta">Спасский и Покровский корпуса</p>
+				</div>
+			`;
+			return;
+		}
+
+		if (todayKey === "sat" && state.building === "spassky") {
+			widgetEl.className = "schedule-live-card schedule-live-card--done";
+			widgetEl.innerHTML = `
+				<div class="schedule-live-card__main">
+					<div class="schedule-live-card__header">
+						<span class="schedule-live-pill"><span class="schedule-live-pulser"></span>Выходной день</span>
+						<div class="schedule-live-timer"><span>Занятий нет 🌿</span></div>
+					</div>
+					<div class="schedule-live-title-row">
+						<h3 class="schedule-live-card__title">В Спасском корпусе сегодня выходной</h3>
+					</div>
+					<p class="schedule-live-card__desc">У 1–4 классов пятидневная учебная неделя. Отдыхайте и набирайтесь сил перед новой неделей!</p>
+				</div>
+				<div class="schedule-live-card__next">
+					<div class="schedule-live-card__next-label"><span>Следующий учебный день</span><span class="schedule-live-card__next-time" style="background:#ede9fe; color:#6d28d9;">Пн, 07:55</span></div>
+					<p class="schedule-live-card__next-title">Общая молитва и 1-й урок</p>
+					<p class="schedule-live-card__next-meta">1–4 классы • Спасский корпус</p>
+				</div>
+			`;
+			return;
+		}
+
+		const bells = generateBellsSchedule(state.building, todayKey);
+		if (!bells || !bells.length) return;
+
+		const parsedBells = bells.map(item => {
+			const { startSec, endSec } = parseLiveTimeToSeconds(item.time);
+			return { ...item, startSec, endSec };
+		});
+
+		const firstBell = parsedBells[0];
+		const lastBell = parsedBells[parsedBells.length - 1];
+
+		const classLessons = state.classId ? (lessonsCache.get(state.classId) || []) : [];
+		const selectedClass = allClasses.find(c => c.id === state.classId);
+		const classLabel = selectedClass ? `${selectedClass.name} класс` : "";
+
+		const getLessonInfo = bellItem => {
+			if (!bellItem) return null;
+			const numMatch = bellItem.title.match(/(\d+)\s*урок/i);
+			const lessonNum = numMatch ? parseInt(numMatch[1], 10) : null;
+			if (lessonNum && classLessons.length) {
+				const found = classLessons.find(l => l.day_of_week === todayKey && l.lesson_number === lessonNum);
+				if (found) {
+					return {
+						subject: found.subject,
+						room: formatRoom(found.room),
+						teacher: found.teacher_short_name || found.teacher_name || "",
+						isSpecific: true
+					};
+				}
+			}
+			return {
+				subject: bellItem.title,
+				room: "",
+				teacher: "",
+				isSpecific: false
+			};
+		};
+
+		// 1: Before school starts
+		if (nowSec < firstBell.startSec) {
+			const remSec = firstBell.startSec - nowSec;
+			const firstLessonBell = parsedBells.find(b => b.type === "lesson") || firstBell;
+			const firstLessonInfo = getLessonInfo(firstLessonBell);
+
+			widgetEl.className = "schedule-live-card schedule-live-card--break";
+			widgetEl.innerHTML = `
+				<div class="schedule-live-card__main">
+					<div class="schedule-live-card__header">
+						<span class="schedule-live-pill"><span class="schedule-live-pulser"></span>До начала занятий</span>
+						<div class="schedule-live-timer"><span>До первого звонка:</span><span class="schedule-live-timer__digits">${formatLiveRemaining(remSec)}</span></div>
+					</div>
+					<div class="schedule-live-title-row">
+						<h3 class="schedule-live-card__title">Учебный день ещё не начался</h3>
+						${classLabel ? `<span class="schedule-live-card__meta-tag">${escapeHtml(classLabel)}</span>` : ""}
+					</div>
+					<p class="schedule-live-card__desc">Первый звонок прозвенит в ${firstBell.time.split(/[–—\-]/)[0].trim()}. Не забудьте прийти вовремя и переобуться!</p>
+				</div>
+				<div class="schedule-live-card__next">
+					<div class="schedule-live-card__next-label"><span>${escapeHtml(firstLessonBell.title)}</span><span class="schedule-live-card__next-time">${firstLessonBell.time.split(/[–—\-]/)[0].trim()}</span></div>
+					<p class="schedule-live-card__next-title">${escapeHtml(firstLessonInfo.subject)}</p>
+					<p class="schedule-live-card__next-meta">${[firstLessonInfo.room, firstLessonInfo.teacher].filter(Boolean).map(escapeHtml).join(" • ") || "Начало занятий"}</p>
+				</div>
+			`;
+			return;
+		}
+
+		// 2: After last bell
+		if (nowSec >= lastBell.endSec) {
+			const isSpassky = state.building === "spassky";
+			const tomorrowDesc = (todayKey === "fri" && isSpassky) || todayKey === "sat"
+				? "Ждём вас в понедельник в 07:55"
+				: "Ждём вас завтра в 07:55";
+
+			widgetEl.className = "schedule-live-card schedule-live-card--done";
+			widgetEl.innerHTML = `
+				<div class="schedule-live-card__main">
+					<div class="schedule-live-card__header">
+						<span class="schedule-live-pill"><span class="schedule-live-pulser"></span>Уроки окончены</span>
+						<div class="schedule-live-timer"><span>Учебный день завершён 🎉</span></div>
+					</div>
+					<div class="schedule-live-title-row">
+						<h3 class="schedule-live-card__title">Все уроки на сегодня подошли к концу</h3>
+						${classLabel ? `<span class="schedule-live-card__meta-tag">${escapeHtml(classLabel)}</span>` : ""}
+					</div>
+					<p class="schedule-live-card__desc">Отличная работа! Отдыхайте, делайте домашние задания и набирайтесь сил перед новым днём.</p>
+				</div>
+				<div class="schedule-live-card__next">
+					<div class="schedule-live-card__next-label"><span>Следующий сбор</span><span class="schedule-live-card__next-time" style="background:#ede9fe; color:#6d28d9;">07:55</span></div>
+					<p class="schedule-live-card__next-title">Общая молитва и 1-й урок</p>
+					<p class="schedule-live-card__next-meta">${escapeHtml(tomorrowDesc)}</p>
+				</div>
+			`;
+			return;
+		}
+
+		// 3: During the day (inside an event or in a break)
+		for (let i = 0; i < parsedBells.length; i++) {
+			const item = parsedBells[i];
+
+			if (nowSec >= item.startSec && nowSec < item.endSec) {
+				const remSec = item.endSec - nowSec;
+				const totalDur = item.endSec - item.startSec;
+				const progressPct = Math.min(100, Math.max(0, ((nowSec - item.startSec) / totalDur) * 100));
+
+				const nextItem = i + 1 < parsedBells.length ? parsedBells[i + 1] : null;
+				const nextInfo = getLessonInfo(nextItem);
+				const isLesson = item.type === "lesson";
+				const isBreak = item.type === "break";
+				const lessonInfo = isLesson ? getLessonInfo(item) : null;
+
+				const cardClass = isLesson ? "schedule-live-card--lesson" : "schedule-live-card--break";
+				const pillText = isLesson ? `Идёт ${item.title}` : (isBreak ? `${item.title}` : item.title);
+				const timerLabel = isLesson ? "До перемены:" : "До конца:";
+				const [startDisplay, endDisplay] = item.time.split(/[–—\-]/).map(s => s.trim());
+
+				const metaParts = [];
+				if (classLabel) metaParts.push(`<span class="schedule-live-card__meta-tag">${escapeHtml(classLabel)}</span>`);
+				if (lessonInfo?.room) metaParts.push(`<span class="schedule-live-card__meta-tag">${escapeHtml(lessonInfo.room)}</span>`);
+				if (lessonInfo?.teacher) metaParts.push(`<span>${escapeHtml(lessonInfo.teacher)}</span>`);
+				metaParts.push(`<span>${escapeHtml(item.time)}</span>`);
+
+				widgetEl.className = `schedule-live-card ${cardClass}`;
+				widgetEl.innerHTML = `
+					<div class="schedule-live-card__main">
+						<div class="schedule-live-card__header">
+							<span class="schedule-live-pill"><span class="schedule-live-pulser"></span>${escapeHtml(pillText)}</span>
+							<div class="schedule-live-timer"><span>${timerLabel}</span><span class="schedule-live-timer__digits">${formatLiveRemaining(remSec)}</span></div>
+						</div>
+						<div class="schedule-live-title-row">
+							<h3 class="schedule-live-card__title">${escapeHtml(lessonInfo ? lessonInfo.subject : item.title)}</h3>
+							<div class="schedule-live-card__meta">${metaParts.join("")}</div>
+						</div>
+						<div class="schedule-live-progress">
+							<div class="schedule-live-progress__track"><div class="schedule-live-progress__fill" style="width: ${progressPct.toFixed(1)}%;"></div></div>
+							<div class="schedule-live-progress__labels"><span>${startDisplay}</span><span>${Math.round(progressPct)}% позади</span><span>${endDisplay}</span></div>
+						</div>
+					</div>
+					${nextItem ? `
+						<div class="schedule-live-card__next">
+							<div class="schedule-live-card__next-label"><span>Далее: ${escapeHtml(nextItem.title)}</span><span class="schedule-live-card__next-time">${nextItem.time.split(/[–—\-]/)[0].trim()}</span></div>
+							<p class="schedule-live-card__next-title">${escapeHtml(nextInfo ? nextInfo.subject : nextItem.title)}</p>
+							<p class="schedule-live-card__next-meta">${[nextInfo?.room, nextInfo?.teacher].filter(Boolean).map(escapeHtml).join(" • ") || "По расписанию"}</p>
+						</div>
+					` : `
+						<div class="schedule-live-card__next">
+							<div class="schedule-live-card__next-label"><span>Конец дня</span><span class="schedule-live-card__next-time">${endDisplay}</span></div>
+							<p class="schedule-live-card__next-title">Завершение занятий</p>
+							<p class="schedule-live-card__next-meta">Последний урок на сегодня</p>
+						</div>
+					`}
+				`;
+				return;
+			}
+
+			if (i + 1 < parsedBells.length) {
+				const nextItem = parsedBells[i + 1];
+				if (nowSec >= item.endSec && nowSec < nextItem.startSec) {
+					const gapStart = item.endSec;
+					const gapEnd = nextItem.startSec;
+					const gapDur = gapEnd - gapStart;
+					const remSec = gapEnd - nowSec;
+					const progressPct = Math.min(100, Math.max(0, ((nowSec - gapStart) / gapDur) * 100));
+					const durMin = Math.round(gapDur / 60);
+					const nextInfo = getLessonInfo(nextItem);
+					const startDisplay = item.time.split(/[–—\-]/)[1].trim();
+					const endDisplay = nextItem.time.split(/[–—\-]/)[0].trim();
+
+					const metaParts = [];
+					if (classLabel) metaParts.push(`<span class="schedule-live-card__meta-tag">${escapeHtml(classLabel)}</span>`);
+					metaParts.push(`<span>${escapeHtml(startDisplay)} – ${escapeHtml(endDisplay)}</span>`);
+
+					widgetEl.className = "schedule-live-card schedule-live-card--break";
+					widgetEl.innerHTML = `
+						<div class="schedule-live-card__main">
+							<div class="schedule-live-card__header">
+								<span class="schedule-live-pill"><span class="schedule-live-pulser"></span>Перемена (${durMin} мин)</span>
+								<div class="schedule-live-timer"><span>До звонка на урок:</span><span class="schedule-live-timer__digits">${formatLiveRemaining(remSec)}</span></div>
+							</div>
+							<div class="schedule-live-title-row">
+								<h3 class="schedule-live-card__title">Перемена между уроками</h3>
+								<div class="schedule-live-card__meta">${metaParts.join("")}</div>
+							</div>
+							<div class="schedule-live-progress">
+								<div class="schedule-live-progress__track"><div class="schedule-live-progress__fill" style="width: ${progressPct.toFixed(1)}%;"></div></div>
+								<div class="schedule-live-progress__labels"><span>${startDisplay}</span><span>Звонок через ${Math.ceil(remSec / 60)} мин</span><span>${endDisplay}</span></div>
+							</div>
+						</div>
+						<div class="schedule-live-card__next">
+							<div class="schedule-live-card__next-label"><span>Следующий: ${escapeHtml(nextItem.title)}</span><span class="schedule-live-card__next-time">${endDisplay}</span></div>
+							<p class="schedule-live-card__next-title">${escapeHtml(nextInfo ? nextInfo.subject : nextItem.title)}</p>
+							<p class="schedule-live-card__next-meta">${[nextInfo?.room, nextInfo?.teacher].filter(Boolean).map(escapeHtml).join(" • ") || "Приготовьте тетради"}</p>
+						</div>
+					`;
+					return;
+				}
+			}
+		}
 	}
 
 	async function ensureClassLessonsLoaded(classId) {
@@ -404,4 +680,5 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	initSchedule();
+	setInterval(updateScheduleLiveWidget, 1000);
 });

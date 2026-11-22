@@ -168,53 +168,128 @@
 				</div>
 			</div>
 		</section>
-		<section class="journal-hero">
+		<section class="journal-hero journal-instruction-section">
 			<div class="container-journal">
-				<h2 class="journal__title"><img alt="Инструкция лого" src="assets/icons/instruction.svg" />Инструкция по
-					входу в Электронный дневник </h2>
+				<div class="journal-instruction__header">
+					<span class="journal-instruction__badge">
+						<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+							<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+							<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+						</svg>
+						Быстрый старт • Инструкция
+					</span>
+					<h2 class="journal__title">Инструкция по входу в Электронный дневник</h2>
+					<p class="journal__subtitle">Простые шаги для родителей и учеников, чтобы настроить доступ и входить в дневник в один клик через Госуслуги</p>
+				</div>
+
 				<div class="journal__grid">
-					<div class="instruction-card">
-						<h3><img alt="Родителям" src="assets/icons/parents.svg" />Для родителей</h3>
-						<p class="grid-parents__subtitle">Первичная привязка учетной записи</p>
-						<ol class="grid-parents__list">
-							<li class="instruction-list__item">
-								<span class="instruction-badge">1</span>
-								<div class="instruction-item">
+					<!-- Карточка для родителей -->
+					<div class="instruction-card instruction-card--parents">
+						<div class="instruction-card__head">
+							<div class="instruction-card__icon instruction-card__icon--parents">
+								<img alt="" src="assets/icons/parents.svg" width="22" height="22" />
+							</div>
+							<div class="instruction-card__titles">
+								<span class="instruction-card__tag instruction-card__tag--parents">Для родителей</span>
+								<h3 class="instruction-card__title">Первичная привязка учётной записи</h3>
+							</div>
+						</div>
+
+						<div class="stepper-list">
+							<div class="stepper-item">
+								<div class="stepper-marker">
+									<span class="stepper-num">1</span>
+									<span class="stepper-line" aria-hidden="true"></span>
+								</div>
+								<div class="stepper-content">
 									<span class="step-title">Передайте классному руководителю данные СНИЛС</span>
-									<span class="step-subtitle">(родителя и ребенка)</span>
+									<span class="step-subtitle">СНИЛС родителя (законного представителя) и СНИЛС ребёнка</span>
 								</div>
-							</li>
-							<li class="instruction-list__item">
-								<span class="instruction-badge">2</span>
-								<div class="instruction-item">
-									<span class="step-title">Дождитесь внесения данных в базу ГИС «Образование»</span>
-									<span class="step-subtitle">(1–2 рабочих дня)</span>
+							</div>
+
+							<div class="stepper-item">
+								<div class="stepper-marker">
+									<span class="stepper-num">2</span>
+									<span class="stepper-line" aria-hidden="true"></span>
 								</div>
-							</li>
-							<li class="instruction-list__item">
-								<span class="instruction-badge">3</span>
-								<div class="instruction-item">
-									<span class="step-title">Нажмите «Войти в дневник» и авторизуйтесь</span>
-									<span class="step-subtitle">через ЕСИА (Госуслуги)</span>
+								<div class="stepper-content">
+									<div class="stepper-title-row">
+										<span class="step-title">Дождитесь внесения данных в базу ГИС</span>
+										<span class="stepper-status-chip">
+											<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+											1–2 рабочих дня
+										</span>
+									</div>
+									<span class="step-subtitle">Администратор гимназии регистрирует связку в ГИС «Образование»</span>
 								</div>
-							</li>
-						</ol>
+							</div>
+
+							<div class="stepper-item">
+								<div class="stepper-marker">
+									<span class="stepper-num">3</span>
+								</div>
+								<div class="stepper-content">
+									<div class="stepper-title-row">
+										<span class="step-title">Нажмите «Войти в дневник»</span>
+										<span class="stepper-esia-chip">
+											<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+											ЕСИА Госуслуги
+										</span>
+									</div>
+									<span class="step-subtitle">Авторизуйтесь под своей подтверждённой учётной записью на Госуслугах</span>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="instruction-card">
-						<h3><img alt="Ученик" src="assets/icons/student-cap.svg" />Для учеников</h3>
-						<p class="grid-kids__subtitle">Способы входа по возрасту</p>
-						<ul class="grid-kids__list">
-							<li class="instruction-list__item">
-								<span class="instruction-badge instruction-badge--wide">До 14 лет</span>
-								<span class="instruction-item">Родитель создает детскую учетную запись внутри своего
-									профиля на Госуслугах.</span>
-							</li>
-							<li class="instruction-list__item">
-								<span class="instruction-badge instruction-badge--wide">С 14 лет</span>
-								<span class="instruction-item">Ученик входит по собственному логину и паролю от
-									подтвержденного аккаунта Госуслуг.</span>
-							</li>
-						</ul>
+
+					<!-- Карточка для учеников -->
+					<div class="instruction-card instruction-card--students">
+						<div class="instruction-card__head">
+							<div class="instruction-card__icon instruction-card__icon--students">
+								<img alt="" src="assets/icons/student-cap.svg" width="22" height="22" />
+							</div>
+							<div class="instruction-card__titles">
+								<span class="instruction-card__tag instruction-card__tag--students">Для учеников</span>
+								<h3 class="instruction-card__title">Способы входа по возрасту</h3>
+							</div>
+						</div>
+
+						<div class="student-tiers">
+							<!-- До 14 лет -->
+							<div class="student-tier-card">
+								<div class="student-tier-header">
+									<span class="student-tier-badge student-tier-badge--junior">До 14 лет</span>
+									<span class="student-tier-meta">Детский профиль</span>
+								</div>
+								<p class="student-tier-desc">
+									Родитель создаёт детскую учётную запись внутри своего профиля на Госуслугах и задаёт ребёнку персональный логин и пароль.
+								</p>
+							</div>
+
+							<!-- С 14 лет -->
+							<div class="student-tier-card">
+								<div class="student-tier-header">
+									<span class="student-tier-badge student-tier-badge--senior">С 14 лет</span>
+									<span class="student-tier-meta">Личный аккаунт ЕСИА</span>
+								</div>
+								<p class="student-tier-desc">
+									Ученик входит по собственному логину и паролю от личной подтверждённой учётной записи Госуслуг (после получения паспорта).
+								</p>
+							</div>
+						</div>
+
+						<div class="student-callout">
+							<div class="student-callout__icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<circle cx="12" cy="12" r="10"></circle>
+									<line x1="12" y1="16" x2="12" y2="12"></line>
+									<line x1="12" y1="8" x2="12.01" y2="8"></line>
+								</svg>
+							</div>
+							<div class="student-callout__text">
+								<strong>Памятка:</strong> Ученикам младших классов логин и пароль заводят родители в разделе «Семья и дети» личного кабинета Госуслуг.
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

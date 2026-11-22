@@ -56,7 +56,7 @@
 /* --- ХЛЕБНЫЕ КРОШКИ (ЕДИНЫЙ СТИЛЬ ГИМНАЗИИ) --- */
 .rst-hero .breadcrumbs {
 	display: inline-flex;
-	margin-bottom: 24px;
+	margin-bottom: 20px;
 }
 
 /* --- БЛОК 1: HERO (ПЕРВЫЙ ЭКРАН) --- */
@@ -64,7 +64,14 @@
 	position: relative;
 	background: var(--rst-bg-page, #F8FAFC);
 	border-bottom: 1px solid var(--rst-border, #E2E8F0);
-	padding: 32px 0 64px;
+	padding: 24px 92px 64px;
+	box-sizing: border-box;
+}
+
+.rst-hero .rst-container {
+	max-width: 1400px;
+	margin: 0;
+	padding: 0;
 }
 
 .rst-hero__grid {
@@ -87,7 +94,7 @@
 	color: var(--rst-amber, #D97706);
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
-	margin-bottom: 14px;
+	margin-bottom: 27px;
 }
 
 .rst-hero__title {
@@ -1441,6 +1448,10 @@
 
 /* Ноутбуки и планшеты в альбомной ориентации (<= 1024px) */
 @media (max-width: 1024px) {
+	.rst-hero {
+		padding: 24px 40px 48px;
+	}
+
 	.rst-hero__grid {
 		grid-template-columns: 1fr;
 		gap: 36px;
@@ -1490,7 +1501,7 @@
 	}
 
 	.rst-hero {
-		padding: 20px 0 40px;
+		padding: 20px 16px 40px;
 	}
 
 	.rst-hero__title {

@@ -1,663 +1,665 @@
-﻿<!DOCTYPE html>
-<html lang="ru">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Новости | Православная гимназия г. Коврова</title>
-	<meta name="description" content="Актуальные новости, события, фоторепортажи и достижения учащихся и педагогов Православной гимназии г. Коврова.">
-
-	<!-- Open Graph / Поделиться в соцсетях -->
-	<meta property="og:type" content="website">
-	<meta property="og:site_name" content="Православная гимназия г. Коврова">
-	<meta property="og:title" content="Новости | Православная гимназия г. Коврова">
-	<meta property="og:description" content="Актуальные новости, события, фоторепортажи и достижения учащихся и педагогов Православной гимназии г. Коврова.">
-	<meta property="og:url" content="https://pravgimn-kovrov.ru/news.html">
-	<meta property="og:image" content="https://pravgimn-kovrov.ru/assets/images/og-preview.jpg">
-	<meta property="og:image:width" content="1200">
-	<meta property="og:image:height" content="630">
-	<meta property="og:locale" content="ru_RU">
-
-	<!-- Favicon -->
-	<link rel="icon" href="./favicon.ico" sizes="any">
-	<link rel="icon" href="./assets/icons/favicon-32x32.png" type="image/png">
-	<link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
-
-	<!-- PWA Manifest & App Configuration -->
-	<link rel="manifest" href="./manifest.json">
-	<meta name="theme-color" content="#1E3A8A">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="default">
-	<meta name="apple-mobile-web-app-title" content="Гимназия Ковров">
-
-	<link rel="stylesheet" href="./css/style.css?v=3.5">
-	<link rel="stylesheet" href="css/bvi.css">
-</head>
-
-<body>
-
-	<header>
-
-		<div class="top-bar">
-			<div class="containers">
-				<div class="top-bar__content">
-
-					<a href="index.html" class="brand">
-						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
-
-						<div class="brand__info">
-							<span class="brand__title">
-								Православная гимназия г. Коврова
-							</span>
-
-							<span class="brand__subtitle">
-								Частное общеобразовательное учреждение
-							</span>
-						</div>
-					</a>
-
-					<form class="search-form" id="site-search-form">
-						<img src="assets/icons/search.svg" alt="">
-
-						<input type="search" id="site-search-input" placeholder="Поиск по сайту..." autocomplete="off">
-					</form>
-
-				</div>
-			</div>
-		</div>
-
-
-		<nav class="main-nav">
-
-			<ul class="nav-list">
-
-				<li>
-					<a href="index.html" class="nav-link">
-						Главная
-					</a>
-				</li>
-
-
-				<li>
-					<a href="sveden/index.html" class="nav-link">
-						Сведения об образовательной организации
-					</a>
-				</li>
-
-
-				<!-- УЧЕБА -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
-						Учеба
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="life.html" class="nav-link">
-						Жизнь гимназии
-					</a>
-				</li>
-
-
-				<!-- РОДИТЕЛЯМ -->
-
-				<li class="nav-item nav-item--mega">
-
-					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
-						Родителям
-						<span class="nav-arrow" aria-hidden="true"></span>
-					</button>
-
-				</li>
-
-
-				<li>
-					<a href="apply.html" class="nav-link">
-						Поступающим
-					</a>
-				</li>
-
-
-				<li>
-					<a href="contact.html" class="nav-link">
-						Контакты
-					</a>
-				</li>
-				<li class="nav-item--bvi">
-					<button type="button" class="bvi-toggle-btn" aria-label="Версия для слабовидящих">
-						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bvi-icon" width="16" height="16">
-							<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-							<circle cx="12" cy="12" r="3"></circle>
-						</svg>
-						<span>Версия для слабовидящих</span>
-					</button>
-				</li>
-
-			</ul>
-
-		</nav>
-
-
-		<div class="mega-menu" id="mega-menu">
-
-			<div class="mega-menu__inner">
-
-				<div class="mega-menu__header">
-
-					<div>
-
-						<h3 id="mega-menu-title">
-							Учеба
-						</h3>
-
-						<p id="mega-menu-description">
-							Всё необходимое для учебного процесса
-						</p>
-
-					</div>
-
-
-					<button class="mega-menu__close" type="button" aria-label="Закрыть меню">
-						×
-					</button>
-
-				</div>
-
-
-				<div class="mega-menu__grid" id="mega-menu-content">
-				</div>
-
-			</div>
-
-		</div>
-
-
-		<!-- ЗАТЕМНЕНИЕ ФОНА -->
-
-		<div class="mega-overlay" id="mega-overlay">
-		</div>
-	</header>
-
-
-	<main class="news-page">
-
-		<div class="container container--wide">
-
-			<div class="news-top-bar">
-				<nav class="breadcrumbs" aria-label="Хлебные крошки" id="news-breadcrumbs">
-					<a href="index.html" class="breadcrumbs__home">
-						<img src="assets/icons/home.svg" alt="">
-						Главная
-					</a>
-					<span class="breadcrumbs__separator" aria-hidden="true">›</span>
-					<a href="life.html#news">Жизнь гимназии</a>
-					<span class="breadcrumbs__separator" aria-hidden="true">›</span>
-					<span class="breadcrumbs__current" id="news-breadcrumb-title">Новость</span>
-				</nav>
-
-				<a href="life.html#news" class="news-page__back">
-					<span class="news-back-arrow">←</span> Все новости
-				</a>
-			</div>
-
-			<div class="news-layout">
-
-				<!-- Левая колонка: сама статья -->
-				<div class="news-layout__main">
-					<article class="news-article news-card-wrapper">
-
-						<div class="news-article__header">
-							<div class="news-article__meta">
-								<a href="life.html#news" class="news-article__category" id="news-category" title="Смотреть все события этой рубрики"></a>
-								<span class="news-meta-divider">•</span>
-								<time class="news-article__date" id="news-date"></time>
-								<span class="news-meta-divider">•</span>
-								<span class="news-article__read-time" id="news-read-time" title="Примерное время чтения">
-									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-									<span id="read-time-text">1 мин чтения</span>
-								</span>
-							</div>
-
-							<h1 class="news-article__title" id="news-title"></h1>
-						</div>
-
-						<!-- Медиа-галерея статьи -->
-						<div class="news-gallery" id="news-gallery">
-							<div class="news-gallery__main">
-								<button class="news-gallery__arrow news-gallery__arrow--prev" type="button" aria-label="Предыдущая фотография">
-									‹
-								</button>
-
-								<div class="news-gallery__img-wrapper">
-									<img id="news-image" class="news-gallery__image" src="" alt="">
-									<button class="news-gallery__zoom-badge" id="news-zoom-badge" type="button" title="Открыть фотографию в полном размере">
-										<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-										<span>Увеличить</span>
-									</button>
-								</div>
-
-								<button class="news-gallery__arrow news-gallery__arrow--next" type="button" aria-label="Следующая фотография">
-									›
-								</button>
-							</div>
-
-							<div id="news-thumbnails" class="news-gallery__thumbnails"></div>
-						</div>
-
-						<!-- Текст статьи (с трансформацией ссылок VK в фирменные карточки) -->
-						<div class="news-article__content" id="news-content"></div>
-
-						<!-- Поделиться в соцсетях -->
-						<div class="news-article__footer">
-							<div class="news-share">
-								<span class="news-share__title">Поделиться новостью:</span>
-								<div class="news-share__list">
-									<button type="button" class="news-share-btn news-share-btn--vk" id="share-vk" title="Поделиться во ВКонтакте">
-										<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.05-1.714-1.037-1.01-1.498-1.143-1.753-1.143-.356 0-.457.102-.457.593v1.657c0 .423-.135.677-1.252.677-1.846 0-3.896-1.118-5.334-3.199-2.167-3.073-2.76-5.394-2.76-5.867 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.779.677.847 2.472 2.27 4.64 2.862 4.64.22 0 .322-.102.322-.66v-2.59c-.068-1.185-.694-1.286-.694-1.71 0-.203.169-.406.44-.406h2.743c.373 0 .508.203.508.643v3.504c0 .373.169.508.288.508.237 0 .44-.135.88-.576 1.355-1.524 2.32-3.894 2.32-3.894.135-.271.356-.474.796-.474h1.744c.525 0 .643.271.525.643-.22 1.016-2.353 4.047-2.455 4.2-.17.271-.237.39 0 .711.17.237.745.728 1.135 1.168.711.813 1.253 1.49 1.405 1.964.153.474-.085.711-.56.711z"/></svg>
-										<span>ВКонтакте</span>
-									</button>
-									<button type="button" class="news-share-btn news-share-btn--tg" id="share-tg" title="Отправить в Telegram">
-										<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.46c.536-.196 1.006.128.832.92z"/></svg>
-										<span>Telegram</span>
-									</button>
-									<button type="button" class="news-share-btn news-share-btn--copy" id="share-copy" title="Скопировать ссылку в буфер обмена">
-										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-										<span id="share-copy-text">Скопировать</span>
-									</button>
-								</div>
-							</div>
-						</div>
-
-						<!-- Навигация: Предыдущая / Следующая новость -->
-						<nav class="news-nav-strip" id="news-navigation" aria-label="Другие новости">
-							<a href="#" class="news-nav-link news-nav-link--prev" id="news-prev-link" style="display:none;">
-								<span class="news-nav-link__sub">‹ Предыдущая новость</span>
-								<span class="news-nav-link__title" id="news-prev-title"></span>
-							</a>
-							<a href="#" class="news-nav-link news-nav-link--next" id="news-next-link" style="display:none;">
-								<span class="news-nav-link__sub">Следующая новость ›</span>
-								<span class="news-nav-link__title" id="news-next-title"></span>
-							</a>
-						</nav>
-
-					</article>
-				</div>
-
-				<!-- Правая колонка: Сайдбар -->
-				<aside class="news-layout__sidebar">
-					<div class="news-sidebar-sticky">
-
-						<!-- Виджет 1: Свежие события -->
-						<div class="news-widget">
-							<div class="news-widget__header">
-								<h3 class="news-widget__title">Свежие события</h3>
-								<a href="life.html#news" class="news-widget__more-link">Все новости →</a>
-							</div>
-							<div class="news-widget__recent-list" id="sidebar-recent-list">
-								<!-- Заполняется динамически через js/news.js -->
-							</div>
-						</div>
-
-						<!-- Виджет 2: Рубрики -->
-						<div class="news-widget">
-							<h3 class="news-widget__title">Рубрики</h3>
-							<div class="news-widget__cats">
-								<a href="life.html#news" data-cat="all" class="news-cat-chip">Все новости</a>
-								<a href="life.html?category=education#news" data-cat="education" class="news-cat-chip">Учебная жизнь</a>
-								<a href="life.html?category=spiritual#news" data-cat="spiritual" class="news-cat-chip">Духовная жизнь</a>
-								<a href="life.html?category=creativity#news" data-cat="creativity" class="news-cat-chip">Творчество и театр</a>
-								<a href="life.html?category=sport#news" data-cat="sport" class="news-cat-chip">Спорт и ВПК</a>
-								<a href="life.html?category=camp#news" data-cat="camp" class="news-cat-chip">Лагерь и практика</a>
-								<a href="life.html?category=holidays#news" data-cat="holidays" class="news-cat-chip">Традиции и праздники</a>
-								<a href="life.html?category=pilgrimage#news" data-cat="pilgrimage" class="news-cat-chip">Паломничество</a>
-							</div>
-						</div>
-
-						<!-- Виджет 3: Карточка сообщества ВКонтакте -->
-						<div class="news-widget news-widget--vk">
-							<div class="vk-card">
-								<div class="vk-card__head">
-									<div class="vk-card__logo-wrap">
-										<img src="./assets/icons/logo_star.png" alt="" class="vk-card__logo">
-									</div>
-									<div class="vk-card__info">
-										<span class="vk-card__name">Православная гимназия</span>
-										<span class="vk-card__sub">г. Ковров • Официальная группа</span>
-									</div>
-								</div>
-								<p class="vk-card__desc">Свежие фоторепортажи, праздники, расписание и важные события школьной жизни в нашей группе.</p>
-								<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" class="vk-card__btn">
-									<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.05-1.714-1.037-1.01-1.498-1.143-1.753-1.143-.356 0-.457.102-.457.593v1.657c0 .423-.135.677-1.252.677-1.846 0-3.896-1.118-5.334-3.199-2.167-3.073-2.76-5.394-2.76-5.867 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.779.677.847 2.472 2.27 4.64 2.862 4.64.22 0 .322-.102.322-.66v-2.59c-.068-1.185-.694-1.286-.694-1.71 0-.203.169-.406.44-.406h2.743c.373 0 .508.203.508.643v3.504c0 .373.169.508.288.508.237 0 .44-.135.88-.576 1.355-1.524 2.32-3.894 2.32-3.894.135-.271.356-.474.796-.474h1.744c.525 0 .643.271.525.643-.22 1.016-2.353 4.047-2.455 4.2-.17.271-.237.39 0 .711.17.237.745.728 1.135 1.168.711.813 1.253 1.49 1.405 1.964.153.474-.085.711-.56.711z"/></svg>
-									<span>Мы ВКонтакте</span>
-								</a>
-							</div>
-						</div>
-
-					</div>
-				</aside>
-
-			</div>
-
-		</div>
-
-		<!-- Полноэкранный Lightbox для просмотра фото -->
-		<div class="news-lightbox" id="news-lightbox">
-			<button class="news-lightbox__close" id="news-lightbox-close" type="button" aria-label="Закрыть">×</button>
-			<button class="news-lightbox__arrow news-lightbox__arrow--prev" id="news-lightbox-prev" type="button" aria-label="Предыдущая фотография">←</button>
-			<div class="news-lightbox__content">
-				<img id="news-lightbox-image" class="news-lightbox__image" src="" alt="">
-				<div class="news-lightbox__counter" id="news-lightbox-counter">1 / 1</div>
-			</div>
-			<button class="news-lightbox__arrow news-lightbox__arrow--next" id="news-lightbox-next" type="button" aria-label="Следующая фотография">→</button>
-		</div>
-
-	</main>
-
-
-
-	<footer>
-
-			<div class="footer-contacts footer-contacts--modern">
-
-				<div class="contacts__info">
-
-					<div class="contacts__header-group">
-						<span class="contacts__badge">
-							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-								<circle cx="12" cy="10" r="3"></circle>
-							</svg>
-							Связь с нами
-						</span>
-						<h2 class="contacts__title">Контакты и приёмная</h2>
-						<p class="contacts__subtitle">Ответим на любые ваши вопросы или подскажем, как добраться</p>
-					</div>
-
-					<ul class="contacts__info-list">
-
-						<li class="contact-item contact-item--address">
-							<div class="contact-item__icon">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-									<circle cx="12" cy="10" r="3"></circle>
-								</svg>
-							</div>
-							<div class="contact-item__content">
-								<span class="contact-item__label">Адрес гимназии</span>
-								<span class="contact-item__value" id="footer-contact-address">г. Ковров, ул. Подлесная, д. 10</span>
-								<span class="contact-item__note" id="footer-contact-note">Спасский корпус (приёмная, 1–4 классы)</span>
-							</div>
-						</li>
-
-						<li class="contact-item contact-item--phone">
-							<div class="contact-item__icon">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-								</svg>
-							</div>
-							<div class="contact-item__content">
-								<span class="contact-item__label">Телефоны</span>
-								<div class="contact-item__links">
-									<a href="tel:+74923240195" class="contact-item__link" title="Приёмная директора (Спасский корпус)">+7 (49232) 4-01-95</a>
-									<span class="contact-item__separator">•</span>
-									<a href="tel:+74923242272" class="contact-item__link" title="Учительская / Завуч (Покровский корпус)">4-22-72</a>
-								</div>
-							</div>
-						</li>
-
-						<li class="contact-item contact-item--email">
-							<div class="contact-item__icon">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<rect x="2" y="4" width="20" height="16" rx="2"></rect>
-									<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-								</svg>
-							</div>
-							<div class="contact-item__content">
-								<span class="contact-item__label">Электронная почта</span>
-								<a href="mailto:sretenskajgimn@yandex.ru" class="contact-item__link">sretenskajgimn@yandex.ru</a>
-							</div>
-						</li>
-
-						<li class="contact-item contact-item--hours">
-							<div class="contact-item__icon">
-								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-									<circle cx="12" cy="12" r="10"></circle>
-									<polyline points="12 6 12 12 16 14"></polyline>
-								</svg>
-							</div>
-							<div class="contact-item__content">
-								<div class="contact-item__label-row">
-									<span class="contact-item__label">Время работы</span>
-									<span class="contact-status-chip">
-										<span class="status-dot"></span>
-										Пн–Пт
-									</span>
-								</div>
-								<span class="contact-item__value">Понедельник – Пятница: 8:00 – 19:00</span>
-							</div>
-						</li>
-
-					</ul>
-
-					<div class="contacts__buttons">
-						<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" class="btn-messenger btn-messenger--whatsapp">
-							<img src="assets/icons/wtp_vector.svg" alt="" aria-hidden="true" width="19" height="19">
-							<span>Написать в WhatsApp</span>
-							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
-						</a>
-
-						<a href="#" class="btn-messenger btn-messenger--max">
-							<img src="assets/icons/max_vector.svg" alt="" aria-hidden="true" width="19" height="19">
-							<span>Написать в MAX</span>
-							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
-						</a>
-					</div>
-
-				</div>
-
-				<div class="contact-map">
-					<!-- Интерактивный выбор корпуса -->
-					<div class="contact-map__tabs" role="tablist" aria-label="Корпуса гимназии на карте">
-						<button type="button" class="campus-tab-btn active" id="campus-tab-spassky" role="tab" aria-selected="true" data-campus="spassky">
-							<span class="campus-tab-btn__icon" aria-hidden="true">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-									<polyline points="9 22 9 12 15 12 15 22"></polyline>
-								</svg>
-							</span>
-							<span class="campus-tab-btn__text">
-								<span class="campus-tab-btn__title">Спасский корпус</span>
-								<span class="campus-tab-btn__desc">ул. Подлесная, 10 • Приёмная</span>
-							</span>
-						</button>
-
-						<button type="button" class="campus-tab-btn" id="campus-tab-pokrovsky" role="tab" aria-selected="false" data-campus="pokrovsky">
-							<span class="campus-tab-btn__icon" aria-hidden="true">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-									<path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-								</svg>
-							</span>
-							<span class="campus-tab-btn__text">
-								<span class="campus-tab-btn__title">Покровский корпус</span>
-								<span class="campus-tab-btn__desc">ул. Сосновая, 10 • 5–11 кл.</span>
-							</span>
-						</button>
-					</div>
-
-					<div class="contact-map__wrapper">
-						<span class="contact-map__badge" id="footer-map-badge">
-							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-								<circle cx="12" cy="10" r="3"></circle>
-							</svg>
-							<span id="footer-map-badge-text">г. Ковров, ул. Подлесная, 10 (Спасский корпус)</span>
-						</span>
-
-						<iframe
-							id="footer-map-iframe"
-							src="https://yandex.ru/map-widget/v1/?ll=41.329367%2C56.362333&z=18&mode=whatshere&whatshere%5Bpoint%5D=41.329367%2C56.362333&whatshere%5Bzoom%5D=18"
-							width="100%" height="100%" frameborder="0" allowfullscreen="true"
-							title="Карта проезда к Православной гимназии" loading="lazy">
-						</iframe>
-
-						<a id="footer-map-route-btn"
-							href="https://yandex.ru/maps/?rtext=~56.362333%2C41.329367&rtt=auto"
-							target="_blank" rel="noopener noreferrer" class="contact-map__route-btn">
-							<span>Построить маршрут</span>
-							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<line x1="7" y1="17" x2="17" y2="7"></line>
-								<polyline points="7 7 17 7 17 17"></polyline>
-							</svg>
-						</a>
-					</div>
-				</div>
-
-			</div>
-
-
-		<div class="footer-bottom">
-				<div class="footer-container">
-					<div class="footer-top-row">
-						<a href="index.html" class="brand__footer">
-							<img src="assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer" width="48" height="48">
-							<div class="brand__info__footer">
-								<span class="brand__title__footer">Православная гимназия г. Коврова</span>
-								<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
-							</div>
-						</a>
-
-						<div class="footer-top-actions">
-							<button type="button" class="footer-app-btn js-pwa-install" aria-label="Установить приложение гимназии" title="Установить приложение на телефон или компьютер">
-								<svg class="footer-app-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
-									<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-									<line x1="12" y1="18" x2="12.01" y2="18"></line>
-								</svg>
-								<span>Приложение гимназии</span>
-							</button>
-
-							<div class="btn_media">
-							<ul class="btn_media__list">
-								<li class="media__list-vk">
-									<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
-										<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
-									</a>
-								</li>
-								<li class="media__list-max">
-									<a href="#" aria-label="MAX">
-										<img src="assets/icons/max_white.svg" alt="MAX" width="20" height="20">
-									</a>
-								</li>
-								<li class="media__list-whp">
-									<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-										<img src="assets/icons/whatsapp.svg" alt="WhatsApp" width="20" height="20">
-									</a>
-								</li>
-							</ul>
-						</div>
-						</div>
-					</div>
-
-					<div class="footer-divider"></div>
-
-					<div class="footer-nav-grid">
-						<div class="footer-col">
-							<h3 class="footer-col__title">О гимназии</h3>
-							<ul class="footer-col__list">
-								<li><a href="story_school.html">История гимназии</a></li>
-								<li><a href="sveden/index.html">Сведения об организации</a></li>
-								<li><a href="teachers.html">Учителя</a></li>
-								<li><a href="contact.html">Контакты</a></li>
-							</ul>
-						</div>
-
-						<div class="footer-col">
-							<h3 class="footer-col__title">Обучение</h3>
-							<ul class="footer-col__list">
-								<li><a href="class_schedule.html">Расписание</a></li>
-								<li><a href="food.html">Школьное питание</a></li>
-								<li><a href="documents.html">Документы</a></li>
-								<li><a href="diary.html">Электронный дневник</a></li>
-							</ul>
-						</div>
-
-						<div class="footer-col">
-							<h3 class="footer-col__title">Информация</h3>
-							<ul class="footer-col__list">
-								<li><a href="news.html">Новости</a></li>
-								<li><a href="life.html">Жизнь гимназии</a></li>
-								<li><a href="apply.html">Поступающим</a></li>
-								<li><a href="rostochek.html">Центр «Росточек»</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="footer-divider"></div>
-
-					<div class="footer-contacts-bar">
-						<div class="footer-contact-item">
-							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-								<circle cx="12" cy="10" r="3"></circle>
-							</svg>
-							<div class="footer-contact-item__content">
-								<span class="footer-contact-item__label">Адрес</span>
-								<span class="footer-contact-item__text">601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</span>
-							</div>
-						</div>
-
-						<div class="footer-contact-item">
-							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-							</svg>
-							<div class="footer-contact-item__content">
-								<span class="footer-contact-item__label">Телефон</span>
-								<div class="footer-contact-item__phones">
-									<a href="tel:+74923240195" class="footer-contact-item__link">+7 (49232) 4-01-95</a>,
-									<a href="tel:+74923242272" class="footer-contact-item__link">4-22-72</a>
-								</div>
-							</div>
-						</div>
-
-						<div class="footer-contact-item">
-							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-								<polyline points="22,6 12,13 2,6"></polyline>
-							</svg>
-							<div class="footer-contact-item__content">
-								<span class="footer-contact-item__label">Электронная почта</span>
-								<a href="mailto:sretenskajgimn@yandex.ru" class="footer-contact-item__link">sretenskajgimn@yandex.ru</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="footer-divider"></div>
-
-					<div class="footer-copyright">
-						<span class="footer-copyright__text">© 2026 Православная гимназия. Все права защищены.</span>
-						<a href="policy.html" class="footer-copyright__policy">Политика конфиденциальности</a>
-					</div>
-				</div>
-			</div>
-		</footer>
-
-
-	<script src="js/config.js"></script>
-	<script src="js/window.scrollY.js"></script>
-	<script src="./js/news.js"></script>
-	<script src="js/navigation.js"></script>
-	<script src="js/search.js"></script>
-
-
-
-	<script src="js/bvi.js"></script>
-	<script src="js/pwa.js" defer></script>
-	<script src="js/footer-contacts.js"></script>
-</body>
-
-</html>
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Новости | Православная гимназия г. Коврова</title>
+	<meta name="description" content="Актуальные новости, события, фоторепортажи и достижения учащихся и педагогов Православной гимназии г. Коврова.">
+
+	<!-- Open Graph / Поделиться в соцсетях -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Православная гимназия г. Коврова">
+	<meta property="og:title" content="Новости | Православная гимназия г. Коврова">
+	<meta property="og:description" content="Актуальные новости, события, фоторепортажи и достижения учащихся и педагогов Православной гимназии г. Коврова.">
+	<meta property="og:url" content="https://pravgimn-kovrov.ru/news.html">
+	<meta property="og:image" content="https://pravgimn-kovrov.ru/assets/images/og-preview.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:locale" content="ru_RU">
+
+	<!-- Favicon -->
+	<link rel="icon" href="./favicon.ico" sizes="any">
+	<link rel="icon" href="./assets/icons/favicon-32x32.png" type="image/png">
+	<link rel="apple-touch-icon" href="./assets/icons/apple-touch-icon.png">
+
+	<!-- PWA Manifest & App Configuration -->
+	<link rel="manifest" href="./manifest.json">
+	<meta name="theme-color" content="#1E3A8A">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-title" content="Гимназия Ковров">
+
+	<link rel="stylesheet" href="./css/style.css?v=3.5">
+	<link rel="stylesheet" href="css/bvi.css">
+</head>
+
+<body>
+
+	<header>
+
+		<div class="top-bar">
+			<div class="containers">
+				<div class="top-bar__content">
+
+					<a href="index.html" class="brand">
+						<img src="./assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo">
+
+						<div class="brand__info">
+							<span class="brand__title">
+								Православная гимназия г. Коврова
+							</span>
+
+							<span class="brand__subtitle">
+								Частное общеобразовательное учреждение
+							</span>
+						</div>
+					</a>
+
+					<form class="search-form" id="site-search-form">
+						<img src="assets/icons/search.svg" alt="">
+
+						<input type="search" id="site-search-input" placeholder="Поиск по сайту..." autocomplete="off">
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+
+		<nav class="main-nav">
+
+			<ul class="nav-list">
+
+				<li>
+					<a href="index.html" class="nav-link">
+						Главная
+					</a>
+				</li>
+
+
+				<li>
+					<a href="sveden/index.html" class="nav-link">
+						Сведения об образовательной организации
+					</a>
+				</li>
+
+
+				<!-- УЧЕБА -->
+
+				<li class="nav-item nav-item--mega">
+
+					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+						Учеба
+						<span class="nav-arrow" aria-hidden="true"></span>
+					</button>
+
+				</li>
+
+
+				<li>
+					<a href="life.html" class="nav-link">
+						Жизнь гимназии
+					</a>
+				</li>
+
+
+				<!-- РОДИТЕЛЯМ -->
+
+				<li class="nav-item nav-item--mega">
+
+					<button class="nav-link mega-menu-toggle" type="button" aria-expanded="false">
+						Родителям
+						<span class="nav-arrow" aria-hidden="true"></span>
+					</button>
+
+				</li>
+
+
+				<li>
+					<a href="apply.html" class="nav-link">
+						Поступающим
+					</a>
+				</li>
+
+
+				<li>
+					<a href="contact.html" class="nav-link">
+						Контакты
+					</a>
+				</li>
+				<li class="nav-item--bvi">
+					<button type="button" class="bvi-toggle-btn" aria-label="Версия для слабовидящих">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="bvi-icon" width="16" height="16">
+							<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+							<circle cx="12" cy="12" r="3"></circle>
+						</svg>
+						<span>Версия для слабовидящих</span>
+					</button>
+				</li>
+
+			</ul>
+
+		</nav>
+
+
+		<div class="mega-menu" id="mega-menu">
+
+			<div class="mega-menu__inner">
+
+				<div class="mega-menu__header">
+
+					<div>
+
+						<h3 id="mega-menu-title">
+							Учеба
+						</h3>
+
+						<p id="mega-menu-description">
+							Всё необходимое для учебного процесса
+						</p>
+
+					</div>
+
+
+					<button class="mega-menu__close" type="button" aria-label="Закрыть меню">
+						×
+					</button>
+
+				</div>
+
+
+				<div class="mega-menu__grid" id="mega-menu-content">
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<!-- ЗАТЕМНЕНИЕ ФОНА -->
+
+		<div class="mega-overlay" id="mega-overlay">
+		</div>
+	</header>
+
+
+	<section class="news-hero page-hero">
+		<div class="news-top-bar">
+			<nav class="breadcrumbs" aria-label="Хлебные крошки" id="news-breadcrumbs">
+				<a href="index.html" class="breadcrumbs__home">
+					<img src="assets/icons/home.svg" alt="">
+					Главная
+				</a>
+				<span class="breadcrumbs__separator" aria-hidden="true">›</span>
+				<a href="life.html#news">Жизнь гимназии</a>
+				<span class="breadcrumbs__separator" aria-hidden="true">›</span>
+				<span class="breadcrumbs__current" id="news-breadcrumb-title">Новость</span>
+			</nav>
+
+			<a href="life.html#news" class="news-page__back">
+				<span class="news-back-arrow">←</span> Все новости
+			</a>
+		</div>
+	</section>
+
+	<main class="news-page">
+
+		<div class="container container--wide">
+
+			<div class="news-layout">
+
+				<!-- Левая колонка: сама статья -->
+				<div class="news-layout__main">
+					<article class="news-article news-card-wrapper">
+
+						<div class="news-article__header">
+							<div class="news-article__meta">
+								<a href="life.html#news" class="news-article__category" id="news-category" title="Смотреть все события этой рубрики"></a>
+								<span class="news-meta-divider">•</span>
+								<time class="news-article__date" id="news-date"></time>
+								<span class="news-meta-divider">•</span>
+								<span class="news-article__read-time" id="news-read-time" title="Примерное время чтения">
+									<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+									<span id="read-time-text">1 мин чтения</span>
+								</span>
+							</div>
+
+							<h1 class="news-article__title" id="news-title"></h1>
+						</div>
+
+						<!-- Медиа-галерея статьи -->
+						<div class="news-gallery" id="news-gallery">
+							<div class="news-gallery__main">
+								<button class="news-gallery__arrow news-gallery__arrow--prev" type="button" aria-label="Предыдущая фотография">
+									‹
+								</button>
+
+								<div class="news-gallery__img-wrapper">
+									<img id="news-image" class="news-gallery__image" src="" alt="">
+									<button class="news-gallery__zoom-badge" id="news-zoom-badge" type="button" title="Открыть фотографию в полном размере">
+										<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+										<span>Увеличить</span>
+									</button>
+								</div>
+
+								<button class="news-gallery__arrow news-gallery__arrow--next" type="button" aria-label="Следующая фотография">
+									›
+								</button>
+							</div>
+
+							<div id="news-thumbnails" class="news-gallery__thumbnails"></div>
+						</div>
+
+						<!-- Текст статьи (с трансформацией ссылок VK в фирменные карточки) -->
+						<div class="news-article__content" id="news-content"></div>
+
+						<!-- Поделиться в соцсетях -->
+						<div class="news-article__footer">
+							<div class="news-share">
+								<span class="news-share__title">Поделиться новостью:</span>
+								<div class="news-share__list">
+									<button type="button" class="news-share-btn news-share-btn--vk" id="share-vk" title="Поделиться во ВКонтакте">
+										<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.05-1.714-1.037-1.01-1.498-1.143-1.753-1.143-.356 0-.457.102-.457.593v1.657c0 .423-.135.677-1.252.677-1.846 0-3.896-1.118-5.334-3.199-2.167-3.073-2.76-5.394-2.76-5.867 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.779.677.847 2.472 2.27 4.64 2.862 4.64.22 0 .322-.102.322-.66v-2.59c-.068-1.185-.694-1.286-.694-1.71 0-.203.169-.406.44-.406h2.743c.373 0 .508.203.508.643v3.504c0 .373.169.508.288.508.237 0 .44-.135.88-.576 1.355-1.524 2.32-3.894 2.32-3.894.135-.271.356-.474.796-.474h1.744c.525 0 .643.271.525.643-.22 1.016-2.353 4.047-2.455 4.2-.17.271-.237.39 0 .711.17.237.745.728 1.135 1.168.711.813 1.253 1.49 1.405 1.964.153.474-.085.711-.56.711z"/></svg>
+										<span>ВКонтакте</span>
+									</button>
+									<button type="button" class="news-share-btn news-share-btn--tg" id="share-tg" title="Отправить в Telegram">
+										<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.46c.536-.196 1.006.128.832.92z"/></svg>
+										<span>Telegram</span>
+									</button>
+									<button type="button" class="news-share-btn news-share-btn--copy" id="share-copy" title="Скопировать ссылку в буфер обмена">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+										<span id="share-copy-text">Скопировать</span>
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- Навигация: Предыдущая / Следующая новость -->
+						<nav class="news-nav-strip" id="news-navigation" aria-label="Другие новости">
+							<a href="#" class="news-nav-link news-nav-link--prev" id="news-prev-link" style="display:none;">
+								<span class="news-nav-link__sub">‹ Предыдущая новость</span>
+								<span class="news-nav-link__title" id="news-prev-title"></span>
+							</a>
+							<a href="#" class="news-nav-link news-nav-link--next" id="news-next-link" style="display:none;">
+								<span class="news-nav-link__sub">Следующая новость ›</span>
+								<span class="news-nav-link__title" id="news-next-title"></span>
+							</a>
+						</nav>
+
+					</article>
+				</div>
+
+				<!-- Правая колонка: Сайдбар -->
+				<aside class="news-layout__sidebar">
+					<div class="news-sidebar-sticky">
+
+						<!-- Виджет 1: Свежие события -->
+						<div class="news-widget">
+							<div class="news-widget__header">
+								<h3 class="news-widget__title">Свежие события</h3>
+								<a href="life.html#news" class="news-widget__more-link">Все новости →</a>
+							</div>
+							<div class="news-widget__recent-list" id="sidebar-recent-list">
+								<!-- Заполняется динамически через js/news.js -->
+							</div>
+						</div>
+
+						<!-- Виджет 2: Рубрики -->
+						<div class="news-widget">
+							<h3 class="news-widget__title">Рубрики</h3>
+							<div class="news-widget__cats">
+								<a href="life.html#news" data-cat="all" class="news-cat-chip">Все новости</a>
+								<a href="life.html?category=education#news" data-cat="education" class="news-cat-chip">Учебная жизнь</a>
+								<a href="life.html?category=spiritual#news" data-cat="spiritual" class="news-cat-chip">Духовная жизнь</a>
+								<a href="life.html?category=creativity#news" data-cat="creativity" class="news-cat-chip">Творчество и театр</a>
+								<a href="life.html?category=sport#news" data-cat="sport" class="news-cat-chip">Спорт и ВПК</a>
+								<a href="life.html?category=camp#news" data-cat="camp" class="news-cat-chip">Лагерь и практика</a>
+								<a href="life.html?category=holidays#news" data-cat="holidays" class="news-cat-chip">Традиции и праздники</a>
+								<a href="life.html?category=pilgrimage#news" data-cat="pilgrimage" class="news-cat-chip">Паломничество</a>
+							</div>
+						</div>
+
+						<!-- Виджет 3: Карточка сообщества ВКонтакте -->
+						<div class="news-widget news-widget--vk">
+							<div class="vk-card">
+								<div class="vk-card__head">
+									<div class="vk-card__logo-wrap">
+										<img src="./assets/icons/logo_star.png" alt="" class="vk-card__logo">
+									</div>
+									<div class="vk-card__info">
+										<span class="vk-card__name">Православная гимназия</span>
+										<span class="vk-card__sub">г. Ковров • Официальная группа</span>
+									</div>
+								</div>
+								<p class="vk-card__desc">Свежие фоторепортажи, праздники, расписание и важные события школьной жизни в нашей группе.</p>
+								<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" class="vk-card__btn">
+									<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M15.684 0H8.316C2.992 0 0 2.992 0 8.316v7.368C0 21.008 2.992 24 8.316 24h7.368C21.008 24 24 21.008 24 15.684V8.316C24 2.992 21.008 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.862-.525-2.05-1.714-1.037-1.01-1.498-1.143-1.753-1.143-.356 0-.457.102-.457.593v1.657c0 .423-.135.677-1.252.677-1.846 0-3.896-1.118-5.334-3.199-2.167-3.073-2.76-5.394-2.76-5.867 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.779.677.847 2.472 2.27 4.64 2.862 4.64.22 0 .322-.102.322-.66v-2.59c-.068-1.185-.694-1.286-.694-1.71 0-.203.169-.406.44-.406h2.743c.373 0 .508.203.508.643v3.504c0 .373.169.508.288.508.237 0 .44-.135.88-.576 1.355-1.524 2.32-3.894 2.32-3.894.135-.271.356-.474.796-.474h1.744c.525 0 .643.271.525.643-.22 1.016-2.353 4.047-2.455 4.2-.17.271-.237.39 0 .711.17.237.745.728 1.135 1.168.711.813 1.253 1.49 1.405 1.964.153.474-.085.711-.56.711z"/></svg>
+									<span>Мы ВКонтакте</span>
+								</a>
+							</div>
+						</div>
+
+					</div>
+				</aside>
+
+			</div>
+
+		</div>
+
+		<!-- Полноэкранный Lightbox для просмотра фото -->
+		<div class="news-lightbox" id="news-lightbox">
+			<button class="news-lightbox__close" id="news-lightbox-close" type="button" aria-label="Закрыть">×</button>
+			<button class="news-lightbox__arrow news-lightbox__arrow--prev" id="news-lightbox-prev" type="button" aria-label="Предыдущая фотография">←</button>
+			<div class="news-lightbox__content">
+				<img id="news-lightbox-image" class="news-lightbox__image" src="" alt="">
+				<div class="news-lightbox__counter" id="news-lightbox-counter">1 / 1</div>
+			</div>
+			<button class="news-lightbox__arrow news-lightbox__arrow--next" id="news-lightbox-next" type="button" aria-label="Следующая фотография">→</button>
+		</div>
+
+	</main>
+
+
+
+	<footer>
+
+			<div class="footer-contacts footer-contacts--modern">
+
+				<div class="contacts__info">
+
+					<div class="contacts__header-group">
+						<span class="contacts__badge">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							Связь с нами
+						</span>
+						<h2 class="contacts__title">Контакты и приёмная</h2>
+						<p class="contacts__subtitle">Ответим на любые ваши вопросы или подскажем, как добраться</p>
+					</div>
+
+					<ul class="contacts__info-list">
+
+						<li class="contact-item contact-item--address">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+									<circle cx="12" cy="10" r="3"></circle>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Адрес гимназии</span>
+								<span class="contact-item__value" id="footer-contact-address">г. Ковров, ул. Подлесная, д. 10</span>
+								<span class="contact-item__note" id="footer-contact-note">Спасский корпус (приёмная, 1–4 классы)</span>
+							</div>
+						</li>
+
+						<li class="contact-item contact-item--phone">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Телефоны</span>
+								<div class="contact-item__links">
+									<a href="tel:+74923240195" class="contact-item__link" title="Приёмная директора (Спасский корпус)">+7 (49232) 4-01-95</a>
+									<span class="contact-item__separator">•</span>
+									<a href="tel:+74923242272" class="contact-item__link" title="Учительская / Завуч (Покровский корпус)">4-22-72</a>
+								</div>
+							</div>
+						</li>
+
+						<li class="contact-item contact-item--email">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<rect x="2" y="4" width="20" height="16" rx="2"></rect>
+									<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<span class="contact-item__label">Электронная почта</span>
+								<a href="mailto:sretenskajgimn@yandex.ru" class="contact-item__link">sretenskajgimn@yandex.ru</a>
+							</div>
+						</li>
+
+						<li class="contact-item contact-item--hours">
+							<div class="contact-item__icon">
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<circle cx="12" cy="12" r="10"></circle>
+									<polyline points="12 6 12 12 16 14"></polyline>
+								</svg>
+							</div>
+							<div class="contact-item__content">
+								<div class="contact-item__label-row">
+									<span class="contact-item__label">Время работы</span>
+									<span class="contact-status-chip">
+										<span class="status-dot"></span>
+										Пн–Пт
+									</span>
+								</div>
+								<span class="contact-item__value">Понедельник – Пятница: 8:00 – 19:00</span>
+							</div>
+						</li>
+
+					</ul>
+
+					<div class="contacts__buttons">
+						<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" class="btn-messenger btn-messenger--whatsapp">
+							<img src="assets/icons/wtp_vector.svg" alt="" aria-hidden="true" width="19" height="19">
+							<span>Написать в WhatsApp</span>
+							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
+						</a>
+
+						<a href="#" class="btn-messenger btn-messenger--max">
+							<img src="assets/icons/max_vector.svg" alt="" aria-hidden="true" width="19" height="19">
+							<span>Написать в MAX</span>
+							<span class="btn-messenger__arrow" aria-hidden="true">↗</span>
+						</a>
+					</div>
+
+				</div>
+
+				<div class="contact-map">
+					<!-- Интерактивный выбор корпуса -->
+					<div class="contact-map__tabs" role="tablist" aria-label="Корпуса гимназии на карте">
+						<button type="button" class="campus-tab-btn active" id="campus-tab-spassky" role="tab" aria-selected="true" data-campus="spassky">
+							<span class="campus-tab-btn__icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+									<polyline points="9 22 9 12 15 12 15 22"></polyline>
+								</svg>
+							</span>
+							<span class="campus-tab-btn__text">
+								<span class="campus-tab-btn__title">Спасский корпус</span>
+								<span class="campus-tab-btn__desc">ул. Подлесная, 10 • Приёмная</span>
+							</span>
+						</button>
+
+						<button type="button" class="campus-tab-btn" id="campus-tab-pokrovsky" role="tab" aria-selected="false" data-campus="pokrovsky">
+							<span class="campus-tab-btn__icon" aria-hidden="true">
+								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+									<path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+								</svg>
+							</span>
+							<span class="campus-tab-btn__text">
+								<span class="campus-tab-btn__title">Покровский корпус</span>
+								<span class="campus-tab-btn__desc">ул. Сосновая, 10 • 5–11 кл.</span>
+							</span>
+						</button>
+					</div>
+
+					<div class="contact-map__wrapper">
+						<span class="contact-map__badge" id="footer-map-badge">
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<span id="footer-map-badge-text">г. Ковров, ул. Подлесная, 10 (Спасский корпус)</span>
+						</span>
+
+						<iframe
+							id="footer-map-iframe"
+							src="https://yandex.ru/map-widget/v1/?ll=41.329367%2C56.362333&z=18&mode=whatshere&whatshere%5Bpoint%5D=41.329367%2C56.362333&whatshere%5Bzoom%5D=18"
+							width="100%" height="100%" frameborder="0" allowfullscreen="true"
+							title="Карта проезда к Православной гимназии" loading="lazy">
+						</iframe>
+
+						<a id="footer-map-route-btn"
+							href="https://yandex.ru/maps/?rtext=~56.362333%2C41.329367&rtt=auto"
+							target="_blank" rel="noopener noreferrer" class="contact-map__route-btn">
+							<span>Построить маршрут</span>
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<line x1="7" y1="17" x2="17" y2="7"></line>
+								<polyline points="7 7 17 7 17 17"></polyline>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+			</div>
+
+
+		<div class="footer-bottom">
+				<div class="footer-container">
+					<div class="footer-top-row">
+						<a href="index.html" class="brand__footer">
+							<img src="assets/icons/logo_star.png" alt="Логотип гимназии" class="brand__logo__footer" width="48" height="48">
+							<div class="brand__info__footer">
+								<span class="brand__title__footer">Православная гимназия г. Коврова</span>
+								<span class="brand__subtitle__footer">Частное общеобразовательное учреждение</span>
+							</div>
+						</a>
+
+						<div class="footer-top-actions">
+							<button type="button" class="footer-app-btn js-pwa-install" aria-label="Установить приложение гимназии" title="Установить приложение на телефон или компьютер">
+								<svg class="footer-app-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true">
+									<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+									<line x1="12" y1="18" x2="12.01" y2="18"></line>
+								</svg>
+								<span>Приложение гимназии</span>
+							</button>
+
+							<div class="btn_media">
+							<ul class="btn_media__list">
+								<li class="media__list-vk">
+									<a href="https://vk.com/pravgimn_kovrov" target="_blank" rel="noopener noreferrer" aria-label="Мы ВКонтакте">
+										<img src="assets/icons/vk_icon.svg" alt="ВКонтакте" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-max">
+									<a href="#" aria-label="MAX">
+										<img src="assets/icons/max_white.svg" alt="MAX" width="20" height="20">
+									</a>
+								</li>
+								<li class="media__list-whp">
+									<a href="https://wa.me/74923240195" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+										<img src="assets/icons/whatsapp.svg" alt="WhatsApp" width="20" height="20">
+									</a>
+								</li>
+							</ul>
+						</div>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-nav-grid">
+						<div class="footer-col">
+							<h3 class="footer-col__title">О гимназии</h3>
+							<ul class="footer-col__list">
+								<li><a href="story_school.html">История гимназии</a></li>
+								<li><a href="sveden/index.html">Сведения об организации</a></li>
+								<li><a href="teachers.html">Учителя</a></li>
+								<li><a href="contact.html">Контакты</a></li>
+							</ul>
+						</div>
+
+						<div class="footer-col">
+							<h3 class="footer-col__title">Обучение</h3>
+							<ul class="footer-col__list">
+								<li><a href="class_schedule.html">Расписание</a></li>
+								<li><a href="food.html">Школьное питание</a></li>
+								<li><a href="documents.html">Документы</a></li>
+								<li><a href="diary.html">Электронный дневник</a></li>
+							</ul>
+						</div>
+
+						<div class="footer-col">
+							<h3 class="footer-col__title">Информация</h3>
+							<ul class="footer-col__list">
+								<li><a href="news.html">Новости</a></li>
+								<li><a href="life.html">Жизнь гимназии</a></li>
+								<li><a href="apply.html">Поступающим</a></li>
+								<li><a href="rostochek.html">Центр «Росточек»</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-contacts-bar">
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+								<circle cx="12" cy="10" r="3"></circle>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Адрес</span>
+								<span class="footer-contact-item__text">601909, Владимирская обл., г. Ковров, ул. Подлесная, д. 10</span>
+							</div>
+						</div>
+
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Телефон</span>
+								<div class="footer-contact-item__phones">
+									<a href="tel:+74923240195" class="footer-contact-item__link">+7 (49232) 4-01-95</a>,
+									<a href="tel:+74923242272" class="footer-contact-item__link">4-22-72</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="footer-contact-item">
+							<svg class="footer-contact-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+								<polyline points="22,6 12,13 2,6"></polyline>
+							</svg>
+							<div class="footer-contact-item__content">
+								<span class="footer-contact-item__label">Электронная почта</span>
+								<a href="mailto:sretenskajgimn@yandex.ru" class="footer-contact-item__link">sretenskajgimn@yandex.ru</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="footer-divider"></div>
+
+					<div class="footer-copyright">
+						<span class="footer-copyright__text">© 2026 Православная гимназия. Все права защищены.</span>
+						<a href="policy.html" class="footer-copyright__policy">Политика конфиденциальности</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+
+	<script src="js/config.js"></script>
+	<script src="js/window.scrollY.js"></script>
+	<script src="./js/news.js"></script>
+	<script src="js/navigation.js"></script>
+	<script src="js/search.js"></script>
+
+
+
+	<script src="js/bvi.js"></script>
+	<script src="js/pwa.js" defer></script>
+	<script src="js/footer-contacts.js"></script>
+</body>
+
+</html>
