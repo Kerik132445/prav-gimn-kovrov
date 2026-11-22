@@ -95,7 +95,7 @@ loginButton.addEventListener("click", async (event) => {
 		console.log("ВХОД УСПЕШНЫЙ");
 
 
-		window.location.href = "/admin/";
+		window.location.href = "index.html";
 
 
 	} catch (error) {

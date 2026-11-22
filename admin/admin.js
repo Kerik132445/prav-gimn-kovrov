@@ -111,7 +111,7 @@ async function checkAuth() {
 		if (!response.ok) {
 
 			window.location.href =
-				"/admin/login.html";
+				"login.html";
 
 			return false;
 		}
@@ -137,7 +137,7 @@ async function checkAuth() {
 
 
 		window.location.href =
-			"/admin/login.html";
+			"login.html";
 
 
 		return false;
@@ -167,7 +167,7 @@ if (logoutButton) {
 			} finally {
 
 				window.location.href =
-					"/admin/login.html";
+					"login.html";
 			}
 
 		}
