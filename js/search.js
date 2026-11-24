@@ -1,5 +1,5 @@
 (() => {
-const API_URL = `${window.API_BASE_URL}/api/news/`;
+const API_URL = `${window.API_BASE_URL || ""}/api/news/`;
 
 const searchForm = document.getElementById("site-search-form");
 const searchInput = document.getElementById("site-search-input");
@@ -490,7 +490,8 @@ async function searchPageContent(page, searchQuery) {
 
 async function searchNews(searchQuery) {
 
-	let newsList = [];
+	try {
+		let newsList = [];
 
 	try {
 

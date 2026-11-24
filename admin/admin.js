@@ -97,21 +97,26 @@ let news = [];
 
 async function checkAuth() {
 
+	const controller = new AbortController();
+	const timeoutId = setTimeout(() => controller.abort(), 2500);
+
 	try {
 
 		const response = await fetch(
 			`${AUTH_API_URL}/me`,
 			{
 				method: "GET",
-				credentials: "include"
+				credentials: "include",
+				signal: controller.signal
 			}
 		);
 
+		clearTimeout(timeoutId);
 
 		if (!response.ok) {
 
-			window.location.href =
-				"login.html";
+			localStorage.removeItem("admin_session_active");
+			window.location.replace("login.html");
 
 			return false;
 		}
@@ -125,20 +130,22 @@ async function checkAuth() {
 			`Авторизован: ${admin.username}`
 		);
 
+		localStorage.setItem("admin_session_active", "1");
+		document.documentElement.classList.add("auth-ok");
 
 		return true;
 
 	} catch (error) {
+
+		clearTimeout(timeoutId);
 
 		console.error(
 			"Ошибка проверки авторизации:",
 			error
 		);
 
-
-		window.location.href =
-			"login.html";
-
+		localStorage.removeItem("admin_session_active");
+		window.location.replace("login.html");
 
 		return false;
 	}
@@ -166,8 +173,8 @@ if (logoutButton) {
 
 			} finally {
 
-				window.location.href =
-					"login.html";
+				localStorage.removeItem("admin_session_active");
+				window.location.replace("login.html");
 			}
 
 		}

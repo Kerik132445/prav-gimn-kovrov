@@ -1,5 +1,5 @@
 (() => {
-const API_URL = `${window.API_BASE_URL}/api/news/`;
+const API_URL = `${window.API_BASE_URL || ""}/api/news/`;
 let useLocalAssets = false;
 
 const params = new URLSearchParams(window.location.search);

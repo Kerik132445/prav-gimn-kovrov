@@ -9,6 +9,21 @@
 
 	<title>Админ-панель | Православная гимназия</title>
 
+	<script>
+		// Нулевая задержка (Zero-Latency Security Gate):
+		// Если маркер входа отсутствует — немедленно перенаправляем на login.html до парсинга DOM
+		if (!localStorage.getItem('admin_session_active')) {
+			window.location.replace('login.html');
+		}
+	</script>
+
+	<style>
+		/* Предотвращение FOUC: скрываем админку до подтверждения сессии сервером */
+		html:not(.auth-ok) body {
+			display: none !important;
+		}
+	</style>
+
 	<link rel="stylesheet" href="admin.css?v=1.2">
 
 </head>

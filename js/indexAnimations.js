@@ -192,7 +192,7 @@ function animateRange(element, start, target) {
 // НОВОСТИ С BACKEND
 // ========================================
 
-const HOME_API_URL = `${window.API_BASE_URL}/api/news/`;
+const HOME_API_URL = `${window.API_BASE_URL || ""}/api/news/`;
 
 const homeNewsList = document.getElementById("home-news-list");
 

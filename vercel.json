@@ -1,0 +1,24 @@
+{
+	"cleanUrls": true,
+	"trailingSlash": false,
+	"redirects": [
+		{ "source": "/index.php", "destination": "/index.html", "permanent": true },
+		{ "source": "/sveden", "destination": "/sveden/index.html", "permanent": true },
+		{ "source": "/contacts", "destination": "/contact.html", "permanent": true },
+		{ "source": "/contacts.html", "destination": "/contact.html", "permanent": true },
+		{ "source": "/kontakty", "destination": "/contact.html", "permanent": true },
+		{ "source": "/schedule", "destination": "/class_schedule.html", "permanent": true },
+		{ "source": "/raspisanie", "destination": "/class_schedule.html", "permanent": true },
+		{ "source": "/pedagogicheskij-sostav", "destination": "/teachers.html", "permanent": true },
+		{ "source": "/teachers", "destination": "/teachers.html", "permanent": true },
+		{ "source": "/novosti", "destination": "/news.html", "permanent": true },
+		{ "source": "/news", "destination": "/news.html", "permanent": true },
+		{ "source": "/pitanie", "destination": "/food.html", "permanent": true },
+		{ "source": "/dokumenty", "destination": "/documents.html", "permanent": true },
+		{ "source": "/docs", "destination": "/documents.html", "permanent": true },
+		{ "source": "/priem", "destination": "/apply.html", "permanent": true },
+		{ "source": "/rostochek", "destination": "/rostochek.html", "permanent": true },
+		{ "source": "/zhizn-gimnazii", "destination": "/life.html", "permanent": true },
+		{ "source": "/istoriya", "destination": "/story_school.html", "permanent": true }
+	]
+}

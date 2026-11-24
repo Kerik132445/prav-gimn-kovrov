@@ -93,9 +93,8 @@ loginButton.addEventListener("click", async (event) => {
 
 
 		console.log("ВХОД УСПЕШНЫЙ");
-
-
-		window.location.href = "index.html";
+		localStorage.setItem("admin_session_active", "1");
+		window.location.replace("index.html");
 
 
 	} catch (error) {

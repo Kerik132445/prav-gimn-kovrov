@@ -80,9 +80,12 @@ app.include_router(documents_router)
 app.include_router(calendar_router)
 
 
-@app.get("/")
-def root():
-
+@app.get("/api/health")
+def health():
     return {
         "message": "Gymnasium API is alive"
     }
+
+FRONTEND_DIR = os.path.dirname(BASE_DIR)
+app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+

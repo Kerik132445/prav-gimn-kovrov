@@ -38,7 +38,7 @@ def send_feedback_notification_sync(feedback_data: dict) -> bool:
     use_tls = os.getenv("SMTP_USE_TLS", "true").lower() in ("true", "1", "yes")
     use_ssl = os.getenv("SMTP_USE_SSL", "false").lower() in ("true", "1", "yes")
     from_email = os.getenv("SMTP_FROM_EMAIL", "").strip() or user
-    to_email = os.getenv("NOTIFICATION_EMAIL", "kerik1pii@gmail.com").strip() or "kerik1pii@gmail.com"
+    to_email = os.getenv("NOTIFICATION_EMAIL", "sretenskajgimn@yandex.ru").strip() or "sretenskajgimn@yandex.ru"
 
     page_name = feedback_data.get("source_page") or "Не указана"
     subject_name = feedback_data.get("subject") or "Не указана"

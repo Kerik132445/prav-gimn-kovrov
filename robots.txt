@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /backend/
+Disallow: /api/
+
+Sitemap: https://pravgimn-kovrov.ru/sitemap.xml
+Host: https://pravgimn-kovrov.ru

@@ -61,7 +61,7 @@ def seed_newspapers(db):
         if not read_btn:
             read_btn = art.find("a", class_="newspaper-card__cover")
 
-        file_url = read_btn.get("href") if read_btn else "documents/newspaper/Сретенские витражи №1.pdf"
+        file_url = read_btn.get("href") if read_btn else "documents/newspaper/Sretenskie_vitrazhi_2023.pdf"
 
         issue = NewspaperIssue(
             year=year,
