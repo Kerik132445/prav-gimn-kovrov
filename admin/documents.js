@@ -2,7 +2,7 @@
  * УПРАВЛЕНИЕ ДОКУМЕНТАМИ ГИМНАЗИИ (ADMIN PANEL)
  */
 (() => {
-	const API_BASE = `${window.API_BASE_URL || "http://127.0.0.1:8000"}/api/documents`;
+	const API_BASE = `${typeof window.API_BASE_URL !== "undefined" ? window.API_BASE_URL : ""}/api/documents`;
 
 	// DOM Elements
 	const docsTabCount = document.getElementById("documents-tab-count");
@@ -91,7 +91,7 @@
 		}
 		if (url.startsWith("/uploads") || url.startsWith("uploads/")) {
 			const clean = url.startsWith("/") ? url : `/${url}`;
-			const base = (window.API_BASE_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+			const base = (typeof window.API_BASE_URL !== "undefined" ? window.API_BASE_URL : "").replace(/\/$/, "");
 			return `${base}${clean}`;
 		}
 		if (url.startsWith("documents/") || url.startsWith("assets/")) {

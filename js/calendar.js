@@ -86,7 +86,7 @@
 
 	async function fetchCalendarDay(dateObj) {
 		const isoDate = formatDateIso(dateObj);
-		const baseUrl = window.API_BASE_URL || "http://127.0.0.1:8000";
+		const baseUrl = typeof window.API_BASE_URL !== "undefined" ? window.API_BASE_URL : "";
 		const apiUrl = `${baseUrl}/api/calendar/${isoDate}`;
 
 		try {
@@ -112,7 +112,7 @@
 	function getFullIconUrl(rawUrl) {
 		if (!rawUrl) return "assets/images/calendar/2026-11-21.jpg";
 		if (rawUrl.startsWith("/uploads")) {
-			const baseUrl = window.API_BASE_URL || "http://127.0.0.1:8000";
+			const baseUrl = typeof window.API_BASE_URL !== "undefined" ? window.API_BASE_URL : "";
 			return baseUrl + rawUrl;
 		}
 		return rawUrl;

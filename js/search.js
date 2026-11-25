@@ -1003,5 +1003,11 @@ async function performSearch() {
 // Запускаем поиск
 // ========================================
 
+const pageSearchInput = document.getElementById("page-search-input");
+if (pageSearchInput) {
+	const currentQuery = new URLSearchParams(window.location.search).get("q") || "";
+	pageSearchInput.value = currentQuery;
+}
+
 performSearch();
 })();

@@ -666,8 +666,14 @@
 
 	.not-found-search-input {
 		width: 100%;
+		min-height: 44px;
+		font-size: 16px;
 		text-align: center;
-		padding: 6px 0;
+		padding: 8px 6px;
+	}
+
+	.star-sparkle {
+		display: none !important;
 	}
 
 	.not-found-search-submit {

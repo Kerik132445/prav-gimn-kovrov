@@ -421,9 +421,9 @@
 
 					<!-- Быстрые контакты -->
 					<div class="mobile-drawer__contacts">
-						<a href="tel:+74923221847" class="mobile-drawer__phone">
+						<a href="tel:+74923240195" class="mobile-drawer__phone">
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-							<span>+7 (49232) 2-18-47</span>
+							<span>+7 (49232) 4-01-95</span>
 						</a>
 						<p class="mobile-drawer__address">г. Ковров, ул. Подлесная, д. 10</p>
 					</div>
@@ -528,11 +528,29 @@
 		if (mobileToggleBtn) mobileToggleBtn.focus();
 	}
 
+	function initSvedenNavA11y() {
+		const svedenNav = document.querySelector(".sveden-mobile-nav");
+		const svedenToggle = document.querySelector(".sveden-mobile-nav__toggle");
+		if (!svedenNav || !svedenToggle) return;
+
+		const syncExpanded = () => {
+			svedenToggle.setAttribute("aria-expanded", String(svedenNav.classList.contains("open")));
+		};
+		syncExpanded();
+
+		const observer = new MutationObserver(syncExpanded);
+		observer.observe(svedenNav, { attributes: true, attributeFilter: ["class"] });
+	}
+
 	// Инициализация при готовности DOM
 	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", initMobileNav);
+		document.addEventListener("DOMContentLoaded", () => {
+			initMobileNav();
+			initSvedenNavA11y();
+		});
 	} else {
 		initMobileNav();
+		initSvedenNavA11y();
 	}
 
 	// Экспорт в глобальную область при необходимости

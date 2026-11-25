@@ -808,10 +808,15 @@ body.header-is-hidden .sveden-sidebar {
 }
 
 
-/* Улучшение областей нажатия (Tap Targets) на мобильных */
+/* Улучшение областей нажатия (Tap Targets) и адаптации таблиц на мобильных */
 @media (max-width: 640px) {
-	.sveden-doc-btn {
+	.sveden-doc-btn,
+	a.sveden-badge-sign {
 		min-height: 42px;
+		min-width: 84px;
+		padding: 8px 14px !important;
+		white-space: nowrap;
+		flex-shrink: 0;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -819,5 +824,113 @@ body.header-is-hidden .sveden-sidebar {
 
 	.sveden-sidebar__link {
 		min-height: 44px;
+		font-size: 14px;
+	}
+
+	.sveden-legal-notice__text,
+	.sveden-card__desc,
+	.sveden-doc-title,
+	.sveden-placeholder,
+	.sveden-empty-notice,
+	.sveden-back-hub {
+		font-size: 14px;
+	}
+
+	.sveden-section__title {
+		align-items: flex-start;
+	}
+
+	.sveden-section__title::before {
+		margin-top: 3px;
+		flex-shrink: 0;
+	}
+
+	/* Убираем дублирование H1/H2 и подзаголовка на мобильном экране */
+	.sveden-content__header {
+		display: none;
+	}
+
+	/* Отступ списков внутри ячеек таблицы (education.html) */
+	.sveden-table td ul,
+	.sveden-table td ol {
+		padding-left: 20px;
+		margin: 4px 0;
+	}
+
+	/* Тап-таргеты для ссылок внутри таблиц */
+	.sveden-table td a:not(.sveden-doc-btn):not(.sveden-badge-sign) {
+		display: inline-flex;
+		align-items: center;
+		min-height: 40px;
+		padding: 4px 0;
+	}
+
+	/* Адаптация 2-колоночных таблиц ("параметр — значение") в вертикальные карточки */
+	.sveden-table:has(.row-header) {
+		min-width: 0 !important;
+		width: 100%;
+	}
+
+	.sveden-table:has(.row-header) thead {
+		display: none;
+	}
+
+	.sveden-table:has(.row-header) tbody,
+	.sveden-table:has(.row-header) tr,
+	.sveden-table:has(.row-header) th,
+	.sveden-table:has(.row-header) td {
+		display: block;
+		width: 100% !important;
+		box-sizing: border-box;
+	}
+
+	.sveden-table:has(.row-header) td.row-header {
+		background: #f1f5f9;
+		border-right: none;
+		border-bottom: none;
+		padding: 10px 12px 4px;
+		font-size: 14px;
+	}
+
+	.sveden-table:has(.row-header) td:not(.row-header) {
+		padding: 6px 12px 12px;
+		border-right: none;
+		border-bottom: 1px solid #e2e8f0;
+		font-size: 14px;
+		overflow-wrap: break-word;
+		word-break: normal;
+	}
+
+	.sveden-table:has(.row-header) tr:last-child td:not(.row-header) {
+		border-bottom: none;
+	}
+
+	/* Подсказка горизонтального скролла для широких многоколоночных таблиц (3-7 колонок) */
+	.sveden-table-wrap:not(:has(.row-header))::before {
+		content: "← Листайте таблицу вправо →";
+		display: block;
+		padding: 6px 12px;
+		font-size: 12px;
+		font-weight: 600;
+		color: #0284c7;
+		background: #f0f9ff;
+		border-bottom: 1px solid #bae6fd;
+		text-align: center;
+		position: sticky;
+		left: 0;
+	}
+
+	.sveden-table th,
+	.sveden-table td {
+		font-size: 14px;
+		overflow-wrap: break-word;
+		word-break: normal;
+	}
+
+	.sveden-table:not(:has(.row-header)) th,
+	.sveden-table:not(:has(.row-header)) td {
+		overflow-wrap: normal;
+		word-break: normal;
+		min-width: 140px;
 	}
 }

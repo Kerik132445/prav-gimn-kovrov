@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 		}
 		if (url.startsWith('/uploads') || url.startsWith('uploads/')) {
 			const clean = url.startsWith('/') ? url : `/${url}`;
-			const base = (window.API_BASE_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
+			const base = (typeof window.API_BASE_URL !== "undefined" ? window.API_BASE_URL : "").replace(/\/$/, "");
 			return `${base}${clean}`;
 		}
 		return url;
@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	}
 
 	// Загрузка актуальных данных из API с фоллбеком
-	const apiBase = window.API_BASE_URL || 'http://127.0.0.1:8000';
+	const apiBase = typeof window.API_BASE_URL !== "undefined" ? window.API_BASE_URL : "";
 	let loadedFromApi = false;
 
 	try {

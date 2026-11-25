@@ -101,11 +101,16 @@
 		if (!filterButtons.length || !programCards.length) return;
 
 		filterButtons.forEach(btn => {
+			btn.setAttribute("aria-pressed", String(btn.classList.contains("rst-filter-btn--active")));
 			btn.addEventListener("click", () => {
 				const filter = btn.dataset.filter || "all";
 
-				filterButtons.forEach(b => b.classList.remove("rst-filter-btn--active"));
+				filterButtons.forEach(b => {
+					b.classList.remove("rst-filter-btn--active");
+					b.setAttribute("aria-pressed", "false");
+				});
 				btn.classList.add("rst-filter-btn--active");
+				btn.setAttribute("aria-pressed", "true");
 
 				programCards.forEach(card => {
 					const categories = (card.dataset.category || "").split(" ");
@@ -632,5 +637,19 @@
 				}, 30);
 			});
 		}
+	}
+
+	function initSmoothAnchors() {
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener("click", (e) => {
+				const href = anchor.getAttribute("href");
+				if (!href || href === "#") return;
+				const target = document.querySelector(href);
+				if (target) {
+					e.preventDefault();
+					target.scrollIntoView({ behavior: "smooth", block: "start" });
+				}
+			});
+		});
 	}
 })();

@@ -300,8 +300,8 @@ def get_csrf_token(
             key=CSRF_COOKIE_NAME,
             value=token,
             httponly=False,
-            samesite="none",
-            secure=True,
+            samesite="lax",
+            secure=False,
             max_age=7 * 24 * 60 * 60
         )
 
@@ -471,8 +471,8 @@ def login(
         key="admin_session",
         value=session_token,
         httponly=True,
-        samesite="none",
-        secure=True,
+        samesite="lax",
+        secure=False,
         max_age=SESSION_DURATION_DAYS * 24 * 60 * 60
     )
 
@@ -519,8 +519,8 @@ def logout(
 
     response.delete_cookie(
         "admin_session",
-        samesite="none",
-        secure=True
+        samesite="lax",
+        secure=False
     )
 
     return {

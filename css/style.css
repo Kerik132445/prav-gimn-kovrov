@@ -10895,6 +10895,8 @@ p:has(> .vk-post-card) {
 	text-decoration: none !important;
 	margin: 28px 0;
 	transition: all 0.25s ease;
+	box-sizing: border-box;
+	max-width: 100%;
 }
 
 .vk-post-card:hover {
@@ -10918,11 +10920,13 @@ p:has(> .vk-post-card) {
 }
 
 .vk-post-card__content {
-	flex: 1;
+	flex: 1 1 auto;
 	min-width: 0;
 	display: flex;
 	flex-direction: column;
 	gap: 3px;
+	word-break: normal !important;
+	overflow-wrap: break-word !important;
 }
 
 .vk-post-card__subtitle {
@@ -10931,6 +10935,10 @@ p:has(> .vk-post-card) {
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
 	color: #0077ff;
+	word-break: normal !important;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .vk-post-card__title {
@@ -10938,6 +10946,8 @@ p:has(> .vk-post-card) {
 	font-weight: 600;
 	color: #0f172a;
 	line-height: 1.35;
+	word-break: normal !important;
+	overflow-wrap: break-word !important;
 }
 
 .vk-post-card__action {
@@ -10947,17 +10957,62 @@ p:has(> .vk-post-card) {
 	white-space: nowrap;
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	gap: 6px;
 	padding: 7px 14px;
 	border-radius: 8px;
 	background: rgba(0, 119, 255, 0.08);
 	transition: background-color 0.2s ease, transform 0.2s ease;
+	flex-shrink: 0;
 }
 
 .vk-post-card:hover .vk-post-card__action {
 	background: #0077ff;
 	color: #ffffff;
 	transform: translateX(2px);
+}
+
+@media (max-width: 640px) {
+	.vk-post-card {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 12px 14px;
+		padding: 14px 16px;
+		margin: 20px 0;
+	}
+
+	.vk-post-card__badge {
+		grid-column: 1;
+		grid-row: 1;
+		width: 40px;
+		height: 40px;
+		align-self: center;
+	}
+
+	.vk-post-card__content {
+		grid-column: 2;
+		grid-row: 1;
+		min-width: 0;
+		gap: 2px;
+	}
+
+	.vk-post-card__subtitle {
+		font-size: 11px;
+	}
+
+	.vk-post-card__title {
+		font-size: 14px;
+		line-height: 1.3;
+	}
+
+	.vk-post-card__action {
+		grid-column: 1 / -1;
+		grid-row: 2;
+		width: 100%;
+		padding: 9px 12px;
+		font-size: 13.5px;
+		box-sizing: border-box;
+	}
 }
 
 /* Футер статьи и Поделиться */
@@ -16227,13 +16282,11 @@ p {
 		width: 100%;
 		max-width: 100%;
 		font-size: clamp(10px, 2.5vw, 12px);
-		line-height: 1.2;
+		line-height: 1.25;
 		color: rgba(255, 255, 255, 0.8);
 		margin: 0;
 		text-align: left;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		white-space: normal;
 	}
 
 	.mobile-header-actions {
@@ -21586,4 +21639,201 @@ body.bvi-active .footer-contacts--modern .campus-tab-btn__icon,
 	background: transparent !important;
 	border: 1px solid currentColor !important;
 	color: inherit !important;
+}
+
+/* ==========================================================================
+   MOBILE QA FIXES (<= 1023px / <= 767px / <= 640px / <= 480px)
+   ========================================================================== */
+
+@media (max-width: 1023px) {
+	html,
+	body,
+	header,
+	main,
+	footer {
+		max-width: 100% !important;
+		overflow-x: clip !important;
+	}
+
+	.site-container,
+	.container,
+	.container--wide,
+	.footer-top,
+	.footer-bottom {
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+
+	/* Исключаем зависание секций и заголовков в полупрозрачном виде на мобилке */
+	.js-reveal,
+	.js-reveal-image {
+		opacity: 1 !important;
+		transform: none !important;
+	}
+
+	/* Тап-таргеты >= 40px в контактах, футере и интерактивных кнопках */
+	.footer-col__list a,
+	.footer-copyright__policy,
+	.footer-contact-item__link,
+	.contact-item__link {
+		display: inline-flex;
+		align-items: center;
+		min-height: 40px;
+		padding: 4px 0;
+	}
+
+	.footer-col__list {
+		gap: 2px;
+	}
+
+	.footer-app-btn {
+		min-height: 44px !important;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.footer-contacts--modern .contact-map__route-btn {
+		min-height: 40px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px 14px;
+	}
+
+	.requisite-copy-btn {
+		min-height: 40px !important;
+	}
+
+	.church-calendar__nav-btn,
+	.church-calendar__today-btn {
+		min-width: 40px !important;
+		min-height: 40px !important;
+	}
+
+	.news__link,
+	.news-share__btn,
+	.news-category-link,
+	.news-gallery__zoom-btn {
+		min-height: 40px;
+		display: inline-flex;
+		align-items: center;
+	}
+
+	/* Убираем лишний вертикальный зазор в форме обратной связи */
+	.feedback__form {
+		gap: 14px;
+	}
+
+	.feedback__form textarea {
+		min-height: 110px;
+	}
+
+	/* Реквизиты без разрыва чисел посередине */
+	.requisite-row__value {
+		word-break: normal !important;
+		overflow-wrap: break-word !important;
+	}
+
+	/* Покровский / Спасский корпус в расписании: не рвать слово "Выбрать" */
+	.campus-card__header {
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	.campus-card__status {
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+}
+
+@media (max-width: 767px) {
+	/* contact.html: перестраиваем 3 hero-карточки в 1 колонку */
+	.hero-contacts__cards {
+		grid-template-columns: minmax(0, 1fr) !important;
+		gap: 14px !important;
+		margin-top: 24px !important;
+		margin-bottom: 4px !important;
+	}
+
+	/* Плавающая кнопка наверх и быстрая навигация преподавателей компактнее */
+	.back-to-top {
+		right: 14px;
+		bottom: 14px;
+		width: 40px;
+		height: 40px;
+	}
+
+	.teachers-quick-nav {
+		left: 14px;
+		bottom: 14px;
+	}
+
+	.teachers-quick-nav__toggle {
+		min-height: 40px;
+		padding: 8px 12px;
+		font-size: 13px;
+	}
+
+	/* life.html: подсказка горизонтального скролла у фильтров (правый отступ + скролл) */
+	.filters-block__list {
+		padding-right: 24px;
+		mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+	}
+}
+
+/* Форма поиска на странице search.html */
+.search-page-form {
+	display: flex !important;
+	width: 100%;
+	max-width: 560px;
+	margin-top: 20px;
+	padding: 6px 6px 6px 14px;
+	background: #ffffff;
+	border: 1px solid #cbd5e1;
+	border-radius: 14px;
+	box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.search-page-form .search-form__input {
+	min-height: 40px;
+	font-size: 16px;
+}
+
+.search-page-form__btn {
+	flex-shrink: 0;
+	min-height: 40px;
+	padding: 0 18px;
+	border: none;
+	border-radius: 10px;
+	background: #2563eb;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+}
+
+@media (max-width: 640px) {
+	/* food.html: бейдж "Двухразовое питание" не сжимает заголовок h3 */
+	.benefits-card__header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	.benefits-card__badge {
+		white-space: normal;
+	}
+
+	/* Hero статистика на главной: не обрезать "продлённый день" */
+	.hero__stats {
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.hero__stat-label {
+		white-space: normal;
+		font-size: 12.5px;
+	}
 }
