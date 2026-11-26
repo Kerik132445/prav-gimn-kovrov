@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 				const iconSrc = getFileIcon(item.file_type);
 
 				return `
-					<li class="documents-item">
+					<li class="documents-item" data-doc-id="${item.id || ''}">
 						<div class="documents-item__info">
 							<img alt="Документ" class="doc-icon" src="${iconSrc}" />
 							<span class="documents-item__title">${title}</span>
@@ -324,4 +324,68 @@ document.addEventListener('DOMContentLoaded', async () => {
 	if (!loadedFromApi && window.FALLBACK_DOCUMENTS && window.FALLBACK_DOCUMENTS.length) {
 		renderDocuments(window.FALLBACK_DOCUMENTS);
 	}
+
+	function focusDocumentFromUrl() {
+		const params = new URLSearchParams(window.location.search);
+		const docId = params.get('doc');
+		const categoryParam = params.get('category');
+		const highlightParam = (params.get('highlight') || params.get('q') || '').trim();
+
+		if (!docId && !categoryParam && !highlightParam) return;
+
+		const allItems = Array.from(document.querySelectorAll('.documents-item'));
+		let targetItem = docId
+			? allItems.find(li => String(li.dataset.docId) === String(docId)) || null
+			: null;
+
+		if (!targetItem && highlightParam) {
+			const needle = highlightParam.toLowerCase().replace(/ё/g, 'е');
+			const stem = needle.length >= 5 ? needle.slice(0, -2) : needle;
+			targetItem = allItems.find(li =>
+				(li.textContent || '').toLowerCase().replace(/ё/g, 'е').includes(stem)
+			) || null;
+		}
+
+		if (targetItem) {
+			const parentAccordion = targetItem.closest('.accordion-document');
+			if (parentAccordion) {
+				document.querySelectorAll('.accordion-document').forEach(acc => {
+					acc.classList.remove('accordion-document--active');
+				});
+				parentAccordion.classList.add('accordion-document--active');
+			}
+
+			targetItem.classList.add('documents-item--highlighted');
+
+			if (highlightParam) {
+				const titleEl = targetItem.querySelector('.documents-item__title');
+				if (titleEl) {
+					const words = highlightParam.toLowerCase().replace(/ё/g, 'е').split(/\s+/).filter(w => w.length >= 2);
+					if (words.length) {
+						const patterns = words.map(w => {
+							const esc = w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/е/g, '[её]');
+							return w.length >= 5 ? `${esc.slice(0, -2)}[а-яё]*` : esc;
+						});
+						const rx = new RegExp(`(${patterns.join('|')})`, 'gi');
+						titleEl.innerHTML = titleEl.textContent.replace(rx, '<mark class="site-search-highlight">$1</mark>');
+					}
+				}
+			}
+
+			setTimeout(() => {
+				targetItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}, 180);
+			return;
+		}
+
+		if (categoryParam && filterPillsContainer) {
+			const pill = Array.from(filterPillsContainer.querySelectorAll('.pill-btn'))
+				.find(b => b.dataset.category === categoryParam);
+			if (pill) {
+				pill.click();
+			}
+		}
+	}
+
+	focusDocumentFromUrl();
 });

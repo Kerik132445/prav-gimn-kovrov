@@ -791,12 +791,8 @@
 		loadCampShifts();
 	}
 
-	// Запускаем при загрузке документа
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", initGymLifeAdmin);
-	} else {
-		initGymLifeAdmin();
-	}
+	// Запуск выполняется через admin.js после проверки авторизации
+	window.initGymLifeAdmin = initGymLifeAdmin;
 
 	window.GymLifeAdmin = {
 		reloadAll: initGymLifeAdmin,

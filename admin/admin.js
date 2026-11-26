@@ -1213,6 +1213,14 @@ async function initAdmin() {
 			await window.initMenuAdmin();
 		}
 
+		if (typeof window.initGymLifeAdmin === "function") {
+			window.initGymLifeAdmin();
+		}
+
+		if (typeof window.initDocumentsAdmin === "function") {
+			window.initDocumentsAdmin();
+		}
+
 	} catch (error) {
 
 		console.error(error);

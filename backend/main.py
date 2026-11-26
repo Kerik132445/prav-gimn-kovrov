@@ -13,6 +13,7 @@ from routes.feedback import router as feedback_router
 from routes.gym_life import router as gym_life_router
 from routes.documents import router as documents_router
 from routes.calendar import router as calendar_router
+from routes.search import router as search_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -78,6 +79,7 @@ app.include_router(feedback_router)
 app.include_router(gym_life_router)
 app.include_router(documents_router)
 app.include_router(calendar_router)
+app.include_router(search_router)
 
 
 @app.get("/api/health")

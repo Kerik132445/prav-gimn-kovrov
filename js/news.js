@@ -473,23 +473,26 @@ function transformContent(rawHtml) {
 
 function setupShareButtons(title) {
 	const shareVk = document.getElementById("share-vk");
-	const shareTg = document.getElementById("share-tg");
+	const shareWa = document.getElementById("share-wa");
 	const shareCopy = document.getElementById("share-copy");
 	const copyText = document.getElementById("share-copy-text");
 
 	const currentUrl = window.location.href;
+	const newsTitle = title || document.title;
+	const shareComment = "Смотри, что интересного прошло в гимназии!";
 
 	if (shareVk) {
 		shareVk.onclick = () => {
-			const vkShareUrl = `https://vk.com/share.php?url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(title || document.title)}`;
+			const vkShareUrl = `https://vk.com/share.php?url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(newsTitle)}&comment=${encodeURIComponent(shareComment)}`;
 			window.open(vkShareUrl, "_blank", "width=640,height=480");
 		};
 	}
 
-	if (shareTg) {
-		shareTg.onclick = () => {
-			const tgShareUrl = `https://t.me/share/url?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(title || document.title)}`;
-			window.open(tgShareUrl, "_blank", "width=640,height=480");
+	if (shareWa) {
+		shareWa.onclick = () => {
+			const waText = `${shareComment}\n«${newsTitle}»\n${currentUrl}`;
+			const waShareUrl = `https://wa.me/?text=${encodeURIComponent(waText)}`;
+			window.open(waShareUrl, "_blank", "width=640,height=520");
 		};
 	}
 

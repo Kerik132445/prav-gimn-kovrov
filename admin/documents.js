@@ -685,10 +685,6 @@
 		}
 	}
 
-	// Запуск при готовности страницы
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", init);
-	} else {
-		init();
-	}
+	// Запуск выполняется через admin.js после проверки авторизации
+	window.initDocumentsAdmin = init;
 })();

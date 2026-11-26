@@ -10,15 +10,14 @@
 		// localStorage может быть заблокирован в некоторых sandbox/iframe
 	}
 
-	const isLocal = typeof window !== "undefined" && (
-		window.location.hostname === "localhost" ||
-		window.location.hostname === "127.0.0.1" ||
+	const isLiveServerOrFile = typeof window !== "undefined" && (
 		window.location.protocol === "file:" ||
-		!window.location.hostname
+		!window.location.hostname ||
+		["5500", "5501", "3000", "5173"].includes(window.location.port)
 	);
 
-	// Локально подключаемся к живому FastAPI на порту 8000.
-	// На боевом домене используем относительные пути (reverse proxy /api), чтобы не зависеть от временных туннелей.
-	window.API_BASE_URL = isLocal ? "http://127.0.0.1:8000" : "";
+	// Локально с Live Server / file: подключаемся к FastAPI на порту 8000.
+	// Когда фронт открыт прямо с FastAPI или на боевом домене — используем относительные пути.
+	window.API_BASE_URL = isLiveServerOrFile ? "http://127.0.0.1:8000" : "";
 })();
 
